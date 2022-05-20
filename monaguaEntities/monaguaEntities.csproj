@@ -1,0 +1,122 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E5323FE-5269-427C-8C5D-4E25328B511E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>monaguaRules</RootNamespace>
+    <AssemblyName>monaguaEntities</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\monaguaEntities.XML</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\monaguaEntities.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cooperator.Framework.Core, Version=1.3.2.0, Culture=neutral, PublicKeyToken=8f7f403e20325116, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CooperatorAssemblies\\Cooperator.Framework.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Actividades.cs" />
+    <Compile Include="Entities\Auto\Actividades.Auto.cs" />
+    <Compile Include="Entities\Auto\Usuarios.Auto.cs" />
+    <Compile Include="Entities\Usuarios.cs" />
+    <Compile Include="Objects\ActividadesObject.cs" />
+    <Compile Include="Objects\Auto\ActividadesObject.Auto.cs" />
+    <Compile Include="Entities\ActividadesHorarios.cs" />
+    <Compile Include="Entities\Auto\ActividadesHorarios.Auto.cs" />
+    <Compile Include="Objects\ActividadesHorariosObject.cs" />
+    <Compile Include="Objects\Auto\ActividadesHorariosObject.Auto.cs" />
+    <Compile Include="Entities\Calificaciones.cs" />
+    <Compile Include="Entities\Auto\Calificaciones.Auto.cs" />
+    <Compile Include="Objects\Auto\UsuariosObject.Auto.cs" />
+    <Compile Include="Objects\CalificacionesObject.cs" />
+    <Compile Include="Objects\Auto\CalificacionesObject.Auto.cs" />
+    <Compile Include="Entities\Categorias.cs" />
+    <Compile Include="Entities\Auto\Categorias.Auto.cs" />
+    <Compile Include="Objects\CategoriasObject.cs" />
+    <Compile Include="Objects\Auto\CategoriasObject.Auto.cs" />
+    <Compile Include="Entities\Clientes.cs" />
+    <Compile Include="Entities\Auto\Clientes.Auto.cs" />
+    <Compile Include="Objects\ClientesObject.cs" />
+    <Compile Include="Objects\Auto\ClientesObject.Auto.cs" />
+    <Compile Include="Entities\Compras.cs" />
+    <Compile Include="Entities\Auto\Compras.Auto.cs" />
+    <Compile Include="Objects\ComprasObject.cs" />
+    <Compile Include="Objects\Auto\ComprasObject.Auto.cs" />
+    <Compile Include="Entities\ComprasDetalle.cs" />
+    <Compile Include="Entities\Auto\ComprasDetalle.Auto.cs" />
+    <Compile Include="Objects\ComprasDetalleObject.cs" />
+    <Compile Include="Objects\Auto\ComprasDetalleObject.Auto.cs" />
+    <Compile Include="Entities\Descuentos.cs" />
+    <Compile Include="Entities\Auto\Descuentos.Auto.cs" />
+    <Compile Include="Objects\DescuentosObject.cs" />
+    <Compile Include="Objects\Auto\DescuentosObject.Auto.cs" />
+    <Compile Include="Entities\EstadosCompra.cs" />
+    <Compile Include="Entities\Auto\EstadosCompra.Auto.cs" />
+    <Compile Include="Objects\EstadosCompraObject.cs" />
+    <Compile Include="Objects\Auto\EstadosCompraObject.Auto.cs" />
+    <Compile Include="Entities\Favoritos.cs" />
+    <Compile Include="Entities\Auto\Favoritos.Auto.cs" />
+    <Compile Include="Objects\FavoritosObject.cs" />
+    <Compile Include="Objects\Auto\FavoritosObject.Auto.cs" />
+    <Compile Include="Entities\Localidades.cs" />
+    <Compile Include="Entities\Auto\Localidades.Auto.cs" />
+    <Compile Include="Objects\LocalidadesObject.cs" />
+    <Compile Include="Objects\Auto\LocalidadesObject.Auto.cs" />
+    <Compile Include="Entities\Mensajes.cs" />
+    <Compile Include="Entities\Auto\Mensajes.Auto.cs" />
+    <Compile Include="Objects\MensajesObject.cs" />
+    <Compile Include="Objects\Auto\MensajesObject.Auto.cs" />
+    <Compile Include="Entities\Paises.cs" />
+    <Compile Include="Entities\Auto\Paises.Auto.cs" />
+    <Compile Include="Objects\PaisesObject.cs" />
+    <Compile Include="Objects\Auto\PaisesObject.Auto.cs" />
+    <Compile Include="Entities\Prestadores.cs" />
+    <Compile Include="Entities\Auto\Prestadores.Auto.cs" />
+    <Compile Include="Objects\PrestadoresObject.cs" />
+    <Compile Include="Objects\Auto\PrestadoresObject.Auto.cs" />
+    <Compile Include="Entities\Provincias.cs" />
+    <Compile Include="Entities\Auto\Provincias.Auto.cs" />
+    <Compile Include="Objects\ProvinciasObject.cs" />
+    <Compile Include="Objects\Auto\ProvinciasObject.Auto.cs" />
+    <Compile Include="Objects\UsuariosObject.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

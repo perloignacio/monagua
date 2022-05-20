@@ -1,0 +1,12 @@
+﻿.vs/monagua/config/applicationhost.config
+Api/bin
+Api/obj
+Backup
+monagua
+monaguaData/bin
+monaguaData/obj
+monaguaEntities/bin
+monaguaEntities/obj
+monaguaRules/bin
+monaguaRules/obj
+Web/.vscode

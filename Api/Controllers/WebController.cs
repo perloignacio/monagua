@@ -7,7 +7,7 @@ using System.Web.Http;
 using monaguaRules;
 using monaguaRules.Entities;
 using monaguaRules.Mappers;
-namespace Api.Clases
+namespace Api.Controllers
 {   
     [RoutePrefix("web")]
     public class WebController : ApiController
@@ -73,7 +73,7 @@ namespace Api.Clases
         [Route("provinciasLocalidades")]
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult provinciasLocalidades(int idprovincia)
+        public IHttpActionResult provinciasLocalidades()
         {
             try
             {

@@ -7,6 +7,7 @@ import { Provincias } from 'src/app/models/Provincias.model';
 import { Localidades } from 'src/app/models/Localidades.model';
 import { WebService } from 'src/app/services/web/web.service';
 import { Router } from '@angular/router';
+import { ClientesService } from 'src/app/services/clientes/clientes.service';
 
 @Component({
   selector: 'app-registro-clientes',
@@ -22,7 +23,7 @@ export class RegistroClientesComponent implements OnInit {
   contra:string
   
 
-  constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router) { 
+  constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router,private srvClientes:ClientesService) { 
     this.srvWeb.Paises().subscribe((paises)=>{
     
       this.listapaises=paises;
@@ -57,8 +58,10 @@ export class RegistroClientesComponent implements OnInit {
       this.obj.IdLocalidad;
       form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
       form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
-      this.srvWeb.GuardarUsu(form).subscribe((Usuarios)=>{
-        this.usu= Usuarios;
+      this.srvClientes.Registrar(form).subscribe((band)=>{
+        if(band){
+
+        }
       })
       console.log(this.obj);
       }

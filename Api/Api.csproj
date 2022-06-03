@@ -149,7 +149,7 @@
     <Compile Include="Clases\Helpers.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
-    <Compile Include="Clases\WebController.cs" />
+    <Compile Include="Controllers\WebController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\PrestadoresController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />

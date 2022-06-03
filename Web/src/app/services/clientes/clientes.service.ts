@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+
+
 const httpOptions = {
   withCredentials: true
 };
@@ -14,7 +16,7 @@ export class ClientesService {
     this.endpoint = environment.apiUrl+"clientes/";
   }
   
-  Registrar(obj:any) {
+   Registrar(obj:any) {
     return this.httpClient.post<boolean>(this.endpoint + `registrar`,obj, httpOptions)
   }
 }

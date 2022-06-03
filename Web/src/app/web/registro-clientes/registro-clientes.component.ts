@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Clientes } from 'src/app/models/Clientes.model';
 import { Usuarios } from 'src/app/models/Usuarios.model';
 import { SharedService } from 'src/app/services/shared/shared.service';
+import { Paises } from 'src/app/models/Paises.model';
+import { Provincias } from 'src/app/models/Provincias.model';
+import { Localidades } from 'src/app/models/Localidades.model';
+import { WebService } from 'src/app/services/web/web.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-clientes',
@@ -11,16 +16,51 @@ import { SharedService } from 'src/app/services/shared/shared.service';
 export class RegistroClientesComponent implements OnInit {
   obj:Clientes=new Clientes();
   usu:Usuarios=new Usuarios();
-  constructor(private srvShared:SharedService) { }
+  listapaises:Paises[]=[];
+  listaprovincias:Provincias[]=[];
+  listalocalidades:Localidades[]=[];
+  contra:string
+  
+
+  constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router) { 
+    this.srvWeb.Paises().subscribe((paises)=>{
+    
+      this.listapaises=paises;
+      })
+    }
+    
+  onChangePais(e){
+    this.srvWeb.Provincias(this.obj.IdPais).subscribe((provincias)=>{
+    
+      this.listaprovincias=provincias;
+      })
+  }
+
+  onChangeProvincia(f){
+    this.srvWeb.Localidades(this.obj.IdProvincia).subscribe((localidades)=>{
+    
+      this.listalocalidades=localidades;
+      })
+  }
 
   ngOnInit(): void {
-  }
-
-  Registrar(){
-    this.usu.Email=this.obj.Email;
-    const form=new FormData();
-    form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
-    form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
-    console.log(this.obj);
-  }
+     }
+  
+  
+     Registrar(){
+      const form=new FormData();
+      this.usu.Email=this.obj.Email;
+      this.usu.Nombre=this.obj.Nombre;
+      this.usu.Apellido=this.obj.Apellido;
+      this.obj.IdPais;
+      this.obj.IdProvincia;
+      this.obj.IdLocalidad;
+      form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
+      form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
+      this.srvWeb.GuardarUsu(form).subscribe((Usuarios)=>{
+        this.usu= Usuarios;
+      })
+      console.log(this.obj);
+      }
+  
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Prestadores } from 'src/app/models/Prestadores.model';
+import { SharedService } from 'src/app/services/shared/shared.service';
 
 @Component({
   selector: 'app-registro-prestadores',
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro-prestadores.component.scss']
 })
 export class RegistroPrestadoresComponent implements OnInit {
-
-  constructor() { }
+  obj:Prestadores=new Prestadores();
+  constructor(private srvShared:SharedService) { }
 
   ngOnInit(): void {
   }

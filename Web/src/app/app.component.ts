@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Paises } from './models/Paises.model';
+import { Provincias } from './models/Provincias.model';
+import { Localidades } from './models/Localidades.model';
 import { WebService } from './services/web/web.service';
 
 @Component({
@@ -9,11 +11,15 @@ import { WebService } from './services/web/web.service';
 })
 export class AppComponent {
   title = 'Web';
-  lisapaises:Paises[]=[];
+  listapaises:Paises[]=[];
+  listaprovincias:Provincias[]=[];
+  listalocalidades:Localidades[]=[];
   constructor(private servicioPais:WebService) {
     this.servicioPais.Paises().subscribe((array)=>{
       console.log(array);
-      this.lisapaises=array;
-    })
+      this.listapaises=array;
+  })
+  
   }
 }
+

@@ -1,1 +1,18 @@
-<p>registro-clientes works!</p>
+<div class="row">
+    <div class="col-12">
+        <label>Nombre</label>
+        <input [(ngModel)]="obj.Nombre" name="Nombre" type="text" class="form-control">
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="obj.Apellido" name="Apellido" class="form-control">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <button class="btn btn-primary" (click)="Registrar()">Registrar</button>
+    </div>
+</div>

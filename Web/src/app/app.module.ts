@@ -13,7 +13,7 @@ import { RegistroPrestadoresComponent } from './web/registro-prestadores/registr
 import { HomeComponent } from './web/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    SweetAlert2Module.forRoot(),
     HttpClientModule,
          NgbModule
   ],

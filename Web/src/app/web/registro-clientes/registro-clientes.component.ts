@@ -58,6 +58,7 @@ export class RegistroClientesComponent implements OnInit {
       this.obj.IdLocalidad;
       form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
       form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
+      
       this.srvClientes.Registrar(form).subscribe((band)=>{
         if(band){
 

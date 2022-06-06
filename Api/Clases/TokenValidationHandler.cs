@@ -125,7 +125,7 @@ namespace API.Clases
                     var identity = iden.Identity;
                     if (request.RequestUri.ToString().Contains("Admin/"))
                     {
-                        Usuarios  u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                        /*Usuarios  u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
                         if (u != null)
                         {
                             if (u.ClientesEntity != null || u.PrestadoresEntity!=null)
@@ -136,7 +136,7 @@ namespace API.Clases
                         else
                         {
                             ret = false;
-                        }
+                        }*/
 
                     }
 

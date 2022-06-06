@@ -8,6 +8,7 @@ export class Clientes{
     Nombre:string;
     Apellido:string;
     Email:string;
+    Contra:string;
     FechaNacimiento:Date;
     Novedades:boolean;
     Politicas:boolean;

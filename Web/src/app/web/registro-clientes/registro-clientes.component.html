@@ -18,6 +18,12 @@
 </div>
 <div class="row">
     <div class="col-12">
+        <label>Contraseña</label>
+        <input type="password" [(ngModel)]="obj.Contra" name="Contra" class="form-control">
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
         <label>Fecha de Nacimiento</label>
         <input [(ngModel)]="obj.FechaNacimiento" name="FechaNacimiento" type="date" class="form-control">
     </div>
@@ -68,12 +74,12 @@
     </div>
 </div>
 <div class="row">
-    <input type="checkbox" class="row" id="Novedades">
+    <input type="checkbox" class="row" [(ngModel)]="obj.Novedades" id="Novedades">
     <label class="form-check-label" for="Novedades">Deseo recibir novedades por correo</label>
 </div>
 <div class="row">
-    <input type="checkbox" class="row" id="Politicas">
-    <label class="form-check-label" for="Politicas">Acepto las Políticas y Condiciones</label>
+    <input type="checkbox" [(ngModel)]="obj.Politicas" id="Politicas">
+    <label class="checkbox-inline" for="Politicas">Acepto las Políticas y Condiciones</label>
 </div>
 
 <div class="row">

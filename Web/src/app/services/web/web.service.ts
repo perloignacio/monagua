@@ -28,9 +28,7 @@ export class WebService {
   Localidades(IdProvincia:number) {
     return this.httpClient.get<Localidades[]>(this.endpoint + `localidades?idprovincia=${IdProvincia}`, httpOptions)
   }
-  GuardarUsu(form:any) {
-    return this.httpClient.post<Usuarios>(this.endpoint + 'registrar', form);
-  }
+  
 
 }
 

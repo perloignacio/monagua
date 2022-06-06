@@ -8,6 +8,7 @@ import { Localidades } from 'src/app/models/Localidades.model';
 import { WebService } from 'src/app/services/web/web.service';
 import { Router } from '@angular/router';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-registro-clientes',
@@ -20,8 +21,8 @@ export class RegistroClientesComponent implements OnInit {
   listapaises:Paises[]=[];
   listaprovincias:Provincias[]=[];
   listalocalidades:Localidades[]=[];
-  contra:string
-  
+  contra:string;
+  Agregar:boolean=true;
 
   constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router,private srvClientes:ClientesService) { 
     this.srvWeb.Paises().subscribe((paises)=>{
@@ -50,9 +51,17 @@ export class RegistroClientesComponent implements OnInit {
   
      Registrar(){
       const form=new FormData();
+      if(!this.Agregar){
+        form.append("id",this.obj.IdCliente.toString());
+      }else{
+        form.append("id","0");
+      }
+      this.usu.IdUsuario=this.obj.IdCliente;
       this.usu.Email=this.obj.Email;
+      this.usu.Contra=this.obj.Contra;
       this.usu.Nombre=this.obj.Nombre;
       this.usu.Apellido=this.obj.Apellido;
+      this.usu.Usuario=this.obj.Email;
       this.obj.IdPais;
       this.obj.IdProvincia;
       this.obj.IdLocalidad;
@@ -60,9 +69,13 @@ export class RegistroClientesComponent implements OnInit {
       form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
       this.srvClientes.Registrar(form).subscribe((band)=>{
         if(band){
+                  
+        } 
+      },(err)=>{
 
-        }
+        console.log("Upps",err.error.Message,'Warning');
       })
+      
       console.log(this.obj);
       }
   

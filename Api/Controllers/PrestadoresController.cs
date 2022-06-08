@@ -106,6 +106,10 @@ namespace Api.Controllers
                 PrestadoresRules pr = new PrestadoresRules();
                 Prestadores presta;
                 string logo = string.Join(",",Helpers.SubeArchivos("prestadores","",false,HttpContext.Current.Request.Files));
+                if (string.IsNullOrEmpty(logo))
+                {
+                    logo = "nologo.jpg";
+                }
 
                 presta = pr.Agregar(obj.RazonSocial,obj.NombreFantasia,obj.Cuit, obj.Email, logo,obj.PrestadorHabilitado, obj.IdLocalidad, obj.IdPais, obj.IdProvincia, obj.Politicas, obj.Telefono);
                 if (presta != null)

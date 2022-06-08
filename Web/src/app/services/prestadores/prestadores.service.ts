@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Prestadores } from 'src/app/models/Prestadores.model';
 import { environment } from 'src/environments/environment';
+
 const httpOptions = {
   withCredentials: true
 };

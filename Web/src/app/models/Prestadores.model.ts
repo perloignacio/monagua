@@ -7,6 +7,7 @@ export class Prestadores{
     RazonSocial:string;
     NombreFantasia:string;
     Cuit:string;
+    Telefono:number;
     IdPais:number;
     IdProvincia:number;
     IdLocalidad:number;

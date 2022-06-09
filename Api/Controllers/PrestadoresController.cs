@@ -114,7 +114,7 @@ namespace Api.Controllers
                 presta = pr.Agregar(obj.RazonSocial,obj.NombreFantasia,obj.Cuit, obj.Email, logo,obj.PrestadorHabilitado, obj.IdLocalidad, obj.IdPais, obj.IdProvincia, obj.Politicas, obj.Telefono);
                 if (presta != null)
                 {
-                    UsuariosRules.Agregar(u.Nombre, u.Apellido, u.Email, u.Telefono, u.Usuario, u.Contra, presta.IdPrestador, null);
+                    UsuariosRules.Agregar(u.Nombre, u.Apellido, u.Email, u.Telefono, u.Usuario, u.Contra, null, presta.IdPrestador);
                     return Ok(true);
                 }
                 else

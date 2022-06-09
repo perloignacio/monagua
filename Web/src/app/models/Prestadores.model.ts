@@ -12,7 +12,6 @@ export class Prestadores{
     IdProvincia:number;
     IdLocalidad:number;
     Email:string;
-    Contra:string;
     Logo:string;
     FechaRegistro:Date;
     PrestadorHabilitado:boolean;

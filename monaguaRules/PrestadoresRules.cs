@@ -11,14 +11,14 @@ namespace monaguaRules
     {
         public Prestadores Agregar(string razonsocial, string fantasia, string cuit, string email,string logo, bool prestadorHabilitado, int? idlocalidad, int? idpais, int? idprovincia,bool politicas, string telefono)
         {
-            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, politicas,telefono,logo);
+            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, politicas,telefono,logo,cuit);
 
             var pr = new Prestadores();
             pr.NombreFantasia = fantasia;
             pr.Activo = true;
             pr.RazonSocial = razonsocial;
             pr.Email = email;
-
+            pr.Cuit = cuit;
 
             pr.FechaRegistro = DateTime.Now;
             if (idlocalidad.HasValue)
@@ -46,7 +46,7 @@ namespace monaguaRules
 
         public void Modificar(int idprestador, string razonsocial, string fantasia, string cuit, string email, string logo, bool prestadorHabilitado, int? idlocalidad, int? idpais, int? idprovincia, bool politicas, string telefono)
         {
-            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, politicas, telefono, logo);
+            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, politicas, telefono, logo,cuit);
 
             var pr = new Prestadores();
             pr = PrestadoresMapper.Instance().GetOne(idprestador);
@@ -58,7 +58,7 @@ namespace monaguaRules
             pr.Activo = true;
             pr.RazonSocial = razonsocial;
             pr.Email = email;
-
+            pr.Cuit = cuit;
 
             pr.FechaRegistro = DateTime.Now;
             if (idlocalidad.HasValue)
@@ -115,7 +115,7 @@ namespace monaguaRules
             PrestadoresMapper.Instance().Save(pr);
 
         }
-        public void validar(string nombre, string apellido, string email, int? idlocalidad, int? idpais, int? idprovincia, bool politicas, string telefono, string logo)
+        public void validar(string nombre, string apellido, string email, int? idlocalidad, int? idpais, int? idprovincia, bool politicas, string telefono, string logo,string cuit)
         {
             if (string.IsNullOrEmpty(nombre))
             {
@@ -136,6 +136,10 @@ namespace monaguaRules
             if (string.IsNullOrEmpty(email))
             {
                 throw new Exception("Ingrese el email");
+            }
+            if (string.IsNullOrEmpty(cuit))
+            {
+                throw new Exception("Ingrese el cuit");
             }
             if (idpais.HasValue)
             {

@@ -58,11 +58,8 @@ export class RegistroPrestadoresComponent implements OnInit {
     this.usu.Apellido=this.obj.NombreFantasia;
     this.usu.Email=this.obj.Email;
     this.usu.Usuario=this.obj.Email;
-    this.usu.Contra=this.obj.Contra;
-    this.obj.Cuit;
-    this.obj.IdPais;
-    this.obj.IdProvincia;
-    this.obj.IdLocalidad;
+    
+    
     form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
     form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
     

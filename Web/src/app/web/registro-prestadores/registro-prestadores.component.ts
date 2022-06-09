@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Prestadores } from 'src/app/models/Prestadores.model';
+import { Usuarios } from 'src/app/models/Usuarios.model';
 import { SharedService } from 'src/app/services/shared/shared.service';
 import { Paises } from 'src/app/models/Paises.model';
 import { Provincias } from 'src/app/models/Provincias.model';
@@ -15,9 +16,11 @@ import { PrestadoresService } from 'src/app/services/prestadores/prestadores.ser
 })
 export class RegistroPrestadoresComponent implements OnInit {
   obj:Prestadores=new Prestadores();
+  usu:Usuarios=new Usuarios();
   listapaises:Paises[]=[];
   listaprovincias:Provincias[]=[];
   listalocalidades:Localidades[]=[];
+  contra:string;
   Agregar:boolean=true;
 
   constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router,private srvPrestadores:PrestadoresService) { 
@@ -50,19 +53,18 @@ export class RegistroPrestadoresComponent implements OnInit {
     }else{
       form.append("id","0");
     }
-    this.obj.IdPrestador;
-    this.obj.RazonSocial;
-    this.obj.NombreFantasia;
+    this.usu.IdUsuario=this.obj.IdPrestador;
+    this.usu.Nombre=this.obj.RazonSocial;
+    this.usu.Apellido=this.obj.NombreFantasia;
+    this.usu.Email=this.obj.Email;
+    this.usu.Usuario=this.obj.Email;
+    this.usu.Contra=this.obj.Contra;
     this.obj.Cuit;
-    this.obj.Telefono;
-    this.obj.Email;
-    this.obj.Logo;
-    this.obj.FechaRegistro;
     this.obj.IdPais;
     this.obj.IdProvincia;
     this.obj.IdLocalidad;
     form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
-    form.append("prestador",this.srvShared.convertToJSON(this.obj).objeto);
+    form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
     
     this.srvPrestadores.Registrar(form).subscribe((band)=>{
       if(band){

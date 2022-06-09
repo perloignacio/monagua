@@ -6,12 +6,13 @@ export class Prestadores{
     IdPrestador:number;
     RazonSocial:string;
     NombreFantasia:string;
-    Cuit:string;
+    Cuit:number;
     Telefono:number;
     IdPais:number;
     IdProvincia:number;
     IdLocalidad:number;
     Email:string;
+    Contra:string;
     Logo:string;
     FechaRegistro:Date;
     PrestadorHabilitado:boolean;

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 import { JsonResult } from 'src/app/models/jsonresult.interface';
 
@@ -8,6 +9,16 @@ import { JsonResult } from 'src/app/models/jsonresult.interface';
 export class SharedService {
   ObjEdit:any;
   objModal:any;
+  isActive: boolean=false;
+  CambiaActive$ = new Subject<boolean>();
+  setActive(band:boolean) {
+    this.isActive=band
+    this.CambiaActive$.next(band);
+  }
+
+  getActive$(): Observable<boolean> {
+    return this.CambiaActive$.asObservable();
+  }
 
   constructor() { }
   convertToJSON(objeto: any): JsonResult {

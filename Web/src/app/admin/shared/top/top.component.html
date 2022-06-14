@@ -1,0 +1,49 @@
+<div [class]="'app-header header-shadow '">
+    <div class="logo-src">AKO CRM</div>
+    <div class="app-header__content">
+      <div class="app-header-left">
+        <div class="search-wrapper">
+          <!--<div class="input-holder">
+            <input type="text" placeholder="Type to search" class="search-input">
+            <button class="search-icon" (click)="isActive = true"><span></span></button>
+          </div>-->
+          <button class="btn-close"></button>
+        </div>
+      </div>
+      <div class="app-header-right">
+        <div class="d-flex">
+          <div class="header-btn-lg pe-0">
+            <div class="widget-content p-0">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                  <div class="btn-group" ngbDropdown placement="bottom-right">
+                    <button type="button" class="btn btn-link p-0 me-2" ngbDropdownToggle>
+                      <span>
+                        <div class="icon-wrapper icon-wrapper-alt rounded-circle">
+                          <img width="42" src="assets/images/avatars/10.jpg" alt="" class="rounded-circle">
+                        </div>
+                      </span>
+                    </button>
+                    <div ngbDropdownMenu>
+                      <button class="dropdown-item" (click)="Salir()">Salir</button>
+                      <!--<button class="dropdown-item">Dividers</button>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-header__mobile-menu">
+      <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" 
+              [ngClass]="{'is-active' : isActive}" (click)="cambiaActive()">
+          <span class="hamburger-box" >
+              <span class="hamburger-inner"></span>
+          </span>
+      </button>
+    </div>
+  </div>
+  
+  

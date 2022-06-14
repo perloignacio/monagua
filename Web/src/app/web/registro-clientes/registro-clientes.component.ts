@@ -56,10 +56,6 @@ export class RegistroClientesComponent implements OnInit {
       }else{
         form.append("id","0");
       }
-      this.usu.IdUsuario=this.obj.IdCliente;
-      this.usu.Email=this.obj.Email;
-      this.usu.Nombre=this.obj.Nombre;
-      this.usu.Apellido=this.obj.Apellido;
       this.usu.Usuario=this.obj.Email;
       
       form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);

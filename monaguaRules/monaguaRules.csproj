@@ -78,7 +78,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalificacionesRules.cs" />
+    <Compile Include="CategoriasRules.cs" />
     <Compile Include="ClientesRules.cs" />
+    <Compile Include="ComprasRules.cs" />
+    <Compile Include="DescuentosRules.cs" />
     <Compile Include="Encriptar.cs" />
     <Compile Include="PrestadoresRules.cs" />
     <Compile Include="UsuariosRules.cs" />

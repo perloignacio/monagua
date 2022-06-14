@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared/shared.service';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  isActive:boolean=false;
+  constructor(private srvShared:SharedService) { 
+    
+    this.srvShared.getActive$().subscribe((b)=>{
+      this.isActive=b;
+    });
+  }
+  
 
   ngOnInit(): void {
   }

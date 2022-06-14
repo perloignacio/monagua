@@ -12,7 +12,7 @@ namespace monaguaRules
     {
         public static void Agregar(string nombre, string apellido, string email, string telefono, string usuario, string contra, int? idcliente, int? idprestador)
         {
-            validar(nombre, apellido, email, usuario, contra, idcliente,idprestador, "Agregar");
+            validar(usuario, contra, idcliente,idprestador, "Agregar");
             Usuarios u = new Usuarios();
             u.Apellido = apellido;
             u.Activo = true;
@@ -47,7 +47,7 @@ namespace monaguaRules
 
         public static void Modificar(int idusuario, string nombre, string apellido, string email, string telefono, string usuario, string contra, int? idcliente, int? idprestador)
         {
-            validar(nombre, apellido, email, usuario, contra,idcliente,idprestador, "Modificar");
+            validar(usuario, contra,idcliente,idprestador, "Modificar");
             Usuarios u = UsuariosMapper.Instance().GetOne(idusuario);
             if (u == null)
             {
@@ -102,21 +102,10 @@ namespace monaguaRules
 
         }
 
-        public static void validar(string nombre, string apellido, string email, string usuario, string contra, int? idcliente,int? idprestador, string operacion)
+        public static void validar( string usuario, string contra, int? idcliente,int? idprestador, string operacion)
         {
-            if (string.IsNullOrEmpty(nombre))
-            {
-                throw new Exception("Ingrese el nombre");
-            }
-            if (string.IsNullOrEmpty(nombre))
-            {
-                throw new Exception("Ingrese el apellido");
-            }
-            if (string.IsNullOrEmpty(nombre))
-            {
-                throw new Exception("Ingrese el email");
-            }
-            if (string.IsNullOrEmpty(nombre))
+            
+            if (string.IsNullOrEmpty(usuario))
             {
                 throw new Exception("Ingrese el usuario");
             }

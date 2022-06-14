@@ -1,0 +1,83 @@
+<div [class]="'app-sidebar sidebar-shadow '" >
+    <div class="app-header__logo">
+      <div >
+          <a [routerLink]="'/'">MONAGUA</a>
+      </div>
+      <div class="header__pane ms-auto">
+        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                [ngClass]="{'is-active' : true}">
+          <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <div class="app-sidebar-content">
+      <div class="app-sidebar-scroll">
+        <perfect-scrollbar [autoPropagation]="true">
+          <div class="v-sidebar-menu vsm-default">
+            <div class="vsm-list">
+              <div class="vsm-header">Gestión</div>
+              <div class="vsm-item">
+                <a [routerLink]="'clientes'" routerLinkActive="active-item"[routerLinkActiveOptions]="{exact: true}" class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">Clientes</span>
+                </a>
+              </div>
+              <div class="vsm-item">
+                <a [routerLink]="'prestadores'" routerLinkActive="active-item"[routerLinkActiveOptions]="{exact: true}" class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">Proveedores</span>
+                </a>
+              </div>
+              <div class="vsm-item">
+                <a [routerLink]="'categorias'" routerLinkActive="active-item"[routerLinkActiveOptions]="{exact: true}" class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">Categorias</span>
+                </a>
+              </div>
+              <div class="vsm-item">
+                <a [routerLink]="'cupones'"  routerLinkActive="active-item"[routerLinkActiveOptions]="{exact: true}" class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">Cupones</span>
+                </a>
+              </div>
+              <div class="vsm-item">
+                <a [routerLink]="'compras'"  routerLinkActive="active-item"[routerLinkActiveOptions]="{exact: true}" class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">Compras</span>
+                </a>
+              </div>
+              <div class="vsm-item">
+                <a [routerLink]="'favoritos'"  routerLinkActive="active-item"[routerLinkActiveOptions]="{exact: true}" class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">Favoritos</span>
+                </a>
+              </div>
+              <div class="vsm-item">
+                <a [routerLink]="'calificaciones'"  routerLinkActive="active-item"[routerLinkActiveOptions]="{exact: true}" class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">calificaciones</span>
+                </a>
+              </div>
+              <div class="vsm-item">
+                <a [routerLink]="'mensajes'"  routerLinkActive="active-item"[routerLinkActiveOptions]="{exact: true}" class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">Mensajes</span>
+                </a>
+              </div>
+              <div class="vsm-item itemsalir">
+                <a (click)="Salir()" role="button"  class="vsm-link">
+                  <i class="vsm-icon pe-7s-browser"></i>
+                  <span class="vsm-title">Salir</span>
+                </a>
+              </div>
+              
+            </div>
+           
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+  </div>
+  

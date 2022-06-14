@@ -1,7 +1,10 @@
-<div class="container">
-    <div class="row">
-      <div class="col-12">
-        <router-outlet></router-outlet>
-      </div>
+<div class="ng-tns-c0-0 app-container app-theme-white  "  [ngClass]="{'closed-sidebar closed-sidebar-open' : isActive}">
+  <app-top></app-top>
+  <app-menu></app-menu>
+  <div class="app-main__outer">
+    <div class="app-main__inner">
+      <router-outlet></router-outlet>
     </div>
+
   </div>
+</div>

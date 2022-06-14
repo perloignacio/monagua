@@ -53,10 +53,7 @@ export class RegistroPrestadoresComponent implements OnInit {
     }else{
       form.append("id","0");
     }
-    this.usu.IdUsuario=this.obj.IdPrestador;
-    this.usu.Nombre=this.obj.RazonSocial;
-    this.usu.Apellido=this.obj.NombreFantasia;
-    this.usu.Email=this.obj.Email;
+    
     this.usu.Usuario=this.obj.Email;
     
     

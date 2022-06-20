@@ -18,7 +18,7 @@ namespace Api.Controllers
     {
         [Route("Admin/activos")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult activos()
         {
             try
@@ -35,7 +35,7 @@ namespace Api.Controllers
 
         [Route("Admin/todosAdmin")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult todosAdmin()
         {
             try
@@ -52,7 +52,7 @@ namespace Api.Controllers
 
         [Route("Admin/borrar")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult Borrar(int id)
         {
             try
@@ -72,7 +72,7 @@ namespace Api.Controllers
 
         [Route("Admin/activar")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult Activar(int id)
         {
             try

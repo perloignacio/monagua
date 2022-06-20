@@ -12,11 +12,12 @@ using Newtonsoft.Json;
 
 namespace Api.Controllers
 {
+    [RoutePrefix("categorias")]
     public class CategoriasController : ApiController
     {
         [Route("Admin/activos")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult activos()
         {
             try
@@ -90,6 +91,7 @@ namespace Api.Controllers
 
         [Route("Admin/AgregarEditar")]
         [HttpPost]
+        [AllowAnonymous]
         public IHttpActionResult AgregarEditar()
         {
             try

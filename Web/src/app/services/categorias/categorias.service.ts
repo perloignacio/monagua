@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Prestadores } from 'src/app/models/Prestadores.model';
+import { Categorias } from 'src/app/models/Categorias.model';
 import { environment } from 'src/environments/environment';
 
 const httpOptions = {
@@ -9,10 +9,10 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class PrestadoresService {
+export class CategoriasService {
   endpoint:string="";
   constructor(public httpClient: HttpClient) {
-    this.endpoint = environment.apiUrl+"prestadores/";
+    this.endpoint = environment.apiUrl+"categorias/";
   }
   
   Registrar(obj:any) {
@@ -24,7 +24,7 @@ export class PrestadoresService {
   }
   
   todosAdmin() {
-    return this.httpClient.get<Prestadores[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
+    return this.httpClient.get<Categorias[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
   }
 
   activar(id:number) {

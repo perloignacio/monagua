@@ -24,7 +24,7 @@ import { PrestadoresComponent } from './prestadores/prestadores.component';
           component: CategoriasComponent,
         },
         {
-          path: 'CategoriasForm',
+          path: 'categoriasForm',
           component: CategoriasFormComponent,
         },
         {

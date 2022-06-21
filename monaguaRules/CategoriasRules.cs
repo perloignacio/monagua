@@ -28,7 +28,7 @@ namespace monaguaRules
             }
 
             c.Nombre = nombre;
-            CategoriasMapper.Instance().Insert(c);
+            CategoriasMapper.Instance().Save(c);
         }
 
         public static void Activar(int id)
@@ -42,7 +42,7 @@ namespace monaguaRules
 
            
             c.Activa = true;
-            CategoriasMapper.Instance().Insert(c);
+            CategoriasMapper.Instance().Save(c);
         }
 
         public static void Borrar(int id)
@@ -56,7 +56,7 @@ namespace monaguaRules
 
 
             c.Activa = false;
-            CategoriasMapper.Instance().Insert(c);
+            CategoriasMapper.Instance().Save(c);
         }
 
         public static void validar(string nombre)

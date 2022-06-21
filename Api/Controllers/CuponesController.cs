@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 namespace Api.Controllers
 {
+    [RoutePrefix("cupones")]
     public class CuponesController : ApiController
     {
         [Route("Admin/activos")]

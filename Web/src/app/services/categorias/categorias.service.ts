@@ -30,4 +30,7 @@ export class CategoriasService {
   activar(id:number) {
     return this.httpClient.get<boolean>(this.endpoint + `Admin/activar?id=${id}`, httpOptions)
   }
+  AgregarEditar(form:any) {
+    return this.httpClient.post<boolean>(this.endpoint+'Admin/AgregarEditar',form);
+  }
 }

@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="page-title-actions">
-        <button type="button" [routerLink]="'/admin/categoriasForm'" class="btn-shadow d-inline-flex align-items-center btn btn-success">
+        <button type="button" (click)="Nuevo()" class="btn-shadow d-inline-flex align-items-center btn btn-success">
           Nuevo
         </button>
       </div>
@@ -37,7 +37,8 @@
         <tr>
           <th class="text-center">#ID</th>
           <th>Nombre</th>
-          <th class="text-center">Activa</th>
+          <th class="text-center" >Activa</th>
+          <th class="text-center">Acciones</th>
         </tr>
         </thead>
         <tbody>

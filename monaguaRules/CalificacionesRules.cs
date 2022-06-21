@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using monaguaRules.Entities;
-using monaguaRules.Mappers
+using monaguaRules.Mappers;
 namespace monaguaRules
 {
     public static class CalificacionesRules

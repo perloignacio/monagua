@@ -1,1 +1,42 @@
-<p>categorias-form works!</p>
+
+
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+  
+        <div>
+          Categorías
+          <div
+            class="page-title-subheading">
+            Agregar / Editar
+          </div>
+        </div>
+      </div>
+      <div class="page-title-actions">
+        <button type="button" (click)="Volver()" class="btn-shadow d-inline-flex align-items-center btn btn-dark">
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card-body">
+    <form>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Nombre</label>
+            <input type="text" [(ngModel)]="obj.Nombre" name="Nombre" class="form-control">
+          </div>
+        </div>
+  
+      </div>
+      
+      
+      <button class="mt-2 btn btn-success" (click)="Guardar()">Guardar cambios</button>
+    </form>
+  </div>
+  

@@ -103,5 +103,9 @@ export class CategoriasComponent implements OnInit {
     this.srvShared.ObjEdit=obj;
     this.router.navigate(['admin/categoriasForm']);
   }
+  Nuevo(){
+    this.srvShared.ObjEdit=null;
+    this.router.navigate(['admin/categoriasForm']);
+  }
 }
 

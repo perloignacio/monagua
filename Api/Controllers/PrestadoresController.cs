@@ -114,7 +114,8 @@ namespace Api.Controllers
                 presta = pr.Agregar(obj.RazonSocial,obj.NombreFantasia,obj.Cuit, obj.Email, logo,obj.PrestadorHabilitado, obj.IdLocalidad, obj.IdPais, obj.IdProvincia, obj.Politicas, obj.Telefono);
                 if (presta != null)
                 {
-                    UsuariosRules.Agregar(u.Nombre, u.Apellido, u.Email, u.Telefono, u.Usuario, u.Contra, null, presta.IdPrestador);
+                    UsuariosRules uRules = new UsuariosRules();
+                    uRules.Agregar(u.Nombre, u.Apellido, u.Email, u.Telefono, u.Usuario, u.Contra, null, presta.IdPrestador);
                     return Ok(true);
                 }
                 else
@@ -170,15 +171,15 @@ namespace Api.Controllers
                 Usuarios obj = JsonConvert.DeserializeObject<Usuarios>(HttpContext.Current.Request.Unvalidated["obj"]);
 
                 int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
-
+                UsuariosRules uRules = new UsuariosRules();
 
                 if (id != 0)
                 {
-                    UsuariosRules.Modificar(id, obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra, null, null);
+                    uRules.Modificar(id, obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra, null, null);
                 }
                 else
                 {
-                    UsuariosRules.Agregar(obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra, null, null);
+                    uRules.Agregar(obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra, null, null);
                 }
 
 

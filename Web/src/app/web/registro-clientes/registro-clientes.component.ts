@@ -46,31 +46,31 @@ export class RegistroClientesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     }
+  }
   
   
-     Registrar(){
-      const form=new FormData();
-      if(!this.Agregar){
-        form.append("id",this.obj.IdCliente.toString());
-      }else{
-        form.append("id","0");
-      }
-      this.usu.Usuario=this.obj.Email;
-      
-      form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
-      form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
-      
-      this.srvClientes.Registrar(form).subscribe((band)=>{
-        if(band){
-                  
-        } 
-      },(err)=>{
+  Registrar(){
+    const form=new FormData();
+    if(!this.Agregar){
+      form.append("id",this.obj.IdCliente.toString());
+    }else{
+      form.append("id","0");
+    }
+    this.usu.Usuario=this.obj.Email;
+    
+    form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
+    form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
+    
+    this.srvClientes.Registrar(form).subscribe((band)=>{
+      if(band){
+                
+      } 
+    },(err)=>{
 
-        console.log("Upps",err.error.Message,'Warning');
-      })
-      
-      console.log(this.obj);
-      }
+      console.log("Upps",err.error.Message,'Warning');
+    })
+    
+    console.log(this.obj);
+  }
   
 }

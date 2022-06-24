@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>POR FAVOR, INGRESÁ TU <br><b>USUARIO Y CONTRASEÑA</b></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="text" name="usuario"  [(ngModel)]="obj.Usuario" class="form-control">
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" name="contra"  [(ngModel)]="obj.Contra" class="form-control">
+                    </div>
+                    <div class="form-group mt-3">
+                        <button class="btn btn-primary" (click)="Enviar()">ENVIAR</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <span><a [routerLink]="'/recuperar'" role="button">¿Olvidaste tu contraseña?</a></span><br>
+                    <span>¿No tenes cuenta de cliente? <a [routerLink]="'/registro/cliente'" role="button">Crear Cuenta</a></span><br>
+                    <span>¿No tenes cuenta de proveedor? <a [routerLink]="'/registro/prestador'" role="button">Crear Cuenta</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

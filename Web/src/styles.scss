@@ -3,3 +3,5 @@
 /* Importing Bootstrap SCSS file. */
 @import "assets/base";
 @import '~bootstrap/scss/bootstrap';
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+.cal-open-day-events{background-color: #fff !important;box-shadow:none;color:#000 !important;}

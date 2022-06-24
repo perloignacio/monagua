@@ -7,9 +7,9 @@ using monaguaRules.Entities;
 using monaguaRules.Mappers;
 namespace monaguaRules
 {
-    public static class CalificacionesRules
+    public  class CalificacionesRules
     {
-        public static void Agregar(int IdCompraDetalle, int calificacion, string comentario,int idcliente)
+        public  void Agregar(int IdCompraDetalle, int calificacion, string comentario,int idcliente)
         {
             validar(IdCompraDetalle, calificacion, comentario, idcliente);
             Calificaciones c = new Calificaciones();
@@ -20,7 +20,7 @@ namespace monaguaRules
             CalificacionesMapper.Instance().Insert(c);
         }
 
-        public static void Responder(int IdCalificacion,string respuesta,int idprestador)
+        public  void Responder(int IdCalificacion,string respuesta,int idprestador)
         {
 
             Calificaciones c = CalificacionesMapper.Instance().GetOne(IdCalificacion);
@@ -41,7 +41,7 @@ namespace monaguaRules
             CalificacionesMapper.Instance().Save(c);
         }
 
-        public static void validar(int IdCompraDetalle, int calificacion, string comentario,int idcliente)
+        public  void validar(int IdCompraDetalle, int calificacion, string comentario,int idcliente)
         {
             ComprasDetalle cd=ComprasDetalleMapper.Instance().GetOne(IdCompraDetalle);
             if (cd == null)

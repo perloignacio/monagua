@@ -7,9 +7,9 @@ using monaguaRules.Entities;
 using monaguaRules.Mappers;
 namespace monaguaRules
 {
-    public static class DescuentosRules
+    public  class DescuentosRules
     {
-        public static void Agregar(string nombre, string codigo, decimal? monto, decimal? porcentaje, int? stock, DateTime? desde, DateTime? hasta)
+        public  void Agregar(string nombre, string codigo, decimal? monto, decimal? porcentaje, int? stock, DateTime? desde, DateTime? hasta)
         {
             validar(nombre, codigo, monto, porcentaje, desde, hasta);
             Descuentos d = new Descuentos();
@@ -38,7 +38,7 @@ namespace monaguaRules
             DescuentosMapper.Instance().Insert(d);
         }
 
-        public static void Modificar(int id,string nombre, string codigo, decimal? monto, decimal? porcentaje, int? stock, DateTime? desde, DateTime? hasta)
+        public  void Modificar(int id,string nombre, string codigo, decimal? monto, decimal? porcentaje, int? stock, DateTime? desde, DateTime? hasta)
         {
             validar(nombre, codigo, monto, porcentaje, desde, hasta);
             Descuentos d = DescuentosMapper.Instance().GetOne(id);
@@ -71,7 +71,7 @@ namespace monaguaRules
             DescuentosMapper.Instance().Save(d);
         }
 
-        public static void Activar(int id)
+        public  void Activar(int id)
         {
             
             Descuentos d = DescuentosMapper.Instance().GetOne(id);
@@ -84,7 +84,7 @@ namespace monaguaRules
             DescuentosMapper.Instance().Save(d);
         }
 
-        public static void Borrar(int id)
+        public  void Borrar(int id)
         {
 
             Descuentos d = DescuentosMapper.Instance().GetOne(id);
@@ -96,7 +96,7 @@ namespace monaguaRules
             d.Activo = false;
             DescuentosMapper.Instance().Save(d);
         }
-        public static void validar(string nombre, string codigo, decimal? monto, decimal? porcentaje,  DateTime? desde, DateTime? hasta)
+        public  void validar(string nombre, string codigo, decimal? monto, decimal? porcentaje,  DateTime? desde, DateTime? hasta)
         {
             if (string.IsNullOrEmpty(nombre))
             {

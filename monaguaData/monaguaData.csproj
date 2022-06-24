@@ -62,10 +62,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gateways\ActividadesHorariosExcepcionGateway.cs" />
+    <Compile Include="Gateways\Auto\ActividadesHorariosExcepcionGateway.Auto.cs" />
+    <Compile Include="Gateways\Auto\ConfiguracionGateway.Auto.cs" />
+    <Compile Include="Gateways\Auto\TipoRepeticionesGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\UsuariosGateway.Auto.cs" />
+    <Compile Include="Gateways\ConfiguracionGateway.cs" />
+    <Compile Include="Gateways\TipoRepeticionesGateway.cs" />
     <Compile Include="Gateways\UsuariosGateway.cs" />
     <Compile Include="LazyProviders\DefaultLazyProvider.cs" />
+    <Compile Include="Mappers\ActividadesHorariosExcepcionMapper.cs" />
     <Compile Include="Mappers\ActividadesMapper.cs" />
+    <Compile Include="Mappers\Auto\ActividadesHorariosExcepcionMapper.Auto.cs" />
     <Compile Include="Mappers\Auto\ActividadesMapper.Auto.cs" />
     <Compile Include="Gateways\ActividadesGateway.cs" />
     <Compile Include="Gateways\Auto\ActividadesGateway.Auto.cs" />
@@ -73,6 +81,8 @@
     <Compile Include="Mappers\Auto\ActividadesHorariosMapper.Auto.cs" />
     <Compile Include="Gateways\ActividadesHorariosGateway.cs" />
     <Compile Include="Gateways\Auto\ActividadesHorariosGateway.Auto.cs" />
+    <Compile Include="Mappers\Auto\ConfiguracionMapper.Auto.cs" />
+    <Compile Include="Mappers\Auto\TipoRepeticionesMapper.Auto.cs" />
     <Compile Include="Mappers\Auto\UsuariosMapper.Auto.cs" />
     <Compile Include="Mappers\CalificacionesMapper.cs" />
     <Compile Include="Mappers\Auto\CalificacionesMapper.Auto.cs" />
@@ -94,6 +104,7 @@
     <Compile Include="Mappers\Auto\ComprasDetalleMapper.Auto.cs" />
     <Compile Include="Gateways\ComprasDetalleGateway.cs" />
     <Compile Include="Gateways\Auto\ComprasDetalleGateway.Auto.cs" />
+    <Compile Include="Mappers\ConfiguracionMapper.cs" />
     <Compile Include="Mappers\DescuentosMapper.cs" />
     <Compile Include="Mappers\Auto\DescuentosMapper.Auto.cs" />
     <Compile Include="Gateways\DescuentosGateway.cs" />
@@ -126,6 +137,7 @@
     <Compile Include="Mappers\Auto\ProvinciasMapper.Auto.cs" />
     <Compile Include="Gateways\ProvinciasGateway.cs" />
     <Compile Include="Gateways\Auto\ProvinciasGateway.Auto.cs" />
+    <Compile Include="Mappers\TipoRepeticionesMapper.cs" />
     <Compile Include="Mappers\UsuariosMapper.cs" />
   </ItemGroup>
   <ItemGroup>

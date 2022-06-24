@@ -7,9 +7,9 @@ using monaguaRules.Entities;
 using monaguaRules.Mappers;
 namespace monaguaRules
 {
-    public static class CategoriasRules
+    public  class CategoriasRules
     {
-        public static void Agregar(string nombre)
+        public  void Agregar(string nombre)
         {
             validar(nombre);
             Categorias c=new Categorias();
@@ -18,7 +18,7 @@ namespace monaguaRules
             CategoriasMapper.Instance().Insert(c);
         }
 
-        public static void Modificar(int id,string nombre)
+        public  void Modificar(int id,string nombre)
         {
             validar(nombre);
             Categorias c = CategoriasMapper.Instance().GetOne(id);
@@ -31,7 +31,7 @@ namespace monaguaRules
             CategoriasMapper.Instance().Save(c);
         }
 
-        public static void Activar(int id)
+        public  void Activar(int id)
         {
             
             Categorias c = CategoriasMapper.Instance().GetOne(id);
@@ -45,7 +45,7 @@ namespace monaguaRules
             CategoriasMapper.Instance().Save(c);
         }
 
-        public static void Borrar(int id)
+        public  void Borrar(int id)
         {
 
             Categorias c = CategoriasMapper.Instance().GetOne(id);
@@ -59,7 +59,7 @@ namespace monaguaRules
             CategoriasMapper.Instance().Save(c);
         }
 
-        public static void validar(string nombre)
+        public  void validar(string nombre)
         {
             if (string.IsNullOrEmpty(nombre))
             {

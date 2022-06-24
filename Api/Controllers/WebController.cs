@@ -93,5 +93,25 @@ namespace Api.Controllers
 
 
         }
+
+        [Route("repeticiones")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult repeticiones()
+        {
+            try
+            {
+                TipoRepeticionesList lista = TipoRepeticionesMapper.Instance().GetAll();
+                
+                return Ok(lista.Where(r=>r.Activa).OrderBy(r=>r.IdTipoRepeticion));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
     }
 }

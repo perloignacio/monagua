@@ -54,10 +54,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Actividades.cs" />
+    <Compile Include="Entities\ActividadesHorariosExcepcion.cs" />
     <Compile Include="Entities\Auto\Actividades.Auto.cs" />
+    <Compile Include="Entities\Auto\ActividadesHorariosExcepcion.Auto.cs" />
+    <Compile Include="Entities\Auto\Configuracion.Auto.cs" />
+    <Compile Include="Entities\Auto\TipoRepeticiones.Auto.cs" />
     <Compile Include="Entities\Auto\Usuarios.Auto.cs" />
+    <Compile Include="Entities\Configuracion.cs" />
+    <Compile Include="Entities\TipoRepeticiones.cs" />
     <Compile Include="Entities\Usuarios.cs" />
+    <Compile Include="Objects\ActividadesHorariosExcepcionObject.cs" />
     <Compile Include="Objects\ActividadesObject.cs" />
+    <Compile Include="Objects\Auto\ActividadesHorariosExcepcionObject.Auto.cs" />
     <Compile Include="Objects\Auto\ActividadesObject.Auto.cs" />
     <Compile Include="Entities\ActividadesHorarios.cs" />
     <Compile Include="Entities\Auto\ActividadesHorarios.Auto.cs" />
@@ -65,6 +73,8 @@
     <Compile Include="Objects\Auto\ActividadesHorariosObject.Auto.cs" />
     <Compile Include="Entities\Calificaciones.cs" />
     <Compile Include="Entities\Auto\Calificaciones.Auto.cs" />
+    <Compile Include="Objects\Auto\ConfiguracionObject.Auto.cs" />
+    <Compile Include="Objects\Auto\TipoRepeticionesObject.Auto.cs" />
     <Compile Include="Objects\Auto\UsuariosObject.Auto.cs" />
     <Compile Include="Objects\CalificacionesObject.cs" />
     <Compile Include="Objects\Auto\CalificacionesObject.Auto.cs" />
@@ -86,6 +96,7 @@
     <Compile Include="Objects\Auto\ComprasDetalleObject.Auto.cs" />
     <Compile Include="Entities\Descuentos.cs" />
     <Compile Include="Entities\Auto\Descuentos.Auto.cs" />
+    <Compile Include="Objects\ConfiguracionObject.cs" />
     <Compile Include="Objects\DescuentosObject.cs" />
     <Compile Include="Objects\Auto\DescuentosObject.Auto.cs" />
     <Compile Include="Entities\EstadosCompra.cs" />
@@ -116,6 +127,7 @@
     <Compile Include="Entities\Auto\Provincias.Auto.cs" />
     <Compile Include="Objects\ProvinciasObject.cs" />
     <Compile Include="Objects\Auto\ProvinciasObject.Auto.cs" />
+    <Compile Include="Objects\TipoRepeticionesObject.cs" />
     <Compile Include="Objects\UsuariosObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -18,6 +18,8 @@ namespace monaguaRules.Entities
     public partial class ActividadesHorarios
         // : IValidable
     {
+        public int id { get; set; }
+        public int idCalendar { get; set; }
         // /// <summary>
         // /// When IValidable is implemented, this method is invoked by Gateway before Insert or Update to validate Object.
         // /// </summary>

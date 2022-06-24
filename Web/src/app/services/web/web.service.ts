@@ -5,6 +5,7 @@ import { Paises } from 'src/app/models/Paises.model';
 import { Provincias } from 'src/app/models/Provincias.model';
 import { Localidades } from 'src/app/models/Localidades.model';
 import { Usuarios } from 'src/app/models/Usuarios.model';
+import { TipoReticiones } from 'src/app/models/TipoRepeticiones.model';
 const httpOptions = {
   withCredentials: true
 };
@@ -27,6 +28,9 @@ export class WebService {
   }
   Localidades(IdProvincia:number) {
     return this.httpClient.get<Localidades[]>(this.endpoint + `localidades?idprovincia=${IdProvincia}`, httpOptions)
+  }
+  TipoRepeticiones() {
+    return this.httpClient.get<TipoReticiones[]>(this.endpoint + `repeticiones`, httpOptions)
   }
   
 

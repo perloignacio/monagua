@@ -56,8 +56,8 @@ namespace Api.Controllers
         {
             try
             {
-
-                DescuentosRules.Borrar(id);
+                DescuentosRules dRules = new DescuentosRules();
+                dRules.Borrar(id);
                 return Ok(true);
             }
             catch (Exception ex)
@@ -76,8 +76,9 @@ namespace Api.Controllers
         {
             try
             {
+                DescuentosRules dRules = new DescuentosRules();
 
-                DescuentosRules.Activar(id);
+                dRules.Activar(id);
                 return Ok(true);
             }
             catch (Exception ex)
@@ -100,14 +101,14 @@ namespace Api.Controllers
 
                 int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
 
-
+                DescuentosRules dRules = new DescuentosRules();
                 if (id != 0)
                 {
-                    DescuentosRules.Modificar(id, obj.Nombre,obj.Codigo,obj.Monto,obj.Porcentaje,obj.Stock,obj.FechaDesde,obj.FechaHasta);
+                    dRules.Modificar(id, obj.Nombre,obj.Codigo,obj.Monto,obj.Porcentaje,obj.Stock,obj.FechaDesde,obj.FechaHasta);
                 }
                 else
                 {
-                    DescuentosRules.Agregar(obj.Nombre, obj.Codigo, obj.Monto, obj.Porcentaje, obj.Stock, obj.FechaDesde, obj.FechaHasta);
+                    dRules.Agregar(obj.Nombre, obj.Codigo, obj.Monto, obj.Porcentaje, obj.Stock, obj.FechaDesde, obj.FechaHasta);
                 }
 
 

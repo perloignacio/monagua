@@ -10,7 +10,7 @@ namespace monaguaRules
 {
     public class UsuariosRules
     {
-        public static void Agregar(string nombre, string apellido, string email, string telefono, string usuario, string contra, int? idcliente, int? idprestador)
+        public  void Agregar(string nombre, string apellido, string email, string telefono, string usuario, string contra, int? idcliente, int? idprestador)
         {
             validar(usuario, contra, idcliente,idprestador, "Agregar");
             Usuarios u = new Usuarios();
@@ -45,7 +45,7 @@ namespace monaguaRules
 
         }
 
-        public static void Modificar(int idusuario, string nombre, string apellido, string email, string telefono, string usuario, string contra, int? idcliente, int? idprestador)
+        public  void Modificar(int idusuario, string nombre, string apellido, string email, string telefono, string usuario, string contra, int? idcliente, int? idprestador)
         {
             validar(usuario, contra,idcliente,idprestador, "Modificar");
             Usuarios u = UsuariosMapper.Instance().GetOne(idusuario);
@@ -76,7 +76,7 @@ namespace monaguaRules
 
         }
 
-        public static void Borrar(int idusuario)
+        public  void Borrar(int idusuario)
         {
 
             Usuarios u = UsuariosMapper.Instance().GetOne(idusuario);
@@ -89,7 +89,7 @@ namespace monaguaRules
 
         }
 
-        public static void Activar(int idusuario)
+        public  void Activar(int idusuario)
         {
 
             Usuarios u = UsuariosMapper.Instance().GetOne(idusuario);
@@ -102,7 +102,7 @@ namespace monaguaRules
 
         }
 
-        public static void validar( string usuario, string contra, int? idcliente,int? idprestador, string operacion)
+        public  void validar( string usuario, string contra, int? idcliente,int? idprestador, string operacion)
         {
             
             if (string.IsNullOrEmpty(usuario))

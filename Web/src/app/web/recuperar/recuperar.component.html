@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1><b>RECUPERAR CONTRASEÑA</b></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Ingresa tu usuario</label>
+                        <input type="text" name="usuario"  [(ngModel)]="obj.Usuario" class="form-control">
+                    </div>
+                    
+                    <div class="form-group mt-3">
+                        <button class="btn btn-primary" (click)="Enviar()"> RECUPERAR</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <span>¿ya sos usuario? <a [routerLink]="'/login'" role="button">Ingresar</a></span><br>
+                    <span>¿No tenes cuenta de cliente? <a [routerLink]="'/registro/cliente'" role="button">Crear Cuenta</a></span><br>
+                    <span>¿No tenes cuenta de proveedor? <a [routerLink]="'/registro/prestador'" role="button">Crear Cuenta</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

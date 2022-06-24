@@ -8,6 +8,7 @@ import { JsonResult } from 'src/app/models/jsonresult.interface';
 })
 export class SharedService {
   ObjEdit:any;
+  AccionModal:string;
   objModal:any;
   isActive: boolean=false;
   CambiaActive$ = new Subject<boolean>();

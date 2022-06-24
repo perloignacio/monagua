@@ -78,6 +78,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActividadesRules.cs" />
     <Compile Include="CalificacionesRules.cs" />
     <Compile Include="CategoriasRules.cs" />
     <Compile Include="ClientesRules.cs" />

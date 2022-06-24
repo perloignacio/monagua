@@ -1,10 +1,13 @@
-﻿using API.Clases;
+﻿using Api.Clases;
+using API.Clases;
+using MimeKit;
 using monaguaRules;
 using monaguaRules.Entities;
 using monaguaRules.Mappers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -44,7 +47,78 @@ namespace Api.Controllers
 
         }
 
-        
+        [Route("blanqueo")]
+        [HttpPost]
+        [AllowAnonymous]
+        public IHttpActionResult blanqueo()
+        {
+            objBlanqueo obj = JsonConvert.DeserializeObject<objBlanqueo>(HttpContext.Current.Request.Unvalidated["obj"]);
+            int idusuario = Convert.ToInt32(obj.Hash.Split('-')[0]);
+            Usuarios u = UsuariosMapper.Instance().GetOne(idusuario);
+            if (Encriptar.Encrypt(u.Email + u.Apellido, "S3rv3th0m3") == obj.Hash.Split('-')[1] + "=")
+            {
+                u.Contra = Encriptar.Encrypt(obj.Contra, "S3rv3th0m3");
+                UsuariosMapper.Instance().Save(u);
+                return Ok(true);
+            }
+            else
+            {
+                return Ok(false);
+            }
+
+        }
+
+        [Route("recuperar")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult recuperar(string usuario)
+        {
+
+            try
+            {
+                Usuarios u = UsuariosMapper.Instance().GetByUsuario(usuario);
+                if (u != null)
+                {
+                    string body = String.Empty;
+                    var path = HttpContext.Current.Server.MapPath("~/Plantillas/recuperar.html");
+                    var fileStream = System.IO.File.OpenRead(path);
+                    StreamReader reader = new StreamReader(fileStream);
+                    body = reader.ReadToEnd();
+                    body = body.Replace("{domain}", ConfiguracionMapper.Instance().GetByClave("Dominio").Valor);
+                    body = body.Replace("{hash}", u.IdUsuario.ToString() + "-" + Encriptar.Encrypt(u.Email + u.Apellido, "S3rv3th0m3"));
+                    body = body.Replace("{ubicacionlogo}", "img/logo-servet-home.png");
+                    body = body.Replace("{nombre}", u.Nombre);
+                    body = body.Replace("{email_recuperar}", ConfiguracionMapper.Instance().GetByClave("MailInstitucional").Valor);
+
+                    MimeKit.MimeMessage message = new MimeKit.MimeMessage();
+                    BodyBuilder cuerpo = new BodyBuilder();
+
+
+
+
+
+                    cuerpo.HtmlBody = body;
+                    message.Subject = "Recuperar contraseña";
+                    message.Body = cuerpo.ToMessageBody();
+                    message.From.Add(new MailboxAddress("", ConfiguracionMapper.Instance().GetByClave("MailInstitucional").Valor));
+                    message.To.Add(new MailboxAddress("", u.Email));
+                    EnviaMail.Envia(message);
+                    return Ok(true);
+                }
+                else
+                {
+                    return BadRequest("No se puedo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+            
+
+        }
 
         [Route("checktoken")]
         [HttpGet]
@@ -104,7 +178,8 @@ namespace Api.Controllers
         {
             try
             {
-                UsuariosRules.Borrar(id);
+                UsuariosRules uRules = new UsuariosRules();
+                uRules.Borrar(id);
                 return Ok(true);
             }
             catch (Exception ex)
@@ -123,7 +198,8 @@ namespace Api.Controllers
         {
             try
             {
-                UsuariosRules.Activar(id);
+                UsuariosRules uRules = new UsuariosRules();
+                uRules.Activar(id);
                 return Ok(true);
             }
             catch (Exception ex)
@@ -147,14 +223,14 @@ namespace Api.Controllers
 
                 int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
 
-
+                UsuariosRules uRules = new UsuariosRules();
                 if (id != 0)
                 {
-                    UsuariosRules.Modificar(id, obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra,null,null);
+                    uRules.Modificar(id, obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra,null,null);
                 }
                 else
                 {
-                    UsuariosRules.Agregar(obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra, null, null);
+                    uRules.Agregar(obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra, null, null);
                 }
 
 

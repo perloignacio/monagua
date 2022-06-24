@@ -7,7 +7,7 @@ using monaguaRules.Entities;
 using monaguaRules.Mappers;
 namespace monaguaRules
 {
-    public static class ComprasRules
+    public  class ComprasRules
     {
         public enum estadosCompra
         {
@@ -16,7 +16,7 @@ namespace monaguaRules
             Abonada=3,
             Cancelada=4
         }
-        public static void AgregarCarrito(int idcliente, List<ComprasDetalle> detalle)
+        public  void AgregarCarrito(int idcliente, List<ComprasDetalle> detalle)
         {
             validarCarrito(idcliente, detalle);
             Compras c = new Compras();
@@ -33,7 +33,7 @@ namespace monaguaRules
             }
         }
 
-        public static void AgregarCompra(int idcompra,int idcliente, List<ComprasDetalle> detalle,int? iddescuento,bool reserva)
+        public  void AgregarCompra(int idcompra,int idcliente, List<ComprasDetalle> detalle,int? iddescuento,bool reserva)
         {
             validarCarrito(idcliente, detalle);
             Compras c = ComprasMapper.Instance().GetOne(idcompra);
@@ -61,7 +61,7 @@ namespace monaguaRules
 
         }
 
-        public static void ActualizarCarrito(int idcompra, int idcliente, List<ComprasDetalle> detalle)
+        public  void ActualizarCarrito(int idcompra, int idcliente, List<ComprasDetalle> detalle)
         {
             validarCarrito(idcliente, detalle);
             Compras c = ComprasMapper.Instance().GetOne(idcompra);
@@ -84,7 +84,7 @@ namespace monaguaRules
             }
 
         }
-        public static void validarCarrito(int idcliente, List<ComprasDetalle> detalle)
+        public  void validarCarrito(int idcliente, List<ComprasDetalle> detalle)
         {
             if (ClientesMapper.Instance().GetOne(idcliente) == null)
             {

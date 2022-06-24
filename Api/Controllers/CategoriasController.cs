@@ -56,8 +56,9 @@ namespace Api.Controllers
         {
             try
             {
-                
-                CategoriasRules.Borrar(id);
+
+                CategoriasRules Crules = new CategoriasRules();
+                Crules.Borrar(id);
                 return Ok(true);
             }
             catch (Exception ex)
@@ -76,8 +77,8 @@ namespace Api.Controllers
         {
             try
             {
-
-                CategoriasRules.Activar(id);
+                CategoriasRules Crules = new CategoriasRules();
+                Crules.Activar(id);
                 return Ok(true);
             }
             catch (Exception ex)
@@ -101,14 +102,14 @@ namespace Api.Controllers
 
                 int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
 
-
+                CategoriasRules Crules = new CategoriasRules();
                 if (id != 0)
                 {
-                    CategoriasRules.Modificar(id, obj.Nombre);
+                    Crules.Modificar(id, obj.Nombre);
                 }
                 else
                 {
-                    CategoriasRules.Agregar(obj.Nombre);
+                    Crules.Agregar(obj.Nombre);
                 }
 
 

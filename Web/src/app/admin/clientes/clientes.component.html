@@ -10,11 +10,6 @@
           </div>
         </div>
       </div>
-      <div class="page-title-actions">
-        <button type="button" [routerLink]="'/admin/clientesForm'" class="btn-shadow d-inline-flex align-items-center btn btn-success">
-          Nuevo
-        </button>
-      </div>
     </div>
   </div>
   
@@ -37,8 +32,7 @@
           <th class="text-center">#</th>
           <th>Fecha</th>
           <th>Apellido</th>
-          <th>Nombre</th>
-          
+          <th>Nombre</th>      
           <th>Email</th>
           <th>Teléfono</th>
           <th>Fecha nacimiento</th>
@@ -53,7 +47,6 @@
           <td>{{obj.FechaRegistro | date:'dd/MM/yyyy'}}</td>
           <td>{{obj.Apellido}}</td>
           <td>{{obj.Nombre}}</td>
-          
           <td>{{obj.Email}}</td>
           <td>{{obj.Telefono}}</td>
           <td>{{obj.FechaNacimiento |  date:'dd/MM/yyyy'}}</td>
@@ -62,7 +55,7 @@
   
             <i class="fas fa-trash me-2" role="button" (click)="Borrar(obj)" *ngIf="this.obj.Activo"></i>
             <i class="fas fa-check me-2" role="button" (click)="Activar(obj)" *ngIf="!this.obj.Activo"></i>
-            <i class="fas fa-edit me-2" role="button" (click)="Editar(obj)"></i>
+            <i class="fas fa-edit me-2" role="button" (click)="Ver(obj)"></i>
            
   
           </td>

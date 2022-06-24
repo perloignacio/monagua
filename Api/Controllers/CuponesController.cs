@@ -92,6 +92,7 @@ namespace Api.Controllers
 
         [Route("Admin/AgregarEditar")]
         [HttpPost]
+        [AllowAnonymous]
         public IHttpActionResult AgregarEditar()
         {
             try

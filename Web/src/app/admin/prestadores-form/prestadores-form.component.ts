@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Prestadores } from 'src/app/models/Prestadores.model';
+import { PrestadoresService } from 'src/app/services/prestadores/prestadores.service';
+import { SharedService } from 'src/app/services/shared/shared.service';
 
 @Component({
   selector: 'app-prestadores-form',
@@ -7,7 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrestadoresFormComponent implements OnInit {
 
-  constructor() { }
+  VerDatos:boolean=true;
+  obj:Prestadores;
+  
+  constructor(private srvObj:PrestadoresService,private srvShared:SharedService,private route:Router) {
+    this.obj=this.srvShared.ObjEdit as Prestadores;
+      if(this.obj!=null){
+        this.VerDatos=false;
+      }else{
+        this.obj=new Prestadores();
+      }
+      
+   }
+  
+  Volver(){
+    history.back();
+  }
 
   ngOnInit(): void {
   }

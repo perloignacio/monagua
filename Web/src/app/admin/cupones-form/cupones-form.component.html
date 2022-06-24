@@ -1,1 +1,93 @@
-<p>cupones-form works!</p>
+
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+  
+        <div>
+          Cupones de Descuento
+          <div
+            class="page-title-subheading">
+            Agregar / Editar
+          </div>
+        </div>
+      </div>
+      <div class="page-title-actions">
+        <button type="button" (click)="Volver()" class="btn-shadow d-inline-flex align-items-center btn btn-dark">
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card-body">
+    <form>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Nombre</label>
+            <input type="text" [(ngModel)]="obj.Nombre" name="Nombre" class="form-control">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Código</label>
+            <input type="text" [(ngModel)]="obj.Codigo" name="Codigo" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Porcentaje</label>
+            <input type="text" [(ngModel)]="obj.Porcentaje" name="Porcentaje" class="form-control">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Monto</label>
+            <input type="text" [(ngModel)]="obj.Monto" name="Monto" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Stock</label>
+            <input type="text" [(ngModel)]="obj.Stock" name="Stock" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Fecha Desde</label>
+            <input type="text" [(ngModel)]="obj.FechaDesde" name="FechaDesde" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Fecha Hasta</label>
+            <input type="text" [(ngModel)]="obj.FechaHasta" name="FechaHasta" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <button class="mt-2 btn btn-success" (click)="Guardar()">Guardar cambios</button>
+    </form>
+  </div>
+  

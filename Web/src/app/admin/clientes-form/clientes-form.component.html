@@ -1,1 +1,105 @@
-<p>clientes-form works!</p>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+  
+        <div>
+          Clientes
+          <div
+            class="page-title-subheading">
+            Datos de Registro
+          </div>
+        </div>
+      </div>
+      <div class="page-title-actions">
+        <button type="button" (click)="Volver()" class="btn-shadow d-inline-flex align-items-center btn btn-dark">
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card-body">
+    <form>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Nombre</label>
+            <input type="text" [(ngModel)]="obj.Nombre" readonly name="Nombre" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Apellido</label>
+            <input type="text" [(ngModel)]="obj.Apellido" readonly name="Apellido" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Email</label>
+            <input type="text" [(ngModel)]="obj.Email" readonly name="Email" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Fecha de Nacimiento</label>
+            <input type="text" [(ngModel)]="obj.FechaNacimiento" readonly name="FechaNacimiento" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Pais</label>
+            <input type="text" [(ngModel)]="obj.IdPais" readonly name="IdPais" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Provincia</label>
+            <input type="text" [(ngModel)]="obj.IdProvincia" readonly name="IdProvincia" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Localidad</label>
+            <input type="text" [(ngModel)]="obj.IdLocalidad" readonly name="IdLocalidad" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Sexo</label>
+            <input type="text" [(ngModel)]="obj.Sexo" readonly name="Sexo" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Telefono</label>
+            <input type="text" [(ngModel)]="obj.Telefono" readonly name="Telefono" class="form-control">
+          </div>
+        </div>
+      </div>

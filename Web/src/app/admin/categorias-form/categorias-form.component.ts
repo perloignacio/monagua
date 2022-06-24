@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { Categorias } from 'src/app/models/Categorias.model';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { SharedService } from 'src/app/services/shared/shared.service';

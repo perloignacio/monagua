@@ -53,8 +53,8 @@ export class ClientesComponent implements OnInit {
   }
   Borrar(obj:Clientes){
     Swal.fire({
-      title: "Atencion",
-      text:"Esta seguro que desea borrar?",
+      title: "Atención",
+      text:"¿Está seguro que desea borrar?",
       icon:'warning',
       showDenyButton: true,
       confirmButtonText: 'Aceptar',
@@ -65,7 +65,7 @@ export class ClientesComponent implements OnInit {
         this.srvObj.borrar(obj.IdCliente).subscribe((band)=>{
           if(band){
             this.cargar();
-            Swal.fire("Ok","Se borro el registro",'success');
+            Swal.fire("Ok","Se borró el registro",'success');
 
           }
         },(err)=>{
@@ -80,7 +80,7 @@ export class ClientesComponent implements OnInit {
   Activar(obj:Clientes){
     Swal.fire({
       title: "Atencion",
-      text:"Esta seguro que desea activar este registro?",
+      text:"¿Está seguro que desea activar este registro?",
       icon:'warning',
       showDenyButton: true,
       confirmButtonText: 'Aceptar',
@@ -91,7 +91,7 @@ export class ClientesComponent implements OnInit {
         this.srvObj.activar(obj.IdCliente).subscribe((band)=>{
           if(band){
             this.cargar();
-            Swal.fire("Ok","Se activo el registro",'success');
+            Swal.fire("Ok","Se activó el registro",'success');
 
           }
         },(err)=>{
@@ -102,8 +102,9 @@ export class ClientesComponent implements OnInit {
     });
 
   }
-  Editar(obj:Clientes){
+  Ver(obj:Clientes){
     this.srvShared.ObjEdit=obj;
     this.router.navigate(['admin/clientesForm']);
   }
+  
 }

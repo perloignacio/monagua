@@ -104,8 +104,10 @@ export class PrestadoresComponent implements OnInit {
     });
 
   }
-  Editar(obj:Prestadores){
+  Ver(obj:Prestadores){
     this.srvShared.ObjEdit=obj;
     this.router.navigate(['admin/prestadoresForm']);
   }
+
+  
 }

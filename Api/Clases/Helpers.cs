@@ -14,7 +14,11 @@ namespace Api.Clases
            
             if (!borrar)
             {
-                fotos = fotosActuales.Split(',').ToList();
+                if (fotosActuales != "")
+                {
+                    fotos = fotosActuales.Split(',').ToList();
+                }
+                
             }
 
             

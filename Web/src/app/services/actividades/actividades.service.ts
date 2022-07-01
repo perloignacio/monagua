@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Actividades } from 'src/app/models/Actividades.model';
 import { ActividadesHorarios } from 'src/app/models/ActividadesHorarios.model';
 
 import { environment } from 'src/environments/environment';
@@ -47,6 +48,8 @@ export class ActividadesService {
     return this.httpClient.post<boolean>(this.endpoint + `/borrarSiguientesHorario`,form, httpOptions)
   }
   
- 
+  AgregarEditar(form:any) {
+    return this.httpClient.post<Actividades>(this.endpoint+'AgregarEditar',form);
+  }
   
 }

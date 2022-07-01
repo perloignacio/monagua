@@ -11,14 +11,9 @@ import { WebService } from './services/web/web.service';
 })
 export class AppComponent {
   title = 'Web';
-  listapaises:Paises[]=[];
-  listaprovincias:Provincias[]=[];
-  listalocalidades:Localidades[]=[];
-  constructor(private servicioPais:WebService) {
-    this.servicioPais.Paises().subscribe((array)=>{
-      console.log(array);
-      this.listapaises=array;
-  })
+  
+  constructor() {
+    
   
   }
 }

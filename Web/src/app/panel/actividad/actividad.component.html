@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <label>Nombre</label>
+            <input [(ngModel)]="obj.Nombre" name="Nombre" type="text" class="form-control">
+        </div>
+        <div class="col-4">
+            <label>Tipo</label>
+            <select [(ngModel)]="obj.IdCategoria" name="IdCategoria" class="form-control form-select">
+                <option *ngFor="let objc of Categorias" [ngValue]="objc.IdCategoria">{{objc.Nombre}}</option>
+                
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label>Resumen</label>
+            <textarea [(ngModel)]="obj.DescripcionCorta" name="DescripcionCorta" type="text" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label>Descripcion</label>
+            <textarea [(ngModel)]="obj.Descripcion" name="Descripcion" type="text" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label>Que incluye</label>
+            <textarea [(ngModel)]="obj.QueIncluye" name="QueIncluye" type="text" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label>Que NO incluye</label>
+            <textarea [(ngModel)]="obj.QueNoIncluye" name="QueNoIncluye" type="text" class="form-control"></textarea>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-8">
+            <label>Video</label>
+            <input [(ngModel)]="obj.Video" name="Video" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <label>Ubicacion</label>
+            <input [(ngModel)]="obj.Ubicacion" name="Ubicacion" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label>Mapa</label>
+            <textarea [(ngModel)]="obj.Mapa" name="Mapa" type="text" class="form-control"></textarea>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-4">
+            <label>Mascotas</label>
+            <select [(ngModel)]="obj.Mascotas" name="Mascotas" class="form-control form-select">
+                <option [ngValue]="false">No</option>
+                <option [ngValue]="true">Si</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <label>Personas con capacidad reducida</label>
+            <select [(ngModel)]="obj.PersonasCapacidadRed" name="PersonasCapacidadRed" class="form-control form-select">
+                <option [ngValue]="false">No</option>
+                <option [ngValue]="true">Si</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <label>Dietas Especiales</label>
+            <select [(ngModel)]="obj.DietasEspeciales" name="DietasEspeciales" class="form-control form-select">
+                <option [ngValue]="false">No</option>
+                <option [ngValue]="true">Si</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <label>Idiomas</label>
+            <input [(ngModel)]="obj.Idiomas" name="Idiomas" type="text" class="form-control">
+        </div>
+        <div class="col-4">
+            <label>Dificultad</label>
+            <select [(ngModel)]="obj.Dificultad" name="Dificultad" class="form-control form-select">
+                <option [ngValue]="'No posee'">No posee</option>
+                <option [ngValue]="'Baja'">Baja</option>
+                <option [ngValue]="'Media'">Media</option>
+                <option [ngValue]="'Alta'">Alta</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <label>Duración (en horas)</label>
+            <input [(ngModel)]="obj.Duracion" name="Duracion" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label>Precio</label>
+            <input [(ngModel)]="obj.Precio" name="Precio" type="text" class="form-control">
+        </div>
+        <div class="col-6">
+            <label>Precio</label>
+            <input [(ngModel)]="obj.PrecioOferta" name="PrecioOferta" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <button class="btn btn-primary" (click)="file.click()">Cargar fotos <i class="fas fa-camera"></i></button>
+            <input class="invisible" ngxFile2Select #file type="file" id="file" accept="image/png, image/gif, image/jpeg" multiple [uploader]="uploader" />
+        </div>
+        <div class="col-md-9">
+            <div class="archivosAportados">
+                <div *ngFor="let file of uploader.queue$ | async; let i = index" class="mini">
+                    <button class="borrar" (click)="borrar(file)"><i class="fas fa-trash"></i></button>
+                    <picture [class.success]="file?.success" [class.error]="file?.error">
+                        <img src="" imgPreview [image]="file" />
+                    </picture>
+                    
+                </div>  
+            </div>
+            
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-3">
+            <button class="btn btn-success" (click)="Guardar()">GUARDAR</button>
+        </div>
+    </div>
+</div>

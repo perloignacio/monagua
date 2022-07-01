@@ -1,0 +1,5 @@
+.archivosAportados{height: 300px; width: 100%;overflow-x: scroll;}
+.archivosAportados .mini{display: inline-block;border-radius: 9px; border:1px solid #ccc;width: 200px;height: 200px;overflow: hidden;position: relative;}
+.archivosAportados .mini .borrar{position: absolute;top:5px;right: 5px;background-color: #fff;border-radius: 50%;border: 0px;text-align: center;padding: 4px;}
+.archivosAportados .mini .borrar i{font-size: 20px;}
+.archivosAportados .mini img{width: 100%;}

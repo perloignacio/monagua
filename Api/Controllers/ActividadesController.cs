@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using Api.Clases;
@@ -188,7 +189,7 @@ namespace Api.Controllers
         [Route("agregarHorario")]
         [HttpPost]
         [AllowAnonymous]
-        public IHttpActionResult AgregarEditar()
+        public IHttpActionResult agregarHorario()
         {
             try
             {
@@ -209,5 +210,47 @@ namespace Api.Controllers
 
 
         }
+
+        [Route("AgregarEditar")]
+        [HttpPost]
+        [AllowAnonymous]
+        public IHttpActionResult AgregarEditar()
+        {
+            try
+            {
+
+                Actividades obj = JsonConvert.DeserializeObject<Actividades>(HttpContext.Current.Request.Unvalidated["obj"]);
+
+                int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+
+                Actividades aux;
+                ActividadesRules Arules = new ActividadesRules();
+                if (id != 0)
+                {
+                    aux = ActividadesMapper.Instance().GetOne(id);
+                    string fotos = string.Join(",", Helpers.SubeArchivos("actividades", aux.Fotos, false, HttpContext.Current.Request.Files));
+                    Arules.Modificar(id, obj.Nombre,obj.DescripcionCorta,obj.Descripcion,obj.Precio,obj.Duracion,obj.IdCategoria,u.PrestadoresEntity.IdPrestador,fotos,obj.Video,obj.Ubicacion,obj.Mapa,obj.PrecioOferta,obj.Mascotas,obj.PersonasCapacidadRed,obj.DietasEspeciales,obj.Idiomas,obj.Dificultad,obj.QueIncluye,obj.QueNoIncluye);
+                }
+                else
+                {
+                    string fotos = string.Join(",", Helpers.SubeArchivos("actividades", "", false, HttpContext.Current.Request.Files));
+                    aux=Arules.Agregar(obj.Nombre, obj.DescripcionCorta, obj.Descripcion, obj.Precio, obj.Duracion, obj.IdCategoria, u.PrestadoresEntity.IdPrestador, fotos, obj.Video, obj.Ubicacion, obj.Mapa, obj.PrecioOferta, obj.Mascotas, obj.PersonasCapacidadRed, obj.DietasEspeciales, obj.Idiomas, obj.Dificultad, obj.QueIncluye, obj.QueNoIncluye);
+                }
+
+
+                return Ok(aux);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+
     }
 }

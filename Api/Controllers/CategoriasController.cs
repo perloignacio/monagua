@@ -32,6 +32,8 @@ namespace Api.Controllers
 
         }
 
+        
+
         [Route("Admin/todosAdmin")]
         [HttpGet]
         [AllowAnonymous]
@@ -121,6 +123,23 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
 
+
+        }
+
+        [Route("todas")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult todas()
+        {
+            try
+            {
+                return Ok(CategoriasMapper.Instance().GetAll().Where(t => t.Activa).OrderBy(t => t.Nombre));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
 
         }
     }

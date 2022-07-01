@@ -17,8 +17,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { RecuperarComponent } from './web/recuperar/recuperar.component';
 import { BlanqueoComponent } from './web/blanqueo/blanqueo.component';
-import { HorariosActividadesComponent } from './web/horarios-actividades/horarios-actividades.component';
-import { HorarioComponent } from './web/horario/horario.component';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
@@ -30,8 +28,7 @@ import { DatePipe } from '@angular/common';
     HomeComponent,
     RecuperarComponent,
     BlanqueoComponent,
-    HorariosActividadesComponent,
-    HorarioComponent
+    
   ],
   imports: [
     BrowserModule,

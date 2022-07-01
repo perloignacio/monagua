@@ -55,7 +55,7 @@ namespace Api.Controllers
             objBlanqueo obj = JsonConvert.DeserializeObject<objBlanqueo>(HttpContext.Current.Request.Unvalidated["obj"]);
             int idusuario = Convert.ToInt32(obj.Hash.Split('-')[0]);
             Usuarios u = UsuariosMapper.Instance().GetOne(idusuario);
-            if (Encriptar.Encrypt(u.Email + u.Apellido, "S3rv3th0m3") == obj.Hash.Split('-')[1] + "=")
+            if (Encriptar.Encrypt(u.Usuario + u.IdUsuario.ToString(), "S3rv3th0m3") == obj.Hash.Split('-')[1] + "=")
             {
                 u.Contra = Encriptar.Encrypt(obj.Contra, "S3rv3th0m3");
                 UsuariosMapper.Instance().Save(u);
@@ -85,7 +85,7 @@ namespace Api.Controllers
                     StreamReader reader = new StreamReader(fileStream);
                     body = reader.ReadToEnd();
                     body = body.Replace("{domain}", ConfiguracionMapper.Instance().GetByClave("Dominio").Valor);
-                    body = body.Replace("{hash}", u.IdUsuario.ToString() + "-" + Encriptar.Encrypt(u.Email + u.Apellido, "S3rv3th0m3"));
+                    body = body.Replace("{hash}", u.IdUsuario.ToString() + "-" + Encriptar.Encrypt(u.Usuario+u.IdUsuario.ToString(), "S3rv3th0m3"));
                     body = body.Replace("{ubicacionlogo}", "img/logo-servet-home.png");
                     body = body.Replace("{nombre}", u.Nombre);
                     body = body.Replace("{email_recuperar}", ConfiguracionMapper.Instance().GetByClave("MailInstitucional").Valor);
@@ -161,7 +161,7 @@ namespace Api.Controllers
         {
             try
             {
-                return Ok(UsuariosMapper.Instance().GetAll().OrderBy(t => t.Apellido));
+                return Ok(UsuariosMapper.Instance().GetAll().Where(t=> t.ClientesEntity == null && t.PrestadoresEntity == null).OrderBy(t => t.Apellido));
             }
             catch (Exception ex)
             {

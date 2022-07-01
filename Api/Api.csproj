@@ -177,6 +177,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\actividades\" />
+    <Folder Include="assets\prestadores\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

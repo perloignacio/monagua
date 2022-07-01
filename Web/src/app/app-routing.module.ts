@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ActividadesHorarios } from './models/ActividadesHorarios.model';
 import { AuthGuardService } from './services/AuthGuardService/auth-guard.service';
 import { BlanqueoComponent } from './web/blanqueo/blanqueo.component';
 import { HomeComponent } from './web/home/home.component';
-import { HorarioComponent } from './web/horario/horario.component';
-import { HorariosActividadesComponent } from './web/horarios-actividades/horarios-actividades.component';
 import { LoginComponent } from './web/login/login.component';
 import { RecuperarComponent } from './web/recuperar/recuperar.component';
 import { RegistroClientesComponent } from './web/registro-clientes/registro-clientes.component';
@@ -36,14 +33,17 @@ const routes: Routes = [
     path: 'blanqueo/:hash',
     component:BlanqueoComponent
   },
+  
   {
-    path: 'actividad/:id/horarios',
-    component:HorariosActividadesComponent
+    path: 'panel',
+    loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule),
+     canLoad: [ AuthGuardService ],
+     canActivate:[AuthGuardService],
   },
   {
      path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-     /*canLoad: [ AuthGuardService ],
-     canActivate:[AuthGuardService],*/
+     canLoad: [ AuthGuardService ],
+     canActivate:[AuthGuardService],
 
   },
 ];

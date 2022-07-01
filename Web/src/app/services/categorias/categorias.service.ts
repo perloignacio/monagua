@@ -27,6 +27,10 @@ export class CategoriasService {
     return this.httpClient.get<Categorias[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
   }
 
+  todas() {
+    return this.httpClient.get<Categorias[]>(this.endpoint + `todas`, httpOptions)
+  }
+
   activar(id:number) {
     return this.httpClient.get<boolean>(this.endpoint + `Admin/activar?id=${id}`, httpOptions)
   }

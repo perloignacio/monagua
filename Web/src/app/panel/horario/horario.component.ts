@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { ActividadesHorarios } from 'src/app/models/ActividadesHorarios.model';
@@ -17,13 +18,15 @@ export class HorarioComponent implements OnInit {
   obj:ActividadesHorarios=new ActividadesHorarios();
   Repeticiones:TipoReticiones[]=[];
   Agregar:boolean=true;
-  constructor(private srvWeb:WebService,private srvAct:ActividadesService,public srvShared:SharedService,private activemodal:NgbActiveModal) { 
+  constructor(private srvWeb:WebService,private srvAct:ActividadesService,public srvShared:SharedService,private activemodal:NgbActiveModal,private route:Router) { 
     this.srvWeb.TipoRepeticiones().subscribe((lr)=>{
       this.Repeticiones=lr;
       if(this.srvShared.objModal as ActividadesHorarios!=null){
         this.Agregar=false;
         this.obj=this.srvShared.objModal;
         console.log(this.obj);
+      }else{
+        this.obj.IdActividad=this.srvShared.IdActividad;
       }
     })
 
@@ -33,7 +36,7 @@ export class HorarioComponent implements OnInit {
   }
   Guardar(){
     const form=new FormData();
-    this.obj.IdActividad=2;
+    
     
     
     form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);

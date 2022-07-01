@@ -4,12 +4,24 @@ import { RouterModule } from '@angular/router';
 import { ClientesComponent } from './clientes/clientes.component';
 import { PrestadoresComponent } from './prestadores/prestadores.component';
 import { PanelRoutingModule } from './panel-routing-module';
-
-
+import { ActividadesComponent } from './actividades/actividades.component';
+import { HorariosActividadesComponent } from './horarios-actividades/horarios-actividades.component';
+import { HorarioComponent } from './horario/horario.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MainComponent } from './main/main.component';
+import { NgxFileUploaderModule } from '@uniprank/ngx-file-uploader';
+import { ActividadComponent } from './actividad/actividad.component';
 @NgModule({
     declarations: [
         ClientesComponent,
-        PrestadoresComponent
+        PrestadoresComponent,
+        ActividadesComponent,
+        HorariosActividadesComponent,
+        HorarioComponent,
+        MainComponent,
+        ActividadComponent
     ],
     exports:[
       
@@ -17,7 +29,14 @@ import { PanelRoutingModule } from './panel-routing-module';
     imports: [
       CommonModule,
       RouterModule,
+      FormsModule,
+      ReactiveFormsModule,
       PanelRoutingModule,
+      NgxFileUploaderModule.forRoot(),
+      CalendarModule.forRoot({
+        provide: DateAdapter,
+        useFactory: adapterFactory,
+      }),
       
     ],providers:[
       DatePipe

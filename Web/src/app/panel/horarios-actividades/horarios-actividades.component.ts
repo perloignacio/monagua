@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent, CalendarEventAction, CalendarView } from 'angular-calendar';
 import { isSameDay, isSameMonth } from 'date-fns';
 import * as moment from 'moment';
 import { Subject } from 'rxjs';
+import { Actividades } from 'src/app/models/Actividades.model';
 import { ActividadesHorarios } from 'src/app/models/ActividadesHorarios.model';
 
 import { ActividadesService } from 'src/app/services/actividades/actividades.service';
@@ -36,6 +38,7 @@ export class HorariosActividadesComponent implements OnInit {
   viewDate: Date = new Date();
   nEvento:ActividadesHorarios=new ActividadesHorarios();
   Eventos:ActividadesHorarios[]=[];
+  IdActividad:number;
   ngOnInit(): void {
 
   }
@@ -61,13 +64,18 @@ export class HorariosActividadesComponent implements OnInit {
   events: CalendarEvent[] = []
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal,private srvHorarios:ActividadesService,private srvShared:SharedService) {
-    this.cargadatos()  
+  constructor(private modal: NgbModal,private srvHorarios:ActividadesService,private srvShared:SharedService,private route:ActivatedRoute) {
+    this.route.params.subscribe(val => {
+      this.IdActividad=val["id"];
+      this.cargadatos()  
+    })
+    
   }
 
   cargadatos(){
+   
     this.events=[];
-    this.srvHorarios.HorariosByActividad(2).subscribe((el)=>{
+    this.srvHorarios.HorariosByActividad(this.IdActividad).subscribe((el)=>{
       this.Eventos=el;
       console.log(this.Eventos);
       el.forEach((ev)=>{
@@ -107,7 +115,8 @@ export class HorariosActividadesComponent implements OnInit {
   
 
   nuevo(){
-    this.srvShared.objModal=null;
+    this.srvShared.objModal;
+    this.srvShared.IdActividad=this.IdActividad;
     this.srvShared.AccionModal="Agregar";
     this.abremodal();
   }
@@ -121,7 +130,9 @@ export class HorariosActividadesComponent implements OnInit {
   }
   abremodal(){
     this.modal.open(HorarioComponent, { size: 'lg' }).result.then((result) => {
-      this.cargadatos()
+      this.route.params.subscribe(val => {
+        this.cargadatos();  
+      })
        /* To subscribe data from Modal */
 
       }, (reason)=>{ 

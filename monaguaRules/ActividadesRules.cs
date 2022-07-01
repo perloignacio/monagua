@@ -345,6 +345,7 @@ namespace monaguaRules
                         h.ActividadesEntity = item.ActividadesEntity;
                         h.idCalendar = r.Next(1, 1000000);
                         inicio =inicio.AddDays(1);
+                        horarios.Add(h);
                     }
                     
                 }

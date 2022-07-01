@@ -8,8 +8,7 @@ export class Actividades{
     Descripcion:string;
     Fotos:string;
     Video:string;
-    Lat:number;
-    Lng:number;
+    Mapa:string;
     Ubicacion:string;
     Precio:number;
     PrecioOferta:number;

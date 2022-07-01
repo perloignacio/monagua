@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Prestadores } from '../Models/Prestadores.model';
+import { ActividadComponent } from './actividad/actividad.component';
+import { ActividadesComponent } from './actividades/actividades.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { HorariosActividadesComponent } from './horarios-actividades/horarios-actividades.component';
 import { MainComponent } from './main/main.component';
+import { PrestadoresComponent } from './prestadores/prestadores.component';
 
 
     const routes: Routes = [
@@ -15,9 +18,21 @@ import { MainComponent } from './main/main.component';
           component: ClientesComponent,
         },
         {
-          path: 'prestadores',
-          component: Prestadores,
-        }
+          path: 'prestador',
+          component: PrestadoresComponent,
+        },
+        {
+          path: 'prestador/actividades',
+          component: ActividadesComponent,
+        },
+        {
+          path: 'prestador/actividad',
+          component: ActividadComponent,
+        },
+        {
+          path: 'prestador/actividad/:id/horarios',
+          component:HorariosActividadesComponent
+        },
   
       ]
     }

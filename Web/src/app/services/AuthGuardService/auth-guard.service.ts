@@ -13,7 +13,15 @@ export class AuthGuardService {
     let url: string = route.path;
     console.log(this.svcShared.currentUserValue)
     if (this.svcShared.currentUserValue!=null) {
-	    return true;
+	    if(url.includes("admin")){
+        if(this.svcShared.currentUserValue.ClientesEntity!=null || this.svcShared.currentUserValue.PrestadoresEntity!=null){
+          return false;
+        }else{
+          return true;
+        }
+      }else{
+        return true;
+      }
     }else{
       this.router.navigate([ '/login']);
       return false;
@@ -22,6 +30,7 @@ export class AuthGuardService {
   }
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
+   console.log(route);
     if (this.svcShared.currentUserValue!=null) {
 	    return true;
     }else{

@@ -21,6 +21,8 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
 @NgModule({
     declarations: [
         CategoriasComponent,
@@ -38,7 +40,9 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
         ClientesFormComponent,
         FavoritosComponent,
         MensajesComponent,
-        CalificacionesComponent
+        CalificacionesComponent,
+        UsuariosComponent,
+        UsuariosFormComponent
     ],
     exports:[
       

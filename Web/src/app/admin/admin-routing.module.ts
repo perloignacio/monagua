@@ -14,6 +14,8 @@ import { MainComponent } from './main/main.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { PrestadoresFormComponent } from './prestadores-form/prestadores-form.component';
 import { PrestadoresComponent } from './prestadores/prestadores.component';
+import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
     const routes: Routes = [
     {
       path: '',
@@ -70,6 +72,14 @@ import { PrestadoresComponent } from './prestadores/prestadores.component';
         {
           path: 'mensajes',
           component: MensajesComponent,
+        },
+        {
+          path: 'usuarios',
+          component: UsuariosComponent,
+        }
+        {
+          path: 'usuariosForm',
+          component: UsuariosFormComponent,
         }
   
       ]

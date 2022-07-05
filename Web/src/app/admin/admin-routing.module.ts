@@ -76,7 +76,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
         {
           path: 'usuarios',
           component: UsuariosComponent,
-        }
+        },
         {
           path: 'usuariosForm',
           component: UsuariosFormComponent,

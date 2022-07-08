@@ -122,7 +122,7 @@ namespace Api.Controllers
 
         [Route("checktoken")]
         [HttpGet]
-
+       
         public IHttpActionResult checktoken()
         {
             try
@@ -139,7 +139,7 @@ namespace Api.Controllers
 
         [Route("Admin/activos")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult activos()
         {
             try
@@ -156,7 +156,7 @@ namespace Api.Controllers
         
         [Route("Admin/todosAdmin")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult todosAdmin()
         {
             try
@@ -173,7 +173,7 @@ namespace Api.Controllers
 
         [Route("Admin/Borrar")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult Borrar(int id)
         {
             try
@@ -193,7 +193,7 @@ namespace Api.Controllers
 
         [Route("Admin/Activar")]
         [HttpGet]
-
+        [AllowAnonymous]
         public IHttpActionResult Activar(int id)
         {
             try
@@ -213,7 +213,7 @@ namespace Api.Controllers
 
         [Route("Admin/AgregarEditar")]
         [HttpPost]
-
+        [AllowAnonymous]
         public IHttpActionResult AgregarEditar()
         {
             try

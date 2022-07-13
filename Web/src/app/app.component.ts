@@ -3,6 +3,7 @@ import { Paises } from './models/Paises.model';
 import { Provincias } from './models/Provincias.model';
 import { Localidades } from './models/Localidades.model';
 import { WebService } from './services/web/web.service';
+import { ComprasService } from './services/compras/compras.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,8 @@ import { WebService } from './services/web/web.service';
 export class AppComponent {
   title = 'Web';
   
-  constructor() {
-    
+  constructor(private srvCompras:ComprasService) {
+    this.srvCompras.obtieneCarrito(null);
   
   }
 }

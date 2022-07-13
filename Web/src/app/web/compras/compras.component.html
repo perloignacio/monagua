@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h3><b>Carro de compras</b></h3>
+  
+      </div>
+    </div>
+    <div class="carro mt-5">
+      <div class="top">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="destacado">Cantidad de productos: <b>{{this.srvCompra.carrito.Detalle.length}}</b></p>
+          </div>
+          <div class="col-md-6 text-right d-none d-block" *ngIf="this.srvCompra.carrito.Detalle.length>0">
+            <a [routerLink]="['/checkout']" class="btn btn-primary">PROCEDER A LA COMPRA</a>
+          </div>
+        </div>
+      </div>
+      <div class="detalle" *ngIf="this.srvCompra.carrito.Detalle.length>0">
+        <ng-container  *ngFor='let detalle of this.srvCompra.carrito.Detalle'>
+        <div class="listadoitems">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-4 col-2">
+                  <div class="foto">.
+                    <img src="{{assets}}assets/actividades/{{detalle.ActividadesEntity.Fotos.split(',')[0]}}" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-md-8 col-10">
+                  <div class="info">
+                    <p><b>{{detalle.ActividadesEntity.Nombre}}</b></p>
+                    <p class="chico" [innerHtml]="detalle.ActividadesEntity.Descripcion.substr(0,50)"></p>
+                    <!--<small class="mt-3 d-block" (click)="borrarproducto(prod)"><i class="fas fa-times-circle" ></i> ELIMINAR</small>
+                    <small class="mt-3 d-block" (click)="cambiar(prod)"><i class="fas fa-times-circle" ></i> ELIMINAR</small>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-4 col-4">
+                  <div class="cantidad">
+                    <!--<input type="number" name="cantidad" [(ngModel)]="prod.Cantidad" class="form-control">-->
+                  </div>
+                </div>
+                <div class="col-md-8 col-8">
+                  <div class="precio">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <small>precio unitario</small>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <h6>$ {{detalle.ActividadesEntity.PrecioOferta!=null? detalle.ActividadesEntity.PrecioOferta:detalle.ActividadesEntity.Precio |  number:'':'es-Es'}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="precio noborder">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <small>precio</small>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <h6>${{detalle.ActividadesEntity.PrecioOferta!=null? detalle.ActividadesEntity.PrecioOferta:detalle.ActividadesEntity.Precio * detalle.Cantidad |  number:'':'es-Es'}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </ng-container>
+        <div class="pie">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="exampleInputUsername1"><b>Observaciones</b></label>
+                <textarea [(ngModel)]="this.srvCompra.carrito.Comentarios" name="Comentarios" class="form-control" id="exampleInputUsername1" placeholder="Observaciones"></textarea>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-8 offset-md-4">
+                  <div class="totales">
+  
+                    <div class="totalfinal">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p>TOTAL</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <p>$ {{this.srvCompra.getTotal() |  number:'':'es-Es'}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!--<a (click)="Actualizar()" class="btn btn-primary mb-3 mt-3 w-100">PROCEDER A LA COMPRA</a>-->
+                    <a [routerLink]="['/']" class="btn btn-celeste w-100">SEGUIR COMPRANDO</a>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detalle text-center" *ngIf="this.srvCompra.carrito.Detalle.length==0">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <h2>CARRO DE COMPRAS VACIO<br> <b>DESCUBRÍ CUAL DE NUESTROS PRODUCTOS ES PARA VOS</b></h2>
+            <a [routerLink]="['/']" class="btn btn-primary mt-3">BUSCAR PRODUCTOS</a>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>

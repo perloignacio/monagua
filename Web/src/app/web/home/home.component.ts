@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Actividades } from 'src/app/models/Actividades.model';
+import { ActividadesService } from 'src/app/services/actividades/actividades.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  Actividades:Actividades[]=[];
+  constructor(private srvActividades:ActividadesService) {
+    this.srvActividades.todos().subscribe((la)=>{
+      this.Actividades=la;
+    })
+  }
 
   ngOnInit(): void {
   }

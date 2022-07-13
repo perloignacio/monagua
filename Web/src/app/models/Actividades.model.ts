@@ -1,3 +1,4 @@
+import { ActividadesHorarios } from "./ActividadesHorarios.model";
 import { Categorias } from "./Categorias.model";
 import { Prestadores } from "./Prestadores.model";
 
@@ -24,5 +25,6 @@ export class Actividades{
     IdPrestador:number;
     Activa:boolean;
     CategoriasEntity:Categorias;
-    PrestadoresEntity:Prestadores
+    PrestadoresEntity:Prestadores;
+    Horarios:ActividadesHorarios[]=[];
 }

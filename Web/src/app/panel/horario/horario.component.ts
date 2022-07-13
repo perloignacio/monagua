@@ -24,7 +24,7 @@ export class HorarioComponent implements OnInit {
       if(this.srvShared.objModal as ActividadesHorarios!=null){
         this.Agregar=false;
         this.obj=this.srvShared.objModal;
-        console.log(this.obj);
+        
       }else{
         this.obj.IdActividad=this.srvShared.IdActividad;
       }
@@ -75,7 +75,7 @@ export class HorarioComponent implements OnInit {
       let fin: moment.Moment = moment(this.obj.FechaInicio);
       form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
       form.append("fin",fin.format("YYYY-MM-DD"));
-      //console.log(form);
+      
       this.srvAct.modificarSiguientesHorario(form).subscribe((band)=>{
         if(band){
           Swal.fire("Ok","La operación se realizo con exito",'success');
@@ -93,7 +93,7 @@ export class HorarioComponent implements OnInit {
       let fin: moment.Moment = moment(this.obj.FechaInicio);
       form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
       form.append("fin",fin.format("YYYY-MM-DD"));
-      //console.log(form);
+     
       this.srvAct.modificarHorario(form).subscribe((band)=>{
         if(band){
           Swal.fire("Ok","La operación se realizo con exito",'success');
@@ -128,7 +128,7 @@ export class HorarioComponent implements OnInit {
       let fin: moment.Moment = moment(this.obj.FechaInicio);
       form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
       form.append("fin",fin.format("YYYY-MM-DD"));
-      //console.log(form);
+     
       this.srvAct.borrarSiguientesHorario(form).subscribe((band)=>{
         if(band){
           Swal.fire("Ok","La operación se realizo con exito",'success');
@@ -144,7 +144,7 @@ export class HorarioComponent implements OnInit {
       
       form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
       
-      //console.log(form);
+      
       this.srvAct.borrarHorario(form).subscribe((band)=>{
         if(band){
           Swal.fire("Ok","La operación se realizo con exito",'success');

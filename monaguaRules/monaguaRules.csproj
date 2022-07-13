@@ -85,6 +85,7 @@
     <Compile Include="ComprasRules.cs" />
     <Compile Include="DescuentosRules.cs" />
     <Compile Include="Encriptar.cs" />
+    <Compile Include="FavoritosRules.cs" />
     <Compile Include="PrestadoresRules.cs" />
     <Compile Include="UsuariosRules.cs" />
   </ItemGroup>

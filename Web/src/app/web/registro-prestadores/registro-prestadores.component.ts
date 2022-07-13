@@ -8,6 +8,7 @@ import { Localidades } from 'src/app/models/Localidades.model';
 import { WebService } from 'src/app/services/web/web.service';
 import { Router } from '@angular/router';
 import { PrestadoresService } from 'src/app/services/prestadores/prestadores.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro-prestadores',
@@ -62,14 +63,14 @@ export class RegistroPrestadoresComponent implements OnInit {
     
     this.srvPrestadores.Registrar(form).subscribe((band)=>{
       if(band){
-              
+        Swal.fire("OK","El registro se realizo correctamente",'success');        
       } 
     },(err)=>{
 
-      console.log("Upps",err.error.Message,'Warning');
+      Swal.fire("Upps",err.error.Message,'warning');
     })
     
-    console.log(this.obj);
-    }
+    
+  }
 
 }

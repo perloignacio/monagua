@@ -18,7 +18,14 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { RecuperarComponent } from './web/recuperar/recuperar.component';
 import { BlanqueoComponent } from './web/blanqueo/blanqueo.component';
 import { DatePipe } from '@angular/common';
+import { FichaComponent } from './web/ficha/ficha.component';
+import { ActividadComponent } from './web/shared/actividad/actividad.component';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from "@angular/common";
+import localeEs from "@angular/common/locales/es-AR";
+import { ComprasComponent } from './web/compras/compras.component';
 
+registerLocaleData(localeEs, "es");
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +35,9 @@ import { DatePipe } from '@angular/common';
     HomeComponent,
     RecuperarComponent,
     BlanqueoComponent,
+    FichaComponent,
+    ActividadComponent,
+    ComprasComponent,
     
   ],
   imports: [
@@ -44,7 +54,7 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
          NgbModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },DatePipe],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },DatePipe,{ provide: LOCALE_ID, useValue: "es-AR"}],
   
   bootstrap: [AppComponent]
 })

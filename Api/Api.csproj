@@ -153,6 +153,7 @@
     <Compile Include="Clases\TokenValidationHandler.cs" />
     <Compile Include="Controllers\ActividadesController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\CuponesController.cs" />
     <Compile Include="Controllers\FavoritosController.cs" />
     <Compile Include="Controllers\WebController.cs" />

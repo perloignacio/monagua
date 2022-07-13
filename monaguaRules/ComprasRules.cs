@@ -16,21 +16,50 @@ namespace monaguaRules
             Abonada=3,
             Cancelada=4
         }
-        public  void AgregarCarrito(int idcliente, List<ComprasDetalle> detalle)
+        public Compras AgregarCarrito(Compras c)
         {
-            validarCarrito(idcliente, detalle);
-            Compras c = new Compras();
+            validarCarrito(c.IdCliente, c.Detalle);
+            
+           
             c.Activa = true;
             c.Fecha = DateTime.Now;
-            c.IdCliente = idcliente;
-            c.Reserva = false;
+            if (c.IdCliente.HasValue)
+            {
+                c.IdCliente = c.IdCliente.Value;
+            }
+            c.Reserva = c.Reserva;
             c.IdEstadoCompra = (int)estadosCompra.Carrito;
             ComprasMapper.Instance().Insert(c);
-            foreach (var item in detalle)
+            foreach (var item in c.Detalle)
             {
                 item.IdCompra = c.IdCompra;
                 ComprasDetalleMapper.Instance().Insert(item);
             }
+            c.IdObjeto = c.IdCompra;
+            return c;
+        }
+
+        public Compras AgregarItem(Compras c)
+        {
+            validarCarrito(c.IdCliente, c.Detalle);
+
+            c = new Compras();
+            if (c.IdCliente.HasValue)
+            {
+                c.IdCliente = c.IdCliente.Value;
+            }
+            c.Reserva = c.Reserva;
+            c.IdEstadoCompra = (int)estadosCompra.Carrito;
+            ComprasMapper.Instance().Save(c);
+            ComprasDetalleMapper.Instance().DeleteByCompras(c.IdCompra);
+            foreach (var item in c.Detalle)
+            {
+                item.IdCompra = c.IdCompra;
+                ComprasDetalleMapper.Instance().Insert(item);
+                c.Detalle.Add(item);
+            }
+            c.IdObjeto = c.IdCompra;
+            return c;
         }
 
         public  void AgregarCompra(int idcompra,int idcliente, List<ComprasDetalle> detalle,int? iddescuento,bool reserva)
@@ -84,12 +113,16 @@ namespace monaguaRules
             }
 
         }
-        public  void validarCarrito(int idcliente, List<ComprasDetalle> detalle)
+        public  void validarCarrito(int? idcliente, List<ComprasDetalle> detalle)
         {
-            if (ClientesMapper.Instance().GetOne(idcliente) == null)
+            if (idcliente.HasValue)
             {
-                throw new Exception("No se encuentra el cliente");
+                if (ClientesMapper.Instance().GetOne(idcliente.Value) == null)
+                {
+                    throw new Exception("No se encuentra el cliente");
+                }
             }
+            
             foreach (var item in detalle)
             {
                 Actividades acc = ActividadesMapper.Instance().GetOne(item.IdActividad);
@@ -97,20 +130,11 @@ namespace monaguaRules
                 {
                     throw new Exception("No se encuentra la actividad");
                 }
-                if (acc.Activa)
+                if (!acc.Activa)
                 {
                     throw new Exception("La actividad no se encuentra activa");
                 }
 
-                ActividadesHorarios ah = ActividadesHorariosMapper.Instance().GetOne(item.IdHorarioActividad);
-                if (ah == null)
-                {
-                    throw new Exception("El horario no esta disponible");
-                }
-                if (!ah.Activa)
-                {
-                    throw new Exception("El horario no esta disponible");
-                }
                 
 
             }

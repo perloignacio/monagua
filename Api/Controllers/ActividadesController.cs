@@ -28,7 +28,7 @@ namespace Api.Controllers
                 ActividadesRules Arules = new ActividadesRules();
                 
 
-                return Ok(Arules.ConfiguraHorarios(idactividad));
+                return Ok(Arules.ConfiguraHorarios(idactividad,false));
             }
             catch (Exception ex)
             {
@@ -241,6 +241,68 @@ namespace Api.Controllers
 
 
                 return Ok(aux);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+
+        [Route("Activas")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetActivas()
+        {
+            try
+            {
+
+                List<Actividades> lac=new List<Actividades>();
+                lac = ActividadesMapper.Instance().GetAll().Where(a => a.Activa).ToList();
+
+                return Ok(lac);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("Ficha")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult Ficha(int id)
+        {
+            try
+            {
+
+                Actividades ac = ActividadesMapper.Instance().GetOne(id);
+                if (ac != null)
+                {
+                    if (ac.Activa)
+                    {
+                        ActividadesRules acR = new ActividadesRules();
+                        ac.Horarios=acR.ConfiguraHorarios(ac.IdActividad,true);
+                        return Ok(ac);
+                    }
+                    else
+                    {
+                        return BadRequest("Actividad inexistente");
+                    }
+                    
+                }
+                else
+                {
+                    return BadRequest("Actividad inexistente");
+                }
+
+
             }
             catch (Exception ex)
             {

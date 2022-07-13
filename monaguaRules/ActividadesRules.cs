@@ -292,7 +292,7 @@ namespace monaguaRules
 
         }
 
-        public List<ActividadesHorarios> ConfiguraHorarios(int idactividad)
+        public List<ActividadesHorarios> ConfiguraHorarios(int idactividad,bool validacompras)
         {
             List<ActividadesHorarios> horarios = new List<ActividadesHorarios>();
             ActividadesHorariosList lista = ActividadesHorariosMapper.Instance().GetByActividades(idactividad);
@@ -505,6 +505,26 @@ namespace monaguaRules
                 }
                 i++;
             }
+
+            if (validacompras)
+            {
+                ComprasDetalleList compras = ComprasDetalleMapper.Instance().GetComprasByActividad(idactividad);
+                foreach (var cd in compras)
+                {
+                    var index = horarios.FindIndex(h => h.FechaInicio == cd.FechaHora);
+                    if (index != -1)
+                    {
+                        if (cd.Cantidad >= horarios[index].Capacidad)
+                        {
+                            horarios.Remove(horarios[index]);
+                        }
+                        else
+                        {
+                            horarios[index].Capacidad = horarios[index].Capacidad - cd.Cantidad;
+                        }
+                    }
+                }
+            }   
 
             if (pos.Count > 0)
             {

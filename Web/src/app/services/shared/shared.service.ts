@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Compras } from 'src/app/models/Compras.model';
+import { ComprasDetalle } from 'src/app/models/ComprasDetalle.model';
 
 import { JsonResult } from 'src/app/models/jsonresult.interface';
 
@@ -13,6 +15,7 @@ export class SharedService {
   objModal:any;
   isActive: boolean=false;
   msjValidacionArchivos:string;
+  
   CambiaActive$ = new Subject<boolean>();
   setActive(band:boolean) {
     this.isActive=band

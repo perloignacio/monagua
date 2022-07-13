@@ -1,10 +1,12 @@
-﻿using monaguaRules.Entities;
+﻿using monaguaRules;
+using monaguaRules.Entities;
 using monaguaRules.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace Api.Controllers
@@ -50,6 +52,27 @@ namespace Api.Controllers
                     flist = flist.Where(f => f.Fecha>=desde.Value && f.Fecha<=hasta.Value).ToList();
                 }
                 return Ok(flist);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [Route("Agregar")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult Agregar(int id)
+        {
+            try
+            {
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                FavoritosRules favRules = new FavoritosRules();
+                favRules.Agregar(id, u.IdUsuario);
+                return Ok(true);
             }
             catch (Exception ex)
             {

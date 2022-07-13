@@ -1,0 +1,47 @@
+<div class="container" *ngIf="obj!=null">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="foto">
+                <img src="{{assets}}assets/actividades/{{foto}}" class="w-100">
+            </div>
+            <p>{{obj.DescripcionCorta}}</p>
+            <p>{{obj.Descripcion}}</p>
+            <p>{{obj.QueIncluye}}</p>
+            <p>{{obj.QueNoIncluye}}</p>
+        </div>
+        <div class="col-md-6">
+            <div (click)="favoritos()" role="button"><i class="fas fa-star"></i> agregar a favoritos</div>
+            <h2>{{obj.Nombre}}</h2>
+            <p>{{obj.PrecioOferta!=null ? obj.PrecioOferta : obj.Precio}}</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Cantidad</label>
+                    <input class="form-control" placeholder="Cantidad"  name="cantidad" [(ngModel)]="cantidad">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label>Dia</label>
+                    <div class="input-group">
+                        
+                        <input class="form-control" placeholder="dd-mm-yyyy" readonly
+                               name="dp" [(ngModel)]="fecha" ngbDatepicker #d="ngbDatepicker" (dateSelect)="cargaHoras()" [markDisabled]="isDisabled">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Hora</label>
+                    <select name="horario" [(ngModel)]="horario" class="form-control form-select">
+                        <option [ngValue]="hora" *ngFor="let hora of horasdisponibles">{{hora}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <button class="btn btn-success w-100" (click)="Comprar()">COMPRAR</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

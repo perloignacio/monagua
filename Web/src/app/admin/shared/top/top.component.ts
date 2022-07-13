@@ -13,11 +13,11 @@ export class TopComponent implements OnInit {
   constructor(private route:Router,private srvShared:SharedService) { 
     this.srvShared.getActive$().subscribe((b)=>{
       this.isActive=b;
-      console.log(this.isActive);
+     
     });
   }
   cambiaActive(){
-    console.log("llego",this.isActive);
+    
     this.srvShared.setActive(!this.isActive);
   }
   Salir(){

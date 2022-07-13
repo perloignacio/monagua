@@ -9,6 +9,7 @@ import { WebService } from 'src/app/services/web/web.service';
 import { Router } from '@angular/router';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
 import { ThisReceiver } from '@angular/compiler';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro-clientes',
@@ -63,14 +64,14 @@ export class RegistroClientesComponent implements OnInit {
     
     this.srvClientes.Registrar(form).subscribe((band)=>{
       if(band){
-                
+        Swal.fire("Ok","Su registro se realizo correctamente",'success');          
       } 
     },(err)=>{
 
-      console.log("Upps",err.error.Message,'Warning');
+      Swal.fire("Upps",err.error.Message,'warning');
     })
     
-    console.log(this.obj);
+    
   }
   
 }

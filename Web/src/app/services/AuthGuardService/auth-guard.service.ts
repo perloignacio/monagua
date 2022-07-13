@@ -11,7 +11,7 @@ export class AuthGuardService {
   constructor(private svcShared:AuthenticationService,private router:Router) { }
   canLoad(route: Route): boolean {
     let url: string = route.path;
-    console.log(this.svcShared.currentUserValue)
+    
     if (this.svcShared.currentUserValue!=null) {
 	    if(url.includes("admin")){
         if(this.svcShared.currentUserValue.ClientesEntity!=null || this.svcShared.currentUserValue.PrestadoresEntity!=null){
@@ -30,7 +30,7 @@ export class AuthGuardService {
   }
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
-   console.log(route);
+   
     if (this.svcShared.currentUserValue!=null) {
 	    return true;
     }else{

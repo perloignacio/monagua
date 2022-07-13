@@ -81,7 +81,7 @@ export class ActividadComponent implements OnInit {
       } 
     },(err)=>{
 
-      console.log("Upps",err.error.Message,'Warning');
+      Swal.fire("Upps",err.error.Message,'warning');
     })
   }
   ngOnInit(): void {

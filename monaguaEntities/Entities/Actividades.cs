@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using Cooperator.Framework.Core.Exceptions;
 
 namespace monaguaRules.Entities
@@ -19,6 +20,7 @@ namespace monaguaRules.Entities
     public partial class Actividades
         // : IValidable
     {
+        public List<ActividadesHorarios> Horarios { get; set; }
         // /// <summary>
         // /// When IValidable is implemented, this method is invoked by Gateway before Insert or Update to validate Object.
         // /// </summary>

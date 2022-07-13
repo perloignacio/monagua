@@ -51,5 +51,14 @@ export class ActividadesService {
   AgregarEditar(form:any) {
     return this.httpClient.post<Actividades>(this.endpoint+'AgregarEditar',form);
   }
+
+  todos() {
+    return this.httpClient.get<Actividades[]>(this.endpoint+'Activas');
+  }
+
+  Ficha(id:number) {
+    return this.httpClient.get<Actividades>(this.endpoint+'Ficha?id='+id);
+  }
+  
   
 }

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ComprasComponent } from './web/compras/compras.component';
 import { AuthGuardService } from './services/AuthGuardService/auth-guard.service';
 import { BlanqueoComponent } from './web/blanqueo/blanqueo.component';
+import { FichaComponent } from './web/ficha/ficha.component';
 import { HomeComponent } from './web/home/home.component';
 import { LoginComponent } from './web/login/login.component';
 import { RecuperarComponent } from './web/recuperar/recuperar.component';
@@ -33,7 +35,16 @@ const routes: Routes = [
     path: 'blanqueo/:hash',
     component:BlanqueoComponent
   },
+  {
+    path:'actividad/:name/:id',
+    component:FichaComponent,
   
+  },
+  {
+    path:'compras',
+    component:ComprasComponent,
+  
+  },
   {
     path: 'panel',
     loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule),
@@ -42,8 +53,8 @@ const routes: Routes = [
   },
   {
      path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-     canLoad: [ AuthGuardService ],
-     canActivate:[AuthGuardService],
+     //canLoad: [ AuthGuardService ],
+     //canActivate:[AuthGuardService],
 
   },
 ];

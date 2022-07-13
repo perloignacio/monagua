@@ -77,7 +77,7 @@ export class HorariosActividadesComponent implements OnInit {
     this.events=[];
     this.srvHorarios.HorariosByActividad(this.IdActividad).subscribe((el)=>{
       this.Eventos=el;
-      console.log(this.Eventos);
+      
       el.forEach((ev)=>{
         let desde: moment.Moment = moment(ev.FechaInicio);
         let hasta: moment.Moment = moment(ev.FechaFin);
@@ -121,10 +121,10 @@ export class HorariosActividadesComponent implements OnInit {
     this.abremodal();
   }
   handleEvent(action: string, event: CalendarEvent): void {
-    //console.log(event);
+    
     let id=event.id.toString().split("-")[1];
     this.srvShared.objModal=this.Eventos.find((e)=>e.idCalendar.toString()==id);
-    //console.log(this.srvShared.objModal);
+    
     this.srvShared.AccionModal="Editar";
     this.abremodal();
   }

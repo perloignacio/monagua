@@ -1,1 +1,93 @@
-<p>usuarios-form works!</p>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+  
+        <div>
+          Usuarios
+          <div
+            class="page-title-subheading">
+            Datos de Registro
+          </div>
+        </div>
+      </div>
+      <div class="page-title-actions">
+        <button type="button" (click)="Volver()" class="btn-shadow d-inline-flex align-items-center btn btn-dark">
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card-body">
+    <form>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Usuario</label>
+            <input type="text" [(ngModel)]="obj.Usuario" name="Usuario" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Contraseña (Si no desea modificar, deje en blanco)</label>
+            <input type="text" [(ngModel)]="obj.Contra" name="Contra" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Nombre</label>
+            <input type="text" [(ngModel)]="obj.Nombre" name="Nombre" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Apellido</label>
+            <input type="text" [(ngModel)]="obj.Apellido" name="Apellido" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Email</label>
+            <input type="text" [(ngModel)]="obj.Email" name="Email" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">ID Cliente</label>
+            <input type="text" [(ngModel)]="obj.ClientesEntity" name="IdCliente" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">ID Prestador</label>
+            <input type="text" [(ngModel)]="obj.PrestadoresEntity" name="IdPrestador" class="form-control">
+          </div>
+        </div>
+      </div>
+      
+      <button class="mt-2 btn btn-success" (click)="Guardar()">Guardar cambios</button>
+    </form>
+  </div>
+  
+      

@@ -25,6 +25,7 @@ import { registerLocaleData } from "@angular/common";
 import localeEs from "@angular/common/locales/es-AR";
 import { ComprasComponent } from './web/compras/compras.component';
 
+
 registerLocaleData(localeEs, "es");
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ registerLocaleData(localeEs, "es");
     FichaComponent,
     ActividadComponent,
     ComprasComponent,
+    
     
   ],
   imports: [

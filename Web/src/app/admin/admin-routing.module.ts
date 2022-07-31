@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FavoritosDetalleComponent } from './favoritos-detalle/favoritos-detalle.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { CategoriasFormComponent } from './categorias-form/categorias-form.component';
 import { CategoriasComponent } from './categorias/categorias.component';
@@ -64,6 +65,10 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
         {
           path: 'favoritos',
           component: FavoritosComponent,
+        },
+        {
+          path: 'favoritos-detalle',
+          component: FavoritosDetalleComponent,
         },
         {
           path: 'calificaciones',

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using monaguaRules;
@@ -114,6 +115,31 @@ namespace Api.Controllers
 
 
                 return Ok(true);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("Canjear")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult Canjear(string codigo)
+        {
+            try
+            {
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+
+                DescuentosRules dRules = new DescuentosRules();
+                Descuentos d=dRules.Canjear(u.ClientesEntity.IdCliente, codigo);
+
+
+                return Ok(d);
             }
             catch (Exception ex)
             {

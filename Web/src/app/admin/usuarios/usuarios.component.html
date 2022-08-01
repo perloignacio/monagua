@@ -36,12 +36,11 @@
         <tr>
           <th class="text-center">#</th>
           <th>Usuario</th>
-          <th>Contraseña</th>
+         
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
-          <th>ID Cliente</th>
-          <th>ID Prestador</th>
+         
           <th class="text-center">Activo</th>
           <th class="text-center">Acciones</th>
         </tr>
@@ -51,12 +50,11 @@
         <tr *ngFor="let obj of ArrObj;">
           <td class="text-center text-muted">#{{obj.IdUsuario}}</td>
           <td>{{obj.Usuario}}</td>
-          <td>{{obj.Contra}}</td>
+          
           <td>{{obj.Nombre}}</td>
           <td>{{obj.Apellido}}</td>
           <td>{{obj.Email}}</td>
-          <td>{{obj.IdCliente}}</td>
-          <td>{{obj.IdPrestador}}</td>
+         
           <td class="text-center">{{obj.Activo ? 'Si':'NO'}}</td>
           <td class="text-center">
   

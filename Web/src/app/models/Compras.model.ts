@@ -19,4 +19,26 @@ export class Compras{
     DescuentosEntity:Descuentos;
     EstadosCompraEntity:EstadosCompra;
     Detalle:ComprasDetalle[]=[];
+    
+    constructor(json:any) {
+        if(json!=null){
+            this.IdCompra=json.IdCompra;
+            this.IdObjeto=json.IdObjeto;
+            this.IdCliente=json.IdCliente;
+            this.Fecha=json.Fecha;
+            this.Total=json.Total;
+            this.Reserva=json.Reserva;
+            this.IdDescuento=json.IdDescuento;
+            this.MercadoPago=json.MercadoPago;
+            this.IdEstadoCompra=json.IdEstadoCompra;
+            this.Activa=json.Activa;
+            this.Comentarios=json.Comentarios;
+            this.ClientesEntity=json.ClientesEntity;
+            this.DescuentosEntity=json.DescuentosEntity;
+            this.EstadosCompraEntity=json.EstadosCompraEntity;
+            this.Detalle=json.Detalle;
+          
+        }
+    
+      }
 }

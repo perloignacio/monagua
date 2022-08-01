@@ -9,6 +9,8 @@ import { LoginComponent } from './web/login/login.component';
 import { RecuperarComponent } from './web/recuperar/recuperar.component';
 import { RegistroClientesComponent } from './web/registro-clientes/registro-clientes.component';
 import { RegistroPrestadoresComponent } from './web/registro-prestadores/registro-prestadores.component';
+import { CheckoutComponent } from './web/checkout/checkout.component';
+import { GraciasComponent } from './web/gracias/gracias.component';
 
 const routes: Routes = [
   {
@@ -43,6 +45,16 @@ const routes: Routes = [
   {
     path:'compras',
     component:ComprasComponent,
+  
+  },
+  {
+    path:'checkout',
+    component:CheckoutComponent,
+  
+  },
+  {
+    path:'gracias',
+    component:GraciasComponent,
   
   },
   {

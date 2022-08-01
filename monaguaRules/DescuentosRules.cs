@@ -123,6 +123,54 @@ namespace monaguaRules
             {
                 throw new Exception("Debe ingresar un rango de vigencia valido");
             }
+            if (DescuentosMapper.Instance().GetByCodigo(codigo) != null)
+            {
+                throw new Exception("Ya existe un cupon activo con ese codigo");
+
+            }
+
+        }
+
+        public Descuentos Canjear(int idcliente, string codigo)
+        {
+            Descuentos desc = DescuentosMapper.Instance().GetByCodigo(codigo);
+            if (desc == null)
+            {
+                throw new Exception("No existe un cupon con ese codigo");
+            }
+
+            if (desc.FechaDesde.HasValue)
+            {
+                if (DateTime.Now < desc.FechaDesde)
+                {
+                    throw new Exception("Cupon no vigente");
+                }
+
+            }
+
+            if (desc.FechaHasta.HasValue)
+            {
+                if (DateTime.Now > desc.FechaHasta)
+                {
+                    throw new Exception("Cupon no vigente");
+                }
+            }
+
+            ComprasList clist = ComprasMapper.Instance().GetByCodigo(codigo);
+            if (desc.Stock.HasValue)
+            {
+                if (clist.Count > desc.Stock.Value)
+                {
+                    throw new Exception("Stock agotado");
+                }
+            }
+            Compras c = clist.Find(co => co.IdCliente == idcliente);
+            if (c != null)
+            {
+                throw new Exception("Ya uso este cupon");
+            }
+
+            return desc;
 
         }
     }

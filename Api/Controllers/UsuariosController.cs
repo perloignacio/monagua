@@ -122,7 +122,6 @@ namespace Api.Controllers
 
         [Route("checktoken")]
         [HttpGet]
-       
         public IHttpActionResult checktoken()
         {
             try

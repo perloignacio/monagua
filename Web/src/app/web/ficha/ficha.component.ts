@@ -95,12 +95,17 @@ export class FichaComponent implements OnInit {
     det.IdActividad=this.obj.IdActividad;
     this.srvCompras.validar(det).subscribe((resp)=>{
       if(resp.estado=="OK"){
-        this.srvCompras.AgregaActividad(det).subscribe((c)=>{
-          this.srvCompras.setCarrito(c);
-          this.router.navigate(["/compras"]);
-        },(err)=>{
-          Swal.fire("upps",err.error.Message,"warning");
-        })
+        if(this.srvCompras.carrito.Detalle.find(d=>d.IdActividad==det.IdActividad)){
+          Swal.fire("upps","La actividad ya se encuentra en el carrito","warning");
+        }else{
+          this.srvCompras.AgregaActividad(det).subscribe((c)=>{
+            this.srvCompras.setCarrito(c);
+            this.router.navigate(["/compras"]);
+          },(err)=>{
+            Swal.fire("upps",err.error.Message,"warning");
+          })
+        }
+        
         
       }else{
         Swal.fire("upps",resp.mensaje,"warning");

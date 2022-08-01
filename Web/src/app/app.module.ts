@@ -24,6 +24,9 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from "@angular/common";
 import localeEs from "@angular/common/locales/es-AR";
 import { ComprasComponent } from './web/compras/compras.component';
+import { ModalActualizaActividadComponent } from './web/shared/modal-actualiza-actividad/modal-actualiza-actividad.component';
+import { CheckoutComponent } from './web/checkout/checkout.component';
+import { GraciasComponent } from './web/gracias/gracias.component';
 
 registerLocaleData(localeEs, "es");
 @NgModule({
@@ -38,6 +41,9 @@ registerLocaleData(localeEs, "es");
     FichaComponent,
     ActividadComponent,
     ComprasComponent,
+    ModalActualizaActividadComponent,
+    CheckoutComponent,
+    GraciasComponent,
     
   ],
   imports: [

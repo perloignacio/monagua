@@ -17,7 +17,7 @@ export class AuthenticationService {
   public currentUser: Observable<Usuarios>;
 
   constructor(private http: HttpClient) {
-      this.currentUserSubject = new BehaviorSubject<Usuarios>(JSON.parse(localStorage.getItem('currentUser')));
+      this.currentUserSubject = new BehaviorSubject<Usuarios>(JSON.parse(localStorage.getItem('userMonagua')));
       this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -31,7 +31,7 @@ export class AuthenticationService {
           .pipe(map(user => {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               if(user!=null){
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                localStorage.setItem('userMonagua', JSON.stringify(user));
                 this.currentUserSubject.next(user);
                 return user;
               }else{
@@ -44,7 +44,7 @@ export class AuthenticationService {
   logout() {
       // remove user from local storage to log user out
 
-      localStorage.removeItem('currentUser');
+      localStorage.removeItem('userMonagua');
       this.currentUserSubject.next(null);
   }
   Recuperar(email:string){
@@ -52,5 +52,8 @@ export class AuthenticationService {
   }
   Blanqueo(formdata){
     return this.http.post<boolean>(environment.apiUrl + `usuarios/blanqueo/`,formdata, httpOptions)
+  }
+  validar(){
+    return this.http.get<boolean>(environment.apiUrl + `usuarios/checktoken`, httpOptions)
   }
 }

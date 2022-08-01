@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,27 +8,22 @@ using monaguaRules.Entities;
 using monaguaRules.Mappers;
 namespace monaguaRules
 {
-    public  class ComprasRules
+    public class ComprasRules
     {
         public enum estadosCompra
         {
-            Carrito=1,
-            Solicitada=2,
-            Abonada=3,
-            Cancelada=4
+            Carrito = 1,
+            Solicitada = 2,
+            Abonada = 3,
+            Cancelada = 4
         }
         public Compras AgregarCarrito(Compras c)
         {
             validarCarrito(c.IdCliente, c.Detalle);
-            
-           
+
             c.Activa = true;
             c.Fecha = DateTime.Now;
-            if (c.IdCliente.HasValue)
-            {
-                c.IdCliente = c.IdCliente.Value;
-            }
-            c.Reserva = c.Reserva;
+            c.Reserva = false;
             c.IdEstadoCompra = (int)estadosCompra.Carrito;
             ComprasMapper.Instance().Insert(c);
             foreach (var item in c.Detalle)
@@ -39,30 +35,54 @@ namespace monaguaRules
             return c;
         }
 
-        public Compras AgregarItem(Compras c)
+        public Compras Actualizar(Compras c)
         {
             validarCarrito(c.IdCliente, c.Detalle);
+           
 
-            c = new Compras();
+            Compras obj = ComprasMapper.Instance().GetOne(c.IdObjeto);
             if (c.IdCliente.HasValue)
             {
-                c.IdCliente = c.IdCliente.Value;
+                obj.IdCliente = c.IdCliente.Value;
             }
-            c.Reserva = c.Reserva;
-            c.IdEstadoCompra = (int)estadosCompra.Carrito;
-            ComprasMapper.Instance().Save(c);
-            ComprasDetalleMapper.Instance().DeleteByCompras(c.IdCompra);
+            obj.Reserva = c.Reserva;
+            obj.Comentarios = c.Comentarios;
+            obj.IdEstadoCompra = (int)estadosCompra.Carrito;
+            if (c.IdDescuento.HasValue)
+            {
+                obj.IdDescuento = c.IdDescuento.Value;
+            }
+            if (c.MontoDescuento.HasValue)
+            {
+                obj.MontoDescuento=c.MontoDescuento.Value;
+            }
+            ComprasMapper.Instance().Save(obj);
+            ComprasDetalleMapper.Instance().DeleteByCompras(c.IdObjeto);
             foreach (var item in c.Detalle)
             {
-                item.IdCompra = c.IdCompra;
+                item.IdCompra = c.IdObjeto;
                 ComprasDetalleMapper.Instance().Insert(item);
-                c.Detalle.Add(item);
+
             }
-            c.IdObjeto = c.IdCompra;
+
             return c;
         }
 
-        public  void AgregarCompra(int idcompra,int idcliente, List<ComprasDetalle> detalle,int? iddescuento,bool reserva)
+        public Compras Finalizar(int idcompra, string mercadopago)
+        {
+            
+            Compras obj = ComprasMapper.Instance().GetOne(idcompra);
+            
+            obj.MercadoPago = mercadopago;
+            obj.IdEstadoCompra = (int)estadosCompra.Abonada;
+           
+
+            ComprasMapper.Instance().Save(obj);
+            
+            return obj;
+        }
+
+        public void AgregarCompra(int idcompra, int idcliente, List<ComprasDetalle> detalle, int? iddescuento, bool reserva)
         {
             validarCarrito(idcliente, detalle);
             Compras c = ComprasMapper.Instance().GetOne(idcompra);
@@ -90,7 +110,7 @@ namespace monaguaRules
 
         }
 
-        public  void ActualizarCarrito(int idcompra, int idcliente, List<ComprasDetalle> detalle)
+        public void ActualizarCarrito(int idcompra, int idcliente, List<ComprasDetalle> detalle)
         {
             validarCarrito(idcliente, detalle);
             Compras c = ComprasMapper.Instance().GetOne(idcompra);
@@ -102,7 +122,7 @@ namespace monaguaRules
             {
                 throw new Exception("Upp ocurrio un error");
             }
-           
+
             c.IdEstadoCompra = (int)estadosCompra.Solicitada;
             ComprasMapper.Instance().Save(c);
             ComprasDetalleMapper.Instance().DeleteByCompras(c.IdCompra);
@@ -113,7 +133,7 @@ namespace monaguaRules
             }
 
         }
-        public  void validarCarrito(int? idcliente, List<ComprasDetalle> detalle)
+        public void validarCarrito(int? idcliente, List<ComprasDetalle> detalle)
         {
             if (idcliente.HasValue)
             {
@@ -122,7 +142,7 @@ namespace monaguaRules
                     throw new Exception("No se encuentra el cliente");
                 }
             }
-            
+
             foreach (var item in detalle)
             {
                 Actividades acc = ActividadesMapper.Instance().GetOne(item.IdActividad);
@@ -135,9 +155,10 @@ namespace monaguaRules
                     throw new Exception("La actividad no se encuentra activa");
                 }
 
-                
+
 
             }
         }
+
     }
 }

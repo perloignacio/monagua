@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <span><a [routerLink]="'/recuperar'" role="button">¿Olvidaste tu contraseña?</a></span><br>
-                    <span>¿No tenes cuenta de cliente? <a [routerLink]="'/registro/cliente'" role="button">Crear Cuenta</a></span><br>
+                    <span>¿No tenes cuenta de cliente? <a [routerLink]="'/registro/cliente'" [queryParams]="{ org:this.org}" role="button">Crear Cuenta</a></span><br>
                     <span>¿No tenes cuenta de proveedor? <a [routerLink]="'/registro/prestador'" role="button">Crear Cuenta</a></span>
                 </div>
             </div>

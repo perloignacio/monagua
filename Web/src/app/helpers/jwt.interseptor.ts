@@ -14,9 +14,9 @@ export class JwtInterceptor implements HttpInterceptor {
     
     constructor(private authenticationService:AuthenticationService,private router: Router) { }
         private handleAuthError(err: HttpErrorResponse): Observable<any> {
-            
+          
             //handle your auth error or rethrow
-            if (err.status === 401 || err.status === 403 || err.status === 0) {
+            if ((err.status === 401 || err.status === 403 || err.status === 0) &&  !err.url.toString().includes("checktoken")) {
                 //navigate /delete cookies or whatever
                 this.router.navigateByUrl(`/login`);
                 // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.

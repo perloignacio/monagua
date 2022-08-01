@@ -28,10 +28,15 @@ export class CuponesService {
   todosAdmin() {
     return this.httpClient.get<Descuentos[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
   }
-   Registrar(obj:any) {
+  
+  Registrar(obj:any) {
     return this.httpClient.post<boolean>(this.endpoint + `registrar`,obj, httpOptions)
   }
+  
   AgregarEditar(form:any) {
     return this.httpClient.post<boolean>(this.endpoint+'Admin/AgregarEditar',form);
+  }
+  Canjear(codigo:string){
+    return this.httpClient.get<Descuentos>(this.endpoint + `Canjear?codigo=${codigo}`, httpOptions)
   }
 }

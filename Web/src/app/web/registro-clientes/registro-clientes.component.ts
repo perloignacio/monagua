@@ -6,10 +6,11 @@ import { Paises } from 'src/app/models/Paises.model';
 import { Provincias } from 'src/app/models/Provincias.model';
 import { Localidades } from 'src/app/models/Localidades.model';
 import { WebService } from 'src/app/services/web/web.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
 import { ThisReceiver } from '@angular/compiler';
 import Swal from 'sweetalert2';
+import { ComprasService } from 'src/app/services/compras/compras.service';
 
 @Component({
   selector: 'app-registro-clientes',
@@ -24,8 +25,14 @@ export class RegistroClientesComponent implements OnInit {
   listalocalidades:Localidades[]=[];
   contra:string;
   Agregar:boolean=true;
-
-  constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router,private srvClientes:ClientesService) { 
+  org:string=""
+  constructor(private srvShared:SharedService,private srvWeb:WebService,private arouter:ActivatedRoute,private route:Router,private srvClientes:ClientesService) { 
+    this.arouter.queryParams.subscribe((p)=>{
+      if(p['org']){
+        this.org=p['org'];
+      }
+    })
+     
     this.srvWeb.Paises().subscribe((paises)=>{
     
       this.listapaises=paises;
@@ -64,7 +71,13 @@ export class RegistroClientesComponent implements OnInit {
     
     this.srvClientes.Registrar(form).subscribe((band)=>{
       if(band){
-        Swal.fire("Ok","Su registro se realizo correctamente",'success');          
+        Swal.fire("Ok","Su registro se realizo correctamente",'success');
+        if(this.org="checkout"){
+          
+          this.route.navigate(["/checkout"]);
+        }else{
+          this.route.navigate(["/"]);
+        }
       } 
     },(err)=>{
 

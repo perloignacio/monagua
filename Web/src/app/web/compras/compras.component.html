@@ -19,20 +19,22 @@
       <div class="detalle" *ngIf="this.srvCompra.carrito.Detalle.length>0">
         <ng-container  *ngFor='let detalle of this.srvCompra.carrito.Detalle'>
         <div class="listadoitems">
-          <div class="row">
+          <div class="row mt-5">
             <div class="col-md-8">
               <div class="row">
                 <div class="col-md-4 col-2">
-                  <div class="foto">.
+                  <div class="foto">
                     <img src="{{assets}}assets/actividades/{{detalle.ActividadesEntity.Fotos.split(',')[0]}}" class="img-fluid">
                   </div>
                 </div>
                 <div class="col-md-8 col-10">
                   <div class="info">
                     <p><b>{{detalle.ActividadesEntity.Nombre}}</b></p>
-                    <p class="chico" [innerHtml]="detalle.ActividadesEntity.Descripcion.substr(0,50)"></p>
-                    <!--<small class="mt-3 d-block" (click)="borrarproducto(prod)"><i class="fas fa-times-circle" ></i> ELIMINAR</small>
-                    <small class="mt-3 d-block" (click)="cambiar(prod)"><i class="fas fa-times-circle" ></i> ELIMINAR</small>-->
+                    <p class="chico" [innerHtml]="detalle.ActividadesEntity.Descripcion.substr(0,100)"></p>
+                    <p class="chico"> <b>Fecha:</b>{{detalle.FechaHora | date:'dd-MM-yyyy hh:mm'}}</p>
+                    <p class="chico"> <b>Cantidad:</b>{{detalle.Cantidad}}</p>
+                    <small class="mt-3 d-block" (click)="borrarproducto(detalle)" role="button"><i class="fas fa-times-circle" ></i> ELIMINAR</small>
+                    <small class="mt-3 d-block" (click)="cambiar(detalle)" role="button"><i class="fas fa-edit" ></i> CAMBIAR DATOS</small>
                   </div>
                 </div>
               </div>
@@ -94,8 +96,8 @@
                         </div>
                       </div>
                     </div>
-                    <!--<a (click)="Actualizar()" class="btn btn-primary mb-3 mt-3 w-100">PROCEDER A LA COMPRA</a>-->
-                    <a [routerLink]="['/']" class="btn btn-celeste w-100">SEGUIR COMPRANDO</a>
+                    <a (click)="Actualizar()" class="btn btn-success mb-3 mt-3 w-100">PROCEDER A LA COMPRA</a>
+                    <a [routerLink]="['/']" class="btn btn-primary w-100">SEGUIR COMPRANDO</a>
                   </div>
                 </div>
               </div>

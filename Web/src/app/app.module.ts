@@ -28,6 +28,7 @@ import { ModalActualizaActividadComponent } from './web/shared/modal-actualiza-a
 import { CheckoutComponent } from './web/checkout/checkout.component';
 import { GraciasComponent } from './web/gracias/gracias.component';
 
+
 registerLocaleData(localeEs, "es");
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ registerLocaleData(localeEs, "es");
     ModalActualizaActividadComponent,
     CheckoutComponent,
     GraciasComponent,
+    
     
   ],
   imports: [

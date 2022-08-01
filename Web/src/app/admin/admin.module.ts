@@ -23,6 +23,7 @@ import { CalificacionesComponent } from './calificaciones/calificaciones.compone
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
+import { FavoritosDetalleComponent } from './favoritos-detalle/favoritos-detalle.component';
 @NgModule({
     declarations: [
         CategoriasComponent,
@@ -42,7 +43,8 @@ import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
         MensajesComponent,
         CalificacionesComponent,
         UsuariosComponent,
-        UsuariosFormComponent
+        UsuariosFormComponent,
+        FavoritosDetalleComponent
     ],
     exports:[
       

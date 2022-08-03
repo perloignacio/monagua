@@ -2,7 +2,8 @@
 <div class="container">
     <div class="row">
         <div class="col-3" *ngFor="let ac of Actividades">
-            <app-actividad [Actividades]='ac'></app-actividad>
+            <app-actividad [Actividades]='ac' [Favoritos]="false"></app-actividad>
         </div>
     </div>
+    
 </div>

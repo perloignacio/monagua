@@ -13,13 +13,17 @@ export class ActividadComponent implements OnInit {
   assets:string=environment.assets;
   foto:string="";
   obj:Actividades;
+  fav:boolean;
   slug:SlugifyPipe=new SlugifyPipe();
   @Input()
   set Actividades(value: Actividades) {
-    
     this.foto=value.Fotos.split(",")[0]
     this.obj=value;
-    
+  }
+
+  @Input()
+  set Favoritos(value: boolean) {
+    this.fav=value;
   }
 
   ficha(){

@@ -29,6 +29,7 @@ import { CheckoutComponent } from './web/checkout/checkout.component';
 import { GraciasComponent } from './web/gracias/gracias.component';
 
 
+
 registerLocaleData(localeEs, "es");
 @NgModule({
   declarations: [

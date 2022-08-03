@@ -31,4 +31,7 @@ export class ClientesService {
    Registrar(obj:any) {
     return this.httpClient.post<boolean>(this.endpoint + `registrar`,obj, httpOptions)
   }
+  Editar(obj:any) {
+    return this.httpClient.post<Clientes>(this.endpoint + `editar`,obj, httpOptions)
+  }
 }

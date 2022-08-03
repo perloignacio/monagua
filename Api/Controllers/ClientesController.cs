@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 
@@ -138,10 +139,16 @@ namespace Api.Controllers
             {
 
                 Clientes obj = JsonConvert.DeserializeObject<Clientes>(HttpContext.Current.Request.Unvalidated["obj"]);
-                int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
+                //int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                int id = u.ClientesEntity.IdCliente;
+
                 ClientesRules cr = new ClientesRules();
                 cr.Modificar(id,obj.Nombre, obj.Apellido, obj.Email, obj.FechaNacimiento, obj.IdLocalidad, obj.IdPais, obj.IdProvincia,obj.Sexo, obj.Telefono);
-                return Ok(true);
+
+                Clientes res = ClientesMapper.Instance().GetOne(id);
+                return Ok(res);
 
             }
             catch (Exception ex)
@@ -150,6 +157,58 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
 
+
+        }
+
+        [Route("favoritos")]
+        [HttpGet]
+        public IHttpActionResult favoritos()
+        {
+            try
+            {
+
+                
+                //int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                int id = u.ClientesEntity.IdCliente;
+                //int id = 3;
+                
+                return Ok(FavoritosMapper.Instance().GetByClientes(id));
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+
+        [Route("quitarFavoritos")]
+        [HttpGet]
+        public IHttpActionResult QuitarFavoritos(int idactividad)
+        {
+            try
+            {
+
+
+                //int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                int id = u.ClientesEntity.IdCliente;
+                //int id = 3;
+                FavoritosRules favRules = new FavoritosRules();
+                favRules.Borrar(idactividad, id);
+                return Ok(true);
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
 
         }
 

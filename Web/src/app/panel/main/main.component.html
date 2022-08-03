@@ -1,7 +1,29 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-2">
+        <div class="menu mt-5 border p-2">
+            <div *ngIf="this.srvAut.currentUserValue?.ClientesEntity">
+                <a [routerLink]="'/panel/clientes'" class="d-block">Mi Perfil</a>
+                <a [routerLink]="'/panel/cambiarContra'" class="d-block">Cambiar contraseña</a>
+                <a [routerLink]="'/panel/clientes/compras'" class="d-block">Compras</a>
+                <a [routerLink]="'/panel/clientes/favoritos'" class="d-block">Favoritos</a>
+            </div>
+        
+            <div *ngIf="this.srvAut.currentUserValue?.PrestadoresEntity">
+                <a [routerLink]="'/panel/prestador'" class="d-block">Mi Perfil</a>
+                <a [routerLink]="'/panel/cambiarContra'" class="d-block">Cambiar contraseña</a>
+                <a [routerLink]="'/panel/prestador/actividades'" class="d-block">Actividades</a>
+                <a [routerLink]="'/panel/prestador/compras'" class="d-block">Compras</a>
+            </div>
+            <a (click)="salir()" class="d-block">Salir</a>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="contenido border mt-5 p-2">
+            <router-outlet></router-outlet>
+        </div>
+        
+    </div>
+</div>
 
-<a [routerLink]="'/panel/prestador'" class="me-4">Mi Perfil</a>
-<a [routerLink]="'/panel/prestador/actividades'" class="me-4">Actividades</a>
-<a [routerLink]="'/panel/prestador/compras'" class="me-4">Compras</a>
-<a [routerLink]="'/'" class="me-4">Salir</a>
-
-<router-outlet></router-outlet>
+</div>  

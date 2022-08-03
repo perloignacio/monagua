@@ -14,7 +14,7 @@ import { PrestadoresComponent } from './prestadores/prestadores.component';
       component: MainComponent,
       children:[
         {
-          path: 'clientes',
+          path: 'cliente',
           component: ClientesComponent,
         },
         {

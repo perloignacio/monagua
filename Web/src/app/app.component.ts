@@ -14,7 +14,7 @@ import { AuthenticationService } from './services/authentication/authentication.
 export class AppComponent {
   title = 'Web';
   
-  constructor(private srvCompras:ComprasService,private srvAut:AuthenticationService) {
+  constructor(private srvCompras:ComprasService,public srvAut:AuthenticationService) {
     this.srvCompras.obtieneCarrito(null);
     if(this.srvAut.currentUserValue!=null){
       this.srvAut.validar().subscribe((b)=>{

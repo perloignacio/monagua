@@ -2,11 +2,12 @@
 <a [routerLink]="'/login'" class="me-4">Login</a>
 <a [routerLink]="'/registro/cliente'" class="me-4">Registro Clientes</a>
 <a [routerLink]="'/registro/prestador'" class="me-4">Registro Prestadores</a>
-<a [routerLink]="'/panel/prestador'" class="me-4">Panel Prestadores</a>
-<a [routerLink]="'/panel/cliente'" class="me-4">Panel Cliente</a>
 <a [routerLink]="'/admin'" class="me-4">Admin</a>
 <a [routerLink]="'/compras'" class="me-4">Carrito</a>
 
-      <router-outlet></router-outlet>
+<a [routerLink]="'/panel/cliente'" *ngIf="this.srvAut.currentUserValue?.ClientesEntity" class="me-4">PANEL</a>
+<a [routerLink]="'/panel/prestador'" *ngIf="this.srvAut.currentUserValue?.PrestadoresEntity" class="me-4">PANEL</a>
+  
+<router-outlet></router-outlet>
     
 

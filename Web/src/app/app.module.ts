@@ -19,7 +19,7 @@ import { RecuperarComponent } from './web/recuperar/recuperar.component';
 import { BlanqueoComponent } from './web/blanqueo/blanqueo.component';
 import { DatePipe } from '@angular/common';
 import { FichaComponent } from './web/ficha/ficha.component';
-import { ActividadComponent } from './web/shared/actividad/actividad.component';
+import { ActividadSharedComponent } from './web/shared/actividad/actividad.component';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from "@angular/common";
 import localeEs from "@angular/common/locales/es-AR";
@@ -41,7 +41,7 @@ registerLocaleData(localeEs, "es");
     RecuperarComponent,
     BlanqueoComponent,
     FichaComponent,
-    ActividadComponent,
+    ActividadSharedComponent,
     ComprasComponent,
     ModalActualizaActividadComponent,
     CheckoutComponent,
@@ -63,8 +63,9 @@ registerLocaleData(localeEs, "es");
     HttpClientModule,
          NgbModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },DatePipe,{ provide: LOCALE_ID, useValue: "es-AR"}],
   
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },DatePipe,{ provide: LOCALE_ID, useValue: "es-AR"}],
+  exports:[ActividadSharedComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

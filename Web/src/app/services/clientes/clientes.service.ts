@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Actividades } from 'src/app/models/Actividades.model';
 import { Clientes } from 'src/app/models/Clientes.model';
+import { Favoritos } from 'src/app/models/Favoritos.model';
+import { FavoritosCliComponent } from 'src/app/panel/favoritosCli/favoritosCli.component';
 import { environment } from 'src/environments/environment';
 
 
@@ -28,10 +31,14 @@ export class ClientesService {
   todosAdmin() {
     return this.httpClient.get<Clientes[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
   }
-   Registrar(obj:any) {
+  Registrar(obj:any) {
     return this.httpClient.post<boolean>(this.endpoint + `registrar`,obj, httpOptions)
   }
   Editar(obj:any) {
     return this.httpClient.post<Clientes>(this.endpoint + `editar`,obj, httpOptions)
   }
+  Favoritos() {
+    return this.httpClient.get<Favoritos[]>(this.endpoint + `favoritos`)
+  }
+  
 }

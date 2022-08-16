@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActividadComponent } from './actividad/actividad.component';
 import { ActividadesComponent } from './actividades/actividades.component';
+import { FavoritosCliComponent } from './favoritosCli/favoritosCli.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { HorariosActividadesComponent } from './horarios-actividades/horarios-actividades.component';
 import { MainComponent } from './main/main.component';
@@ -20,6 +21,10 @@ import { PrestadoresComponent } from './prestadores/prestadores.component';
         {
           path: 'prestador',
           component: PrestadoresComponent,
+        },
+        {
+          path: 'cliente/favoritos',
+          component: FavoritosCliComponent,
         },
         {
           path: 'prestador/actividades',

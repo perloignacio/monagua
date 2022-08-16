@@ -11,6 +11,7 @@ import { RegistroClientesComponent } from './web/registro-clientes/registro-clie
 import { RegistroPrestadoresComponent } from './web/registro-prestadores/registro-prestadores.component';
 import { CheckoutComponent } from './web/checkout/checkout.component';
 import { GraciasComponent } from './web/gracias/gracias.component';
+import { PanelRoutingModule } from './panel/panel-routing-module';
 
 const routes: Routes = [
   {

@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 
@@ -231,6 +232,39 @@ namespace Api.Controllers
                 {
                     uRules.Agregar(obj.Nombre, obj.Apellido, obj.Email, obj.Telefono, obj.Usuario, obj.Contra, null, null);
                 }
+
+
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("cambiarContra")]
+        [HttpPost]
+        public IHttpActionResult cambiarContra(string contraActual,string contraNueva,string rcontraNueva)
+        {
+            try
+            {
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+
+                if (u != null)
+                {
+                    string passActual = Encriptar.Encrypt(contraActual, "S3rv3th0m3");
+                    string passNueva = Encriptar.Encrypt(contraNueva, "S3rv3th0m3");
+                    if (u.Contra != passActual) { throw new Exception("La contraseña ingresada es incorrecta"); }
+                    if (contraNueva != rcontraNueva) { throw new Exception("La contraseñas no coinciden"); }
+                    UsuariosRules uRules = new UsuariosRules();
+                    uRules.ActualizarContra(u.IdUsuario, passNueva);
+                }
+
+                
 
 
                 return Ok(true);

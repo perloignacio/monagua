@@ -44,9 +44,9 @@ namespace monaguaRules
             return pr;
         }
 
-        public void Modificar(int idprestador, string razonsocial, string fantasia, string cuit, string email, string logo, bool prestadorHabilitado, int? idlocalidad, int? idpais, int? idprovincia, bool politicas, string telefono)
+        public void Modificar(int idprestador, string razonsocial, string fantasia, string cuit, string email, string logo, int? idlocalidad, int? idpais, int? idprovincia, string telefono)
         {
-            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, politicas, telefono, logo,cuit);
+            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, true, telefono, logo,cuit);
 
             var pr = new Prestadores();
             pr = PrestadoresMapper.Instance().GetOne(idprestador);
@@ -75,9 +75,8 @@ namespace monaguaRules
             {
                 pr.IdProvincia = idprovincia.Value;
             }
-            pr.PrestadorHabilitado = prestadorHabilitado;
+            
             pr.Logo = logo;
-            pr.Politicas = politicas;
             pr.Telefono = telefono;
 
             PrestadoresMapper.Instance().Save(pr);

@@ -102,6 +102,19 @@ namespace monaguaRules
 
         }
 
+        public void ActualizarContra(int idusuario,string contra)
+        {
+
+            Usuarios u = UsuariosMapper.Instance().GetOne(idusuario);
+            if (u == null)
+            {
+                throw new Exception("No se encuentra el usuario");
+            }
+            u.Contra = contra;
+            UsuariosMapper.Instance().Save(u);
+
+        }
+
         public  void validar( string usuario, string contra, int? idcliente,int? idprestador, string operacion)
         {
             

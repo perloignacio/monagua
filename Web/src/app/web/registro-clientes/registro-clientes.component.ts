@@ -33,9 +33,9 @@ export class RegistroClientesComponent implements OnInit {
       }
     })
      
-    this.srvWeb.Paises().subscribe((paises)=>{
+      this.srvWeb.Paises().subscribe((paises)=>{
     
-      this.listapaises=paises;
+        this.listapaises=paises;
       })
     }
     

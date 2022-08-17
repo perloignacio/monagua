@@ -19,7 +19,7 @@ import { RecuperarComponent } from './web/recuperar/recuperar.component';
 import { BlanqueoComponent } from './web/blanqueo/blanqueo.component';
 import { DatePipe } from '@angular/common';
 import { FichaComponent } from './web/ficha/ficha.component';
-import { ActividadSharedComponent } from './web/shared/actividad/actividad.component';
+
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from "@angular/common";
 import localeEs from "@angular/common/locales/es-AR";
@@ -27,6 +27,7 @@ import { ComprasComponent } from './web/compras/compras.component';
 import { ModalActualizaActividadComponent } from './web/shared/modal-actualiza-actividad/modal-actualiza-actividad.component';
 import { CheckoutComponent } from './web/checkout/checkout.component';
 import { GraciasComponent } from './web/gracias/gracias.component';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -41,7 +42,7 @@ registerLocaleData(localeEs, "es");
     RecuperarComponent,
     BlanqueoComponent,
     FichaComponent,
-    ActividadSharedComponent,
+    
     ComprasComponent,
     ModalActualizaActividadComponent,
     CheckoutComponent,
@@ -59,13 +60,14 @@ registerLocaleData(localeEs, "es");
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    SharedModule,
     SweetAlert2Module.forRoot(),
     HttpClientModule,
          NgbModule
   ],
   
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },DatePipe,{ provide: LOCALE_ID, useValue: "es-AR"}],
-  exports:[ActividadSharedComponent],
+  exports:[],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

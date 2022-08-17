@@ -14,9 +14,9 @@ import { MainComponent } from './main/main.component';
 import { NgxFileUploaderModule } from '@uniprank/ngx-file-uploader';
 import { ActividadComponent } from './actividad/actividad.component';
 import { FavoritosCliComponent } from './favoritosCli/favoritosCli.component';
+import { SharedModule } from '../shared/shared.module';
 
-import { ActividadSharedComponent } from '../web/shared/actividad/actividad.component';
-import { AppModule } from '../app.module';
+
 
 
 @NgModule({
@@ -40,12 +40,12 @@ import { AppModule } from '../app.module';
       FormsModule,
       ReactiveFormsModule,
       PanelRoutingModule,
+      SharedModule,
       NgxFileUploaderModule.forRoot(),
       CalendarModule.forRoot({
         provide: DateAdapter,
         useFactory: adapterFactory,
       }),
-      AppModule,
     ],providers:[
       DatePipe
     ]

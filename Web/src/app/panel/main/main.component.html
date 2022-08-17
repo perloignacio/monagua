@@ -3,10 +3,10 @@
     <div class="col-md-2">
         <div class="menu mt-5 border p-2">
             <div *ngIf="this.srvAut.currentUserValue?.ClientesEntity">
-                <a [routerLink]="'/panel/clientes'" class="d-block">Mi Perfil</a>
+                <a [routerLink]="'/panel/cliente'" class="d-block">Mi Perfil</a>
                 <a [routerLink]="'/panel/cambiarContra'" class="d-block">Cambiar contraseña</a>
-                <a [routerLink]="'/panel/clientes/compras'" class="d-block">Compras</a>
-                <a [routerLink]="'/panel/clientes/favoritos'" class="d-block">Favoritos</a>
+                <a [routerLink]="'/panel/cliente/compras'" class="d-block">Compras</a>
+                <a [routerLink]="'/panel/cliente/favoritos'" class="d-block">Favoritos</a>
             </div>
         
             <div *ngIf="this.srvAut.currentUserValue?.PrestadoresEntity">

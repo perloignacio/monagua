@@ -1,0 +1,9 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-3" *ngFor="let fav of Favoritos">
+            <app-actividad-shared [Actividades]='fav.ActividadesEntity' [Favoritos]="false"></app-actividad-shared>
+            
+        </div>
+    </div>
+</div>

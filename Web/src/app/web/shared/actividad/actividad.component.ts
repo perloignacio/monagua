@@ -5,11 +5,11 @@ import { SlugifyPipe } from 'src/app/models/slugfy.pipe';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-actividad',
+  selector: 'app-actividad-shared',
   templateUrl: './actividad.component.html',
   styleUrls: ['./actividad.component.scss']
 })
-export class ActividadComponent implements OnInit {
+export class ActividadSharedComponent implements OnInit {
   assets:string=environment.assets;
   foto:string="";
   obj:Actividades;

@@ -13,6 +13,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
 import { NgxFileUploaderModule } from '@uniprank/ngx-file-uploader';
 import { ActividadComponent } from './actividad/actividad.component';
+import { FavoritosCliComponent } from './favoritosCli/favoritosCli.component';
+
+import { ActividadSharedComponent } from '../web/shared/actividad/actividad.component';
+import { AppModule } from '../app.module';
+
+
 @NgModule({
     declarations: [
         ClientesComponent,
@@ -21,7 +27,9 @@ import { ActividadComponent } from './actividad/actividad.component';
         HorariosActividadesComponent,
         HorarioComponent,
         MainComponent,
-        ActividadComponent
+        ActividadComponent,
+        FavoritosCliComponent,
+        
     ],
     exports:[
       
@@ -37,7 +45,7 @@ import { ActividadComponent } from './actividad/actividad.component';
         provide: DateAdapter,
         useFactory: adapterFactory,
       }),
-      
+      AppModule,
     ],providers:[
       DatePipe
     ]

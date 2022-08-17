@@ -145,10 +145,10 @@ namespace Api.Controllers
             try
             {
 
-                Clientes obj = JsonConvert.DeserializeObject<Clientes>(HttpContext.Current.Request.Unvalidated["obj"]);
+                Prestadores obj = JsonConvert.DeserializeObject<Prestadores>(HttpContext.Current.Request.Unvalidated["obj"]);
                 int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
-                ClientesRules cr = new ClientesRules();
-                cr.Modificar(id, obj.Nombre, obj.Apellido, obj.Email, obj.FechaNacimiento, obj.IdLocalidad, obj.IdPais, obj.IdProvincia, obj.Sexo, obj.Telefono);
+                PrestadoresRules pr = new PrestadoresRules();
+                pr.Modificar(id,obj.RazonSocial,obj.NombreFantasia,obj.Cuit,obj.Email,obj.Logo,obj.IdLocalidad,obj.IdPais,obj.IdProvincia,obj.Telefono);
                 return Ok(true);
 
             }

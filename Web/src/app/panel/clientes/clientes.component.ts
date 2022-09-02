@@ -68,7 +68,7 @@ export class ClientesComponent implements OnInit {
       if(cli){
         this.srvAut.currentUserValue.ClientesEntity=cli;
         localStorage.setItem('userMonagua', JSON.stringify(this.srvAut.currentUserValue));
-        Swal.fire("Ok","Su perfil se actualizo correctamente",'success');
+        Swal.fire("Ok","Su perfil se actualizó correctamente",'success');
         
       } 
     },(err)=>{

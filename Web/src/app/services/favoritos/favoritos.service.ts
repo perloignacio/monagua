@@ -15,6 +15,7 @@ export class FavoritosService {
   
 
   endpoint:string="";
+  environment: any;
   constructor(public httpClient: HttpClient) {
     this.endpoint = environment.apiUrl+"favoritos/";
   }
@@ -25,4 +26,7 @@ export class FavoritosService {
   Agregar(id:number) {
     return this.httpClient.get<boolean>(this.endpoint+'Agregar?id='+id);
   }
+
+  
+
 }

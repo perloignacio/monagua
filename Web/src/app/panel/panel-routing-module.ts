@@ -7,6 +7,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { HorariosActividadesComponent } from './horarios-actividades/horarios-actividades.component';
 import { MainComponent } from './main/main.component';
 import { PrestadoresComponent } from './prestadores/prestadores.component';
+import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
 
 
     const routes: Routes = [
@@ -25,6 +26,10 @@ import { PrestadoresComponent } from './prestadores/prestadores.component';
         {
           path: 'cliente/favoritos',
           component: FavoritosCliComponent,
+        },
+        {
+          path: 'cambiarContra',
+          component: CambioContraComponent,
         },
         {
           path: 'prestador/actividades',

@@ -1,8 +1,11 @@
-<div class="card" (click)="ficha()" role="button">
+<div class="card" >
     <div class="foto">
-        <img src="{{assets}}assets/actividades/{{foto}}" class="w-100">
+        <img src="{{assets}}assets/actividades/{{foto}}" (click)="ficha()" role="button" class="w-100">
     </div>
-    <h3>{{obj.Nombre}}</h3>
-    <p>{{obj.DescripcionCorta}}</p>
-    <button class="btn btn-danger" *ngIf="this.fav">QUITAR FAV</button>
+    <div (click)="ficha()" role="button">
+        <h3>{{obj.Nombre}}</h3>
+        <p>{{obj.DescripcionCorta}}</p>
+    </div>
+    
+    <button class="btn btn-danger" (click)="QuitarFav()" *ngIf="this.fav">QUITAR FAV</button>
 </div>

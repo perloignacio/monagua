@@ -1,4 +1,4 @@
-import { ComrpasDetalle } from "./ComprasDetalle.model";
+import { ComprasDetalle } from "./ComprasDetalle.model";
 
 export class Calificaciones{
     IdCalificacion:number;
@@ -7,5 +7,5 @@ export class Calificaciones{
     Calificacion:number;
     Comentario:string;
     Respuesta:string;
-    ComprasDetalleEntity:ComrpasDetalle;
+    ComprasDetalleEntity:ComprasDetalle;
 }

@@ -262,7 +262,24 @@ namespace Api.Controllers
 
                 List<Actividades> lac=new List<Actividades>();
                 lac = ActividadesMapper.Instance().GetAll().Where(a => a.Activa).ToList();
-
+                foreach (var item in lac)
+                {
+                    CalificacionesList cl=CalificacionesMapper.Instance().GetCalificacionesByActividad(item.IdActividad);
+                    decimal acu = 0;
+                    foreach (var cali in cl)
+                    {
+                        acu += cali.Calificacion;
+                    }
+                    if (acu != 0)
+                    {
+                        item.Calificacion = acu / cl.Count;
+                    }
+                    else
+                    {
+                        item.Calificacion = 0;
+                    }
+                    
+                }
                 return Ok(lac);
             }
             catch (Exception ex)

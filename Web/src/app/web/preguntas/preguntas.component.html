@@ -1,0 +1,22 @@
+<div class="sector gris pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-3 mt-3">Ayuda</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                <h3 class="mb-3 mt-3">Preguntas frecuentes</h3>
+                <ngb-accordion #acc="ngbAccordion" class="text-start" activeIds="toggle-0">
+                    <ngb-panel id="toggle-{{i}}" title="{{p.Pregunta}}" *ngFor="let p of preguntas;let i = index">
+                      <ng-template ngbPanelContent>
+                        <span [innerHtml]="p.Respuesta"></span>
+                      </ng-template>
+                    </ngb-panel>
+                    
+                </ngb-accordion>
+            </div>
+        </div>
+    </div>
+</div>

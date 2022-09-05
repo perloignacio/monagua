@@ -5,6 +5,11 @@ import { Localidades } from './models/Localidades.model';
 import { WebService } from './services/web/web.service';
 import { ComprasService } from './services/compras/compras.service';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { CategoriasService } from './services/categorias/categorias.service';
+import { Categorias } from './models/Categorias.model';
+import { environment } from 'src/environments/environment';
+import { Slides } from './models/Slides.model';
+import { SlidesService } from './services/slides/slides.service';
 
 @Component({
   selector: 'app-root',

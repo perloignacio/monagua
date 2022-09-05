@@ -1,4 +1,4 @@
-<a [routerLink]="'/'" class="me-4">Home</a>
+<!--<a [routerLink]="'/'" class="me-4">Home</a>
 <a [routerLink]="'/login'" class="me-4">Login</a>
 <a [routerLink]="'/registro/cliente'" class="me-4">Registro Clientes</a>
 <a [routerLink]="'/registro/prestador'" class="me-4">Registro Prestadores</a>
@@ -7,7 +7,42 @@
 
 <a [routerLink]="'/panel/cliente'" *ngIf="this.srvAut.currentUserValue?.ClientesEntity" class="me-4">PANEL</a>
 <a [routerLink]="'/panel/prestador'" *ngIf="this.srvAut.currentUserValue?.PrestadoresEntity" class="me-4">PANEL</a>
-  
+-->
+<div id="top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 align-self-center">
+                <a href="/"><img src="assets/logo.svg" alt="Monagua"></a>
+            </div>
+            <div class="col-md-6 align-self-center">
+                <app-buscador [InsideSlide]="false"></app-buscador>
+            </div>
+            <div class="col-md-3 align-self-center">
+                <a class="btn btn-dark btn-lg ms-2" href="registro/cliente?org=">Crear cuenta</a>
+                <a class="btn btn-dark btn-lg ms-2" href="login">Iniciar sesión</a>
+                <a class="btn btn-dark btn-lg ms-2">1 <i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
 <router-outlet></router-outlet>
-    
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <p>Managua © 2022</p>   
+            </div>
+            <div class="col-md-8 text-end">
+                <a class="ms-3" href="nosotros">Nosotros</a>
+                <a class="ms-3" href="contacto">Contacto</a>
+                <a class="ms-3" href="ayuda">Ayuda</a>
+                <a class="ms-3" href="terminosycondiciones">Términos y condiciones</a>
+                <a class="ms-3" href="politicasdeprivacidad">Políticas de privacidad</a>
+            </div>
+        </div>
+    </div>
+</footer>    
 

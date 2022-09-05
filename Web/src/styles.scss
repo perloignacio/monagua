@@ -4,4 +4,43 @@
 @import "assets/base";
 @import '~bootstrap/scss/bootstrap';
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+br:before { content: "\A"; white-space: pre-line }
+h1{margin:0px;}
+h2{margin:0px;}
+h3{margin:0px;}
+h4{margin:0px;}
+h5{margin:0px;}
+textarea:focus, input:focus{
+    outline: none;
+}
+p{margin: 0px;}
+.color-verde{color:#7ECE00}
+html,body{font-family: 'Figtree', sans-serif !important;overflow-x: hidden;}
+.form-control{border-radius: 15px;border:1px solid #48494A;padding: 7px 10px;background-color: transparent;}
+.btn{border-radius: 27px;border:0px;}
+.btn-ligth{background-color: #F7F7F7 !important; background: none;}
+.btn-dark{background-color: #48494A !important;background: none;}
+.btn-dark:hover{background-color:#007793 !important; background: none;}
+.btn-dark:active{background-color:#007793 !important; background: none;}
+.btn-lg{padding: 13px 18px;font-size: 14px;}
+.btn-sm{padding: 6px 13px;font-size: 13px;}
 .cal-open-day-events{background-color: #fff !important;box-shadow:none;color:#000 !important;}
+#top{background-color: #F7F7F7;padding: 20px 0px;border-top: 1px solid #BEBEBE;border-bottom: 1px solid #BEBEBE}
+.rounded{border-radius: 15px !important;}
+.categorias{padding: 10px 0px;border-bottom: 1px solid #BEBEBE;position: relative;background-color: #F7F7F7;}
+.sector{}
+.sector.gris{background-color: #F7F7F7;}
+.slider .slick-dots{bottom: 40px !important;width: 100%;}
+.slider .slick-dots li button::before {color: #F7F7F7;font-size: 14px;}
+.slider .slick-dots .slick-active button::before{color: #7ECE00;}
+
+.accordion-item{border:1px solid #48494A !important; background-color: transparent !important;border-radius: 15px !important;padding: 15px;margin-bottom: 20px;}
+.accordion-button{background-color: transparent !important;box-shadow: none !important;font-size: 18px;color:#555555}
+.accordion-button:not(.collapsed){background-color: transparent !important;box-shadow: none !important;font-size: 18px;color:#555555}
+.accordion-body{margin-top: 10px;}
+footer{background-color: #48494A;padding: 20px;}
+footer p{color:#fff;}
+footer a{color:#fff !important;}
+h3{font-size: 32px;font-weight: 700;color:#48494A;}
+h4{font-size: 21px;font-weight: 700;color:#48494A;}
+p{font-size: 14px;}

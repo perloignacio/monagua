@@ -1,0 +1,21 @@
+<div class="buscador" [ngClass]="this.slide ? 'slide':''">
+    <div class="row g-3 align-items-center align-self-center">
+        <div class="col-auto">
+            <label for="fecha">Fecha</label>
+        </div>
+        <div class="col-auto">
+            <input type="date" name="fecha" id="fecha" [(ngModel)]="fecha" class="form-control">
+        </div>
+        <div class="col-auto ms-3">
+            <label class="">Categoria</label>
+        </div>
+        <div class="col-auto">
+            <select class="form-select form-control" [(ngModel)]="categoria">
+                <option *ngFor="let c of categorias" [ngValue]="c.IdCategoria">{{c.Nombre}}</option>
+            </select>
+        </div>
+        <div class="col-auto ms-3">
+            <button class="btn btn-dark btn-sm"><span>BUSCAR</span> <i class="fas fa-search ms-3"></i></button>
+        </div>
+    </div>
+</div>

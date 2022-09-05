@@ -1,29 +1,35 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1>POR FAVOR, INGRESÁ TU <br><b>USUARIO Y CONTRASEÑA</b></h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <input type="text" name="usuario"  [(ngModel)]="obj.Usuario" class="form-control">
+<div class="sector gris">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="login p-5 rounded bg-white mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h3>Iniciar sesión</h3>
+                            <p>Inicia sesión para añadir actividades a tus favoritos y accede a tus reservas desde cualquier dispositivo.</p>
+                        </div>
                     </div>
-                    <div class="form-group mt-3">
-                        <input type="password" name="contra"  [(ngModel)]="obj.Contra" class="form-control">
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="text" placeholder="Nombre de usuario*" name="usuario"  [(ngModel)]="obj.Usuario" class="form-control">
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="password" placeholder="Contraseña*" name="contra"  [(ngModel)]="obj.Contra" class="form-control">
+                            </div>
+                            <div class="form-group mt-3 text-center">
+                                <button class="btn btn-dark btn-lg" (click)="Enviar()"><span class="ps-3 pe-3">INGRESAR</span></button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group mt-3">
-                        <button class="btn btn-primary" (click)="Enviar()">ENVIAR</button>
+                    <div class="row mt-2">
+                        <div class="col-md-12 text-center">
+                            <span><a [routerLink]="'/recuperar'" role="button">¿Has olvidado tu contraseña? <b>Recuperar contraseña</b></a></span><br>
+                            <hr class="mt-3">
+                            <span>¿No tenes cuenta de cliente? <a [routerLink]="'/registro/cliente'" [queryParams]="{ org:this.org}" role="button" class="color-verde">Crear Cuenta</a></span><br>
+                            <span>¿No tenes cuenta de proveedor? <a [routerLink]="'/registro/prestador'" role="button" class="color-verde">Crear Cuenta</a></span>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <span><a [routerLink]="'/recuperar'" role="button">¿Olvidaste tu contraseña?</a></span><br>
-                    <span>¿No tenes cuenta de cliente? <a [routerLink]="'/registro/cliente'" [queryParams]="{ org:this.org}" role="button">Crear Cuenta</a></span><br>
-                    <span>¿No tenes cuenta de proveedor? <a [routerLink]="'/registro/prestador'" role="button">Crear Cuenta</a></span>
                 </div>
             </div>
         </div>

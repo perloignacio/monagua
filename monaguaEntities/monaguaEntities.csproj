@@ -58,9 +58,13 @@
     <Compile Include="Entities\Auto\Actividades.Auto.cs" />
     <Compile Include="Entities\Auto\ActividadesHorariosExcepcion.Auto.cs" />
     <Compile Include="Entities\Auto\Configuracion.Auto.cs" />
+    <Compile Include="Entities\Auto\PreguntasFrecuentes.Auto.cs" />
+    <Compile Include="Entities\Auto\Slides.Auto.cs" />
     <Compile Include="Entities\Auto\TipoRepeticiones.Auto.cs" />
     <Compile Include="Entities\Auto\Usuarios.Auto.cs" />
     <Compile Include="Entities\Configuracion.cs" />
+    <Compile Include="Entities\PreguntasFrecuentes.cs" />
+    <Compile Include="Entities\Slides.cs" />
     <Compile Include="Entities\TipoRepeticiones.cs" />
     <Compile Include="Entities\Usuarios.cs" />
     <Compile Include="Objects\ActividadesHorariosExcepcionObject.cs" />
@@ -74,6 +78,8 @@
     <Compile Include="Entities\Calificaciones.cs" />
     <Compile Include="Entities\Auto\Calificaciones.Auto.cs" />
     <Compile Include="Objects\Auto\ConfiguracionObject.Auto.cs" />
+    <Compile Include="Objects\Auto\PreguntasFrecuentesObject.Auto.cs" />
+    <Compile Include="Objects\Auto\SlidesObject.Auto.cs" />
     <Compile Include="Objects\Auto\TipoRepeticionesObject.Auto.cs" />
     <Compile Include="Objects\Auto\UsuariosObject.Auto.cs" />
     <Compile Include="Objects\CalificacionesObject.cs" />
@@ -121,12 +127,14 @@
     <Compile Include="Objects\Auto\PaisesObject.Auto.cs" />
     <Compile Include="Entities\Prestadores.cs" />
     <Compile Include="Entities\Auto\Prestadores.Auto.cs" />
+    <Compile Include="Objects\PreguntasFrecuentesObject.cs" />
     <Compile Include="Objects\PrestadoresObject.cs" />
     <Compile Include="Objects\Auto\PrestadoresObject.Auto.cs" />
     <Compile Include="Entities\Provincias.cs" />
     <Compile Include="Entities\Auto\Provincias.Auto.cs" />
     <Compile Include="Objects\ProvinciasObject.cs" />
     <Compile Include="Objects\Auto\ProvinciasObject.Auto.cs" />
+    <Compile Include="Objects\SlidesObject.cs" />
     <Compile Include="Objects\TipoRepeticionesObject.cs" />
     <Compile Include="Objects\UsuariosObject.cs" />
   </ItemGroup>

@@ -1,91 +1,111 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <label>Nombre</label>
-            <input [(ngModel)]="obj.Nombre" name="Nombre" type="text" class="form-control">
+<div class="sector gris">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="registro p-5 rounded bg-white mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-8 offset-md-2 text-center">
+                            <h3>Registro clientes</h3>
+                            <p>Crea una cuenta para añadir actividades a tus favoritos y acceder a tus reservas desde cualquier dispositivo.</p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <label>Nombre</label>
+                            <input [(ngModel)]="obj.Nombre" name="Nombre" type="text" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label>Apellido</label>
+                            <input type="text" [(ngModel)]="obj.Apellido" name="Apellido" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <label>Email</label>
+                            <input type="email" [(ngModel)]="obj.Email" name="Email" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label>Fecha de Nacimiento</label>
+                            <input [(ngModel)]="obj.FechaNacimiento" name="FechaNacimiento" type="date" class="form-control">
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row mt-3">
+                        <div class="col-4">
+                            <label>País</label>
+                            <select [(ngModel)]="obj.IdPais" name="IdPais" class="form-select form-control" (change)="onChangePais($event)">
+                                <option value="" selected disabled>Seleccione País</option>
+                                <option *ngFor="let paises of listapaises" [ngValue]="paises.IdPais">{{paises.Nombre}}</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label>Provincia</label>
+                            <select [(ngModel)]="obj.IdProvincia" name="IdProvincia" class="form-select form-control" (change)="onChangeProvincia($event)"> 
+                                <option value="" selected disabled>Seleccione Provincia</option>
+                                <option *ngFor="let provincias of listaprovincias" [ngValue]="provincias.IdProvincia">{{provincias.Nombre}}</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label>Localidad</label>
+                            <select [(ngModel)]="obj.IdLocalidad" name="IdLocalidad" class="form-select form-control">
+                                <option value="" selected disabled>Seleccione Localidad</option>
+                                <option *ngFor="let localidades of listalocalidades" [ngValue]="localidades.IdLocalidad">{{localidades.Nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                    
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <label>Sexo</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option></option>
+                                <option>Masculino</option>
+                                <option>Femenino</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label>Teléfono</label>
+                            <input type="text" [(ngModel)]="obj.Telefono" name="Telefono" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <label>Contraseña</label>
+                            <input type="password" [(ngModel)]="usu.Contra" name="Contra" class="form-control">
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <input type="checkbox" class="row" [(ngModel)]="obj.Novedades" id="Novedades">
+                        <label class="form-check-label" for="Novedades">Deseo recibir novedades por correo</label>
+                    </div>
+                    <div class="row">
+                        <input type="checkbox" [(ngModel)]="obj.Politicas" id="Politicas">
+                        <label class="checkbox-inline" for="Politicas">Acepto las Políticas y Condiciones</label>
+                    </div>-->
+        
+                    <div class="row">
+                        <div class="col-6 offset-md-3 text-center">
+                            <button class="mt-3 btn btn-dark btn-lg mb-3 ps-5 pe-5" (click)="Registrar()">Registrar</button>
+                            <p>Al crear una cuenta, muestras tu conformidad con nuestros <a href=""><b>Términos de Servicio</b>
+                            </a> y <a href=""><b>Política de Privacidad.
+                            </b></a></p>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <hr>
+                            <span>¿Ya tienes cuenta? <a [routerLink]="'/login'" role="button" class="color-verde">Iniciar sesión </a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label>Apellido</label>
-            <input type="text" [(ngModel)]="obj.Apellido" name="Apellido" class="form-control">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label>Email</label>
-            <input type="email" [(ngModel)]="obj.Email" name="Email" class="form-control">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label>Contraseña</label>
-            <input type="password" [(ngModel)]="usu.Contra" name="Contra" class="form-control">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label>Fecha de Nacimiento</label>
-            <input [(ngModel)]="obj.FechaNacimiento" name="FechaNacimiento" type="date" class="form-control">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label>País</label>
-            <select [(ngModel)]="obj.IdPais" name="IdPais" class="form-select form-control" (change)="onChangePais($event)">
-                <option value="" selected disabled>Seleccione País</option>
-                <option *ngFor="let paises of listapaises" [ngValue]="paises.IdPais">{{paises.Nombre}}</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <label>Provincia</label>
-            <select [(ngModel)]="obj.IdProvincia" name="IdProvincia" class="form-select form-control" (change)="onChangeProvincia($event)"> 
-                <option value="" selected disabled>Seleccione Provincia</option>
-                <option *ngFor="let provincias of listaprovincias" [ngValue]="provincias.IdProvincia">{{provincias.Nombre}}</option>
-        </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label>Localidad</label>
-            <select [(ngModel)]="obj.IdLocalidad" name="IdLocalidad" class="form-select form-control">
-                <option value="" selected disabled>Seleccione Localidad</option>
-                <option *ngFor="let localidades of listalocalidades" [ngValue]="localidades.IdLocalidad">{{localidades.Nombre}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label>Sexo</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option></option>
-                <option>Masculino</option>
-                <option>Femenino</option>
-                <option>Otro</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label>Teléfono</label>
-            <input type="text" [(ngModel)]="obj.Telefono" name="Telefono" class="form-control">
-        </div>
-    </div>
-    <div class="row">
-        <input type="checkbox" class="row" [(ngModel)]="obj.Novedades" id="Novedades">
-        <label class="form-check-label" for="Novedades">Deseo recibir novedades por correo</label>
-    </div>
-    <div class="row">
-        <input type="checkbox" [(ngModel)]="obj.Politicas" id="Politicas">
-        <label class="checkbox-inline" for="Politicas">Acepto las Políticas y Condiciones</label>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <button class="mt-3 btn btn-success mb-3" (click)="Registrar()">Registrar</button>
-        </div>
+        
     </div>
 </div>

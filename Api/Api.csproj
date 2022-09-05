@@ -144,13 +144,16 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Plantillas\compra.html" />
+    <Content Include="Plantillas\compraAdmin.html" />
     <Content Include="Plantillas\compraPrestador.html" />
+    <Content Include="Plantillas\consulta.html" />
     <Content Include="Plantillas\recuperar.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Clases\AuthorizationFilter.cs" />
+    <Compile Include="Clases\Contacto.cs" />
     <Compile Include="Clases\EnviaMail.cs" />
     <Compile Include="Clases\Helpers.cs" />
     <Compile Include="Clases\objBlanqueo.cs" />
@@ -159,8 +162,11 @@
     <Compile Include="Controllers\ActividadesController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\CuponesController.cs" />
     <Compile Include="Controllers\FavoritosController.cs" />
+    <Compile Include="Controllers\PreguntasController.cs" />
+    <Compile Include="Controllers\SlidesController.cs" />
     <Compile Include="Controllers\WebController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\PrestadoresController.cs" />

@@ -1,0 +1,9 @@
+.card{border:0px;background-color: #F7F7F7;}
+.card .foto{width: 100%;height: 280px;border-radius:15px;overflow: hidden;position: relative;}
+.card .foto .favorito{position: absolute;top:10px;right: 10px;color:#D8D8D8;}
+.card .foto .favorito i{font-size: 18px;}
+.card .calificacion{font-size: 18px; font-weight: 700;color:#007793}
+.card .precio{font-size: 21px;color:#848484;}
+.card .precio .actual{font-size: 28px;font-weight: 700;color:#48494A}
+.card .precio .viejo{font-size: 21px;color:#848484;font-weight: 500; text-decoration: line-through;margin-left: 10px;}
+.card .cancelacion{position: absolute; left: 10px; bottom: 10px;background-color: #7ECE00;color:#48494A;font-size: 14px;font-weight: 700;border-radius: 15px;padding: 7px 15px;}

@@ -65,9 +65,13 @@
     <Compile Include="Gateways\ActividadesHorariosExcepcionGateway.cs" />
     <Compile Include="Gateways\Auto\ActividadesHorariosExcepcionGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\ConfiguracionGateway.Auto.cs" />
+    <Compile Include="Gateways\Auto\PreguntasFrecuentesGateway.Auto.cs" />
+    <Compile Include="Gateways\Auto\SlidesGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\TipoRepeticionesGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\UsuariosGateway.Auto.cs" />
     <Compile Include="Gateways\ConfiguracionGateway.cs" />
+    <Compile Include="Gateways\PreguntasFrecuentesGateway.cs" />
+    <Compile Include="Gateways\SlidesGateway.cs" />
     <Compile Include="Gateways\TipoRepeticionesGateway.cs" />
     <Compile Include="Gateways\UsuariosGateway.cs" />
     <Compile Include="LazyProviders\DefaultLazyProvider.cs" />
@@ -82,6 +86,8 @@
     <Compile Include="Gateways\ActividadesHorariosGateway.cs" />
     <Compile Include="Gateways\Auto\ActividadesHorariosGateway.Auto.cs" />
     <Compile Include="Mappers\Auto\ConfiguracionMapper.Auto.cs" />
+    <Compile Include="Mappers\Auto\PreguntasFrecuentesMapper.Auto.cs" />
+    <Compile Include="Mappers\Auto\SlidesMapper.Auto.cs" />
     <Compile Include="Mappers\Auto\TipoRepeticionesMapper.Auto.cs" />
     <Compile Include="Mappers\Auto\UsuariosMapper.Auto.cs" />
     <Compile Include="Mappers\CalificacionesMapper.cs" />
@@ -129,6 +135,7 @@
     <Compile Include="Mappers\Auto\PaisesMapper.Auto.cs" />
     <Compile Include="Gateways\PaisesGateway.cs" />
     <Compile Include="Gateways\Auto\PaisesGateway.Auto.cs" />
+    <Compile Include="Mappers\PreguntasFrecuentesMapper.cs" />
     <Compile Include="Mappers\PrestadoresMapper.cs" />
     <Compile Include="Mappers\Auto\PrestadoresMapper.Auto.cs" />
     <Compile Include="Gateways\PrestadoresGateway.cs" />
@@ -137,6 +144,7 @@
     <Compile Include="Mappers\Auto\ProvinciasMapper.Auto.cs" />
     <Compile Include="Gateways\ProvinciasGateway.cs" />
     <Compile Include="Gateways\Auto\ProvinciasGateway.Auto.cs" />
+    <Compile Include="Mappers\SlidesMapper.cs" />
     <Compile Include="Mappers\TipoRepeticionesMapper.cs" />
     <Compile Include="Mappers\UsuariosMapper.cs" />
   </ItemGroup>

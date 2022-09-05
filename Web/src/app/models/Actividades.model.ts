@@ -27,4 +27,6 @@ export class Actividades{
     CategoriasEntity:Categorias;
     PrestadoresEntity:Prestadores;
     Horarios:ActividadesHorarios[]=[];
+    CancelacionGratuita:boolean;
+    Calificacion:number;
 }

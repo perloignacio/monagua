@@ -1,0 +1,15 @@
+<ngx-slick-carousel class="carousel"
+                            #slickModal="slick-carousel"
+                            [config]="slideConfig"
+                            >
+    <div ngxSlickItem *ngFor="let c of categorias" class="slide">
+        <div class="item" role="button" (click)="Categoria(c)">
+            <img src="{{this.baseImg+c.Icono }}" alt="">
+            <h4>{{c.Nombre}}</h4>
+        </div>
+    </div>
+</ngx-slick-carousel>
+<div class="flechas">
+    <div class="izq" role="button" (click)="slickModal.slickPrev()"><img src="assets/flecha-c.png"></div>
+    <div class="der"  role="button" (click)="slickModal.slickNext()"><img src="assets/flecha-c.png"></div>
+</div>

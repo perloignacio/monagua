@@ -1,0 +1,12 @@
+
+.slider{position: relative;background-color: #F7F7F7;}
+.slick-dotted.slick-slider{padding-bottom: 30px; margin-bottom: 0px;}
+.slider .item{height: 600px;background-size: cover;background-position: center;}
+.slider .item h1{font-size: 42px;font-weight: 700;margin-top: 130px;color:#48494A}
+.slider .item h3{font-size:18px !important;font-weight: 400 !important;color:#48494A}
+.slider app-buscador{position: absolute; bottom: 150px;text-align: center;width: 100%;}
+
+.banner{background-color: #48494A;margin:50px 0px;border-radius: 15px;}
+.banner .foto{width: 100%;height: 100%;border-radius: 15px 0px 0px 15px;overflow: hidden;background-size: cover;}
+.banner .info{padding: 45px;color:#fff}
+.banner .info h1{color:#F7F7F7;font-size: 42px;font-weight: 700;}

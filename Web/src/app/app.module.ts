@@ -13,7 +13,7 @@ import { RegistroClientesComponent } from './web/registro-clientes/registro-clie
 import { RegistroPrestadoresComponent } from './web/registro-prestadores/registro-prestadores.component';
 import { HomeComponent } from './web/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { RecuperarComponent } from './web/recuperar/recuperar.component';
 import { BlanqueoComponent } from './web/blanqueo/blanqueo.component';
@@ -28,6 +28,12 @@ import { ModalActualizaActividadComponent } from './web/shared/modal-actualiza-a
 import { CheckoutComponent } from './web/checkout/checkout.component';
 import { GraciasComponent } from './web/gracias/gracias.component';
 import { SharedModule } from './shared/shared.module';
+import { NosotrosComponent } from './web/nosotros/nosotros.component';
+import { ListadoComponent } from './web/listado/listado.component';
+import { PreguntasComponent } from './web/preguntas/preguntas.component';
+import { PoliticasComponent } from './web/politicas/politicas.component';
+import { TerminosComponent } from './web/terminos/terminos.component';
+import { ContactoComponent } from './web/contacto/contacto.component';
 
 
 
@@ -47,6 +53,12 @@ registerLocaleData(localeEs, "es");
     ModalActualizaActividadComponent,
     CheckoutComponent,
     GraciasComponent,
+    NosotrosComponent,
+    ListadoComponent,
+    PreguntasComponent,
+    PoliticasComponent,
+    TerminosComponent,
+    ContactoComponent,
     
     
   ],
@@ -55,6 +67,7 @@ registerLocaleData(localeEs, "es");
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    SlickCarouselModule,
     ReactiveFormsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,

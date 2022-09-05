@@ -12,6 +12,11 @@ import { RegistroPrestadoresComponent } from './web/registro-prestadores/registr
 import { CheckoutComponent } from './web/checkout/checkout.component';
 import { GraciasComponent } from './web/gracias/gracias.component';
 import { PanelRoutingModule } from './panel/panel-routing-module';
+import { NosotrosComponent } from './web/nosotros/nosotros.component';
+import { PreguntasComponent } from './web/preguntas/preguntas.component';
+import { TerminosComponent } from './web/terminos/terminos.component';
+import { PoliticasComponent } from './web/politicas/politicas.component';
+import { ContactoComponent } from './web/contacto/contacto.component';
 
 const routes: Routes = [
   {
@@ -51,6 +56,31 @@ const routes: Routes = [
   {
     path:'checkout',
     component:CheckoutComponent,
+  
+  },
+  {
+    path:'terminosycondiciones',
+    component:TerminosComponent,
+  
+  },
+  {
+    path:'politicasdeprivacidad',
+    component:PoliticasComponent,
+  
+  },
+  {
+    path:'contacto',
+    component:ContactoComponent,
+  
+  },
+  {
+    path:'nosotros',
+    component:NosotrosComponent,
+  
+  },
+  {
+    path:'ayuda',
+    component:PreguntasComponent,
   
   },
   {

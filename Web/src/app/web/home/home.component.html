@@ -1,9 +1,64 @@
+<div class="categorias">
+    <div class="container-fluid">
+        <app-categorias></app-categorias>
+    </div>
+</div>
+<div class="slider">
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let s of slides" class="slide">
+            <div class="item" style="background-image: url('{{this.baseImg+s.Foto }}')">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>{{s.Titulo}}</h1>
+                            <h3>{{s.Descripcion}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ngx-slick-carousel>
+    <app-buscador [InsideSlide]="true"></app-buscador>
+</div>
+<div class="sector gris">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-3">Ultimas actividades</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4" *ngFor="let ac of Actividades.slice(0,3)">
+                <app-actividad-shared [Actividades]='ac' [Favoritos]="false"></app-actividad-shared>
+            </div>
+        </div>
+        <div class="banner">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="foto" style="background-image:url('assets/banner.jpg')">
 
-<div class="container">
-    <div class="row">
-        <div class="col-3" *ngFor="let ac of Actividades">
-            <app-actividad-shared [Actividades]='ac' [Favoritos]="false"></app-actividad-shared>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="info">
+                        <h1>El mundo te está esperando</h1>
+                        <p class="mt-3">Crea tu usuario y descubre actividades con las que te enamorarás de tus viajes.</p>
+                        <button class="btn btn-light btn-lg mt-3">Crear cuenta</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4" *ngFor="let ac of Actividades.slice(3)">
+                <app-actividad-shared [Actividades]='ac' [Favoritos]="false"></app-actividad-shared>
+            </div>
+        </div>
+        <div class="row mt-5 pb-5">
+            <div class="col-12 text-center">
+                <button class="btn btn-dark btn-lg mt-3">Descubrí más</button>
+            </div>
         </div>
     </div>
-    
 </div>
+<app-impactos></app-impactos>

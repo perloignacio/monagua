@@ -18,8 +18,14 @@
                 <app-buscador [InsideSlide]="false"></app-buscador>
             </div>
             <div class="col-md-3 align-self-center">
-                <a class="btn btn-dark btn-lg ms-2" href="registro/cliente?org=">Crear cuenta</a>
-                <a class="btn btn-dark btn-lg ms-2" href="login">Iniciar sesión</a>
+                <span *ngIf="!srvAut.currentUserValue">
+                    <a class="btn btn-dark btn-lg ms-2" href="registro/cliente?org=">Crear cuenta</a>
+                    <a class="btn btn-dark btn-lg ms-2" href="login">Iniciar sesión</a>
+                </span>
+                <span *ngIf="srvAut.currentUserValue">
+                    <button class="btn btn-dark btn-lg ms-2" (click)="Cuenta()" href="registro/cliente?org="><i class="fas fa-user"></i> {{srvAut.currentUserValue.Apellido}}</button>
+                   
+                </span>
                 <a class="btn btn-dark btn-lg ms-2">1 <i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>

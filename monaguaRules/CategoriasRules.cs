@@ -9,18 +9,19 @@ namespace monaguaRules
 {
     public  class CategoriasRules
     {
-        public  void Agregar(string nombre)
+        public  void Agregar(string nombre,string icono)
         {
-            validar(nombre);
+            validar(nombre,icono);
             Categorias c=new Categorias();
             c.Nombre = nombre;
+            c.Icono = icono;
             c.Activa = true;
             CategoriasMapper.Instance().Insert(c);
         }
 
-        public  void Modificar(int id,string nombre)
+        public  void Modificar(int id,string nombre,string icono)
         {
-            validar(nombre);
+            validar(nombre,icono);
             Categorias c = CategoriasMapper.Instance().GetOne(id);
             if (c == null)
             {
@@ -28,6 +29,7 @@ namespace monaguaRules
             }
 
             c.Nombre = nombre;
+            c.Icono = icono;
             CategoriasMapper.Instance().Save(c);
         }
 
@@ -59,11 +61,15 @@ namespace monaguaRules
             CategoriasMapper.Instance().Save(c);
         }
 
-        public  void validar(string nombre)
+        public  void validar(string nombre,string icono)
         {
             if (string.IsNullOrEmpty(nombre))
             {
                 throw new Exception("Debe indicar un nombre");
+            }
+            if (string.IsNullOrEmpty(icono))
+            {
+                throw new Exception("Debe indicar un icono");
             }
         }
     }

@@ -15,6 +15,7 @@ import { NgxFileUploaderModule } from '@uniprank/ngx-file-uploader';
 import { ActividadComponent } from './actividad/actividad.component';
 import { FavoritosCliComponent } from './favoritosCli/favoritosCli.component';
 import { SharedModule } from '../shared/shared.module';
+import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
 
 
 
@@ -29,6 +30,7 @@ import { SharedModule } from '../shared/shared.module';
         MainComponent,
         ActividadComponent,
         FavoritosCliComponent,
+        CambioContraComponent,
         
     ],
     exports:[

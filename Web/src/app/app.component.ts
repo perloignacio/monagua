@@ -10,6 +10,7 @@ import { Categorias } from './models/Categorias.model';
 import { environment } from 'src/environments/environment';
 import { Slides } from './models/Slides.model';
 import { SlidesService } from './services/slides/slides.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ import { SlidesService } from './services/slides/slides.service';
 export class AppComponent {
   title = 'Web';
   
-  constructor(private srvCompras:ComprasService,public srvAut:AuthenticationService) {
+  constructor(private srvCompras:ComprasService,public srvAut:AuthenticationService,private route:Router) {
     this.srvCompras.obtieneCarrito(null);
     if(this.srvAut.currentUserValue!=null){
       this.srvAut.validar().subscribe((b)=>{
@@ -31,6 +32,14 @@ export class AppComponent {
       })
     }
     
+  }
+
+  Cuenta(){
+    if(this.srvAut.currentUserValue.ClientesEntity){
+      this.route.navigate(['/panel/cliente']);
+    }else{
+      this.route.navigate(['/panel/prestador'])
+    }
   }
 }
 

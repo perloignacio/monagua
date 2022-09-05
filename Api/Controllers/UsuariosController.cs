@@ -246,7 +246,7 @@ namespace Api.Controllers
         }
 
         [Route("cambiarContra")]
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult cambiarContra(string contraActual,string contraNueva,string rcontraNueva)
         {
             try

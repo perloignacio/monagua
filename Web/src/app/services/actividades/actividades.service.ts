@@ -60,5 +60,6 @@ export class ActividadesService {
     return this.httpClient.get<Actividades>(this.endpoint+'Ficha?id='+id);
   }
   
+
   
 }

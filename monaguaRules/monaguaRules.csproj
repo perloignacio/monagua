@@ -86,7 +86,9 @@
     <Compile Include="DescuentosRules.cs" />
     <Compile Include="Encriptar.cs" />
     <Compile Include="FavoritosRules.cs" />
+    <Compile Include="PreguntasRules.cs" />
     <Compile Include="PrestadoresRules.cs" />
+    <Compile Include="SlidesRules.cs" />
     <Compile Include="UsuariosRules.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

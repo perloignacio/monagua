@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using Api.Clases;
 using monaguaRules;
 using monaguaRules.Entities;
 using monaguaRules.Mappers;
@@ -101,17 +102,21 @@ namespace Api.Controllers
             {
 
                 Categorias obj = JsonConvert.DeserializeObject<Categorias>(HttpContext.Current.Request.Unvalidated["obj"]);
-
                 int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
+                string icono = string.Join(",", Helpers.SubeArchivos("categorias", "", false, HttpContext.Current.Request.Files));
+                if (string.IsNullOrEmpty(icono))
+                {
+                    icono = "nologo.jpg";
+                }
 
                 CategoriasRules Crules = new CategoriasRules();
                 if (id != 0)
                 {
-                    Crules.Modificar(id, obj.Nombre);
+                    Crules.Modificar(id, obj.Nombre,icono);
                 }
                 else
                 {
-                    Crules.Agregar(obj.Nombre);
+                    Crules.Agregar(obj.Nombre,icono);
                 }
 
 

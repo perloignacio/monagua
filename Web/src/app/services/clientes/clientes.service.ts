@@ -40,5 +40,10 @@ export class ClientesService {
   Favoritos() {
     return this.httpClient.get<Favoritos[]>(this.endpoint + `favoritos`)
   }
+
+  QuitarFavoritos(idactividad:number){
+    //
+    return this.httpClient.get<Favoritos[]>(this.endpoint + `quitarFavoritos?idactividad=${idactividad}`)
+  }
   
 }

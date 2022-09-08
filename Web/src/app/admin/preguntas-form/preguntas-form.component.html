@@ -1,0 +1,42 @@
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">  
+        <div>
+          Preguntas Frecuentes
+          <div
+            class="page-title-subheading">
+            Editar
+          </div>
+        </div>
+      </div>
+      <div class="page-title-actions">
+        <button type="button" (click)="Volver()" class="btn-shadow d-inline-flex align-items-center btn btn-dark">
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <form>    
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Pregunta</label>
+            <input type="text" [(ngModel)]="obj.Pregunta" name="Pregunta" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Respuesta</label>
+            <input type="text" [(ngModel)]="obj.Respuesta" name="Respuesta" class="form-control">
+          </div>
+        </div>
+      </div>
+      
+      <button class="mt-2 btn btn-success" (click)="Guardar()">Guardar cambios</button>
+    </form>
+  </div>

@@ -1,0 +1,61 @@
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">  
+        <div>
+          Slides
+          <div
+            class="page-title-subheading">
+            Editar
+          </div>
+        </div>
+      </div>
+      <div class="page-title-actions">
+        <button type="button" (click)="Volver()" class="btn-shadow d-inline-flex align-items-center btn btn-dark">
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <form>    
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Título</label>
+            <input type="text" [(ngModel)]="obj.Titulo" name="Título" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Descripción</label>
+            <input type="text" [(ngModel)]="obj.Descripcion" name="Descripcion" class="form-control">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Foto</label>
+            <input type="image" [(ngModel)]="obj.Foto" name="Foto" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Link</label>
+            <input type="text" [(ngModel)]="obj.Link" name="Link" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <button class="mt-2 btn btn-success" (click)="Guardar()">Guardar cambios</button>
+    </form>
+  </div>
+

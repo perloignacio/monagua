@@ -27,7 +27,7 @@ export class PreguntasService {
   todosAdmin() {
     return this.httpClient.get<Preguntas[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
   }
-
+  
   todas() {
     return this.httpClient.get<Preguntas[]>(this.endpoint + `todas`, httpOptions)
   }
@@ -38,4 +38,5 @@ export class PreguntasService {
   AgregarEditar(form:any) {
     return this.httpClient.post<boolean>(this.endpoint+'Admin/AgregarEditar',form);
   }
+/*Prueba*/
 }

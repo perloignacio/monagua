@@ -16,26 +16,11 @@ export class PreguntasService {
     this.endpoint = environment.apiUrl+"preguntas/";
   }
   
-  Registrar(obj:any) {
-    return this.httpClient.post<boolean>(this.endpoint + `registrar`,obj, httpOptions)
-  }
-
-  borrar(id:number) {
-    return this.httpClient.get<boolean>(this.endpoint + `Admin/borrar?id=${id}`, httpOptions)
-  }
   
-  todosAdmin() {
-    return this.httpClient.get<Preguntas[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
-  }
 
   todas() {
     return this.httpClient.get<Preguntas[]>(this.endpoint + `todas`, httpOptions)
   }
 
-  activar(id:number) {
-    return this.httpClient.get<boolean>(this.endpoint + `Admin/activar?id=${id}`, httpOptions)
-  }
-  AgregarEditar(form:any) {
-    return this.httpClient.post<boolean>(this.endpoint+'Admin/AgregarEditar',form);
-  }
+  
 }

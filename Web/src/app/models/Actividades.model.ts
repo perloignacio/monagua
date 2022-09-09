@@ -1,4 +1,5 @@
 import { ActividadesHorarios } from "./ActividadesHorarios.model";
+import { Calificaciones } from "./Calificaciones.model";
 import { Categorias } from "./Categorias.model";
 import { Prestadores } from "./Prestadores.model";
 
@@ -29,4 +30,6 @@ export class Actividades{
     Horarios:ActividadesHorarios[]=[];
     CancelacionGratuita:boolean;
     Calificacion:number;
+    cantCalificaciones:number;
+    calificacionesList:Calificaciones[]=[];
 }

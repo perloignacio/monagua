@@ -1,29 +1,38 @@
+
+
+
 <div class="card">
-    <div class="foto">
-        <div class="favorito" role="button" (click)="favorito()"><i class="fas fa-heart"></i></div>
-        <img src="{{assets}}assets/actividades/{{foto}}" role="button" (click)="ficha()" class="w-100">
-        <div class="cancelacion" *ngIf="obj.CancelacionGratuita">Cancelación gratuita</div>
+    <div [ngClass]="listado ? 'row': ''">
+        <div [ngClass]="listado ? 'col-md-4': 'col-md-12'">
+            <div class="foto" >
+                <div class="favorito" role="button" (click)="favorito()"><i class="fas fa-heart"></i></div>
+                <img src="{{assets}}assets/actividades/{{foto}}" role="button" (click)="ficha()" class="w-100">
+                <div class="cancelacion" *ngIf="obj.CancelacionGratuita">Cancelación gratuita</div>
+            </div>
+        </div>
+        <div [ngClass]="listado ? 'col-md-8': 'col-md-12'">
+            <div class="info mt-2"  role="button" (click)="ficha()">
+                <h4>{{obj.Nombre}}</h4>
+                <p>{{obj.DescripcionCorta}}<br>
+                <b>Ubicación:</b> {{obj.Ubicacion}}<br>
+                <b>Duracion:</b> {{obj.Duracion}} minutos<br>
+                <b>Idiomas:</b> {{obj.Idiomas}}</p>
+                <div class="calificacion">
+                    {{obj.Calificacion}} <ngb-rating [(rate)]="obj.Calificacion"  [readonly]="true" [max]="5"></ngb-rating>
+                </div>
+                
+                <div class="precio" *ngIf="obj.PrecioOferta">
+                    <span class="actual">${{obj.PrecioOferta}}</span>
+                    <span class="viejo"> ${{obj.Precio}} </span>
+                    por persona
+                </div>
+                <div class="precio" *ngIf="!obj.PrecioOferta">
+                    <span class="actual">${{obj.Precio}}</span>
+                    por persona
+                </div>
+            </div>
+        </div>
+    
+        <button class="btn btn-danger" *ngIf="this.fav">QUITAR FAV</button>
     </div>
-    <div class="info mt-2" role="button" (click)="ficha()">
-        <h4>{{obj.Nombre}}</h4>
-        <p>{{obj.DescripcionCorta}}<br>
-        <b>Ubicación:</b> {{obj.Ubicacion}}<br>
-        <b>Duracion:</b> {{obj.Duracion}} minutos<br>
-        <b>Idiomas:</b> {{obj.Idiomas}}</p>
-        <div class="calificacion">
-            {{obj.Calificacion}} <ngb-rating [(rate)]="obj.Calificacion"  [readonly]="true" [max]="5"></ngb-rating>
-        </div>
-        
-        <div class="precio" *ngIf="obj.PrecioOferta">
-            <span class="actual">${{obj.PrecioOferta}}</span>
-            <span class="viejo"> ${{obj.Precio}} </span>
-            por persona
-        </div>
-        <div class="precio" *ngIf="!obj.PrecioOferta">
-            <span class="actual">${{obj.Precio}}</span>
-            por persona
-        </div>
     </div>
-   
-    <button class="btn btn-danger" *ngIf="this.fav">QUITAR FAV</button>
-</div>

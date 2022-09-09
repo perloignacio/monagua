@@ -20,11 +20,17 @@ export class ActividadSharedComponent implements OnInit {
   obj:Actividades;
   fav:boolean;
   slug:SlugifyPipe=new SlugifyPipe();
+  listado:boolean=false;
 
   @Input()
   set Actividades(value: Actividades) {
     this.foto=value.Fotos.split(",")[0]
     this.obj=value;
+  }
+
+  @Input()
+  set setListado(value: boolean) {
+    this.listado=value;
   }
 
   @Input()

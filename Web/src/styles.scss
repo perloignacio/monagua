@@ -33,6 +33,7 @@ html,body{font-family: 'Figtree', sans-serif !important;overflow-x: hidden;}
 .slider .slick-dots{bottom: 40px !important;width: 100%;}
 .slider .slick-dots li button::before {color: #F7F7F7;font-size: 14px;}
 .slider .slick-dots .slick-active button::before{color: #7ECE00;}
+.ficha .ubicacion iframe{width: 100% !important;}
 
 .accordion-item{border:1px solid #48494A !important; background-color: transparent !important;border-radius: 15px !important;padding: 15px;margin-bottom: 20px;}
 .accordion-button{background-color: transparent !important;box-shadow: none !important;font-size: 18px;color:#555555}
@@ -41,6 +42,7 @@ html,body{font-family: 'Figtree', sans-serif !important;overflow-x: hidden;}
 footer{background-color: #48494A;padding: 20px;}
 footer p{color:#fff;}
 footer a{color:#fff !important;}
+h2{font-size: 36px;font-weight: 700;color:#48494A;}
 h3{font-size: 32px;font-weight: 700;color:#48494A;}
 h4{font-size: 21px;font-weight: 700;color:#48494A;}
 p{font-size: 14px;}

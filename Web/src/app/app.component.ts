@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Web';
   
-  constructor(private srvCompras:ComprasService,public srvAut:AuthenticationService,private route:Router) {
+  constructor(public srvCompras:ComprasService,public srvAut:AuthenticationService,private route:Router) {
     this.srvCompras.obtieneCarrito(null);
     if(this.srvAut.currentUserValue!=null){
       this.srvAut.validar().subscribe((b)=>{

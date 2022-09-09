@@ -36,6 +36,7 @@ export class ComprasService {
     
     this.carrito.Activa=true;
     this.carrito.Fecha=new Date();
+    
     if(cliente!=null){
       this.carrito.IdCliente=cliente.IdCliente;
       this.carrito.ClientesEntity=cliente;

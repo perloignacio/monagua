@@ -34,7 +34,7 @@ import { PreguntasComponent } from './web/preguntas/preguntas.component';
 import { PoliticasComponent } from './web/politicas/politicas.component';
 import { TerminosComponent } from './web/terminos/terminos.component';
 import { ContactoComponent } from './web/contacto/contacto.component';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 registerLocaleData(localeEs, "es");
@@ -73,6 +73,7 @@ registerLocaleData(localeEs, "es");
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    NgxSpinnerModule,
     SharedModule,
     SweetAlert2Module.forRoot(),
     HttpClientModule,

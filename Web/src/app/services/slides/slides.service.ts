@@ -16,26 +16,10 @@ export class SlidesService {
     this.endpoint = environment.apiUrl+"slides/";
   }
   
-  Registrar(obj:any) {
-    return this.httpClient.post<boolean>(this.endpoint + `registrar`,obj, httpOptions)
-  }
-
-  borrar(id:number) {
-    return this.httpClient.get<boolean>(this.endpoint + `Admin/borrar?id=${id}`, httpOptions)
-  }
   
-  todosAdmin() {
-    return this.httpClient.get<Slides[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
-  }
-
   todos() {
     return this.httpClient.get<Slides[]>(this.endpoint + `todos`, httpOptions)
   }
 
-  activar(id:number) {
-    return this.httpClient.get<boolean>(this.endpoint + `Admin/activar?id=${id}`, httpOptions)
-  }
-  AgregarEditar(form:any) {
-    return this.httpClient.post<boolean>(this.endpoint+'Admin/AgregarEditar',form);
-  }
+  
 }

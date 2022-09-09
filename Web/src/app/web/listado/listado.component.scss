@@ -1,0 +1,7 @@
+.filtroaplicado{border:1px solid #48494A;border-radius: 15px; padding: 5px 10px; display: inline-block;margin-bottom: 5px;font-size: 12px;}
+.paginacion .izq{display: inline-block;}
+.paginacion .numeros{display: inline-block;margin:0px 10px}
+.paginacion .numeros .numero{display: inline-block;border-radius: 5px;border:1px solid #48494A; padding: 5px 10px;margin-right: 10px;}
+.paginacion .numeros .numero.active{background-color: #7ECE00;}
+.paginacion .der{display: inline-block;float: right;}
+.paginacion .der img{transform: rotate(180deg);}

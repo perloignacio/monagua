@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actividades } from 'src/app/models/Actividades.model';
 import { ActividadesHorarios } from 'src/app/models/ActividadesHorarios.model';
+import { Filtro } from 'src/app/models/Filtro.model';
 
 import { environment } from 'src/environments/environment';
 
@@ -58,6 +59,13 @@ export class ActividadesService {
 
   Ficha(id:number) {
     return this.httpClient.get<Actividades>(this.endpoint+'Ficha?id='+id);
+  }
+  ByCategoria(idCategoria:number) {
+    return this.httpClient.get<Actividades[]>(this.endpoint+'ByCategoria?idcategoria='+idCategoria);
+  }
+
+  filtrar(filtros:any,pagina:number,orden:string) {
+    return this.httpClient.post<Filtro>(this.endpoint+`filtrar?pagina=${pagina}&orden=${orden}`,filtros);
   }
   
 

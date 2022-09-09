@@ -8,6 +8,7 @@
 <a [routerLink]="'/panel/cliente'" *ngIf="this.srvAut.currentUserValue?.ClientesEntity" class="me-4">PANEL</a>
 <a [routerLink]="'/panel/prestador'" *ngIf="this.srvAut.currentUserValue?.PrestadoresEntity" class="me-4">PANEL</a>
 -->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 <div id="top">
     <div class="container-fluid">
         <div class="row">
@@ -26,7 +27,7 @@
                     <button class="btn btn-dark btn-lg ms-2" (click)="Cuenta()" href="registro/cliente?org="><i class="fas fa-user"></i> {{srvAut.currentUserValue.Apellido}}</button>
                    
                 </span>
-                <a class="btn btn-dark btn-lg ms-2">1 <i class="fas fa-shopping-cart"></i></a>
+                <a class="btn btn-dark btn-lg ms-2" href="/compras">{{srvCompras.carrito.Detalle.length}} <i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>
         

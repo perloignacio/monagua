@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { de } from 'date-fns/locale';
@@ -23,7 +24,8 @@ export class FichaComponent implements OnInit {
   fecha:NgbDate;
   isDisabled:any;
   assets:string=environment.assets;
-  
+  mapa:SafeHtml;
+  relacionadas:Actividades[]=[];
   cantidad:number=0;
   horario:string;
   horasdisponibles:string[]=[];
@@ -33,13 +35,16 @@ export class FichaComponent implements OnInit {
     private srvFav:FavoritosService,
     private config: NgbDatepickerConfig,
     private srvCompras:ComprasService,
-    private router:Router) { 
+    private router:Router,
+    private sanitizer: DomSanitizer) { 
 
     this.route.params.subscribe(val => {
       this.srvACtividades.Ficha(val["id"]).subscribe((ac)=>{
         this.Cargadatos(ac);
-        
-        
+        this.mapa=this.sanitizer.bypassSecurityTrustHtml(ac.Mapa);
+        this.srvACtividades.ByCategoria(ac.IdCategoria).subscribe((la)=>{
+          this.relacionadas=la;
+        })
       })
     })
     
@@ -81,7 +86,7 @@ export class FichaComponent implements OnInit {
     }
   }
 
-  Comprar(){
+  Comprar(reserva:boolean){
     let cli=this.srvAutenticate.currentUserValue ? this.srvAutenticate.currentUserValue.ClientesEntity:null;
     this.srvCompras.obtieneCarrito(cli);
     let det:ComprasDetalle=new ComprasDetalle;

@@ -11,12 +11,14 @@ using monaguaRules;
 using monaguaRules.Entities;
 using monaguaRules.Mappers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Api.Controllers
 {
     [RoutePrefix("actividades")]
     public class ActividadesController : ApiController
     {
+
 
         [Route("getHorarios")]
         [HttpGet]
@@ -25,6 +27,8 @@ namespace Api.Controllers
         {
             try
             {
+                string algo = null;
+
                 ActividadesRules Arules = new ActividadesRules();
                 
 
@@ -278,7 +282,8 @@ namespace Api.Controllers
                     {
                         item.Calificacion = 0;
                     }
-                    
+                    item.cantCalificaciones = cl.Count();
+
                 }
                 return Ok(lac);
             }
@@ -306,6 +311,22 @@ namespace Api.Controllers
                     {
                         ActividadesRules acR = new ActividadesRules();
                         ac.Horarios=acR.ConfiguraHorarios(ac.IdActividad,true);
+                        CalificacionesList cl = CalificacionesMapper.Instance().GetCalificacionesByActividad(ac.IdActividad);
+                        decimal acu = 0;
+                        foreach (var cali in cl)
+                        {
+                            acu += cali.Calificacion;
+                        }
+                        if (acu != 0)
+                        {
+                            ac.Calificacion = acu / cl.Count;
+                        }
+                        else
+                        {
+                            ac.Calificacion = 0;
+                        }
+                        ac.cantCalificaciones = cl.Count();
+                        ac.calificacionesList = cl.OrderByDescending(c=>c.Calificacion).ToList();
                         return Ok(ac);
                     }
                     else
@@ -330,6 +351,219 @@ namespace Api.Controllers
 
         }
 
+        [Route("byCategoria")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult byCategoria(int idcategoria)
+        {
+            try
+            {
 
+                List<Actividades> lac = new List<Actividades>();
+                lac = ActividadesMapper.Instance().GetAll().Where(a => a.Activa && a.IdCategoria==idcategoria).ToList();
+                foreach (var item in lac)
+                {
+                    CalificacionesList cl = CalificacionesMapper.Instance().GetCalificacionesByActividad(item.IdActividad);
+                    decimal acu = 0;
+                    foreach (var cali in cl)
+                    {
+                        acu += cali.Calificacion;
+                    }
+                    if (acu != 0)
+                    {
+                        item.Calificacion = acu / cl.Count;
+                    }
+                    else
+                    {
+                        item.Calificacion = 0;
+                    }
+                    item.cantCalificaciones = cl.Count();
+
+                }
+                return Ok(lac);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("filtrar")]
+        [HttpPost]
+        [AllowAnonymous]
+        public IHttpActionResult filtrar(int pagina,string orden)
+        {
+            try
+            {
+                List<object> filtros=JsonConvert.DeserializeObject<List<object>>(HttpContext.Current.Request.Unvalidated["filtros"]);
+                ActividadesRules acR = new ActividadesRules();
+
+                listadoActividades result = new listadoActividades();
+                List<Actividades> lac = new List<Actividades>();
+                List<Categorias> lcat = new List<Categorias>();
+                List<Provincias> lprov = new List<Provincias>();
+                List<Prestadores> lpresta = new List<Prestadores>();
+
+                int? ubicacion= null;
+                int? categoria = null;
+                int? prestador = null;
+                int? duracion = null;
+                int? capacidad = null;
+                int? mascotas = null;
+                int? dietas = null;
+                int? promo = null;
+                string dificultad = "";
+                string idiomas = "";
+                DateTime? fecha = null;
+                foreach (var item in filtros)
+                {
+                    JObject json = JObject.Parse(JsonConvert.SerializeObject(item));
+                    if (json["tipo"].ToString()=="ubicacion") {
+                        ubicacion = int.Parse(json["value"].ToString());
+                    }
+                    if (json["tipo"].ToString() == "categoria")
+                    {
+                        categoria = int.Parse(json["value"].ToString());
+                    }
+                    if (json["tipo"].ToString() == "prestador")
+                    {
+                        prestador = int.Parse(json["value"].ToString());
+                    }
+                    if (json["tipo"].ToString() == "duracion")
+                    {
+                        duracion = int.Parse(json["value"].ToString());
+                    }
+
+                    if (json["tipo"].ToString() == "mascotas")
+                    {
+                        mascotas = int.Parse(json["value"].ToString());
+                    }
+
+                    if (json["tipo"].ToString() == "capacidades reducidas")
+                    {
+                        capacidad = int.Parse(json["value"].ToString());
+                    }
+
+                    if (json["tipo"].ToString() == "dificultad")
+                    {
+                        dificultad = json["value"].ToString();
+                    }
+
+                    if (json["tipo"].ToString() == "idiomas")
+                    {
+                        idiomas = json["value"].ToString();
+                    }
+                    if (json["tipo"].ToString() == "dietas")
+                    {
+                        dietas = int.Parse(json["value"].ToString());
+                    }
+                    if (json["tipo"].ToString() == "promo")
+                    {
+                        promo = int.Parse(json["value"].ToString());
+                    }
+                    if (json["tipo"].ToString() == "fecha")
+                    {
+                        fecha = DateTime.Parse(json["value"].ToString());
+                    }
+
+
+                }
+
+                dsMonagua ds = new dsMonagua();
+                dsMonaguaTableAdapters.filtrarActividadesTableAdapter ta = new dsMonaguaTableAdapters.filtrarActividadesTableAdapter();
+                ta.Fill(ds.filtrarActividades,categoria, ubicacion, duracion, prestador, mascotas, capacidad,dietas, promo, idiomas,dificultad);
+
+                int porpagina = 5;
+
+                double paginas = (double) ds.filtrarActividades.Rows.Count / porpagina;
+                result.cantPaginas = Convert.ToInt32(Math.Ceiling(paginas));
+                foreach (dsMonagua.filtrarActividadesRow item in ds.filtrarActividades.AsEnumerable().Skip(pagina * porpagina).Take(porpagina))
+                {
+
+                    Actividades ac = ActividadesMapper.Instance().GetOne(item.IdActividad);
+                    lcat.Add(new Categorias(item.IdCategoria, item.categoria, true, ""));
+                    lprov.Add(new Provincias(item.IdProvincia, item.Provincia, null));
+                    lpresta.Add(new Prestadores(item.IdPrestador, item.RazonSocial, item.NombreFantasia, "", 1, 1, 1, "", "", DateTime.Now, true, true, true, ""));
+                    CalificacionesList cl = CalificacionesMapper.Instance().GetCalificacionesByActividad(ac.IdActividad);
+                    decimal acu = 0;
+                    foreach (var cali in cl)
+                    {
+                        acu += cali.Calificacion;
+                    }
+
+                    if (acu != 0)
+                    {
+                        ac.Calificacion = acu / cl.Count;
+                    }
+                    else
+                    {
+                        ac.Calificacion = 0;
+                    }
+                    ac.cantCalificaciones = cl.Count();
+                    ac.Horarios = acR.ConfiguraHorarios(ac.IdActividad, true);
+                    lac.Add(ac);
+
+                }
+               
+
+
+
+                result.provincias = lprov.GroupBy(p=>p.Nombre).Select(p=>p.First()).ToList();
+                result.categorias = lcat.GroupBy(c => c.Nombre).Select(c => c.First()).ToList();
+                result.actividades = lac;
+                result.prestadores=lpresta.GroupBy(c => c.NombreFantasia).Select(c => c.First()).ToList();
+                result.duracion = lac.Select(a => a.Duracion).Distinct().OrderBy(d=>d).ToList();
+                result.dificultades= lac.Select(a => a.Dificultad).Distinct().OrderBy(d => d).ToList();
+                result.idiomas= lac.Select(a => a.Idiomas).Distinct().OrderBy(d => d).ToList();
+
+                if (fecha.HasValue)
+                {
+                    result.actividades = result.actividades.Where(a => a.Horarios.Any(h => h.FechaInicio.Date == fecha.Value.Date)).ToList();
+                }
+
+                switch (orden)
+                {
+                    case "menor":
+                        result.actividades = result.actividades.OrderBy(a => a.Precio).ToList();
+                        break;
+                    case "mayor":
+                        result.actividades = result.actividades.OrderByDescending(a => a.Precio).ToList();
+                        break;
+                    case "nuevas":
+                        result.actividades = result.actividades.OrderByDescending(a => a.IdActividad).ToList();
+                        break;
+                    case "viejas":
+                        result.actividades = result.actividades.OrderBy(a => a.IdActividad).ToList();
+                        break;
+                    case "positivas":
+                        result.actividades = result.actividades.OrderByDescending(a => a.Calificacion).ToList();
+                        break;
+                    case "negativas":
+                        result.actividades = result.actividades.OrderBy(a => a.Calificacion).ToList();
+                        break;
+
+
+                    default:
+                        break;
+                }
+
+
+
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        
     }
 }

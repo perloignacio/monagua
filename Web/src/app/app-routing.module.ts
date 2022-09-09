@@ -17,6 +17,7 @@ import { PreguntasComponent } from './web/preguntas/preguntas.component';
 import { TerminosComponent } from './web/terminos/terminos.component';
 import { PoliticasComponent } from './web/politicas/politicas.component';
 import { ContactoComponent } from './web/contacto/contacto.component';
+import { ListadoComponent } from './web/listado/listado.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent,
+  },
+  {
+    path:'actividades',
+    component:ListadoComponent,
   },
   {
     path:'registro/cliente',

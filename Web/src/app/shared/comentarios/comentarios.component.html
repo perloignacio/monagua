@@ -1,0 +1,50 @@
+<div class="modal-header">
+    
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Opiniones de clientes</h3>
+        </div>
+        <div class="col-md-8 text-end ">
+            <div class="row float-end">
+                <div class="col-auto align-self-center">Ordenar por</div>
+                <div class="col-auto align-self-center">
+                    <select name="orden" [(ngModel)]="orden" (change)="cargaCalificaciones()" class="form-control form-select w-auto">
+                        <option [value]="'positivas'">Positivas primero</option>
+                        <option [value]="'negativas'">Negativas primero</option>
+                        <option [value]="'nuevas'">Más nuevas primero</option>
+                        <option [value]="'viejas'">Más viejas primero</option>
+                    </select>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="calificacion mt-3">
+                Calificación total de la actividades
+                <div>
+                    <ngb-rating [(rate)]="obj.Calificacion"  [readonly]="true" [max]="5"></ngb-rating> {{obj.Calificacion}} 
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="listacomentarios">
+                <div class="item mb-3" *ngFor="let c of calificaciones">
+                    <ngb-rating [(rate)]="c.Calificacion"  [readonly]="true" [max]="5"></ngb-rating> {{c.Fecha | date:'dd MMMM YYYY'}}
+                    <p>{{c.Comentario}}</p>
+                    <p>{{c.ComprasDetalleEntity.ComprasEntity.ClientesEntity.Nombre}} {{c.ComprasDetalleEntity.ComprasEntity.ClientesEntity.Apellido}}</p>
+                </div>
+            </div>
+            <div class="row" *ngIf="this.more">
+                <div class="col-md-12">
+                    <button class="btn btn-dark btn-lg mt-3 pe-5 ps-5" (click)="verMas()">Ver más</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

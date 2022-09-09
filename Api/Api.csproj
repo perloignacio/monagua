@@ -156,11 +156,13 @@
     <Compile Include="Clases\Contacto.cs" />
     <Compile Include="Clases\EnviaMail.cs" />
     <Compile Include="Clases\Helpers.cs" />
+    <Compile Include="Clases\listadoActividades.cs" />
     <Compile Include="Clases\objBlanqueo.cs" />
     <Compile Include="Clases\TokenGenerator.cs" />
     <Compile Include="Clases\TokenValidationHandler.cs" />
     <Compile Include="Controllers\ActividadesController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\CalificacionesController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\CuponesController.cs" />

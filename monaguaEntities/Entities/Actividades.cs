@@ -18,10 +18,13 @@ namespace monaguaRules.Entities
     /// </summary>
     [Serializable]
     public partial class Actividades
-        // : IValidable
+    // : IValidable
     {
         public List<ActividadesHorarios> Horarios { get; set; }
-        public decimal Calificacion { get;set; }
+        public decimal Calificacion { get; set; }
+        public int cantCalificaciones { get; set; }
+
+        public List<Calificaciones> calificacionesList {get;set;}
         // /// <summary>
         // /// When IValidable is implemented, this method is invoked by Gateway before Insert or Update to validate Object.
         // /// </summary>

@@ -294,6 +294,7 @@ namespace monaguaRules
 
         public List<ActividadesHorarios> ConfiguraHorarios(int idactividad,bool validacompras)
         {
+            
             List<ActividadesHorarios> horarios = new List<ActividadesHorarios>();
             ActividadesHorariosList lista = ActividadesHorariosMapper.Instance().GetByActividades(idactividad);
             Random r = new Random();

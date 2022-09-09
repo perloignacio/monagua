@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Categorias } from 'src/app/models/Categorias.model';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 
@@ -16,12 +17,15 @@ export class BuscadorComponent implements OnInit {
   set InsideSlide(value: boolean) {
     this.slide=value;
   }
-  constructor(private srvCategorias:CategoriasService) {
+  constructor(private srvCategorias:CategoriasService,private route:Router) {
     this.srvCategorias.todas().subscribe((lc)=>{
       this.categorias=lc;
     })
-   }
-
+  }
+  
+  buscar(){
+    this.route.navigate(["/actividades"])
+  }
   ngOnInit(): void {
   }
 

@@ -1,47 +1,136 @@
-<div class="container" *ngIf="obj!=null">
+<div class="sector gris">
+<div class="container ficha" *ngIf="obj!=null">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{obj.Nombre}}</h2>
+            <div class="calificacion">
+                <ngb-rating [(rate)]="obj.Calificacion"  [readonly]="true" [max]="5"></ngb-rating> {{obj.Calificacion}} <span> {{obj.cantCalificaciones}} opiniones</span>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="foto">
-                <img src="{{assets}}assets/actividades/{{foto}}" class="w-100">
+            <p class="grisclaro">{{obj.CategoriasEntity.Nombre}} > {{obj.PrestadoresEntity.NombreFantasia}}</p>
+        </div>
+        <div class="col-md-6 text-end">
+            <div class="compartir">
+                <div class="item"><img src="assets/share.svg"> Compartir</div>
+                <div class="item" (click)="favoritos()" role="button"><img src="assets/favoritos.svg"> Favoritos</div>
             </div>
-            <p>{{obj.DescripcionCorta}}</p>
-            <p>{{obj.Descripcion}}</p>
-            <p>{{obj.QueIncluye}}</p>
-            <p>{{obj.QueNoIncluye}}</p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="fotoprincipal" style="background-image: url('{{assets}}assets/actividades/{{foto}}');">
+                
+            </div>
+           
         </div>
         <div class="col-md-6">
-            <div (click)="favoritos()" role="button"><i class="fas fa-star"></i> agregar a favoritos</div>
-            <h2>{{obj.Nombre}}</h2>
-            <p>{{obj.PrecioOferta!=null ? obj.PrecioOferta : obj.Precio}}</p>
             <div class="row">
-                <div class="col-md-6">
-                    <label>Cantidad</label>
-                    <input class="form-control" placeholder="Cantidad"  name="cantidad" [(ngModel)]="cantidad">
+
+                <div class="col-md-6" *ngFor="let f of obj.Fotos.split(',').slice(1);let i=index;">
+                    <div class="fotosecundaria" [ngClass]="i%2!=0 ? 'ext':''" style="background-image: url('{{assets}}assets/actividades/{{f}}');">
+                
+                    </div>
                 </div>
+                
             </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label>Dia</label>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Detalles</h3>
+            <p class="line-2 mt-2">{{obj.DescripcionCorta}}</p>
+            <p class="line-2">{{obj.Descripcion}}</p>
+            <div class="prestadorHabilitado mt-2 mb-2" *ngIf="obj.PrestadoresEntity.PrestadorHabilitado">
+                <img src="assets/certificado.png"> Prestador certificado
+            </div>
+            <p class="mt-2"><b>Prestador:</b> {{obj.PrestadoresEntity.NombreFantasia}}</p>
+            <p class="mt-2"><b>Apto capacidades reducidas:</b> {{obj.PersonasCapacidadRed ? "Si":"No"}}</p>
+            <p class="mt-2"><b>Idioma:</b> {{obj.Idiomas}}</p>
+            <p class="mt-2"><b>Mascotas:</b> {{obj.Mascotas ? "Si":"No"}}</p>
+            <p class="mt-2"><b>Dificultad:</b> {{obj.Dificultad}}</p>
+            <p class="mt-2"><b>Dietas Especiales:</b> {{obj.DietasEspeciales ? "Si":"No"}}</p>
+            <p class="mt-2"><b>Duración:</b> {{obj.Duracion}} minutos</p>
+            <h3 class="mt-5">Incluye</h3>
+            <p class="mt-2">{{obj.QueIncluye}} </p>
+            <h3 class="mt-5">No Incluye</h3>
+            <p class="mt-2">{{obj.QueNoIncluye}} </p>
+        </div>
+        <div class="col-md-4">
+            <div class="cancelacion card" *ngIf="obj.CancelacionGratuita">
+                <h3>Detalles</h3>
+                <p class="line-2 mt-2">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus…</p>
+            </div>
+            <div class="pago card p-3 rounded">
+                <h2>$ {{obj.PrecioOferta!=null ? obj.PrecioOferta : obj.Precio}}</h2>
+                <div class="col-md-12 mt-3">
+                    <label>Fecha de la actividad</label>
                     <div class="input-group">
-                        
                         <input class="form-control" placeholder="dd-mm-yyyy" readonly
                                name="dp" [(ngModel)]="fecha" ngbDatepicker #d="ngbDatepicker" (dateSelect)="cargaHoras()" [markDisabled]="isDisabled">
                         <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label>Hora</label>
+                <div class="col-md-12 mt-3">
+                    <label>Horario de la actividad</label>
                     <select name="horario" [(ngModel)]="horario" class="form-control form-select">
                         <option [ngValue]="hora" *ngFor="let hora of horasdisponibles">{{hora}}</option>
                     </select>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    <button class="btn btn-success w-100" (click)="Comprar()">COMPRAR</button>
+                <div class="col-md-12 mt-3">
+                    <label>Cantidad de personas</label>
+                    <input class="form-control" placeholder="Cantidad"  name="cantidad" [(ngModel)]="cantidad">
                 </div>
-                
+                <div class="row mt-3">
+                    
+                    <div class="col-12 text-center">
+                        <button class="btn btn-dark btn-lg w-100" (click)="Comprar(false)">COMPRAR</button>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <div class="ubicacion border-top border-bottom mt-5 pt-3 pb-3">
+        <div class="row">
+            <div class="col-md-3 align-self-center">
+                <h3>Ubicación</h3>
+            </div>
+            <div class="col-md-9 align-self-center text-end">
+                <p>{{obj.Ubicacion}}</p>
+            </div>
+        </div>
+        <div class="mapa mt-3 mb-3" *ngIf="obj.Mapa" [innerHtml]="this.mapa">
+            
+        </div>
+    </div>
+    
+    <div class="comentarios border-bottom mt-3 pb-3" *ngIf="obj.calificacionesList.length>0">
+        <app-comentarios [Actividades]="this.obj"></app-comentarios>
+    </div>
+    <div class="relacionadas  mt-3 pb-3">
+        <div class="row">
+            <div class="col-md-12 align-self-center">
+                <h3>Actividades relacionadas</h3>
+            </div>
+            
+        </div>
+        <div class="row mt-3">
+            <div class="col-4" *ngFor="let ac of relacionadas.slice(0,3)">
+                <app-actividad-shared [Actividades]='ac' [Favoritos]="false"></app-actividad-shared>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-dark btn-lg mt-3">Descubrí más actividades</button>
             </div>
         </div>
     </div>
+</div>
 </div>

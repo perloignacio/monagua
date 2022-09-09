@@ -8,19 +8,22 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImpactosComponent } from './impactos/impactos.component';
+import { ComentariosComponent } from './comentarios/comentarios.component';
 @NgModule({
     declarations: [
         ActividadSharedComponent,
         BuscadorComponent,
         CategoriasComponent,
-        ImpactosComponent
+        ImpactosComponent,
+        ComentariosComponent
         
     ],
     exports:[
         ActividadSharedComponent,
         BuscadorComponent,
         CategoriasComponent,
-        ImpactosComponent
+        ImpactosComponent,
+        ComentariosComponent
     ],
     imports: [
       CommonModule,

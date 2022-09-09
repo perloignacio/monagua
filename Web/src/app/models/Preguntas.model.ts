@@ -1,5 +1,5 @@
 export class Preguntas{
-    IdPregunta:Number;
+    IdPregunta:number;
     Pregunta:string;
     Respuesta:string;
     Orden:number;

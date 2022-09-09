@@ -24,6 +24,10 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
 import { FavoritosDetalleComponent } from './favoritos-detalle/favoritos-detalle.component';
+import { SlidesComponent } from './slides/slides.component';
+import { PreguntasComponent } from './preguntas/preguntas.component';
+import { PreguntasFormComponent } from './preguntas-form/preguntas-form.component';
+import { SlidesFormComponent } from './slides-form/slides-form.component';
 @NgModule({
     declarations: [
         CategoriasComponent,
@@ -44,7 +48,11 @@ import { FavoritosDetalleComponent } from './favoritos-detalle/favoritos-detalle
         CalificacionesComponent,
         UsuariosComponent,
         UsuariosFormComponent,
-        FavoritosDetalleComponent
+        FavoritosDetalleComponent,
+        SlidesComponent,
+        PreguntasComponent,
+        PreguntasFormComponent,
+        SlidesFormComponent
     ],
     exports:[
       

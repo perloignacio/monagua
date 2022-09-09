@@ -17,6 +17,10 @@ import { PrestadoresFormComponent } from './prestadores-form/prestadores-form.co
 import { PrestadoresComponent } from './prestadores/prestadores.component';
 import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { SlidesComponent } from './slides/slides.component';
+import { PreguntasComponent } from './preguntas/preguntas.component';
+import { PreguntasFormComponent } from './preguntas-form/preguntas-form.component';
+import { SlidesFormComponent } from './slides-form/slides-form.component';
     const routes: Routes = [
     {
       path: '',
@@ -85,8 +89,23 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
         {
           path: 'usuariosForm',
           component: UsuariosFormComponent,
+        },
+        {
+          path: 'slides',
+          component: SlidesComponent,
+        },
+        {
+          path: 'slidesForm',
+          component: SlidesFormComponent,
+        },
+        {
+          path: 'preguntas',
+          component: PreguntasComponent,
+        },
+        {
+          path: 'preguntasForm',
+          component: PreguntasFormComponent,
         }
-  
       ]
     }
   

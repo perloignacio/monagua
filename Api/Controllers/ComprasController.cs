@@ -426,15 +426,23 @@ namespace Api.Controllers
         }
 
 
-        [Route("GetComprasCliente")]
+        [Route("GetCompras")]
         [HttpGet]
-        public IHttpActionResult GetComprasCliente()
+        public IHttpActionResult GetCompras()
         {
             try
             {
                 var identity = Thread.CurrentPrincipal.Identity;
                 Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
-                return Ok(ComprasMapper.Instance().GetcomprasByCliente(u.IdCliente.Value));
+                if (u.ClientesEntity != null)
+                {
+                    return Ok(ComprasMapper.Instance().GetcomprasByCliente(u.IdCliente.Value));
+                }
+                else
+                {
+                    return Ok(ComprasMapper.Instance().GetByPrestador(u.IdPrestador.Value));
+                }
+                
 
 
             }
@@ -447,26 +455,7 @@ namespace Api.Controllers
 
         }
 
-        [Route("GetComprasPrestador")]
-        [HttpGet]
-        public IHttpActionResult GetComprasPrestador()
-        {
-            try
-            {
-                var identity = Thread.CurrentPrincipal.Identity;
-                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
-                return Ok(ComprasMapper.Instance().GetByPrestador(u.IdPrestador.Value));
-
-
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
-
-
-        }
+        
 
 
     }

@@ -16,6 +16,7 @@ import { ActividadComponent } from './actividad/actividad.component';
 import { FavoritosCliComponent } from './favoritosCli/favoritosCli.component';
 import { SharedModule } from '../shared/shared.module';
 import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
+import { ComprasComponent } from './compras/compras.component';
 
 
 
@@ -31,6 +32,7 @@ import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
         ActividadComponent,
         FavoritosCliComponent,
         CambioContraComponent,
+        ComprasComponent,
         
     ],
     exports:[

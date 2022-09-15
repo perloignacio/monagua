@@ -29,10 +29,10 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="position-relative form-group mt-2">
             <label for="exampleEmail11">Descripción</label>
-            <input type="text" [(ngModel)]="obj.Descripcion" name="Descripcion" class="form-control">
+            <textarea [(ngModel)]="obj.Descripcion" name="Descripcion" class="form-control"></textarea>
           </div>
         </div>
       </div>
@@ -40,13 +40,10 @@
       <div class="row">
         <div class="col-md-6">
           <div class="position-relative form-group mt-2">
-            <label for="exampleEmail11">Foto</label>
-            <input type="image" [(ngModel)]="obj.Foto" name="Foto" class="form-control">
+            <label for="exampleEmail11">Foto <span *ngIf="obj.Foto"><a href="{{assets}}/assets/slides/{{obj.Foto}}" target="_blank">Ver Foto</a></span></label>
+            <input class="form-control-file form-control" id="input-file-id" type="file" (change)="onFileChange($event)" name="fotos" />
           </div>
         </div>
-      </div>
-
-      <div class="row">
         <div class="col-md-6">
           <div class="position-relative form-group mt-2">
             <label for="exampleEmail11">Link</label>
@@ -54,6 +51,8 @@
           </div>
         </div>
       </div>
+
+      
 
       <button class="mt-2 btn btn-success" (click)="Guardar()">Guardar cambios</button>
     </form>

@@ -418,6 +418,7 @@ namespace Api.Controllers
                 string dificultad = "";
                 string idiomas = "";
                 DateTime? fecha = null;
+                
                 foreach (var item in filtros)
                 {
                     JObject json = JObject.Parse(JsonConvert.SerializeObject(item));

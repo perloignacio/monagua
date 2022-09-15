@@ -37,7 +37,10 @@
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.4.17",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@ckeditor/ckeditor5-angular": "^2.0.2",
+    "@ckeditor/ckeditor5-build-classic": "^31.0.0"
+    
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.2",

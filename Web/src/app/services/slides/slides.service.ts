@@ -38,5 +38,4 @@ export class SlidesService {
   AgregarEditar(form:any) {
     return this.httpClient.post<boolean>(this.endpoint+'Admin/AgregarEditar',form);
   }
-  /*Prueba+/
 }

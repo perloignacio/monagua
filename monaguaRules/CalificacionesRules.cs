@@ -9,7 +9,7 @@ namespace monaguaRules
 {
     public  class CalificacionesRules
     {
-        public  void Agregar(int IdCompraDetalle, int calificacion, string comentario,int idcliente)
+        public  int Agregar(int IdCompraDetalle, int calificacion, string comentario,int idcliente)
         {
             validar(IdCompraDetalle, calificacion, comentario, idcliente);
             Calificaciones c = new Calificaciones();
@@ -18,6 +18,7 @@ namespace monaguaRules
             c.Fecha = DateTime.Now;
             c.IdCompraDetalle = IdCompraDetalle;
             CalificacionesMapper.Instance().Insert(c);
+            return c.IdCalificacion;
         }
 
         public  void Responder(int IdCalificacion,string respuesta,int idprestador)

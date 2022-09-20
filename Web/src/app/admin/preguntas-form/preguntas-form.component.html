@@ -20,7 +20,7 @@
   <div class="card-body">
     <form>    
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="position-relative form-group mt-2">
             <label for="exampleEmail11">Pregunta</label>
             <input type="text" [(ngModel)]="obj.Pregunta" name="Pregunta" class="form-control">
@@ -29,10 +29,11 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="position-relative form-group mt-2">
             <label for="exampleEmail11">Respuesta</label>
-            <input type="text" [(ngModel)]="obj.Respuesta" name="Respuesta" class="form-control">
+            <ckeditor [editor]="Editor" [(ngModel)]="obj.Respuesta"  name="Respuesta"></ckeditor>
+            
           </div>
         </div>
       </div>

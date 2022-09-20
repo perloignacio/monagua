@@ -19,7 +19,7 @@ export class Compras{
     DescuentosEntity:Descuentos;
     EstadosCompraEntity:EstadosCompra;
     Detalle:ComprasDetalle[]=[];
-    
+    MontoDescuento:number
     constructor(json:any) {
         if(json!=null){
             this.IdCompra=json.IdCompra;

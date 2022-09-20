@@ -426,6 +426,38 @@ namespace Api.Controllers
         }
 
 
+        [Route("GetCompras")]
+        [HttpGet]
+        
+        public IHttpActionResult GetCompras()
+        {
+            try
+            {
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                if (u.ClientesEntity != null)
+                {
+                    return Ok(ComprasMapper.Instance().GetcomprasByCliente(u.IdCliente.Value));
+                }
+                else
+                {
+                    return Ok(ComprasMapper.Instance().GetByPrestador(u.IdPrestador.Value));
+                }
+                
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        
+
 
     }
 }

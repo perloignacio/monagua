@@ -10,7 +10,7 @@ import { Categorias } from './models/Categorias.model';
 import { environment } from 'src/environments/environment';
 import { Slides } from './models/Slides.model';
 import { SlidesService } from './services/slides/slides.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +19,13 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Web';
-  
-  constructor(public srvCompras:ComprasService,public srvAut:AuthenticationService,private route:Router) {
+  esAdmin:boolean=false
+  constructor(public srvCompras:ComprasService,public srvAut:AuthenticationService,private route:Router,public activeRoute:ActivatedRoute) {
+    this.activeRoute.url.subscribe(value => {
+      if(window.location.href.includes("admin")){
+        this.esAdmin=true;
+      }
+  })
     this.srvCompras.obtieneCarrito(null);
     if(this.srvAut.currentUserValue!=null){
       this.srvAut.validar().subscribe((b)=>{

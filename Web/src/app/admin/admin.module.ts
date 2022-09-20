@@ -28,6 +28,7 @@ import { SlidesComponent } from './slides/slides.component';
 import { PreguntasComponent } from './preguntas/preguntas.component';
 import { PreguntasFormComponent } from './preguntas-form/preguntas-form.component';
 import { SlidesFormComponent } from './slides-form/slides-form.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
     declarations: [
         CategoriasComponent,
@@ -64,7 +65,8 @@ import { SlidesFormComponent } from './slides-form/slides-form.component';
       NgbModule,
       FormsModule,
       ReactiveFormsModule,
-      PerfectScrollbarModule
+      PerfectScrollbarModule,
+      CKEditorModule
       
     ],providers:[
       DatePipe

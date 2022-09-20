@@ -4,14 +4,14 @@ import { Preguntas } from 'src/app/models/Preguntas.model';
 import { PreguntasService } from 'src/app/services/preguntas/preguntas.service';
 import { SharedService } from 'src/app/services/shared/shared.service';
 import Swal from 'sweetalert2';
-
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-preguntas-form',
   templateUrl: './preguntas-form.component.html',
   styleUrls: ['./preguntas-form.component.scss']
 })
 export class PreguntasFormComponent implements OnInit {
-
+  public Editor = ClassicEditor;
   Agregar:boolean=true;
   obj:Preguntas;
 

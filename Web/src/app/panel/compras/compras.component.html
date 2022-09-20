@@ -5,17 +5,26 @@
         <th class="text-center">#</th>
         <th>Fecha</th>
         <th>Cliente</th>
-        <th>Prestador</th>      
+        
         <th>Reserva</th>
         <th>Descuento</th>
         <th>Estado</th>
+        <th>Activa</th>
         <th class="text-center">Acciones</th>
       </tr>
       </thead>
       <tbody>
 
       <tr *ngFor="let obj of ArrObj;">
+        <td class="text-center text-muted">#{{obj.IdCompra}}</td>
+        <td>{{obj.Fecha | date:'dd/MM/yyyy'}}</td>
+        <td>{{obj.ClientesEntity.Apellido}}</td>
         
+        <td>{{obj.Reserva}}</td>
+        <td>$ {{obj.MontoDescuento ? obj.MontoDescuento:'0'}}</td>
+        <td>{{obj.EstadosCompraEntity.Nombre}}</td>
+        <td class="text-center">{{obj.Activa ? 'Si':'NO'}}</td>
+        <td></td>
       </tr>
       </tbody>
     </table>

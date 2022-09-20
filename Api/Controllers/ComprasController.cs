@@ -428,6 +428,7 @@ namespace Api.Controllers
 
         [Route("GetCompras")]
         [HttpGet]
+        
         public IHttpActionResult GetCompras()
         {
             try

@@ -7,5 +7,6 @@ export class Calificaciones{
     Calificacion:number;
     Comentario:string;
     Respuesta:string;
+    FechaRespuesta:Date;
     ComprasDetalleEntity:ComprasDetalle;
 }

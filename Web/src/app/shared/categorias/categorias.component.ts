@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Categorias } from 'src/app/models/Categorias.model';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { environment } from 'src/environments/environment';
@@ -36,7 +37,7 @@ export class CategoriasComponent implements OnInit {
   base= environment.assets;
   baseImg= this.base + 'assets/categorias/';
   categorias:Categorias[]=[];
-  constructor(private srvCategorias:CategoriasService) { 
+  constructor(private srvCategorias:CategoriasService,private route:Router) { 
     this.srvCategorias.todas().subscribe((lc)=>{
       this.categorias=lc;
     })
@@ -44,7 +45,7 @@ export class CategoriasComponent implements OnInit {
 
 
   Categoria(c:Categorias){
-
+    this.route.navigate([`/actividades/buscar/${c.IdCategoria}/${c.Nombre}`])
   }
   ngOnInit(): void {
   }

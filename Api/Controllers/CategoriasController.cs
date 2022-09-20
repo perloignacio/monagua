@@ -103,11 +103,13 @@ namespace Api.Controllers
 
                 Categorias obj = JsonConvert.DeserializeObject<Categorias>(HttpContext.Current.Request.Unvalidated["obj"]);
                 int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
-                string icono = string.Join(",", Helpers.SubeArchivos("categorias", "", false, HttpContext.Current.Request.Files));
-                if (string.IsNullOrEmpty(icono))
+                string iconoActual = "";
+                if (HttpContext.Current.Request.Files.Count <= 0)
                 {
-                    icono = "nologo.jpg";
+                    iconoActual = obj.Icono;
                 }
+                string icono = string.Join(",", Helpers.SubeArchivos("categorias", iconoActual, false, HttpContext.Current.Request.Files));
+                
 
                 CategoriasRules Crules = new CategoriasRules();
                 if (id != 0)

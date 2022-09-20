@@ -151,4 +151,8 @@ export class ComprasService {
   Finalizar() {
     return this.httpClient.post<boolean>(this.endpoint + `FinalizarManual/`,this.carrito, httpOptions)
   }
+  GetComprasAdmin() {
+    return this.httpClient.get<Compras[]>(this.endpoint + `GetComprasAdmin`, httpOptions)
+  }
+  
 }

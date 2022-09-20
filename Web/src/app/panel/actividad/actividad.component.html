@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-8">
             <label>Nombre</label>
             <input [(ngModel)]="obj.Nombre" name="Nombre" type="text" class="form-control">
@@ -12,51 +12,51 @@
             </select>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-12">
             <label>Resumen</label>
             <textarea [(ngModel)]="obj.DescripcionCorta" name="DescripcionCorta" type="text" class="form-control"></textarea>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-12">
             <label>Descripcion</label>
             <textarea [(ngModel)]="obj.Descripcion" name="Descripcion" type="text" class="form-control"></textarea>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-12">
             <label>Que incluye</label>
             <textarea [(ngModel)]="obj.QueIncluye" name="QueIncluye" type="text" class="form-control"></textarea>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-12">
             <label>Que NO incluye</label>
             <textarea [(ngModel)]="obj.QueNoIncluye" name="QueNoIncluye" type="text" class="form-control"></textarea>
         </div>
     </div>
    
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-8">
             <label>Video</label>
             <input [(ngModel)]="obj.Video" name="Video" type="text" class="form-control">
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-8">
             <label>Ubicacion</label>
             <input [(ngModel)]="obj.Ubicacion" name="Ubicacion" type="text" class="form-control">
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-12">
             <label>Mapa</label>
             <textarea [(ngModel)]="obj.Mapa" name="Mapa" type="text" class="form-control"></textarea>
         </div>
     </div>
     
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-4">
             <label>Mascotas</label>
             <select [(ngModel)]="obj.Mascotas" name="Mascotas" class="form-control form-select">
@@ -79,7 +79,7 @@
             </select>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-4">
             <label>Idiomas</label>
             <input [(ngModel)]="obj.Idiomas" name="Idiomas" type="text" class="form-control">
@@ -94,18 +94,34 @@
             </select>
         </div>
         <div class="col-4">
-            <label>Duración (en horas)</label>
+            <label>Duración (en minutos)</label>
             <input [(ngModel)]="obj.Duracion" name="Duracion" type="text" class="form-control">
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-6">
             <label>Precio</label>
             <input [(ngModel)]="obj.Precio" name="Precio" type="text" class="form-control">
         </div>
         <div class="col-6">
-            <label>Precio</label>
+            <label>Precio Oferta</label>
             <input [(ngModel)]="obj.PrecioOferta" name="PrecioOferta" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row mt-3" *ngIf="this.fotosCargadas.length>0">
+        <div class="col-md-3">
+            <label>Fotos cargadas</label>
+        </div>
+        <div class="col-md-9">
+            <div class="archivosAportados">
+                <div *ngFor="let foto of fotosCargadas; let i = index" class="mini" style="background-image: url('{{assets}}assets/actividades/{{foto}}')">
+                    <button class="borrar" (click)="borrarCargado(foto)"><i class="fas fa-trash"></i></button>
+                    
+                    
+                </div>  
+            </div>
+            
+            
         </div>
     </div>
     <div class="row mt-3">
@@ -127,7 +143,7 @@
             
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-12 mt-3">
             <button class="btn btn-success" (click)="Guardar()">GUARDAR</button>
         </div>

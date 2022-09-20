@@ -21,6 +21,7 @@ import { SlidesComponent } from './slides/slides.component';
 import { PreguntasComponent } from './preguntas/preguntas.component';
 import { PreguntasFormComponent } from './preguntas-form/preguntas-form.component';
 import { SlidesFormComponent } from './slides-form/slides-form.component';
+import { ActividadesComponent } from './actividades/actividades.component';
     const routes: Routes = [
     {
       path: '',
@@ -105,7 +106,11 @@ import { SlidesFormComponent } from './slides-form/slides-form.component';
         {
           path: 'preguntasForm',
           component: PreguntasFormComponent,
-        }
+        },
+        {
+          path: 'actividades',
+          component: ActividadesComponent,
+        },
       ]
     }
   

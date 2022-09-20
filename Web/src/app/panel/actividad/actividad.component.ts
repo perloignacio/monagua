@@ -5,9 +5,10 @@ import { Categorias } from 'src/app/models/Categorias.model';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { SharedService } from 'src/app/services/shared/shared.service';
 import Swal from 'sweetalert2';
-import { FileUploader, FileFilter, FileManagerInterface } from '@uniprank/ngx-file-uploader';
+import { FileUploader, FileFilter, FileManagerInterface, FileManager } from '@uniprank/ngx-file-uploader';
 import { ActividadesService } from 'src/app/services/actividades/actividades.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -21,12 +22,21 @@ export class ActividadComponent implements OnInit {
   Categorias:Categorias[]=[];
   dataSource: any[] = [];
   archivos:any[]=[];
+  fotosCargadas:any[]=[];
+  assets:string=environment.assets;
   fileInput = new FormControl();
   Agregar:boolean=true;
   public uploader: FileUploader;
   constructor(private srvCat:CategoriasService,private srvShared:SharedService,private srvActividad:ActividadesService,private route:Router) {
     this.srvCat.todas().subscribe((clist)=>{
       this.Categorias=clist;
+      this.obj=this.srvShared.ObjEdit as Actividades;
+      if(this.obj!=null){
+       this.Agregar=false;
+       this.fotosCargadas=this.obj.Fotos.split(",");
+      }else{
+        this.obj=new Actividades();
+      }
     })
 
     this.uploader = new FileUploader({
@@ -34,13 +44,18 @@ export class ActividadComponent implements OnInit {
       removeBySuccess: false,
       autoUpload: false,
       filters: [new FileFilter('only:JPG/PNG/GIF', new RegExp('image/jpeg|image/png|image/gif'), 'type')]
-  });
+    });
   }
 
   ngOnChanges() {
     this.obtenerArchivosAportados();
   }
-
+  borrarCargado(foto){
+    let index=this.fotosCargadas.findIndex(f=>f==foto);
+    if(index>=0){
+      this.fotosCargadas.splice(index,1);
+    }
+  }
   obtenerArchivosAportados() {
     this.dataSource=this.obj.Fotos.split(",");
   }
@@ -65,7 +80,9 @@ export class ActividadComponent implements OnInit {
     }else{
       form.append("id","0");
     }
-
+    
+    this.obj.Fotos=this.fotosCargadas.join(",");
+    
     this.uploader.queueObs.forEach((f)=>{
       form.append("Archivos[]", f.element,f.object.name);  
     })

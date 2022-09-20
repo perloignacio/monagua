@@ -51,6 +51,7 @@ export class ClientesComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+  
   Borrar(obj:Clientes){
     Swal.fire({
       title: "Atención",

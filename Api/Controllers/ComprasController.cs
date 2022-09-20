@@ -455,7 +455,29 @@ namespace Api.Controllers
 
         }
 
-        
+        [Route("GetComprasAdmin")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetComprasAdmin()
+        {
+            try
+            {
+
+                return Ok(ComprasMapper.Instance().GetAll();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+
 
 
     }

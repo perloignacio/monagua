@@ -10,7 +10,7 @@ import { CategoriasService } from 'src/app/services/categorias/categorias.servic
 })
 export class BuscadorComponent implements OnInit {
   fecha:Date;
-  categoria:number;
+  categoria:Categorias;
   categorias:Categorias[]=[];
   slide:boolean=false;
   @Input()
@@ -24,7 +24,18 @@ export class BuscadorComponent implements OnInit {
   }
   
   buscar(){
-    this.route.navigate(["/actividades"])
+    if(this.categoria && this.fecha){
+      this.route.navigate([`/actividades/buscar/${this.categoria.IdCategoria}/${this.categoria.Nombre}/${this.fecha}`])
+    }else{
+      if(this.categoria){
+        this.route.navigate([`/actividades/buscar/${this.categoria.IdCategoria}/${this.categoria.Nombre}`])
+      }else{
+        if(this.fecha){
+          this.route.navigate([`/actividades/buscar/${this.fecha}`])
+        }
+      }
+    }
+    
   }
   ngOnInit(): void {
   }

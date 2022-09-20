@@ -24,7 +24,10 @@
                     <a class="btn btn-dark btn-lg ms-2" href="login">Iniciar sesión</a>
                 </span>
                 <span *ngIf="srvAut.currentUserValue">
-                    <button class="btn btn-dark btn-lg ms-2" (click)="Cuenta()" href="registro/cliente?org="><i class="fas fa-user"></i> {{srvAut.currentUserValue.Apellido}}</button>
+                    <button class="btn btn-dark btn-lg ms-2" (click)="Cuenta()" href="registro/cliente?org="><i class="fas fa-user"></i> 
+                        <span *ngIf="srvAut.currentUserValue.ClientesEntity" class="ms-2">{{srvAut.currentUserValue.ClientesEntity.Apellido}}</span>
+                        <span *ngIf="srvAut.currentUserValue.PrestadoresEntity" class="ms-2">{{srvAut.currentUserValue.PrestadoresEntity.NombreFantasia}}</span>
+                    </button>
                    
                 </span>
                 <a class="btn btn-dark btn-lg ms-2" href="/compras">{{srvCompras.carrito.Detalle.length}} <i class="fas fa-shopping-cart"></i></a>

@@ -1,48 +1,41 @@
-<div>
-<button (click)="Nueva()">Nueva</button>
+<div class="text-end">
+<button (click)="Nueva()" class="btn btn-primary btn-lg mt-3 mb-3">Nueva</button>
 </div>
-<div class="main-card mb-3 card">
-    <div class="card-header">
-      <div class="row">
-          <div class="col-md-8">
-            Actividades
-          </div>
-          <div class="col-md-4 text-right">
-              <!--<input type="text" class="form-control" placeholder="Filtro" [(ngModel)]="strFiltro" (keyup)="Filtro()">-->
-          </div>
-      </div>
-    </div>
-    <!--desde aca-->
-    <div class="table-responsive">
-      <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-        <thead>
-        <!--<tr>
-          <th class="text-center">#ID</th>
-          <th>Nombre</th>
-          <th class="text-center" >Activa</th>
-          <th class="text-center">Acciones</th>
-        </tr>-->
-        </thead>
-        <tbody>
+<div class="table-responsive">
+  <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+    <thead>
+    <tr>
+      <th class="text-center">#</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Oferta</th>      
+      <th>Categoría</th>
+      <th>Calificación</th>
+      <th>Cancelación Gratuita</th>
+      <th>Activa</th>
+      <th class="text-center">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let obj of ArrObj;">
+      <td class="text-center">{{obj.IdActividad}}</td>
+      <td>{{obj.Nombre}}</td>
+      <td>{{obj.Precio}}</td>
+      <td>{{obj.PrecioOferta}}</td>    
+      <td>{{obj.CategoriasEntity.Nombre}}</td>
+      <td>{{obj.Calificacion}}</td>   
+      <td>{{obj.CancelacionGratuita ? 'Si':'NO'}}</td>
+      <td>{{obj.Activa ? 'Si':'NO'}}</td>
+      <td class="text-center">
+          <i class="fas fa-trash me-2" role="button" (click)="Borrar(obj)" *ngIf="this.obj.Activa"></i>
+          <i class="fas fa-check me-2" role="button" (click)="Activar(obj)" *ngIf="!this.obj.Activa"></i>
+          <i class="fas fa-edit me-2" role="button" (click)="Editar(obj)"></i>
+          <i class="far fa-clock me-2" role="button" (click)="Horarios(obj)"></i>
+          <i class="far fa-comments" role="button" (click)="Comentarios(obj)"></i>
+      </td>
+    </tr>
+    </tbody>
+  </table>
   
-        <!--<tr *ngFor="let obj of ArrObj;">
-          <td class="text-center text-muted">#{{obj.IdCategoria}}</td>
-          <td>{{obj.Nombre}}</td>
-          <td class="text-center">{{obj.Activa ? 'Si':'NO'}}</td>
-          <td class="text-center">
-  
-            <i class="fas fa-trash me-2" role="button" (click)="Borrar(obj)" *ngIf="this.obj.Activa"></i>
-            <i class="fas fa-check me-2" role="button" (click)="Activar(obj)" *ngIf="!this.obj.Activa"></i>
-            <i class="fas fa-edit me-2" role="button" (click)="Editar(obj)"></i>
-           
-  
-          </td>
-        </tr>-->
-        </tbody>
-      </table>
-      <div class="d-flex justify-content-between p-2">
-        <!--<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshData()">
-        </ngb-pagination>-->
-      </div>
-    </div>
-  </div>
+</div>

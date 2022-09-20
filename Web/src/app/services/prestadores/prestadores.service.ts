@@ -18,6 +18,9 @@ export class PrestadoresService {
   Registrar(obj:any) {
     return this.httpClient.post<boolean>(this.endpoint + `registrar`,obj, httpOptions)
   }
+  Editar(obj:any) {
+    return this.httpClient.post<Prestadores>(this.endpoint + `editar`,obj, httpOptions)
+  }
 
   borrar(id:number) {
     return this.httpClient.get<boolean>(this.endpoint + `Admin/borrar?id=${id}`, httpOptions)

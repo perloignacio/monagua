@@ -234,7 +234,7 @@ namespace Api.Controllers
                 if (id != 0)
                 {
                     aux = ActividadesMapper.Instance().GetOne(id);
-                    string fotos = string.Join(",", Helpers.SubeArchivos("actividades", aux.Fotos, false, HttpContext.Current.Request.Files));
+                    string fotos = string.Join(",", Helpers.SubeArchivos("actividades", obj.Fotos, false, HttpContext.Current.Request.Files));
                     Arules.Modificar(id, obj.Nombre,obj.DescripcionCorta,obj.Descripcion,obj.Precio,obj.Duracion,obj.IdCategoria,u.PrestadoresEntity.IdPrestador,fotos,obj.Video,obj.Ubicacion,obj.Mapa,obj.PrecioOferta,obj.Mascotas,obj.PersonasCapacidadRed,obj.DietasEspeciales,obj.Idiomas,obj.Dificultad,obj.QueIncluye,obj.QueNoIncluye);
                 }
                 else
@@ -565,6 +565,126 @@ namespace Api.Controllers
 
         }
 
+        [Route("byPrestador")]
+        [HttpGet]
         
+        public IHttpActionResult byPrestador()
+        {
+            try
+            {
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                List<Actividades> lac = new List<Actividades>();
+                lac = ActividadesMapper.Instance().GetByPrestadores(u.IdPrestador.Value).ToList();
+                foreach (var item in lac)
+                {
+                    CalificacionesList cl = CalificacionesMapper.Instance().GetCalificacionesByActividad(item.IdActividad);
+                    decimal acu = 0;
+                    foreach (var cali in cl)
+                    {
+                        acu += cali.Calificacion;
+                    }
+                    if (acu != 0)
+                    {
+                        item.Calificacion = acu / cl.Count;
+                    }
+                    else
+                    {
+                        item.Calificacion = 0;
+                    }
+                    item.cantCalificaciones = cl.Count();
+
+                }
+                return Ok(lac);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("Admin/Todas")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult todas()
+        {
+            try
+            {
+                
+                List<Actividades> lac = new List<Actividades>();
+                lac = ActividadesMapper.Instance().GetAll().ToList();
+                foreach (var item in lac)
+                {
+                    CalificacionesList cl = CalificacionesMapper.Instance().GetCalificacionesByActividad(item.IdActividad);
+                    decimal acu = 0;
+                    foreach (var cali in cl)
+                    {
+                        acu += cali.Calificacion;
+                    }
+                    if (acu != 0)
+                    {
+                        item.Calificacion = acu / cl.Count;
+                    }
+                    else
+                    {
+                        item.Calificacion = 0;
+                    }
+                    item.cantCalificaciones = cl.Count();
+
+                }
+                return Ok(lac);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("Admin/borrar")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult Borrar(int id)
+        {
+            try
+            {
+                ActividadesRules ar = new ActividadesRules();
+                ar.Borrar(id);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("Admin/activar")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult Activar(int id)
+        {
+            try
+            {
+                ActividadesRules ar = new ActividadesRules();
+                ar.Activar(id);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
     }
 }

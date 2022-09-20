@@ -56,6 +56,9 @@ export class ActividadesService {
   todos() {
     return this.httpClient.get<Actividades[]>(this.endpoint+'Activas');
   }
+  Admintodas() {
+    return this.httpClient.get<Actividades[]>(this.endpoint+'Admin/todas');
+  }
 
   Ficha(id:number) {
     return this.httpClient.get<Actividades>(this.endpoint+'Ficha?id='+id);
@@ -67,7 +70,17 @@ export class ActividadesService {
   filtrar(filtros:any,pagina:number,orden:string) {
     return this.httpClient.post<Filtro>(this.endpoint+`filtrar?pagina=${pagina}&orden=${orden}`,filtros);
   }
+
+  byPrestador() {
+    return this.httpClient.get<Actividades[]>(this.endpoint+`byPrestador`);
+  }
   
+  borrar(id:number) {
+    return this.httpClient.get<boolean>(this.endpoint + `Admin/borrar?id=${id}`, httpOptions)
+  }
+  activar(id:number) {
+    return this.httpClient.get<boolean>(this.endpoint + `Admin/activar?id=${id}`, httpOptions)
+  }
 
   
 }

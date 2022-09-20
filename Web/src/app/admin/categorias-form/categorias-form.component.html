@@ -32,7 +32,12 @@
             <input type="text" [(ngModel)]="obj.Nombre" name="Nombre" class="form-control">
           </div>
         </div>
-  
+        <div class="col-md-6">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11">Foto <span *ngIf="obj.Icono"><a href="{{assets}}/assets/categorias/{{obj.Icono}}" target="_blank">Ver Foto</a></span></label>
+            <input class="form-control-file form-control" id="input-file-id" type="file" (change)="onFileChange($event)" name="fotos" />
+          </div>
+        </div>
       </div>
       
       

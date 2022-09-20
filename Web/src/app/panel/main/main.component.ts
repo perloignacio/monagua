@@ -8,10 +8,20 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-
-  constructor(public srvAut:AuthenticationService,private router:Router) { }
-
+  cliente:boolean=true;
+  constructor(private srvAut:AuthenticationService,private router:Router) { 
+    
+  }
+  
   ngOnInit(): void {
+    this.srvAut.currentUser.subscribe((u)=>{
+      if(u.ClientesEntity){
+        this.cliente=true;
+      }else{
+        this.cliente=false;
+      }
+    })
+    
   }
 
   salir(){

@@ -23,7 +23,7 @@ export class RegistroPrestadoresComponent implements OnInit {
   listalocalidades:Localidades[]=[];
   contra:string;
   Agregar:boolean=true;
-
+  Archivos:FileList;
   constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router,private srvPrestadores:PrestadoresService) { 
     this.srvWeb.Paises().subscribe((paises)=>{
     
@@ -44,6 +44,12 @@ export class RegistroPrestadoresComponent implements OnInit {
       this.listalocalidades=localidades;
       })
   }
+
+  onFileChange(event) {
+    this.Archivos=event.target.files;
+
+  }
+
   ngOnInit(): void {
   }
 
@@ -54,10 +60,14 @@ export class RegistroPrestadoresComponent implements OnInit {
     }else{
       form.append("id","0");
     }
-    
+    this.obj.Politicas=true;
     this.usu.Usuario=this.obj.Email;
     
-    
+    if(this.Archivos!=null){
+      for(let i=0;i<=this.Archivos.length-1;i++){
+        form.append("Archivos[]", this.Archivos[i],this.Archivos[i].name);
+      }
+    }
     form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
     form.append("usuario",this.srvShared.convertToJSON(this.usu).objeto);
     

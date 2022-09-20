@@ -33,6 +33,18 @@ const routes: Routes = [
     component:ListadoComponent,
   },
   {
+    path:'actividades/buscar/:categoria/:nombre',
+    component:ListadoComponent,
+  },
+  {
+    path:'actividades/buscar/:categoria/:nombre/:fecha',
+    component:ListadoComponent,
+  },
+  {
+    path:'actividades/buscar/:fecha',
+    component:ListadoComponent,
+  },
+  {
     path:'registro/cliente',
     component:RegistroClientesComponent,
   },

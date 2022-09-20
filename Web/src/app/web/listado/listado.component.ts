@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgbDate, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -27,12 +28,26 @@ export class ListadoComponent implements OnInit {
   paginaActual:number=1;
   cantPaginas:number;
   fakePaginas=new Array();
-  constructor(private srvActividades:ActividadesService,private srvShared:SharedService,private spinner: NgxSpinnerService) { 
-
-    this.render();
+  constructor(private srvActividades:ActividadesService,private srvShared:SharedService,private spinner: NgxSpinnerService,private route:ActivatedRoute) { 
+    route.params.subscribe(val => { 
+      this.checkFiltros();
+      this.render();
+    });
      
   }
 
+  checkFiltros(){
+    if(this.route.snapshot.params["categoria"]){
+      this.Addfiltro("categoria",this.route.snapshot.params["categoria"],this.route.snapshot.params["nombre"]);
+    }
+    if(this.route.snapshot.params["fecha"]){
+      let fec=this.route.snapshot.params["fecha"];
+      
+      this.fecha=new NgbDate(parseInt(fec.split("-")[0]),parseInt(fec.split("-")[1]),parseInt(fec.split("-")[2]))
+      
+      this.Addfiltro("fecha",this.route.snapshot.params["fecha"],"asdas");
+    }
+  }
   render(){
     this.spinner.show();
     const form=new FormData();

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 
@@ -146,10 +147,22 @@ namespace Api.Controllers
             {
 
                 Prestadores obj = JsonConvert.DeserializeObject<Prestadores>(HttpContext.Current.Request.Unvalidated["obj"]);
-                int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                int id = u.PrestadoresEntity.IdPrestador;
+
                 PrestadoresRules pr = new PrestadoresRules();
-                pr.Modificar(id,obj.RazonSocial,obj.NombreFantasia,obj.Cuit,obj.Email,obj.Logo,obj.IdLocalidad,obj.IdPais,obj.IdProvincia,obj.Telefono);
-                return Ok(true);
+                string logoActual = "";
+                if (HttpContext.Current.Request.Files.Count <= 0)
+                {
+                    logoActual = obj.Logo;
+                }
+
+                string logo = string.Join(",", Helpers.SubeArchivos("prestadores",logoActual, false, HttpContext.Current.Request.Files));
+                pr.Modificar(id,obj.RazonSocial,obj.NombreFantasia,obj.Cuit,obj.Email,logo,obj.IdLocalidad,obj.IdPais,obj.IdProvincia,obj.Telefono);
+                Prestadores res = PrestadoresMapper.Instance().GetOne(id);
+                return Ok(res);
+                
 
             }
             catch (Exception ex)

@@ -173,8 +173,8 @@ namespace Api.Controllers
                 Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
                 int id = u.ClientesEntity.IdCliente;
                 //int id = 3;
-                
-                return Ok(FavoritosMapper.Instance().GetByClientes(id));
+                List<Favoritos> favs = FavoritosMapper.Instance().GetByClientes(id).ToList();
+                return Ok(favs);
 
             }
             catch (Exception ex)

@@ -10,7 +10,7 @@ namespace monaguaRules
 {
     public  class ActividadesRules
     {
-        public Actividades Agregar(string nombre, string descripcioCorta,string descripcion,decimal precio,decimal duracion, int idcategoria,int idprestador,string fotos,string video,string ubicacion, string mapa,decimal? precioOferta,bool mascotas,bool personasCapacidadRed,bool dietas,string idiomas,string dificultad,string incluye, string noincluye)
+        public Actividades Agregar(string nombre, string descripcioCorta,string descripcion,decimal precio,decimal duracion, int idcategoria,int idprestador,string fotos,string video,string ubicacion, string mapa,decimal? precioOferta,bool mascotas,bool personasCapacidadRed,bool dietas,string idiomas,string dificultad,string incluye, string noincluye,int diasCancelacion, int idlocalidad,int idprovincia)
         {
             validar(nombre,descripcioCorta,descripcion,precio,duracion,idcategoria,idprestador);
             Actividades ac = new Actividades();
@@ -37,12 +37,16 @@ namespace monaguaRules
             ac.Dificultad = dificultad;
             ac.QueIncluye = incluye;
             ac.QueNoIncluye = noincluye;
-
+            ac.DiasCancelacion = diasCancelacion;
+           
+            ac.IdLocalidad = idlocalidad;
+            ac.IdProvincia = idprovincia;
+            
             ActividadesMapper.Instance().Insert(ac);
             return ac;
         }
 
-        public void Modificar(int idactividad,string nombre, string descripcioCorta, string descripcion, decimal precio, decimal duracion, int idcategoria, int idprestador, string fotos, string video, string ubicacion, string mapa, decimal? precioOferta, bool mascotas, bool personasCapacidadRed, bool dietas, string idiomas, string dificultad, string incluye, string noincluye)
+        public void Modificar(int idactividad,string nombre, string descripcioCorta, string descripcion, decimal precio, decimal duracion, int idcategoria, int idprestador, string fotos, string video, string ubicacion, string mapa, decimal? precioOferta, bool mascotas, bool personasCapacidadRed, bool dietas, string idiomas, string dificultad, string incluye, string noincluye, int diasCancelacion,int idlocalidad,int idprovincia)
         {
             validar(nombre, descripcioCorta, descripcion, precio, duracion, idcategoria, idprestador);
             Actividades ac = ActividadesMapper.Instance().GetOne(idactividad);
@@ -73,7 +77,10 @@ namespace monaguaRules
             ac.Dificultad = dificultad;
             ac.QueIncluye = incluye;
             ac.QueNoIncluye = noincluye;
-
+            ac.DiasCancelacion = diasCancelacion;
+            
+            ac.IdLocalidad = idlocalidad;
+            ac.IdProvincia = idprovincia;
             ActividadesMapper.Instance().Save(ac);
             
         }

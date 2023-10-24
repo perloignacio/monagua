@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { ComprasService } from 'src/app/services/compras/compras.service';
 import { CuponesService } from 'src/app/services/cupones/cupones.service';
@@ -24,27 +25,32 @@ export class CheckoutComponent implements OnInit {
   }
 
   Finalizar(){
+    
     this.srvCompras.Pagar().subscribe((linkMP)=>{
       if(linkMP!=""){
         //window.location.href=linkMP;
         this.srvCompras.Finalizar().subscribe((band)=>{
           if(band){
+           
             this.router.navigate(["/gracias"])
           }
         },(err)=>{
+          
           Swal.fire("upps",err.error.Message,"warning");
         })
       }
     })
   }
 
-  
-  CambiaReserva(reserva:boolean){
-    this.srvCompras.carrito.Reserva=reserva;
+  Reserva(){
+    this.srvCompras.carrito.Reserva=true;
     this.srvCompras.ActualizaCarrito().subscribe((c)=>{
       this.srvCompras.setCarrito(c);
+      this.Finalizar();
     })
   }
+  
+  
   
   Canjear(){
     if(this.srvAut.currentUserValue==null){

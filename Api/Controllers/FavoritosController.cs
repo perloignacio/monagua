@@ -71,7 +71,7 @@ namespace Api.Controllers
                 var identity = Thread.CurrentPrincipal.Identity;
                 Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
                 FavoritosRules favRules = new FavoritosRules();
-                favRules.Agregar(id, u.IdUsuario);
+                favRules.Agregar(id, u.IdCliente.Value);
                 return Ok(true);
             }
             catch (Exception ex)

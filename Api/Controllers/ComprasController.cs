@@ -100,7 +100,7 @@ namespace Api.Controllers
 
         [Route("GetLinkMercadoPago")]
         [HttpPost]
-        [AllowAnonymous]
+       
         public IHttpActionResult GetLinkMercadoPago(Compras c)
         {
             var identity = Thread.CurrentPrincipal.Identity;
@@ -120,9 +120,20 @@ namespace Api.Controllers
                 d.MontoActividad = precio;
                 acu += d.Cantidad * precio;
             });
+            decimal? montoDesuento = null;
+            decimal? porcentajeDescuento = null;
             if (c.DescuentosEntity != null)
             {
                 desc = c.DescuentosEntity.Monto != null ? c.DescuentosEntity.Monto.Value : ((c.DescuentosEntity.Porcentaje.Value * acu) / 100);
+                c.DescuentoCalculado = desc;
+                if (c.DescuentosEntity.Monto.HasValue)
+                {
+                    montoDesuento = c.DescuentosEntity.Monto.Value;
+                }
+                if (c.DescuentosEntity.Porcentaje.HasValue)
+                {
+                    porcentajeDescuento = c.DescuentosEntity.Porcentaje.Value;
+                }
             }
             if (c.Reserva)
             {
@@ -132,8 +143,9 @@ namespace Api.Controllers
             {
                 total = (acu - desc);
             }
-
-            c.MontoDescuento = desc;
+            
+            c.MontoDescuento = montoDesuento;
+            c.PorcentajeDescuento = porcentajeDescuento;
             cRules.Actualizar(c);
 
             var request = new PreferenceRequest
@@ -246,16 +258,16 @@ namespace Api.Controllers
             decimal acu = 0;
             decimal desc = 0;
             decimal total = 0;
-
+            int cantCompras = compra.Detalle.Count();
             compra.Detalle.ForEach(d =>
             {
-                decimal precio = d.ActividadesEntity.PrecioOferta.HasValue ? d.ActividadesEntity.PrecioOferta.Value : d.ActividadesEntity.Precio;
-                acu += d.Cantidad * precio;
+                
+                acu += d.Cantidad * d.MontoActividad;
             });
 
             if (compra.DescuentosEntity != null)
             {
-                desc = compra.DescuentosEntity.Monto != null ? compra.DescuentosEntity.Monto.Value : ((compra.DescuentosEntity.Porcentaje.Value * acu) / 100);
+                desc = compra.DescuentoCalculado.Value;
             }
 
             if (compra.Reserva)
@@ -280,7 +292,7 @@ namespace Api.Controllers
                 string items = "";
                 foreach (ComprasDetalle detalle in compra.Detalle)
                 {
-                    decimal precio = detalle.ActividadesEntity.PrecioOferta.HasValue ? detalle.ActividadesEntity.PrecioOferta.Value : detalle.ActividadesEntity.Precio;
+                    decimal precio = detalle.MontoActividad;
                     items += "<tr><td width='260' style='padding:0px 20px;vertical-align: top' valign='top'><p style='margin-bottom: 0px;font-size: 16px;margin-bottom: 5px;'><b>" + detalle.ActividadesEntity.Nombre + "</b></p>" +
                        "<p style='font-size: 12px'>Cantidad: <b style='font-size: 14px;'>" + detalle.Cantidad + "</b></p>" +
                       "<p style='font-size: 12px'> Fecha : <b style='font-size: 14px;'>" + detalle.FechaHora.ToString("dd/MM/yyyy hh:mm") + "</b></p>" +
@@ -332,12 +344,27 @@ namespace Api.Controllers
 
                     
                     string items = "";
-                   
-                    decimal precio = det.ActividadesEntity.PrecioOferta.HasValue ? det.ActividadesEntity.PrecioOferta.Value : det.ActividadesEntity.Precio;
+
+                    decimal precio = 0;
+                    if (det.ComprasEntity.IdDescuento.HasValue)
+                    {
+
+                        if (det.ComprasEntity.MontoDescuento.HasValue)
+                        {
+                            desc = det.ComprasEntity.MontoDescuento.Value / cantCompras;
+                            precio = (det.MontoActividad * det.Cantidad) - desc;
+                        }
+
+                        if (det.ComprasEntity.PorcentajeDescuento.HasValue)
+                        {
+                            desc = ((det.MontoActividad * det.Cantidad) * det.ComprasEntity.PorcentajeDescuento.Value) / 100;
+                            precio = (det.MontoActividad * det.Cantidad) - desc;
+                        }
+                    }
                     items += "<tr><td width='260' style='padding:0px 20px;vertical-align: top' valign='top'><p style='margin-bottom: 0px;font-size: 16px;margin-bottom: 5px;'><b>" + det.ActividadesEntity.Nombre + "</b></p>" +
                         "<p style='font-size: 12px'>Cantidad: <b style='font-size: 14px;'>" + det.Cantidad + "</b></p>"+
                        "<p style='font-size: 12px'> Fecha : <b style='font-size: 14px;'>" + det.FechaHora.ToString("dd/MM/yyyy hh:mm") + "</b></p>"+
-                    "</td><td width='195'  valign='top' style='text-align: right;'><p style='font-size: 18px;'><b>$ " + (det.Cantidad * precio).ToString() + ".-</b></p></td></tr><tr><td colspan='3' style=''><div style='border-bottom: 1px solid #303030;margin:20px 0px;'></div></td></tr>";
+                    "</td><td width='195'  valign='top' style='text-align: right;'><p style='font-size: 18px;'><b>$ " + precio.ToString("0.00") + ".-</b></p></td></tr><tr><td colspan='3' style=''><div style='border-bottom: 1px solid #303030;margin:20px 0px;'></div></td></tr>";
 
                     string strvaris = "";
                     strvaris += 
@@ -353,7 +380,7 @@ namespace Api.Controllers
                     body = body.Replace("{envio}", "");
                     body = body.Replace("{pago}", "");
 
-                    body = body.Replace("{total}", (det.Cantidad*precio).ToString("0.00"));
+                    body = body.Replace("{total}", precio.ToString("0.00"));
 
 
 
@@ -391,7 +418,7 @@ namespace Api.Controllers
                     string items = "";
                     foreach (ComprasDetalle detalle in compra.Detalle)
                     {
-                        decimal precio = detalle.ActividadesEntity.PrecioOferta.HasValue ? detalle.ActividadesEntity.PrecioOferta.Value : detalle.ActividadesEntity.Precio;
+                        decimal precio = detalle.MontoActividad;
                         items += "<tr><td width='260' style='padding:0px 20px;vertical-align: top' valign='top'><p style='margin-bottom: 0px;font-size: 16px;margin-bottom: 5px;'><b>" + detalle.ActividadesEntity.Nombre + "</b></p>" +
                            "<p style='font-size: 12px'>Cantidad: <b style='font-size: 14px;'>" + detalle.Cantidad + "</b></p>" +
                           "<p style='font-size: 12px'> Fecha : <b style='font-size: 14px;'>" + detalle.FechaHora.ToString("dd/MM/yyyy hh:mm") + "</b></p>" +
@@ -418,7 +445,7 @@ namespace Api.Controllers
                     message.Subject = "Compra " + compra.ClientesEntity.Apellido;
                     message.Body = cuerpo.ToMessageBody();
                     message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
-                    message.To.Add(new MailboxAddress("", compra.ClientesEntity.Email));
+                    message.To.Add(new MailboxAddress("", ConfiguracionMapper.Instance().GetByClave("EmailCompra").Valor));
                     EnviaMail.Envia(message);
 
                 }
@@ -433,18 +460,43 @@ namespace Api.Controllers
         {
             try
             {
+                ComprasDetalleList lista = new ComprasDetalleList();
+                ComprasList compras = new ComprasList();
                 var identity = Thread.CurrentPrincipal.Identity;
                 Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
                 if (u.ClientesEntity != null)
                 {
-                    return Ok(ComprasMapper.Instance().GetcomprasByCliente(u.IdCliente.Value));
+                    compras = ComprasMapper.Instance().GetcomprasByCliente(u.IdCliente.Value);
+                    
                 }
                 else
                 {
-                    return Ok(ComprasMapper.Instance().GetByPrestador(u.IdPrestador.Value));
+                    compras=ComprasMapper.Instance().GetByPrestador(u.IdPrestador.Value);
                 }
-                
 
+                foreach (var c in compras)
+                {
+                    ComprasDetalleList cdList=ComprasDetalleMapper.Instance().GetByCompras(c.IdCompra);
+                    if (cdList.Count != 0)
+                    {
+                        lista.AddRange(cdList);
+                    }
+                }
+
+
+                foreach (var item in lista)
+                {
+                    if (u.IdCliente.HasValue)
+                    {
+                        item.MensajesNoLeido=MensajesMapper.Instance().GetByComprasDetalle(item.IdCompraDetalle).Where(m => m.LeidoCliente == false).Count();
+                    }
+                    if (u.IdPrestador.HasValue)
+                    {
+                        item.MensajesNoLeido = MensajesMapper.Instance().GetByComprasDetalle(item.IdCompraDetalle).Where(m => m.LeidoPrestador == false).Count();
+                    }
+                }
+
+                return Ok(lista.OrderByDescending(c=>c.FechaHora));
 
             }
             catch (Exception ex)
@@ -459,12 +511,15 @@ namespace Api.Controllers
         [Route("GetComprasAdmin")]
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult GetComprasAdmin()
+        public IHttpActionResult GetComprasAdmin(DateTime? desde, DateTime? hasta,int? idcliente,int? idestadocompra)
         {
             try
             {
+                dsMonagua ds = new dsMonagua();
+                dsMonaguaTableAdapters.ComprasTableAdapter ta = new dsMonaguaTableAdapters.ComprasTableAdapter();
+                ta.Fill(ds.Compras,desde,hasta,idestadocompra,idcliente);
 
-                return Ok(ComprasMapper.Instance().GetAll();
+                return Ok(ds.Compras);
 
 
 
@@ -476,6 +531,160 @@ namespace Api.Controllers
             }
 
 
+        }
+
+        [Route("GetCompra")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetCompra(int idcompra)
+        {
+            try
+            {
+
+                Compras c = ComprasMapper.Instance().GetOne(idcompra);
+                if (c != null)
+                {
+                    c.Detalle = ComprasDetalleMapper.Instance().GetByCompras(idcompra);
+                    return Ok(c);
+                }
+                else
+                {
+                    return BadRequest("No se encuentra el elemento buscado");
+
+                }
+                
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("Anular")]
+        [HttpGet]
+        
+        public IHttpActionResult Anular(int idcompradetalle)
+        {
+            try
+            {
+
+                
+                
+                var identity = Thread.CurrentPrincipal.Identity;
+                Usuarios u = UsuariosMapper.Instance().GetOne(Convert.ToInt32(identity.Name));
+                int idestadoCompra=0;
+                if (u.ClientesEntity!=null)
+                {
+                    idestadoCompra = 2;
+                }
+                else
+                {
+                    idestadoCompra = 3;
+                }
+                ComprasDetalle cd = ComprasDetalleMapper.Instance().GetOne(idcompradetalle);
+                if (cd != null)
+                {
+                    ComprasRules cRules = new ComprasRules();
+                    cRules.AnularDetalle(cd, idestadoCompra);
+                    cd = ComprasDetalleMapper.Instance().GetOne(idcompradetalle);
+                    MailAnulacion(cd, cd.ComprasEntity.ClientesEntity.Nombre, cd.ComprasEntity.ClientesEntity.Email);
+                    MailAnulacion(cd, cd.ActividadesEntity.PrestadoresEntity.NombreFantasia, cd.ActividadesEntity.PrestadoresEntity.Email);
+                    MailAnulacion(cd, "Equipo", ConfiguracionMapper.Instance().GetByClave("EmailCompra").Valor);
+                    return Ok(true);
+                }
+                else
+                {
+                    return BadRequest("No se encuentra el elemento buscado");
+
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+
+
+        private void MailAnulacion(ComprasDetalle cd,string nombre,string para)
+        {
+
+            decimal acu = 0;
+            decimal desc = 0;
+            decimal total = 0;
+            decimal devolver = 0;
+            int cantCompras = ComprasDetalleMapper.Instance().GetByCompras(cd.IdCompra).Count();
+
+            string body = String.Empty;
+            var path = HttpContext.Current.Server.MapPath("~/Plantillas/AnulaCompra.html");
+            var fileStream = System.IO.File.OpenRead(path);
+            StreamReader reader = new StreamReader(fileStream);
+            body = reader.ReadToEnd();
+            body = body.Replace("{ubicacionlogo}", ConfiguracionMapper.Instance().GetByClave("UbicacionLogo").Valor);
+            body = body.Replace("{nombre}", nombre);
+            body = body.Replace("{cliente_nombre}", cd.ComprasEntity.ClientesEntity.Nombre);
+            body = body.Replace("{cliente_apellido}", cd.ComprasEntity.ClientesEntity.Apellido);
+            body = body.Replace("{cliente_email}", cd.ComprasEntity.ClientesEntity.Email);
+            body = body.Replace("{cliente_telefono}", cd.ComprasEntity.ClientesEntity.Telefono);
+            body = body.Replace("{nro}", cd.IdCompra.ToString());
+            
+            string items = "";
+
+            decimal precio = 0;
+            if (cd.ComprasEntity.IdDescuento.HasValue)
+            {
+                
+                if (cd.ComprasEntity.MontoDescuento.HasValue)
+                {
+                    desc = cd.ComprasEntity.MontoDescuento.Value / cantCompras;
+                    precio = (cd.MontoActividad * cd.Cantidad) - desc;
+                }
+
+                if (cd.ComprasEntity.PorcentajeDescuento.HasValue)
+                {
+                    desc = ((cd.MontoActividad*cd.Cantidad)*cd.ComprasEntity.PorcentajeDescuento.Value)/100;
+                    precio = (cd.MontoActividad * cd.Cantidad) - desc;
+                }
+            }
+            items += "<tr><td width='260' style='padding:0px 20px;vertical-align: top' valign='top'><p style='margin-bottom: 0px;font-size: 16px;margin-bottom: 5px;'><b>" + cd.ActividadesEntity.Nombre + "</b></p>" +
+                "<p style='font-size: 12px'>Cantidad: <b style='font-size: 14px;'>" + cd.Cantidad + "</b></p>" +
+                "<p style='font-size: 12px'> Fecha : <b style='font-size: 14px;'>" + cd.FechaHora.ToString("dd/MM/yyyy hh:mm") + "</b></p>" +
+            "</td><td width='195'  valign='top' style='text-align: right;'><p style='font-size: 18px;'><b>$ " + precio.ToString() + ".-</b></p></td></tr><tr><td colspan='3' style=''><div style='border-bottom: 1px solid #303030;margin:20px 0px;'></div></td></tr>";
+
+            body = body.Replace("{resumen}", items);
+            
+            
+          
+            body = body.Replace("{email_compra}", ConfiguracionMapper.Instance().GetByClave("email_compra").Valor);
+
+            MimeKit.MimeMessage message = new MimeKit.MimeMessage();
+            BodyBuilder cuerpo = new BodyBuilder();
+
+            cuerpo.HtmlBody = body;
+            message.Subject = "Anulacion de compra " + cd.ComprasEntity.ClientesEntity.Apellido;
+            message.Body = cuerpo.ToMessageBody();
+            message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+            message.To.Add(new MailboxAddress("", para));
+            EnviaMail.Envia(message);
+
+            
+
+
+            
+            
         }
 
 

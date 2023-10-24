@@ -15,7 +15,8 @@ namespace monaguaRules
             Carrito = 1,
             Solicitada = 2,
             Abonada = 3,
-            Cancelada = 4
+            Cancelada = 4,
+            CanceladaParcial = 5
         }
         public Compras AgregarCarrito(Compras c)
         {
@@ -29,6 +30,7 @@ namespace monaguaRules
             foreach (var item in c.Detalle)
             {
                 item.IdCompra = c.IdCompra;
+                item.IdEstadoCompraActividad = 1;
                 ComprasDetalleMapper.Instance().Insert(item);
             }
             c.IdObjeto = c.IdCompra;
@@ -56,11 +58,22 @@ namespace monaguaRules
             {
                 obj.MontoDescuento=c.MontoDescuento.Value;
             }
+            if (c.PorcentajeDescuento.HasValue)
+            {
+                obj.PorcentajeDescuento = c.PorcentajeDescuento.Value;
+            }
+            if (c.DescuentoCalculado.HasValue)
+            {
+                obj.DescuentoCalculado = c.DescuentoCalculado;
+            }
+
             ComprasMapper.Instance().Save(obj);
             ComprasDetalleMapper.Instance().DeleteByCompras(c.IdObjeto);
             foreach (var item in c.Detalle)
             {
                 item.IdCompra = c.IdObjeto;
+                item.IdEstadoCompraActividad = 1;
+                
                 ComprasDetalleMapper.Instance().Insert(item);
 
             }
@@ -75,10 +88,10 @@ namespace monaguaRules
             
             obj.MercadoPago = mercadopago;
             obj.IdEstadoCompra = (int)estadosCompra.Abonada;
-           
+            
 
             ComprasMapper.Instance().Save(obj);
-            
+
             return obj;
         }
 
@@ -105,6 +118,7 @@ namespace monaguaRules
             foreach (var item in detalle)
             {
                 item.IdCompra = c.IdCompra;
+                item.IdEstadoCompraActividad = 1;
                 ComprasDetalleMapper.Instance().Insert(item);
             }
 
@@ -129,6 +143,7 @@ namespace monaguaRules
             foreach (var item in detalle)
             {
                 item.IdCompra = c.IdCompra;
+                item.IdEstadoCompraActividad = 1;
                 ComprasDetalleMapper.Instance().Insert(item);
             }
 
@@ -157,6 +172,41 @@ namespace monaguaRules
 
 
 
+            }
+        }
+
+        public void AnularDetalle(ComprasDetalle cd, int idestado)
+        {
+            if (cd.FechaHora < DateTime.Now)
+            {
+                throw new Exception("La actividad no se puede cancelar ya que la misma ya se realizo");
+            }
+            if (cd.FechaHora < DateTime.Now.AddDays(cd.ActividadesEntity.DiasCancelacion))
+            {
+                throw new Exception("Ya no se puede cancelar la compra, excedio el tiempo máximo");
+            }
+
+            cd.IdEstadoCompraActividad = idestado;
+            ComprasDetalleMapper.Instance().Save(cd);
+            ComprasDetalleList cdList = ComprasDetalleMapper.Instance().GetByCompras(cd.IdCompra);
+            int cant = cdList.Where(detalle => detalle.IdEstadoCompraActividad == 1).ToList().Count();
+            if (cant <= 0)
+            {
+                CambiaEstadoCompra(cd.IdCompra,(int) estadosCompra.Cancelada);
+            }
+            else
+            {
+                CambiaEstadoCompra(cd.IdCompra, (int)estadosCompra.CanceladaParcial);
+            }
+        }
+
+        public void CambiaEstadoCompra(int idcompra, int idestado)
+        {
+            Compras c = ComprasMapper.Instance().GetOne(idcompra);
+            if (c != null)
+            {
+                c.IdEstadoCompra = idestado;
+                ComprasMapper.Instance().Save(c);
             }
         }
 

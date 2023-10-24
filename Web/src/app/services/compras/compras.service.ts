@@ -152,12 +152,20 @@ export class ComprasService {
     return this.httpClient.post<boolean>(this.endpoint + `FinalizarManual/`,this.carrito, httpOptions)
   }
 
-  Mostrar() {
-    return this.httpClient.get<Compras[]>(this.endpoint + `GetCompras`)
+  AnularActividad(IdCompraDetalle:number){
+    return this.httpClient.get<boolean>(this.endpoint + `Anular?idcompradetalle=${IdCompraDetalle}`, httpOptions)
   }
 
-  GetComprasAdmin() {
-    return this.httpClient.get<Compras[]>(this.endpoint + `GetComprasAdmin`, httpOptions)
+  Mostrar() {
+    return this.httpClient.get<ComprasDetalle[]>(this.endpoint + `GetCompras`)
   }
+
+  GetComprasAdmin(desde?:Date,hasta?:Date,idcliente?:number,idestado?:number) {
+    return this.httpClient.get<any[]>(this.endpoint + `GetComprasAdmin?desde=${desde}&hasta=${hasta}&idcliente=${idcliente}&idestadocompra=${idestado}`, httpOptions)
+  }
+  GetCompra(idcompra:number) {
+    return this.httpClient.get<Compras>(this.endpoint + `GetCompra?idcompra=${idcompra}`, httpOptions)
+  }
+  
   
 }

@@ -7,159 +7,163 @@
             </div>
             <div class="col-md-8">
                 <div class="row float-end">
-                    
-                    <div class="col-auto align-self-center">Ordenar por</div>
-                    <div class="col-auto align-self-center">
-                        <select name="orden" [(ngModel)]="orden" (change)="this.render()"  class="form-control form-select w-auto">
-                            <option [value]="'menor'">Menor precio</option>
-                            <option [value]="'mayor'">Mayor precio</option>
-                            <option [value]="'nuevas'">Más nuevas primero</option>
-                            <option [value]="'viejas'">Más viejas primero</option>
-                            <option [value]="'positivas'">Positivas primero</option>
-                            <option [value]="'negativas'">Negativas primero</option>
-                            
-                        </select>
+                    <div class="d-none d-md-block">
+                        <div class="col-auto align-self-center">Ordenar por</div>
+                        <div class="col-auto align-self-center">
+                            <select name="orden" [(ngModel)]="orden" (change)="this.Ordenar()"  class="form-control form-select w-auto">
+                                <option [value]="'menor'">Menor precio</option>
+                                <option [value]="'mayor'">Mayor precio</option>
+                                <option [value]="'nuevas'">Más nuevas primero</option>
+                                <option [value]="'viejas'">Más viejas primero</option>
+                                <option [value]="'positivas'">Positivas primero</option>
+                                <option [value]="'negativas'">Negativas primero</option>
+                                
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <div class="filtro mt-3">
+                <div class="filtro mt-3" *ngIf="FiltrosAplicados.length>0">
                     <h4>Filtros seleccionados</h4>
-                    <div class="filtroaplicado" *ngFor="let f of FiltrosAplicados;">
+                    <div class="filtroaplicado mt-2" *ngFor="let f of FiltrosAplicados;">
                         <p><i class="fas fa-times me-1"  (click)="quitarFiltro(f)" role="button"></i> <b> {{f.tipo}}:</b> {{f.label}} </p> 
                     </div>
                 </div>
-
-                <div class="filtro mt-3">
-                    <h4>Fecha</h4>
-                    <div class="input-group">
-                        <input class="form-control" placeholder="dd-mm-yyyy" readonly (dateSelect)="Addfiltro('fecha',this.fecha,'asdads')"
-                               name="dp" [(ngModel)]="fecha" ngbDatepicker #d="ngbDatepicker" >
-                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+                
+                <h4 class="filtroDisponible mt-2" role="button" (click)="openFilter=!openFilter">Filtros disponibles <i [ngClass]="openFilter ? 'fas fa-chevron-up':'fas fa-chevron-down'"></i></h4>    
+                <div class="listado-filtros" [ngClass]="openFilter ? 'open':'close'">
+                    <div class="filtro mt-3">
+                        <h4>Fecha</h4>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="dd-mm-yyyy" readonly (dateSelect)="Addfiltro('fecha',this.fecha,'asdads')"
+                                name="dp" [(ngModel)]="fecha" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" >
+                            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+                        </div>
                     </div>
-                </div>
 
                 
-                <div class="filtro mt-3">
-                    <h4>Categoría</h4>
-                    <div class="form-check" *ngFor="let c of Categorias;let i=index">
-                        <input class="form-check-input" type="radio" name="ubicacion" [value]="c.IdCategoria" (change)="Addfiltro('categoria',c.IdCategoria,c.Nombre)" id="categoria{{i}}">
-                        <label class="form-check-label" for="categoria{{i}}">
-                          {{c.Nombre}}
-                        </label>
-                      </div>
-                </div>
+                    <div class="filtro mt-3">
+                        <h4>Categoría</h4>
+                        <div class="form-check" *ngFor="let c of Categorias;let i=index">
+                            <input class="form-check-input" type="radio" name="ubicacion" [value]="c.IdCategoria" (change)="Addfiltro('categoria',c.IdCategoria,c.Nombre)" id="categoria{{i}}">
+                            <label class="form-check-label" for="categoria{{i}}">
+                            {{c.Nombre}}
+                            </label>
+                        </div>
+                    </div>
 
-                <div class="filtro mt-3">
-                    <h4>Ubicacion</h4>
-                    <div class="form-check" *ngFor="let u of Ubicaciones;let i=index" (change)="Addfiltro('ubicacion',u.IdProvincia,u.Nombre)">
-                        <input class="form-check-input" type="radio" name="ubicacion" id="ubicacion{{i}}">
-                        <label class="form-check-label" for="ubicacion{{i}}">
-                          {{u.Nombre}}
-                        </label>
-                      </div>
-                </div>
+                    <div class="filtro mt-3">
+                        <h4>Ubicación</h4>
+                        <div class="form-check" *ngFor="let u of Ubicaciones;let i=index" (change)="Addfiltro('ubicacion',u.IdProvincia,u.Nombre)">
+                            <input class="form-check-input" type="radio" name="ubicacion" id="ubicacion{{i}}">
+                            <label class="form-check-label" for="ubicacion{{i}}">
+                            {{u.Nombre}}
+                            </label>
+                        </div>
+                    </div>
 
-                <div class="filtro mt-3">
-                    <h4>Duración</h4>
-                    <div class="form-check" *ngFor="let d of Duraciones;let i=index" (change)="Addfiltro('duracion',d,d+'minutos')">
-                        <input class="form-check-input" type="radio" name="duracion" id="duracion{{i}}">
-                        <label class="form-check-label" for="duracion{{i}}">
-                          {{d}} minutos
-                        </label>
-                      </div>
-                </div>
+                    <div class="filtro mt-3">
+                        <h4>Duración</h4>
+                        <div class="form-check" *ngFor="let d of Duraciones;let i=index" (change)="Addfiltro('duracion',d,d)">
+                            <input class="form-check-input" type="radio" name="duracion" id="duracion{{i}}">
+                            <label class="form-check-label" for="duracion{{i}}">
+                            {{getDuracion(d)}}
+                            </label>
+                        </div>
+                    </div>
 
-                <div class="filtro mt-3">
-                    <h4>Prestadores</h4>
-                    <div class="form-check" *ngFor="let p of Prestadores;let i=index" (change)="Addfiltro('prestador',p.IdPrestador,p.NombreFantasia)">
-                        <input class="form-check-input" type="radio" name="prestadores" id="prestadores{{i}}">
-                        <label class="form-check-label" for="prestadores{{i}}">
-                          {{p.NombreFantasia}}
-                        </label>
+                    <div class="filtro mt-3">
+                        <h4>Prestadores</h4>
+                        <div class="form-check" *ngFor="let p of Prestadores;let i=index" (change)="Addfiltro('prestador',p.IdPrestador,p.NombreFantasia)">
+                            <input class="form-check-input" type="radio" name="prestadores" id="prestadores{{i}}">
+                            <label class="form-check-label" for="prestadores{{i}}">
+                            {{p.NombreFantasia}}
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="filtro mt-3">
-                    <h4>Mascotas</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mascotas" id="mascotas1" (change)="Addfiltro('mascotas',1,'Si')">
-                        <label class="form-check-label" for="mascotas1">
-                          Si
-                        </label>
+                    <div class="filtro mt-3">
+                        <h4>Mascotas</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="mascotas" id="mascotas1" (change)="Addfiltro('mascotas',1,'Si')">
+                            <label class="form-check-label" for="mascotas1">
+                            Si
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="mascotas" id="mascotas2" (change)="Addfiltro('mascotas',0,'No')">
+                            <label class="form-check-label" for="mascotas2">
+                            No
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mascotas" id="mascotas2" (change)="Addfiltro('mascotas',0,'No')">
-                        <label class="form-check-label" for="mascotas2">
-                          No
-                        </label>
+                    <div class="filtro mt-3">
+                        <h4>Capacidades reducidas</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="personas" id="personas1" (change)="Addfiltro('capacidades reducidas',1,'Si')">
+                            <label class="form-check-label" for="personas1">
+                            Si
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="personas" id="personas2" (change)="Addfiltro('capacidades reducidas',0,'No')">
+                            <label class="form-check-label" for="personas2">
+                            No
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="filtro mt-3">
-                    <h4>Capacidades reducidas</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="personas" id="personas1" (change)="Addfiltro('capacidades reducidas',1,'Si')">
-                        <label class="form-check-label" for="personas1">
-                          Si
-                        </label>
+                    <div class="filtro mt-3">
+                        <h4>Dietas especiales</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="personas" id="personas1" (change)="Addfiltro('dietas',1,'Si')">
+                            <label class="form-check-label" for="personas1">
+                            Si
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="personas" id="personas2" (change)="Addfiltro('dietas',0,'No')">
+                            <label class="form-check-label" for="personas2">
+                            No
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="personas" id="personas2" (change)="Addfiltro('capacidades reducidas',0,'No')">
-                        <label class="form-check-label" for="personas2">
-                          No
-                        </label>
+                    <div class="filtro mt-3">
+                        <h4>Dificultad</h4>
+                        <div class="form-check" *ngFor="let d of Dificultades;let i=index" (change)="Addfiltro('dificultad',d,d)">
+                            <input class="form-check-input" type="radio" name="Dificultades" id="Dificultades{{i}}">
+                            <label class="form-check-label" for="Dificultades{{i}}">
+                            {{d}} 
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="filtro mt-3">
-                    <h4>Dietas especiales</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="personas" id="personas1" (change)="Addfiltro('dietas',1,'Si')">
-                        <label class="form-check-label" for="personas1">
-                          Si
-                        </label>
+                    <div class="filtro mt-3">
+                        <h4>Idiomas</h4>
+                        
+                        <div class="form-check" *ngFor="let idioma of Idiomas;let i=index" (change)="Addfiltro('idiomas',idioma,idioma)">
+                            <input class="form-check-input" type="radio" name="Idiomas" id="Idiomas{{i}}">
+                            <label class="form-check-label" for="Idiomas{{i}}">
+                            {{idioma}}
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="personas" id="personas2" (change)="Addfiltro('dietas',0,'No')">
-                        <label class="form-check-label" for="personas2">
-                          No
-                        </label>
-                    </div>
-                </div>
-                <div class="filtro mt-3">
-                    <h4>Dificultad</h4>
-                    <div class="form-check" *ngFor="let d of Dificultades;let i=index" (change)="Addfiltro('dificultad',d,d)">
-                        <input class="form-check-input" type="radio" name="Dificultades" id="Dificultades{{i}}">
-                        <label class="form-check-label" for="Dificultades{{i}}">
-                          {{d}} 
-                        </label>
-                    </div>
-                </div>
-                <div class="filtro mt-3">
-                    <h4>Idiomas</h4>
-                    
-                    <div class="form-check" *ngFor="let idioma of Idiomas;let i=index" (change)="Addfiltro('idiomas',idioma,idioma)">
-                        <input class="form-check-input" type="radio" name="Idiomas" id="Idiomas{{i}}">
-                        <label class="form-check-label" for="Idiomas{{i}}">
-                          {{idioma}}
-                        </label>
-                    </div>
-                </div>
-                <div class="filtro mt-3">
-                    <h4>Promoción</h4>
-                    
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="promo" id="promo1" (change)="Addfiltro('promo',1,'Si')">
-                        <label class="form-check-label" for="promo1">
-                          Con descuento
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="promo" id="promo2" (change)="Addfiltro('promo',0,'No')">
-                        <label class="form-check-label" for="promo2">
-                          Sin descuento
-                        </label>
+                    <div class="filtro mt-3">
+                        <h4>Promoción</h4>
+                        
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="promo" id="promo1" (change)="Addfiltro('promo',1,'Si')">
+                            <label class="form-check-label" for="promo1">
+                            Con descuento
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="promo" id="promo2" (change)="Addfiltro('promo',0,'No')">
+                            <label class="form-check-label" for="promo2">
+                            Sin descuento
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

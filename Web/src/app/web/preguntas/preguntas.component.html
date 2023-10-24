@@ -2,16 +2,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h3 class="mb-3 mt-3">Ayuda</h3>
+                <h3 class="mb-3 mt-3">Preguntas frecuentes</h3>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-md-6 offset-md-3 text-center">
-                <h3 class="mb-3 mt-3">Preguntas frecuentes</h3>
-                <ngb-accordion #acc="ngbAccordion" class="text-start" activeIds="toggle-0">
-                    <ngb-panel id="toggle-{{i}}" title="{{p.Pregunta}}" *ngFor="let p of preguntas;let i = index">
+                
+                <ngb-accordion #acc="ngbAccordion" id="accordion" class="text-start" activeIds="toggle-0" [closeOthers]="true">
+                    <ngb-panel id="toggle-{{i}}" class="pregunta" title="{{p.Pregunta}}" *ngFor="let p of preguntas;let i = index" data-parent="#accordion">
                       <ng-template ngbPanelContent>
-                        <span [innerHtml]="p.Respuesta"></span>
+                        <span class="respuesta" [innerHtml]="p.Respuesta"></span>
                       </ng-template>
                     </ngb-panel>
                     

@@ -1,17 +1,21 @@
-<div class="text-end">
-<button (click)="Nueva()" class="btn btn-primary btn-lg mt-3 mb-3">Nueva</button>
+<div class="row">
+  <div class="col-md-9 col-6 align-self-center">
+    <h3>Actividades publicadas</h3>
+  </div>
+  <div class="col-md-3 col-6 text-end align-self-center">
+    <button (click)="Nueva()" class="btn btn-primary btn-lg mt-3 mb-3">Crear publicación</button>
+  </div>
 </div>
+
 <div class="table-responsive">
   <table class="align-middle mb-0 table table-borderless table-striped table-hover">
     <thead>
     <tr>
-      <th class="text-center">#</th>
+      
       <th>Nombre</th>
-      <th>Precio</th>
-      <th>Oferta</th>      
-      <th>Categoría</th>
-      <th>Calificación</th>
-      <th>Cancelación Gratuita</th>
+      <th class="d-none d-md-table-cell">Precio - Oferta</th>
+      <th class="d-none d-md-table-cell">Calificación</th>
+      <th class="d-none d-md-table-cell">Canc. Gratuita</th>
       <th>Activa</th>
       <th class="text-center">Acciones</th>
     </tr>
@@ -19,13 +23,11 @@
     <tbody>
 
     <tr *ngFor="let obj of ArrObj;">
-      <td class="text-center">{{obj.IdActividad}}</td>
+      
       <td>{{obj.Nombre}}</td>
-      <td>{{obj.Precio}}</td>
-      <td>{{obj.PrecioOferta}}</td>    
-      <td>{{obj.CategoriasEntity.Nombre}}</td>
-      <td>{{obj.Calificacion}}</td>   
-      <td>{{obj.CancelacionGratuita ? 'Si':'NO'}}</td>
+      <td class="d-none d-md-table-cell">{{obj.Precio}} - {{obj.PrecioOferta}}</td>
+      <td class="d-none d-md-table-cell">{{obj.Calificacion}}</td>   
+      <td class="d-none d-md-table-cell">{{obj.CancelacionGratuita ? 'Si':'NO'}}</td>
       <td>{{obj.Activa ? 'Si':'NO'}}</td>
       <td class="text-center">
           <i class="fas fa-trash me-2" role="button" (click)="Borrar(obj)" *ngIf="this.obj.Activa"></i>

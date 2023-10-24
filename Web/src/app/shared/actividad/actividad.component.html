@@ -1,38 +1,43 @@
 
 
 
-<div class="card">
+<div [ngClass]="listado ? 'card listado': 'card'">
     <div [ngClass]="listado ? 'row': ''">
-        <div [ngClass]="listado ? 'col-md-4': 'col-md-12'">
-            <div class="foto" >
-                <div class="favorito" role="button" (click)="favorito()"><i class="fas fa-heart"></i></div>
-                <img src="{{assets}}assets/actividades/{{foto}}" role="button" (click)="ficha()" class="w-100">
+        <div [ngClass]="listado ? 'col-md-5': 'col-md-12'">
+            <div class="foto">
+                <div class="pic" (click)="ficha()" role="button" style="background-image: url({{assets}}assets/actividades/{{foto}});">
+                    <div class="bg"></div>
+                    <div class="call"><span class="btn btn-primary ">RESERVA AHORA</span></div>
+                </div>
+                <div [ngClass]="this.fav ? 'favorito active':'favorito'" role="button" (click)="favorito()"><i class="fas fa-heart" ></i></div>
+                
                 <div class="cancelacion" *ngIf="obj.CancelacionGratuita">Cancelación gratuita</div>
             </div>
         </div>
-        <div [ngClass]="listado ? 'col-md-8': 'col-md-12'">
+        <div [ngClass]="listado ? 'col-md-7': 'col-md-12'">
             <div class="info mt-2"  role="button" (click)="ficha()">
                 <h4>{{obj.Nombre}}</h4>
-                <p>{{obj.DescripcionCorta}}<br>
-                <b>Ubicación:</b> {{obj.Ubicacion}}<br>
-                <b>Duracion:</b> {{obj.Duracion}} minutos<br>
+                <p>{{obj.DescripcionCorta.substring(0, 190)}}...<br>
+                <b>Ubicación:</b> {{obj.Ubicacion.substring(0, 50)}}<br>
+                <b>Duracion:</b> {{getDuracion(obj.Duracion)}}<br>
                 <b>Idiomas:</b> {{obj.Idiomas}}</p>
                 <div class="calificacion">
                     {{obj.Calificacion}} <ngb-rating [(rate)]="obj.Calificacion"  [readonly]="true" [max]="5"></ngb-rating>
                 </div>
                 
                 <div class="precio" *ngIf="obj.PrecioOferta">
-                    <span class="actual">${{obj.PrecioOferta}}</span>
-                    <span class="viejo"> ${{obj.Precio}} </span>
+                    <span class="actual">{{obj.PrecioOferta | currency :'ARS' :'symbol':'2.0'}}</span>
+                    <span class="viejo"> {{obj.Precio | currency :'ARS':'symbol':'2.0'}} </span>
                     por persona
                 </div>
                 <div class="precio" *ngIf="!obj.PrecioOferta">
-                    <span class="actual">${{obj.Precio}}</span>
+                    <span class="actual">{{obj.Precio | currency :'ARS':'symbol':'2.0'}}</span>
                     por persona
                 </div>
+                
             </div>
         </div>
     
-        <button class="btn btn-danger" *ngIf="this.fav">QUITAR FAV</button>
+        
     </div>
-    </div>
+</div>

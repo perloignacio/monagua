@@ -1,26 +1,27 @@
 <div class="container">
     <div class="row">
-        <div class="col-12 text-right">
-            <button (click)="nuevo()" class="btn btn-primary">Nuevo Horario</button>
+        <div class="col-md-6 col-6">
+          <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+        </div>
+        <div class="col-md-6 text-end col-6">
+            <button (click)="nuevo()" class="btn btn-primary btn-lg">Nuevo Horario</button>
         </div>
     </div>
-<div class="row text-center mt-5">
-    <div class="col-md-4">
+<div class="row  mt-5">
+    <div class="col-md-6 col-6">
       <div class="btn-group">
-        <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">Atras</div>
-        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">Hoy</div>
+        <div class="btn btn-primary btn-lg" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">Atras</div>
+        <div class="btn btn-dark btn-lg" mwlCalendarToday [(viewDate)]="viewDate">Hoy</div>
         
-        <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()"> Siguiente</div>
+        <div class="btn btn-primary btn-lg" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()"> Siguiente</div>
       </div>
     </div>
-    <div class="col-md-4">
-      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
-    </div>
-    <div class="col-md-4">
+    
+    <div class="col-md-6 col-6">
       <div class="btn-group">
-        <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month"> Mes</div>
-        <div class="btn btn-primary" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week"> Semana</div>
-        <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day"> Día</div>
+        <div class="btn btn-primary btn-lg" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month"> Mes</div>
+        <div class="btn btn-primary btn-lg" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week"> Semana</div>
+        <div class="btn btn-primary btn-lg" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day"> Día</div>
       </div>
     </div>
   </div>

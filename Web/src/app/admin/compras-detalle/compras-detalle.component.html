@@ -1,0 +1,106 @@
+<div *ngIf="this.obj">
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+  
+        <div>
+          Detalle de compra
+          <div
+            class="page-title-subheading">
+            Datos de la orden
+          </div>
+        </div>
+      </div>
+      <div class="page-title-actions">
+        <button type="button" (click)="Volver()" class="btn-shadow d-inline-flex align-items-center btn btn-dark">
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <form>
+      
+    <div class="row">
+        <div class="col-md-3">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11"><b>Fecha</b></label><br>
+            {{obj.Fecha | date:'dd/MM/yyyy'}}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11"><b>Cliente</b></label><br>
+            {{obj.ClientesEntity?.Apellido}} - {{obj.ClientesEntity?.Nombre}} - {{obj.ClientesEntity?.Email}} - {{obj.ClientesEntity?.Telefono}}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="position-relative form-group mt-2">
+            <label for="exampleEmail11"><b>Estado</b></label><br>
+            {{obj.EstadosCompraEntity?.Nombre}}
+          </div>
+        </div>
+        <div class="col-md-3">
+            <div class="position-relative form-group mt-2">
+              <label for="exampleEmail11"><b>Reserva</b></label><br>
+              {{obj.Reserva ? 'Si':'No'}}
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="position-relative form-group mt-2">
+                <label for="exampleEmail11"><b>Comentarios</b></label><br>
+                {{obj.Comentarios}}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="position-relative form-group mt-2">
+                <label for="exampleEmail11"><b>MercadoPago</b></label><br>
+                {{obj.MercadoPago}}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="position-relative form-group mt-2">
+                <label for="exampleEmail11"><b>Descuento</b></label><br>
+                {{obj.MontoDescuento}}
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive mt-5">
+        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+          <thead>
+          <tr>
+            <th class="text-center">#</th>
+            <th>Nombre</th>
+            <th>Prestador</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>      
+            <th>Precio</th>
+            <th>Cancelación Gratuita</th>
+            <th>Estado</th>
+            <th>Comentarios</th>
+          </tr>
+          </thead>
+          <tbody>
+      
+          <tr *ngFor="let cd of ArrObj;">
+            <td class="text-center">{{cd.IdCompraDetalle}}</td>
+            <td>{{cd.ActividadesEntity.Nombre}}</td>
+            <td>{{cd.ActividadesEntity.PrestadoresEntity.NombreFantasia}}</td>
+            <td>{{cd.Cantidad}}</td>
+            <td>{{cd.FechaHora | date:'dd/MM/yyyy hh:mm'}}</td>    
+            <td>{{cd.MontoActividad}}</td>
+            <td>{{cd.ActividadesEntity.CancelacionGratuita ? 'Si':'NO'}}</td>
+            <td>{{cd.EstadosCompraActividadEntity.Nombre}}</td>
+            <td><i class="far fa-comments" role="button" (click)="Comentarios(cd)"></i></td>
+           
+          </tr>
+          </tbody>
+        </table>
+        
+    </div>
+      
+    </form>
+</div>
+</div>

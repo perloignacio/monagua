@@ -1,15 +1,17 @@
-<div class="categorias">
-    <div class="container-fluid">
-        <app-categorias></app-categorias>
+<div class="sector categorias">
+    <div class="container">
+        <div class="categorias">
+            <app-categorias></app-categorias>
+        </div>
     </div>
 </div>
 <div class="slider">
     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
         <div ngxSlickItem *ngFor="let s of slides" class="slide">
             <div class="item" style="background-image: url('{{this.baseImg+s.Foto }}')">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <h1>{{s.Titulo}}</h1>
                             <h3>{{s.Descripcion}}</h3>
                         </div>
@@ -20,16 +22,21 @@
     </ngx-slick-carousel>
     <app-buscador [InsideSlide]="true"></app-buscador>
 </div>
-<div class="sector gris">
+<div class="sector gris pt-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h3 class="mb-3">Ultimas actividades</h3>
+                <h3 class="mb-3">Útimas actividades</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-4" *ngFor="let ac of Actividades.slice(0,3)">
+            <div class="col-md-4 col-12 mb-5" *ngFor="let ac of Actividades.slice(0,9)">
                 <app-actividad-shared  [Actividades]='ac' [Favoritos]="false"></app-actividad-shared>
+            </div>
+        </div>
+        <div class="row mt-3 mb-5">
+            <div class="col-12 text-center">
+                <a href="/actividades" class="btn btn-dark btn-lg ">Descubrí más</a>
             </div>
         </div>
         <div class="banner">
@@ -41,24 +48,23 @@
                 </div>
                 <div class="col-md-5">
                     <div class="info">
-                        <h1>El mundo te está esperando</h1>
-                        <p class="mt-3">Crea tu usuario y descubre actividades con las que te enamorarás de tus viajes.</p>
-                        <button class="btn btn-light btn-lg mt-3">Crear cuenta</button>
+                        <h1>Argentina te está esperando</h1>
+                        <p class="mt-3">Creá tu usuario, buscá y descubrí actividades únicas de las que te vas a enamorar en tus viajes.</p>
+                        <a href="/registro/cliente?org=" class="btn btn-light btn-lg mt-3">Crear cuenta</a>
                     </div>
                     
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-4" *ngFor="let ac of Actividades.slice(3)">
+        <div class="row pb-5">
+
+        </div>
+        <!--<div class="row">
+            <div class="col-4 mb-5" *ngFor="let ac of Actividades.slice(9,6)">
                 <app-actividad-shared [Actividades]='ac' [Favoritos]="false"></app-actividad-shared>
             </div>
-        </div>
-        <div class="row mt-5 pb-5">
-            <div class="col-12 text-center">
-                <button class="btn btn-dark btn-lg mt-3">Descubrí más</button>
-            </div>
-        </div>
+        </div>-->
+        
     </div>
 </div>
 <app-impactos></app-impactos>

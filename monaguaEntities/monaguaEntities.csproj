@@ -58,11 +58,13 @@
     <Compile Include="Entities\Auto\Actividades.Auto.cs" />
     <Compile Include="Entities\Auto\ActividadesHorariosExcepcion.Auto.cs" />
     <Compile Include="Entities\Auto\Configuracion.Auto.cs" />
+    <Compile Include="Entities\Auto\EstadosCompraActividad.Auto.cs" />
     <Compile Include="Entities\Auto\PreguntasFrecuentes.Auto.cs" />
     <Compile Include="Entities\Auto\Slides.Auto.cs" />
     <Compile Include="Entities\Auto\TipoRepeticiones.Auto.cs" />
     <Compile Include="Entities\Auto\Usuarios.Auto.cs" />
     <Compile Include="Entities\Configuracion.cs" />
+    <Compile Include="Entities\EstadosCompraActividad.cs" />
     <Compile Include="Entities\PreguntasFrecuentes.cs" />
     <Compile Include="Entities\Slides.cs" />
     <Compile Include="Entities\TipoRepeticiones.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Entities\Calificaciones.cs" />
     <Compile Include="Entities\Auto\Calificaciones.Auto.cs" />
     <Compile Include="Objects\Auto\ConfiguracionObject.Auto.cs" />
+    <Compile Include="Objects\Auto\EstadosCompraActividadObject.Auto.cs" />
     <Compile Include="Objects\Auto\PreguntasFrecuentesObject.Auto.cs" />
     <Compile Include="Objects\Auto\SlidesObject.Auto.cs" />
     <Compile Include="Objects\Auto\TipoRepeticionesObject.Auto.cs" />
@@ -107,6 +110,7 @@
     <Compile Include="Objects\Auto\DescuentosObject.Auto.cs" />
     <Compile Include="Entities\EstadosCompra.cs" />
     <Compile Include="Entities\Auto\EstadosCompra.Auto.cs" />
+    <Compile Include="Objects\EstadosCompraActividadObject.cs" />
     <Compile Include="Objects\EstadosCompraObject.cs" />
     <Compile Include="Objects\Auto\EstadosCompraObject.Auto.cs" />
     <Compile Include="Entities\Favoritos.cs" />

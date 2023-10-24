@@ -5,3 +5,9 @@
 .paginacion .numeros .numero.active{background-color: #7ECE00;}
 .paginacion .der{display: inline-block;float: right;}
 .paginacion .der img{transform: rotate(180deg);}
+.filtroDisponible{display: none;}
+@media (max-width:768px) {
+    .filtroDisponible{display: block;}
+    .listado-filtros.open{display: block;}
+    .listado-filtros.close{display: none;}
+}

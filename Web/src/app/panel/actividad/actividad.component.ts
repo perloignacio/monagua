@@ -9,7 +9,10 @@ import { FileUploader, FileFilter, FileManagerInterface, FileManager } from '@un
 import { ActividadesService } from 'src/app/services/actividades/actividades.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { WebService } from 'src/app/services/web/web.service';
+import { Provincias } from 'src/app/models/Provincias.model';
+import { Localidades } from 'src/app/models/Localidades.model';
 
 @Component({
   selector: 'app-actividad',
@@ -17,8 +20,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./actividad.component.scss']
 })
 export class ActividadComponent implements OnInit {
-
+  public Editor = ClassicEditor;
   obj:Actividades=new Actividades();
+  listaprovincias:Provincias[]=[];
+  listalocalidades:Localidades[]=[]
   Categorias:Categorias[]=[];
   dataSource: any[] = [];
   archivos:any[]=[];
@@ -27,7 +32,7 @@ export class ActividadComponent implements OnInit {
   fileInput = new FormControl();
   Agregar:boolean=true;
   public uploader: FileUploader;
-  constructor(private srvCat:CategoriasService,private srvShared:SharedService,private srvActividad:ActividadesService,private route:Router) {
+  constructor(private srvCat:CategoriasService,private srvShared:SharedService,private srvActividad:ActividadesService,private route:Router,private srvWeb:WebService) {
     this.srvCat.todas().subscribe((clist)=>{
       this.Categorias=clist;
       this.obj=this.srvShared.ObjEdit as Actividades;
@@ -37,6 +42,7 @@ export class ActividadComponent implements OnInit {
       }else{
         this.obj=new Actividades();
       }
+      this.cargaProvincias();
     })
 
     this.uploader = new FileUploader({
@@ -45,6 +51,27 @@ export class ActividadComponent implements OnInit {
       autoUpload: false,
       filters: [new FileFilter('only:JPG/PNG/GIF', new RegExp('image/jpeg|image/png|image/gif'), 'type')]
     });
+  }
+
+  cargaProvincias(){
+    this.srvWeb.Provincias(1).subscribe((provincias)=>{
+      this.listaprovincias=provincias;
+      let idprov= this.Agregar ? this.listaprovincias[0].IdProvincia: this.obj.IdProvincia;
+      this.obj.IdProvincia=idprov;
+      this.cargaLocalidades(false)
+    })  
+  }
+
+  onChangeProvincia(e){
+    this.cargaLocalidades(true);
+  }
+  cargaLocalidades(cambio:boolean){
+    this.srvWeb.Localidades(this.obj.IdProvincia).subscribe((localidades)=>{
+      this.listalocalidades=localidades;
+      let idloc=cambio ? this.listalocalidades[0].IdLocalidad: this.obj.IdLocalidad;
+      this.obj.IdLocalidad=idloc;
+      //this.obj.IdLocalidad=localidades[0].IdLocalidad;
+    })
   }
 
   ngOnChanges() {

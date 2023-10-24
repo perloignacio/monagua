@@ -9,13 +9,19 @@ namespace monaguaRules
 {
     public class PrestadoresRules
     {
-        public Prestadores Agregar(string razonsocial, string fantasia, string cuit, string email,string logo, bool prestadorHabilitado, int? idlocalidad, int? idpais, int? idprovincia,bool politicas, string telefono)
+        public Prestadores Agregar(string razonsocial, string fantasia, string cuit, string email,string logo, bool prestadorHabilitado, int? idlocalidad, int? idpais, int? idprovincia,bool politicas, string telefono,string certi)
         {
-            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, politicas,telefono,logo,cuit);
-
+            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, politicas,telefono,logo,cuit,"agregar");
+            if (prestadorHabilitado)
+            {
+                if (string.IsNullOrEmpty(certi))
+                {
+                    throw new Exception("Debe ingresar la constancia de proveedor habilitado");
+                }
+            }
             var pr = new Prestadores();
             pr.NombreFantasia = fantasia;
-            pr.Activo = true;
+            pr.Activo = false;
             pr.RazonSocial = razonsocial;
             pr.Email = email;
             pr.Cuit = cuit;
@@ -35,6 +41,7 @@ namespace monaguaRules
             {
                 pr.IdProvincia = idprovincia.Value;
             }
+            
             pr.PrestadorHabilitado = prestadorHabilitado;
             pr.Logo = logo;
             pr.Politicas = politicas;
@@ -46,7 +53,7 @@ namespace monaguaRules
 
         public void Modificar(int idprestador, string razonsocial, string fantasia, string cuit, string email, string logo, int? idlocalidad, int? idpais, int? idprovincia, string telefono)
         {
-            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, true, telefono, logo,cuit);
+            validar(razonsocial, fantasia, email, idlocalidad, idpais, idprovincia, true, telefono, logo,cuit,"modificar");
 
             var pr = new Prestadores();
             pr = PrestadoresMapper.Instance().GetOne(idprestador);
@@ -114,8 +121,16 @@ namespace monaguaRules
             PrestadoresMapper.Instance().Save(pr);
 
         }
-        public void validar(string nombre, string apellido, string email, int? idlocalidad, int? idpais, int? idprovincia, bool politicas, string telefono, string logo,string cuit)
+        public void validar(string nombre, string apellido, string email, int? idlocalidad, int? idpais, int? idprovincia, bool politicas, string telefono, string logo,string cuit,string accion)
         {
+            if (accion == "agregar")
+            {
+                Usuarios u = UsuariosMapper.Instance().GetByUsuario(email);
+                if (u != null)
+                {
+                    throw new Exception("Ya existe un usuario creado con ese email");
+                }
+            }
             if (string.IsNullOrEmpty(nombre))
             {
                 throw new Exception("Ingrese el nombre");
@@ -173,6 +188,7 @@ namespace monaguaRules
             {
                 throw new Exception("Debe aceptar los terminos y condiciones");
             }
+            
         }
     }
 }

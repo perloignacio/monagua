@@ -1,0 +1,8 @@
+.table-responsive{padding-bottom: 30px;}
+.table-responsive thead{}
+.table-responsive thead th,td{box-shadow: inset 0 0 0 9999px #F7F7F7;border-bottom: 1px solid #111;padding: 15px 0px;}
+.table-responsive i{background-color: #111;color:#fff;padding: 7px;border-radius: 5px;}
+
+@media (max-width:768px) {
+    .table-responsive i{margin-bottom: 7px;margin-left: 10px;margin-right: 0px !important;}
+}

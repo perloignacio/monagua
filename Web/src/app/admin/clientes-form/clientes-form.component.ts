@@ -16,7 +16,7 @@ export class ClientesFormComponent implements OnInit {
   obj:Clientes;
 
   constructor(private srvObj:ClientesService,private srvShared:SharedService,private route:Router) {
-    this.obj=this.srvShared.ObjEdit as Clientes;
+      this.obj=this.srvShared.ObjEdit as Clientes;
       if(this.obj!=null){
         this.VerDatos=false;
       }else{

@@ -1,31 +1,29 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1><b>MODIFICAR CONTRASEÑA</b></h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <label>Ingrese su contraseña actual</label>
-                        <input type="password" name="contra"  [(ngModel)]="contra" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Ingrese su nueva contraseña</label>
-                        <input type="password" name="contraNew"  [(ngModel)]="contraNew" class="form-control">
-                    </div>
-                    <div class="form-group mt-3">
-                        <label>Repita la contraseña</label>
-                        <input type="password" name="nContraNew"  [(ngModel)]="nContraNew" class="form-control">
-                    </div>
-                    <div class="form-group mt-3">
-                        <button class="btn btn-primary" (click)="Enviar()"> GUARDAR</button>
-                    </div>
-                </div>
-            </div>
-            
+
+   
+<div class="row">
+    <div class="col-md-8 ">
+        <h3>Modificar Contraseña</h3>
+        <p class="grande">Crea una cuenta para añadir actividades a tus favoritos y acceder a tus reservas desde cualquier dispositivo.</p>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-8">
+        <div class="form-group">
+            <label>Ingrese su contraseña actual</label>
+            <input type="password" name="contra"  [(ngModel)]="contra" class="form-control">
+        </div>
+        <div class="form-group mt-3">
+            <label>Ingrese su nueva contraseña</label>
+            <input type="password" name="contraNew"  [(ngModel)]="contraNew" class="form-control">
+        </div>
+        <div class="form-group mt-3">
+            <label>Repita la contraseña</label>
+            <input type="password" name="nContraNew"  [(ngModel)]="nContraNew" class="form-control">
+        </div>
+        <div class="form-group mt-3">
+            <button class="btn btn-dark btn-lg" (click)="Enviar()"> Guardar contraseña</button>
         </div>
     </div>
 </div>
+            
+        

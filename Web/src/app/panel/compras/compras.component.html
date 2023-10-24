@@ -1,32 +1,48 @@
-<div class="table-responsive">
-    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-      <thead>
-      <tr>
-        <th class="text-center">#</th>
-        <th>Fecha</th>
-        <th>Cliente</th>
-        
-        <th>Reserva</th>
-        <th>Descuento</th>
-        <th>Estado</th>
-        <th>Activa</th>
-        <th class="text-center">Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
 
-      <tr *ngFor="let obj of ArrObj;">
-        <td class="text-center text-muted">#{{obj.IdCompra}}</td>
-        <td>{{obj.Fecha | date:'dd/MM/yyyy'}}</td>
-        <td>{{obj.ClientesEntity.Apellido}}</td>
-        
-        <td>{{obj.Reserva}}</td>
-        <td>$ {{obj.MontoDescuento ? obj.MontoDescuento:'0'}}</td>
-        <td>{{obj.EstadosCompraEntity.Nombre}}</td>
-        <td class="text-center">{{obj.Activa ? 'Si':'NO'}}</td>
-        <td></td>
-      </tr>
-      </tbody>
-    </table>
-    
+
+<div class="row">
+  <div class="col-md-8">
+      <h3 *ngIf="this.authService.currentUserValue.ClientesEntity">Mis compras</h3>
+      <h3 *ngIf="!this.authService.currentUserValue.ClientesEntity">Mis ventas</h3>
+      <p class="grande mt-2 mb-4">Crea una cuenta para añadir actividades a tus favoritos y acceder a tus reservas desde cualquier dispositivo.</p>
+  </div>
 </div>
+<div class="card listado mt-3" *ngFor="let cd of ArrObj;">
+  <div class="reserva border-bottom pb-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="foto" style="background-image: url({{assets}}assets/actividades/{{cd.ActividadesEntity.Fotos.split(',')[0]}});">
+                <div class="this.fav ? 'favorito active':'favorito'" role="button" (click)="favorito(cd.ActividadesEntity)"><i class="fas fa-heart" ></i></div>
+                
+                <div class="cancelacion" *ngIf="cd.ActividadesEntity.CancelacionGratuita">Cancelación gratuita</div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="info mt-2" (click)="ficha(cd)"  role="button">
+                <h4>{{cd.ActividadesEntity.Nombre}}</h4>  
+                <h5 *ngIf="authService.currentUserValue.ClientesEntity">Prestador: {{cd.ActividadesEntity.PrestadoresEntity.NombreFantasia}}</h5>
+                <h5 *ngIf="authService.currentUserValue.PrestadoresEntity">Cliente: {{cd.ComprasEntity.ClientesEntity.Apellido}} {{cd.ComprasEntity.ClientesEntity.Nombre}}</h5>
+                <p>Número de reserva: #{{cd.IdCompra}}/{{cd.IdCompraDetalle}}<br>
+                <b>Ubicación:</b> {{cd.ActividadesEntity.Ubicacion}}<br>
+                <b>Duracion:</b> {{cd.ActividadesEntity.Duracion}} minutos<br>
+                <b>Fecha y Hora:</b> {{cd.FechaHora | date:'dd/MM/yyyy hh:mm'}}<br>
+                <b>Cantidad:</b> {{cd.Cantidad}}<br>
+                <b>Cancelación gratuita:</b> {{cd.ActividadesEntity.CancelacionGratuita ? 'Si':'NO'}}<br>
+                <b>Tiempo previo a cancelación:</b> {{cd.ActividadesEntity.DiasCancelacion}} días<br>
+                <b>Estado de la actividad:</b> {{cd.EstadosCompraActividadEntity.Nombre}}<br>
+                
+                
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <button class="btn btn-dark btn-lg me-2" (click)="Borrar(cd)">Cancelar reserva</button>
+        <button class="btn btn-dark btn-lg me-2" (click)="Comentarios(cd)">Dejar comentario</button>
+        <button class="btn btn-dark btn-lg me-2" (click)="Mensajes(cd)">Enviar mensaje directo</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+

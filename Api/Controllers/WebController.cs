@@ -31,6 +31,25 @@ namespace Api.Controllers
 
         }
 
+        [Route("whatsapp")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult whatsapp()
+        {
+            try
+            {
+
+                return Ok(ConfiguracionMapper.Instance().GetByClave("Whatsapp"));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
         [Route("provincias")]
         [HttpGet]
         [AllowAnonymous]
@@ -104,6 +123,26 @@ namespace Api.Controllers
                 TipoRepeticionesList lista = TipoRepeticionesMapper.Instance().GetAll();
                 
                 return Ok(lista.Where(r=>r.Activa).OrderBy(r=>r.IdTipoRepeticion));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+        [Route("estadosCompra")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult estadosCompra()
+        {
+            try
+            {
+                
+
+                return Ok(EstadosCompraMapper.Instance().GetAll());
             }
             catch (Exception ex)
             {

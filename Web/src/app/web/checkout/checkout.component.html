@@ -1,31 +1,32 @@
-
-<div class="mt-2 mb-5">
+<app-login [origen]="'checkout'" *ngIf="srvAut.currentUserValue==null"></app-login>
+<div class="sector gris" *ngIf="srvAut.currentUserValue!=null">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-6 offset-md-3">
+        <h3 class="mt-5"><b>Finalizar compra</b></h3>
+      
         
-        <p class="medio"><b>Información del cliente</b></p>
-        <app-login [origen]="'checkout'" *ngIf="srvAut.currentUserValue==null"></app-login>
         
         
-        <div *ngIf="srvAut.currentUserValue!=null">
-          <div class="row">
+        <div *ngIf="srvAut.currentUserValue!=null" class="infocliente">
+          <h4 class="mt-3">Información de cliente</h4>
+          <div class="row mt-3">
             <div class="col-md-4 col-6 mb-3">
-              <label for="firstName">Nombre</label>
+              <label for="firstName" class="lblCompra">Nombre</label>
               <p><b>{{srvAut.currentUserValue.ClientesEntity.Nombre}}</b></p>
             </div>
             <div class="col-md-4 col-6 mb-3">
-              <label for="firstName">Apellido</label>
+              <label for="firstName" class="lblCompra">Apellido</label>
               <p><b>{{srvAut.currentUserValue.ClientesEntity.Apellido}}</b></p>
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md-4 col-6 mb-3">
-              <label for="firstName">Teléfono</label>
+              <label for="firstName" class="lblCompra">Teléfono</label>
               <p><b>{{srvAut.currentUserValue.ClientesEntity.Telefono}}</b></p>
             </div>
             <div class="col-md-4 col-6 mb-3">
-              <label for="firstName">Email</label>
+              <label for="firstName" class="lblCompra">Email</label>
               <p><b>{{srvAut.currentUserValue.ClientesEntity.Email}}</b></p>
             </div>
         
@@ -34,77 +35,86 @@
         </div>
         
       </div>
-      <div class="col-md-4">
-        <p class="medio"><b>Resumen</b></p>
+      <div class="col-md-6 offset-md-3 border-top mt-3 pt-3 mb-5">
+        <h4 class="mt-3 mb-2">Resumen</h4>
         <ng-container *ngFor='let detalle of this.srvCompras.carrito.Detalle'>
-            <div class="item">
+            <div class="item mb-4">
                 <div class="row">
-                <div class="col-md-3">
-                    <div class="foto">
-                        <img src="{{assets}}assets/actividades/{{detalle.ActividadesEntity.Fotos.split(',')[0]}}" class="img-fluid">
-                    </div>
+                <div class="col-md-8 col-6">
+                    <p class="grande"><b>{{detalle.ActividadesEntity.Nombre}}</b></p>
+                    <p class="chico"> Fecha:<b>{{detalle.FechaHora | date:'dd/MM/yyyy hh:mm'}}</b></p>
+                    <p class="chico"> Cantidad: <b>{{detalle.Cantidad}}</b></p>
                 </div>
-                <div class="col-md-6 col-6">
-                    <p><b>{{detalle.ActividadesEntity.Nombre}}</b></p>
-                    <p class="chico"> <b>Fecha:</b>{{detalle.FechaHora | date:'dd-MM-yyyy hh:mm'}}</p>
-                    <p class="chico"> <b>Cantidad:</b>{{detalle.Cantidad}}</p>
-                </div>
-                <div class="col-md-3 col-6 text-end">
-                    <p><b>${{detalle.ActividadesEntity.PrecioOferta!=null? detalle.ActividadesEntity.PrecioOferta:detalle.ActividadesEntity.Precio * detalle.Cantidad |  number:'':'es-Es'}}</b></p>
+                <div class="col-md-4 col-6 text-end">
+                    <p class="grande"><b>${{detalle.ActividadesEntity.PrecioOferta!=null? detalle.ActividadesEntity.PrecioOferta:detalle.ActividadesEntity.Precio * detalle.Cantidad |  number:'':'es-Es'}}</b></p>
                 </div>
                 </div>
             </div>
         </ng-container>
-        <div class="subtotal">
-            <div class="row">
-                <div class="col-md-7 col-6">
-                    <p>Subtotal</p>
-                </div>
-                <div class="col-md-5 col-6 text-end">
-                    <p>$ {{this.srvCompras.getSubTotal() | number:'':'es-Es'}}</p>
-                </div>
+        <div class="row">
+          <div class="col-md-8 offset-md-2 border-top pt-3 pb-3">
+            <div class="subtotal">
+              <div class="row">
+                  <div class="col-md-7 col-6">
+                      <p>Subtotal</p>
+                  </div>
+                  <div class="col-md-5 col-6 text-end">
+                      <p>$ {{this.srvCompras.getSubTotal() | number:'':'es-Es'}}</p>
+                  </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="subtotal" *ngIf="this.srvCompras.carrito.DescuentosEntity!=null">
-            <div class="row">
-                <div class="col-md-7 col-6">
-                <p>Descuento</p>
-                </div>
-                <div class="col-md-5 col-6 text-end">
-                <p>$ - {{this.srvCompras.getDescuento() | number:'':'es-Es'}}</p>
+        <div class="row">
+          <div class="col-md-8 offset-md-2 border-top pt-3 pb-3 border-bottom">
+            <div class="subtotal" *ngIf="this.srvCompras.carrito.DescuentosEntity!=null">
+                <div class="row">
+                    <div class="col-md-7 col-6">
+                    <p>Descuento</p>
+                    </div>
+                    <div class="col-md-5 col-6 text-end">
+                    <p>$ - {{this.srvCompras.getDescuento() | number:'':'es-Es'}}</p>
+                    </div>
                 </div>
             </div>
+          </div>
         </div>
         
         <div class="codigoContainer mt-3" *ngIf="this.srvCompras.carrito.DescuentosEntity==null">
-            <p><b>Ingresar el código de tu cupón o crédito</b></p>
-            <div class="input-group mt-2">
-              <input type="text" class="form-control" [(ngModel)]="this.codigoCupon" placeholder="Código descuento" aria-label="Recipient's username" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" (click)="Canjear()" type="button">AGREGAR</button>
+          <div class="row">
+            <div class="col-md-5 align-self-center">
+              <p><b>Ingresar el código de tu cupón o crédito</b></p>
+            </div>
+            <div class="col-md-7 align-self-center">
+              <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="this.codigoCupon" placeholder="Código descuento" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-dark btn-lg" (click)="Canjear()" type="button">AGREGAR</button>
+                </div>
               </div>
             </div>
+          </div>
         </div>
-        <button class="btn btn-primary w-100 mt-2" (click)="CambiaReserva(!this.srvCompras.carrito.Reserva)">{{this.srvCompras.carrito.Reserva ? "ABONO LA TOTALIDAD":"SOLO QUIERO RESERVAR"}}</button>
+        
         <div class="resumenBottomTotal mt-5">
             <div class="row">
               <div class="col-md-6">
-                <h5>Total a abonar</h5>
+                <p class="grande"><b>Total a abonar</b></p>
               </div>
               <div class="col-md-6 text-end">
-                <h5>$ {{this.srvCompras.getTotal() |  number:'':'es-Es'}}</h5>
+                <p class="grande"><b>$ {{this.srvCompras.getTotal() |  number:'':'es-Es'}}</b></p>
               </div>
             </div>
-            <div class="row" *ngIf="this.srvCompras.carrito.Reserva">
-                <div class="col-md-6">
-                  <h5>Total a abonar en el establecimiento</h5>
-                </div>
-                <div class="col-md-6 text-end">
-                  <h5>$ {{this.srvCompras.getTotal() |  number:'':'es-Es'}}</h5>
-                </div>
-              </div>
         </div>
-        <button class="btn btn-primary w-100 mt-2" (click)="Finalizar()">FINALIZAR TU COMPRA</button>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <button class="btn btn-success w-100 mt-2 btn-lg" (click)="Reserva()">SOLO QUIERO RESERVAR</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary w-100 mt-2 btn-lg" (click)="Finalizar()">FINALIZAR TU COMPRA</button>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>

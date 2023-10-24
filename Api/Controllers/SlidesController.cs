@@ -120,19 +120,25 @@ namespace Api.Controllers
 
                 Slides obj = JsonConvert.DeserializeObject<Slides>(HttpContext.Current.Request.Unvalidated["obj"]);
                 int id = JsonConvert.DeserializeObject<int>(HttpContext.Current.Request.Unvalidated["id"]);
-                string icono = string.Join(",", Helpers.SubeArchivos("slides", "", false, HttpContext.Current.Request.Files));
-                if (string.IsNullOrEmpty(icono))
-                {
-                    icono = "nologo.jpg";
-                }
-
+                
                 SlidesRules sRules = new SlidesRules();
                 if (id != 0)
                 {
+                    Slides aux = SlidesMapper.Instance().GetOne(id);
+
+                    string icono = string.Join(",", Helpers.SubeArchivos("slides","", false, HttpContext.Current.Request.Files));
+                    if (string.IsNullOrEmpty(icono))
+                    {
+                        icono = aux.Foto;
+                    }
+
                     sRules.Modificar(id,obj.Titulo,obj.Descripcion,icono,obj.Link,obj.Orden);
                 }
                 else
                 {
+                    string icono = string.Join(",", Helpers.SubeArchivos("slides", "", false, HttpContext.Current.Request.Files));
+                    
+
                     sRules.Agregar(obj.Titulo, obj.Descripcion,icono, obj.Link, obj.Orden);
                 }
 

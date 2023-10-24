@@ -20,29 +20,74 @@ html,body{font-family: 'Figtree', sans-serif !important;overflow-x: hidden;}
 .btn{border-radius: 27px;border:0px;}
 .btn-ligth{background-color: #F7F7F7 !important; background: none;}
 .btn-dark{background-color: #48494A !important;background: none;}
+.btn-primary{background-color: #007793 !important; background: none;}
+.btn-success{background-color: #7ECE00 !important; background: none;}
 .btn-dark:hover{background-color:#007793 !important; background: none;}
 .btn-dark:active{background-color:#007793 !important; background: none;}
+.btn-light:hover{background-color: #7ECE00 !important; background: none;}
 .btn-lg{padding: 13px 18px;font-size: 14px;}
 .btn-sm{padding: 6px 13px;font-size: 13px;}
 .cal-open-day-events{background-color: #fff !important;box-shadow:none;color:#000 !important;}
 #top{background-color: #F7F7F7;padding: 20px 0px;border-top: 1px solid #BEBEBE;border-bottom: 1px solid #BEBEBE}
 .rounded{border-radius: 15px !important;}
-.categorias{padding: 10px 0px;border-bottom: 1px solid #BEBEBE;position: relative;background-color: #F7F7F7;}
-.sector{}
+.categorias{padding: 10px 0px;position: relative;}
+
+.sector.categorias{border-bottom: 1px solid #BEBEBE;background-color: #F7F7F7;}
 .sector.gris{background-color: #F7F7F7;}
 .slider .slick-dots{bottom: 40px !important;width: 100%;}
 .slider .slick-dots li button::before {color: #F7F7F7;font-size: 14px;}
 .slider .slick-dots .slick-active button::before{color: #7ECE00;}
+.carouselcat{padding: 0px 30px;}
+
 .ficha .ubicacion iframe{width: 100% !important;}
 
-.accordion-item{border:1px solid #48494A !important; background-color: transparent !important;border-radius: 15px !important;padding: 15px;margin-bottom: 20px;}
-.accordion-button{background-color: transparent !important;box-shadow: none !important;font-size: 18px;color:#555555}
-.accordion-button:not(.collapsed){background-color: transparent !important;box-shadow: none !important;font-size: 18px;color:#555555}
-.accordion-body{margin-top: 10px;}
-footer{background-color: #48494A;padding: 20px;}
+.accordion-item{border:1px solid #48494A !important; background-color: transparent !important;border-radius: 15px !important;margin-bottom: 20px; transition: all 0.5s ease-in-out;}
+.accordion-item:hover{background-color: #007793 !important;color:#fff}
+.accordion-item:hover .accordion-button{color:#fff !important}
+.accordion-button{background-color: transparent !important;box-shadow: none !important;font-size: 22px;color:#555555;padding: 15px;border-radius: 15px !important;font-weight: 700;}
+.accordion-button:not(.collapsed){box-shadow: none !important;font-size: 22px;color:#555555;font-weight: 700;}
+.accordion-button:hover{background-color: #007793 !important;color:#fff}
+.accordion-body{padding: 15px;font-size: 18px !important;}
+.accordion-body p{font-size: 18px !important;}
+footer{background-color: #48494A;padding: 20px;position: fixed;bottom: 0px;width: 100%;}
 footer p{color:#fff;}
 footer a{color:#fff !important;}
+footer a:hover{text-decoration: underline !important;}
+
 h2{font-size: 36px;font-weight: 700;color:#48494A;}
 h3{font-size: 32px;font-weight: 700;color:#48494A;}
 h4{font-size: 21px;font-weight: 700;color:#48494A;}
-p{font-size: 14px;}
+p{font-size: 16px;}
+p.grande{font-size: 24px;}
+label{margin-bottom: 5px;}
+
+.raiting span{font-size: 25px;color:#007793 !important}
+.modal-content{border-radius: 15px;padding: 10px;}
+
+.ck-content{min-height: 200px !important; background-color: transparent !important;}
+.cal-open-day-events{background: none;background-color: #7ECE00 !important;}
+.cal-day-badge,.cal-event{background-color:#007793 !important; }
+.cal-open-day-events .ng-star-inserted{margin-bottom: 15px;}
+.cal-open-day-events .cal-event{background-color: #48494A !important;}
+.cal-open-day-events .cal-event-action{background-color: #111;color:#fff;padding: 7px;border-radius: 5px;margin-right: 10px;}
+
+.swal2-actions button{border-radius: 27px !important;border:0px !important;padding: 13px 18px !important;font-size: 14px !important;min-width: 100px !important;}
+.swal2-styled.swal2-confirm{background-color: #007793 !important;box-shadow: none !important;}
+.min-vh{min-height: 80vh; height: 100%;}
+.slick-arrow{display: none !important   ;}
+.flotante {width: 70px;height: 70px;text-align: center;position: fixed;right: 15px;bottom: 150px;z-index: 10000;background-color: #5EB463;border-radius: 50%; }
+.flotante i {font-size: 40px;color: #fff;position: relative;top: 13px;}
+
+@media (max-width:768px) {
+    h2{font-size: 30px;}
+    h3{font-size: 25px;}
+    h4{font-size: 18px;}
+    .logo{text-align: center;}
+    .menu{text-align: center;margin-top: 20px;}
+    .carouselcat{padding: 0px 20px;}
+    .flechas .izq{left: 0px !important;}
+    .flechas .der{right: 0px !important;}
+    footer{padding: 10px 0px;}
+    .menu-footer{text-align: left !important;font-size: 12px !important;}
+    .menu-footer a{margin-left: 0px !important;margin-right: 7px !important;}
+}

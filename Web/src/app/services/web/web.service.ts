@@ -6,6 +6,7 @@ import { Provincias } from 'src/app/models/Provincias.model';
 import { Localidades } from 'src/app/models/Localidades.model';
 import { Usuarios } from 'src/app/models/Usuarios.model';
 import { TipoReticiones } from 'src/app/models/TipoRepeticiones.model';
+import { EstadosCompra } from 'src/app/models/EstadosCompra.model';
 const httpOptions = {
   withCredentials: true
 };
@@ -31,6 +32,12 @@ export class WebService {
   }
   TipoRepeticiones() {
     return this.httpClient.get<TipoReticiones[]>(this.endpoint + `repeticiones`, httpOptions)
+  }
+  EstadosCompra() {
+    return this.httpClient.get<EstadosCompra[]>(this.endpoint + `estadosCompra`, httpOptions)
+  }
+  Whatsapp() {
+    return this.httpClient.get<any>(this.endpoint + `Whatsapp`, httpOptions)
   }
   
 

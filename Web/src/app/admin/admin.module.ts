@@ -30,6 +30,7 @@ import { PreguntasFormComponent } from './preguntas-form/preguntas-form.componen
 import { SlidesFormComponent } from './slides-form/slides-form.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ActividadesComponent } from './actividades/actividades.component';
+import { ComprasDetalleComponent } from './compras-detalle/compras-detalle.component';
 @NgModule({
     declarations: [
         CategoriasComponent,
@@ -55,7 +56,8 @@ import { ActividadesComponent } from './actividades/actividades.component';
         PreguntasComponent,
         PreguntasFormComponent,
         SlidesFormComponent,
-        ActividadesComponent
+        ActividadesComponent,
+        ComprasDetalleComponent
     ],
     exports:[
       

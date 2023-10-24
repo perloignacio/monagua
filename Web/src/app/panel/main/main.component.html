@@ -1,29 +1,35 @@
-<div class="container-fluid">
-<div class="row">
-    <div class="col-md-2">
-        <div class="menu mt-5 border p-2">
-            <div *ngIf="cliente">
-                <a [routerLink]="'/panel/cliente'" class="d-block">Mi Perfil</a>
-                <a [routerLink]="'/panel/cambiarContra'" class="d-block">Cambiar contraseña</a>
-                <a [routerLink]="'/panel/cliente/compras'" class="d-block">Compras</a>
-                <a [routerLink]="'/panel/cliente/favoritos'" class="d-block">Favoritos</a>
+<div class="panel pb-5">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="menu mt-5">
+                <div *ngIf="cliente">
+                    <a [routerLink]="'/panel/cliente'" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" class="acceso d-block btn btn-dark btn-lg mb-3">Mi Perfil</a>
+                    <a [routerLink]="'/panel/cambiarContra'" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" class="acceso d-block btn btn-dark btn-lg mb-3">Cambiar contraseña</a>
+                    <a [routerLink]="'/panel/compras'" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" class="acceso d-block btn btn-dark btn-lg mb-3">Compras</a>
+                    <a [routerLink]="'/panel/cliente/favoritos'" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" class="acceso d-block btn btn-dark btn-lg mb-3">Favoritos</a>
+                    <a (click)="salir()" class="d-none d-md-block acceso btnsalir  btn btn-dark btn-lg mb-3">Salir</a>
+                </div>
+            
+                <div *ngIf="!cliente">
+                    <a [routerLink]="'/panel/prestador'" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" class="acceso d-block btn btn-dark btn-lg mb-3">Mi Perfil</a>
+                    <a [routerLink]="'/panel/cambiarContra'" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" class="acceso d-block btn btn-dark btn-lg mb-3">Cambiar contraseña</a>
+                    <a [routerLink]="'/panel/prestador/actividades'" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" class="acceso d-block btn btn-dark btn-lg mb-3">Actividades</a>
+                    <a [routerLink]="'/panel/compras'" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" class="acceso d-block btn btn-dark btn-lg mb-3">Ventas</a>
+                    <a (click)="salir()" class="acceso btnsalir d-none d-md-block btn btn-dark btn-lg mb-3">Salir</a>
+                </div>
+               
             </div>
-        
-            <div *ngIf="!cliente">
-                <a [routerLink]="'/panel/prestador'" class="d-block">Mi Perfil</a>
-                <a [routerLink]="'/panel/cambiarContra'" class="d-block">Cambiar contraseña</a>
-                <a [routerLink]="'/panel/prestador/actividades'" class="d-block">Actividades</a>
-                <a [routerLink]="'/panel/prestador/compras'" class="d-block">Compras</a>
+        </div>
+        <div class="col-md-10">
+            <div class="contenido  mt-5 border-left mb-5">
+                <router-outlet></router-outlet>
+                <div class="pt-5"></div>
+                
             </div>
-            <a (click)="salir()" class="d-block">Salir</a>
+            
         </div>
     </div>
-    <div class="col-md-10">
-        <div class="contenido border mt-5 p-2">
-            <router-outlet></router-outlet>
-        </div>
-        
-    </div>
-</div>
 
-</div>  
+    </div>  
+</div>

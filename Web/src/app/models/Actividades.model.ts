@@ -1,7 +1,9 @@
 import { ActividadesHorarios } from "./ActividadesHorarios.model";
 import { Calificaciones } from "./Calificaciones.model";
 import { Categorias } from "./Categorias.model";
+import { Localidades } from "./Localidades.model";
 import { Prestadores } from "./Prestadores.model";
+import { Provincias } from "./Provincias.model";
 
 export class Actividades{
     IdActividad:number;
@@ -32,4 +34,9 @@ export class Actividades{
     Calificacion:number;
     cantCalificaciones:number;
     calificacionesList:Calificaciones[]=[];
+    DiasCancelacion:number;
+    LocalidadesEntity?:Localidades;
+    ProvinciasEntity?:Provincias;
+    IdProvincia:number;
+    IdLocalidad:number;
 }

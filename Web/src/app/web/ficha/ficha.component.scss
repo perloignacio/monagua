@@ -1,7 +1,8 @@
-.ficha{padding:50px 0px;}
+.ficha{padding:50px 15px;}
 .ficha .calificacion{font-size: 18px; font-weight: 700;color:#007793}
 .ficha .calificacion span{font-size: 16px;color:#848484;margin-left: 20px;}
-.ficha p{font-size: 14px;};
+.ficha p{font-size: 16px;};
+.ficha .linkcat:hover{color:#007793 !important}
 .ficha .compartir{}
 .ficha .compartir .item{display: inline-block;margin-left: 20px;}
 .ficha .fotoprincipal{width: 100%;height: 405px;background-size: cover;background-position: center;overflow: hidden;border-radius: 15px 0px 0px 15px;}
@@ -9,5 +10,12 @@
 .ficha .fotosecundaria.ext{border-radius: 0px 15px 15px 0px;}
 .ficha .prestadorHabilitado{font-size: 16px;font-weight: 700;color:#7ECE00}
 .ficha .card{background-color: #F7F7F7;}
+.ficha .cancelacion,.pago{border: 1px solid #48494A;}
 .grisClaro{color:#555}
 .line-2{line-height: 24px;}
+
+@media (max-width:768px) {
+    .ficha .fotoprincipal,.fotosecundaria,.fotosecundaria.ext{width: 100%; height: 200px;border-radius: 5px !important;margin-bottom: 10px !important;}
+    .ficha .pago{position: fixed;left: 0px; width: 100%;bottom: 0px;background-color: #007793;color:#fff !important;z-index: 1000;border-radius: 5px 5px 0px 0px !important;padding: 0px 5px !important;}
+    .ficha .pago h2{color:#fff !important}
+}

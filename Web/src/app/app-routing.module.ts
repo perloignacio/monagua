@@ -33,11 +33,15 @@ const routes: Routes = [
     component:ListadoComponent,
   },
   {
-    path:'actividades/buscar/:categoria/:nombre',
+    path:'actividades/buscar/:provincia/:nombre',
     component:ListadoComponent,
   },
   {
-    path:'actividades/buscar/:categoria/:nombre/:fecha',
+    path:'actividades/buscar/categoria/:categoria/:nombre',
+    component:ListadoComponent,
+  },
+  {
+    path:'actividades/buscar/:provincia/:nombre/:fecha',
     component:ListadoComponent,
   },
   {
@@ -113,14 +117,18 @@ const routes: Routes = [
   },
   {
      path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-     //canLoad: [ AuthGuardService ],
-     //canActivate:[AuthGuardService],
+     canLoad: [ AuthGuardService ],
+     canActivate:[AuthGuardService],
 
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled',
+    scrollOffset: [0, 0] // [x, y]
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

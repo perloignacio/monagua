@@ -2,3 +2,7 @@
 .impactos .imp{padding: 0px 15px;}
 .impactos h3{color:#F7F7F7;font-size: 26px;}
 .impactos p{color:#F7F7F7;margin-top: 10px;}
+
+@media (max-width:768px) {
+    .impactos .imp{margin-bottom: 30px;}
+}

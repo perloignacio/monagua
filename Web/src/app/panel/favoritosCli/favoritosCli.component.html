@@ -1,9 +1,14 @@
 
-<div class="container">
+
     <div class="row">
-        <div class="col-3" *ngFor="let fav of Favoritos">
-            <app-actividad-shared [Actividades]='fav.ActividadesEntity' [Favoritos]="true"></app-actividad-shared>
+        <div class="col-md-8">
+            <h3>Actividades favoritas</h3>
+            <p class="grande">Crea una cuenta para añadir actividades a tus favoritos y acceder a tus reservas desde cualquier dispositivo.</p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-10" *ngFor="let fav of Favoritos">
+            <app-actividad-shared (actualizar)="cargar()" [Actividades]='fav.ActividadesEntity' [setListado]="true" [Favoritos]="true"></app-actividad-shared>
             
         </div>
     </div>
-</div>

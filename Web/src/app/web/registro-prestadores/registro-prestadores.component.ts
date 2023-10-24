@@ -24,6 +24,7 @@ export class RegistroPrestadoresComponent implements OnInit {
   contra:string;
   Agregar:boolean=true;
   Archivos:FileList;
+  Certi:FileList;
   constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router,private srvPrestadores:PrestadoresService) { 
     this.srvWeb.Paises().subscribe((paises)=>{
     
@@ -45,8 +46,13 @@ export class RegistroPrestadoresComponent implements OnInit {
       })
   }
 
-  onFileChange(event) {
-    this.Archivos=event.target.files;
+  onFileChange(event,tipo:string) {
+    if(tipo!='certi'){
+      this.Archivos=event.target.files;
+    }else{
+      this.Certi=event.target.files;
+    }
+    
 
   }
 
@@ -63,9 +69,14 @@ export class RegistroPrestadoresComponent implements OnInit {
     this.obj.Politicas=true;
     this.usu.Usuario=this.obj.Email;
     
-    if(this.Archivos!=null){
+    if(this.Archivos){
       for(let i=0;i<=this.Archivos.length-1;i++){
         form.append("Archivos[]", this.Archivos[i],this.Archivos[i].name);
+      }
+    }
+    if(this.Certi){
+      for(let i=0;i<=this.Certi.length-1;i++){
+        form.append("Certi[]", this.Certi[i],this.Certi[i].name);
       }
     }
     form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
@@ -73,7 +84,7 @@ export class RegistroPrestadoresComponent implements OnInit {
     
     this.srvPrestadores.Registrar(form).subscribe((band)=>{
       if(band){
-        Swal.fire("OK","El registro se realizo correctamente",'success');        
+        Swal.fire("OK","El registro se realizo correctamente, vamos a procesar su solicitud y en 48 horas puede ingresar al sitio web",'success');        
       } 
     },(err)=>{
 

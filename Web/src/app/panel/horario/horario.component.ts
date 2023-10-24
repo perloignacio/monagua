@@ -32,6 +32,9 @@ export class HorarioComponent implements OnInit {
 
   }
 
+  cerrar(){
+    this.activemodal.close();
+  }
   ngOnInit(): void {
   }
   Guardar(){

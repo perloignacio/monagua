@@ -29,7 +29,7 @@ import { ComprasComponent } from './compras/compras.component';
           component: FavoritosCliComponent,
         },
         {
-          path: 'cliente/compras',
+          path: 'compras',
           component: ComprasComponent,
         },
         {

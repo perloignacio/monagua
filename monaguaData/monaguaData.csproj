@@ -65,11 +65,13 @@
     <Compile Include="Gateways\ActividadesHorariosExcepcionGateway.cs" />
     <Compile Include="Gateways\Auto\ActividadesHorariosExcepcionGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\ConfiguracionGateway.Auto.cs" />
+    <Compile Include="Gateways\Auto\EstadosCompraActividadGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\PreguntasFrecuentesGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\SlidesGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\TipoRepeticionesGateway.Auto.cs" />
     <Compile Include="Gateways\Auto\UsuariosGateway.Auto.cs" />
     <Compile Include="Gateways\ConfiguracionGateway.cs" />
+    <Compile Include="Gateways\EstadosCompraActividadGateway.cs" />
     <Compile Include="Gateways\PreguntasFrecuentesGateway.cs" />
     <Compile Include="Gateways\SlidesGateway.cs" />
     <Compile Include="Gateways\TipoRepeticionesGateway.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Gateways\ActividadesHorariosGateway.cs" />
     <Compile Include="Gateways\Auto\ActividadesHorariosGateway.Auto.cs" />
     <Compile Include="Mappers\Auto\ConfiguracionMapper.Auto.cs" />
+    <Compile Include="Mappers\Auto\EstadosCompraActividadMapper.Auto.cs" />
     <Compile Include="Mappers\Auto\PreguntasFrecuentesMapper.Auto.cs" />
     <Compile Include="Mappers\Auto\SlidesMapper.Auto.cs" />
     <Compile Include="Mappers\Auto\TipoRepeticionesMapper.Auto.cs" />
@@ -115,6 +118,7 @@
     <Compile Include="Mappers\Auto\DescuentosMapper.Auto.cs" />
     <Compile Include="Gateways\DescuentosGateway.cs" />
     <Compile Include="Gateways\Auto\DescuentosGateway.Auto.cs" />
+    <Compile Include="Mappers\EstadosCompraActividadMapper.cs" />
     <Compile Include="Mappers\EstadosCompraMapper.cs" />
     <Compile Include="Mappers\Auto\EstadosCompraMapper.Auto.cs" />
     <Compile Include="Gateways\EstadosCompraGateway.cs" />

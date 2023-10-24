@@ -1,0 +1,27 @@
+
+<div class="modal-body" *ngIf="this.c">
+    <div class="row">
+        <div class="col-md-10 col-10">
+            <h3>Comentario y calificación</h3>
+        </div>
+        <div class="col-md-2 text-end col-2">
+            <i class="fas fa-times" role="button" (click)="cerrar()"></i>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-12">
+            Califica de 1 a 5 tu experiencia: <ngb-rating class="raiting" [(rate)]="c.Calificacion" [readonly]="responder"  [max]="5"></ngb-rating> {{c.Calificacion}} 
+        </div>
+        <div class="col-md-12 mt-2">
+            <textarea class="form-control" placeholder="Comentario" [(ngModel)]="c.Comentario"  [disabled]="c.Fecha ? true:false"></textarea>
+        </div>
+        <div class="mt-3" *ngIf="responder">
+            <textarea class="form-control" placeholder="Respuesta" [(ngModel)]="c.Respuesta"  [disabled]="c.FechaRespuesta ? true:false"></textarea>
+            
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-dark mt-3 btn-lg w-auto" (click)="Responder(c)" *ngIf="!c.FechaRespuesta && responder && c.Fecha">Responder</button>
+            <button class="btn btn-dark mt-3 btn-lg w-auto" (click)="Comentar(c)" *ngIf="!c.Fecha">Comentar</button>
+        </div>
+    </div>
+</div>

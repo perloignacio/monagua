@@ -1,16 +1,20 @@
-<div class="modal-header">
-    
-</div>
+
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-4">
-            <h3>Opiniones de clientes</h3>
+        <div class="row">
+            <div class="col-md-10 col-10">
+                <h3>Opiniones de clientes</h3>
+            </div>
+            <div class="col-md-2 text-end col-2">
+                <i class="fas fa-times" role="button" (click)="cerrar()"></i>
+            </div>
         </div>
-        <div class="col-md-8 text-end ">
+        
+        <div class="col-md-12 text-end ">
             <div class="row float-end">
                 <div class="col-auto align-self-center">Ordenar por</div>
                 <div class="col-auto align-self-center">
-                    <select name="orden" [(ngModel)]="orden" (change)="cargaCalificaciones()" class="form-control form-select w-auto">
+                    <select name="orden" [(ngModel)]="orden" (change)="cargaCalificaciones()" class="form-control form-select w-auto selectOrden">
                         <option [value]="'positivas'">Positivas primero</option>
                         <option [value]="'negativas'">Negativas primero</option>
                         <option [value]="'nuevas'">Más nuevas primero</option>
@@ -26,14 +30,14 @@
         <div class="col-md-4">
             <div class="calificacion mt-3">
                 Calificación total de la actividades
-                <div>
+                <div class="rait">
                     <ngb-rating [(rate)]="obj.Calificacion"  [readonly]="true" [max]="5"></ngb-rating> {{obj.Calificacion}} 
                 </div>
                 
             </div>
         </div>
         <div class="col-md-8">
-            <div class="listacomentarios">
+            <div class="listacomentarios mt-3">
                 <div class="item mb-3" *ngFor="let c of calificaciones">
                     <ngb-rating [(rate)]="c.Calificacion"  [readonly]="true" [max]="5"></ngb-rating> {{c.Fecha | date:'dd MMMM YYYY'}}
                     <p>{{c.Comentario}}</p>

@@ -6,16 +6,15 @@
         <div class="col-auto">
             <input type="date" name="fecha" id="fecha" [(ngModel)]="fecha" class="form-control">
         </div>
-        <div class="col-auto ms-3">
-            <label class="">Categoria</label>
+        <div class="col-auto">
+            <label class="">Provincia</label>
         </div>
         <div class="col-auto">
-            <select class="form-select form-control" [(ngModel)]="categoria">
-                <option [ngValue]="null">Todas</option>
-                <option *ngFor="let c of categorias" [ngValue]="c">{{c.Nombre}}</option>
+            <select class="form-select form-control" [(ngModel)]="provincia">
+                <option *ngFor="let p of provincias" [ngValue]="p">{{p.Nombre}}</option>
             </select>
         </div>
-        <div class="col-auto ms-3">
+        <div class="col-auto">
             <button class="btn btn-dark btn-sm" (click)="buscar()"><span>BUSCAR</span> <i class="fas fa-search ms-3"></i></button>
         </div>
     </div>

@@ -10,27 +10,32 @@
 -->
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 <div id="top" *ngIf="!esAdmin">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-md-3 align-self-center">
-                <a href="/"><img src="assets/logo.svg" alt="Monagua"></a>
+                <div class="logo">
+                    <a href="/"><img src="assets/logo.svg" alt="Monagua"></a>
+                </div>
             </div>
             <div class="col-md-6 align-self-center">
-                <app-buscador [InsideSlide]="false"></app-buscador>
+                <app-buscador [InsideSlide]="false" class="d-none d-md-block"></app-buscador>
             </div>
-            <div class="col-md-3 align-self-center">
-                <span *ngIf="!srvAut.currentUserValue">
-                    <a class="btn btn-dark btn-lg ms-2" href="registro/cliente?org=">Crear cuenta</a>
-                    <a class="btn btn-dark btn-lg ms-2" href="login">Iniciar sesión</a>
-                </span>
-                <span *ngIf="srvAut.currentUserValue">
-                    <button class="btn btn-dark btn-lg ms-2" (click)="Cuenta()" href="registro/cliente?org="><i class="fas fa-user"></i> 
-                        <span *ngIf="srvAut.currentUserValue.ClientesEntity" class="ms-2">{{srvAut.currentUserValue.ClientesEntity.Apellido}}</span>
-                        <span *ngIf="srvAut.currentUserValue.PrestadoresEntity" class="ms-2">{{srvAut.currentUserValue.PrestadoresEntity.NombreFantasia}}</span>
-                    </button>
-                   
-                </span>
-                <a class="btn btn-dark btn-lg ms-2" href="/compras">{{srvCompras.carrito.Detalle.length}} <i class="fas fa-shopping-cart"></i></a>
+            <div class="col-md-3 align-self-center text-end">
+                <div class="menu">
+                    <span *ngIf="!srvAut.currentUserValue">
+                        <a class="btn btn-dark btn-lg ms-2" href="registro/cliente?org=">Registro</a>
+                        <a class="btn btn-dark btn-lg ms-2" href="login">Login</a>
+                    </span>
+                    <span *ngIf="srvAut.currentUserValue">
+                        <button class="btn btn-dark btn-lg ms-2" (click)="Salir()">Salir</button>
+                        <button class="btn btn-dark btn-lg ms-2" (click)="Cuenta()" href="registro/cliente?org="><i class="fas fa-user"></i> 
+                            <span *ngIf="srvAut.currentUserValue.ClientesEntity" class="ms-2">{{srvAut.currentUserValue.ClientesEntity.Apellido}}</span>
+                            <span *ngIf="srvAut.currentUserValue.PrestadoresEntity" class="ms-2">{{srvAut.currentUserValue.PrestadoresEntity.NombreFantasia}}</span>
+                        </button>
+                    
+                    </span>
+                    <a class="btn btn-dark btn-lg ms-2" href="/compras">{{srvCompras.carrito.Detalle.length}} <i class="fas fa-shopping-cart"></i></a>
+                </div>
             </div>
         </div>
         
@@ -39,20 +44,35 @@
 
 
 <router-outlet></router-outlet>
+<div class="pt-5"></div>
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <p>Monagua © 2022</p>   
+                <div class="d-md-block d-none">
+                    <p>Monagua © 2022</p>   
+                </div>
+                
             </div>
             <div class="col-md-8 text-end">
-                <a class="ms-3" href="nosotros">Nosotros</a>
-                <a class="ms-3" href="contacto">Contacto</a>
-                <a class="ms-3" href="ayuda">Ayuda</a>
-                <a class="ms-3" href="terminosycondiciones">Términos y condiciones</a>
-                <a class="ms-3" href="politicasdeprivacidad">Políticas de privacidad</a>
+                <div class="menu-footer">
+                    <a class="ms-3" href="nosotros">Nosotros</a>
+                    <a class="ms-3" href="contacto">Contacto</a>
+                    <a class="ms-3" href="ayuda">Ayuda</a>
+                    <a class="ms-3" href="terminosycondiciones">Términos y condiciones</a>
+                    <a class="ms-3" href="politicasdeprivacidad">Políticas de privacidad</a>
+                    <!--<a class="ms-3" href=""><i class="fab fa-facebook"></i></a>-->
+                    <a class="ms-3" href=""><i class="fab fa-instagram"></i></a>
+                    <!--<a class="ms-3" href=""><i class="fas fa-envelope"></i></a>-->
+                </div>
             </div>
         </div>
+    </div>
+    <div class="flotante">
+        
+        <a href="https://wa.me/{{whatsapp}}" target="_blank">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
     </div>
 </footer>    
 

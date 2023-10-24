@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actividades } from 'src/app/models/Actividades.model';
 import { Favoritos } from 'src/app/models/Favoritos.model';
@@ -38,26 +38,46 @@ export class ActividadSharedComponent implements OnInit {
     this.fav=value;
   }
 
+  @Output()
+  actualizar = new EventEmitter<boolean>();
   
+  getDuracion(min:number):string{
+    if(min<60){
+      return `${min.toString()} minutos`;
+    }else{
+      let horas=min/60;
+      if(horas<24){
+        return `${horas.toString()} horas`;
+      }else{
+        let dias=horas/24;
+        return `${dias.toString()} días`;  
+      }
+    }
 
+  }
   ficha(){
     this.router.navigate([`/actividad/${this.slug.transform(this.obj.Nombre)}/${this.obj.IdActividad}`])
   }
   constructor(private router:Router, private srvClientes:ClientesService,private srvAutenticate:AuthenticationService,private srvFav:FavoritosService) { }
   favorito(){
-    
-    let u=this.srvAutenticate.currentUserValue;
-    
-    if(u!=null && u.ClientesEntity!=null){
-      this.srvFav.Agregar(this.obj.IdActividad).subscribe((b)=>{
-        if(b){
-          Swal.fire("Ok","La actividad se guardo en favoritos","success");    
-        }
-      },(err)=>{
-        Swal.fire("Upps",err.error.Message,"warning");    
-      })
+    if(this.fav){
+      this.QuitarFav();
     }else{
-      Swal.fire("upps","debe estar logueado para poder agregar a favoritos","warning");
+
+    
+      let u=this.srvAutenticate.currentUserValue;
+      
+      if(u!=null && u.ClientesEntity!=null){
+        this.srvFav.Agregar(this.obj.IdActividad).subscribe((b)=>{
+          if(b){
+            Swal.fire("Ok","La actividad se guardo en favoritos","success");    
+          }
+        },(err)=>{
+          Swal.fire("Upps",err.error.Message,"warning");    
+        })
+      }else{
+        Swal.fire("upps","debe estar logueado para poder agregar a favoritos","warning");
+      }
     }
   }
   QuitarFav(){
@@ -74,7 +94,7 @@ export class ActividadSharedComponent implements OnInit {
           if(band){
             
             Swal.fire("Ok","Se quitó el registro",'success');
-
+            this.actualizar.emit(true);
           }
         },(err)=>{
           Swal.fire("Upps",err.error.Message,'warning');

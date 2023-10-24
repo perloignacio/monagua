@@ -19,11 +19,14 @@ export class FavoritosCliComponent implements OnInit {
   Actividades:Actividades[]=[];
    
   constructor(private srvShared:SharedService,private srvClientes:ClientesService, private srvWeb:WebService,private route:Router) {
+    this.cargar();
+  }
+
+  cargar(){
     this.srvClientes.Favoritos().subscribe((fav)=>{
       this.Favoritos=fav;
     })
   }
-
   
   
   ngOnInit(): void {

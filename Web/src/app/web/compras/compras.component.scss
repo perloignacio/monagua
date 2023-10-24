@@ -1,0 +1,11 @@
+.listadoitems .foto{width: 100%;height: 280px;border-radius:15px;overflow: hidden;position: relative;background-size: cover; background-position: center ;}
+.listadoitems .foto .favorito{position: absolute;top:10px;right: 10px;color:#D8D8D8;}
+.listadoitems .foto .favorito.active{color: #7ECE00 !important;}
+.listadoitems .foto .favorito i{font-size: 18px;}
+.listadoitems .calificacion{font-size: 18px; font-weight: 700;color:#007793}
+.listadoitems .precio{font-size: 18px;color:#848484;}
+.listadoitems .precio .actual{font-size: 28px;font-weight: 700;color:#48494A}
+.listadoitems .precio .viejo{font-size: 21px;color:#848484;font-weight: 500; text-decoration: line-through;margin-left: 10px;}
+.listadoitems .cancelacion{position: absolute; left: 10px; bottom: 10px;background-color: #7ECE00;color:#48494A;font-size: 14px;font-weight: 700;border-radius: 15px;padding: 7px 15px;}
+.listadoitems h5{font-size: 16px;font-weight: 700;color:#007793}
+.listadoitems .info{line-height: 24px;}

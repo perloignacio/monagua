@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { de } from 'date-fns/locale';
 import * as moment from 'moment';
 import { Actividades } from 'src/app/models/Actividades.model';
+import { Categorias } from 'src/app/models/Categorias.model';
 import { ComprasDetalle } from 'src/app/models/ComprasDetalle.model';
 import { ActividadesService } from 'src/app/services/actividades/actividades.service';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
@@ -13,6 +14,8 @@ import { FavoritosService } from 'src/app/services/favoritos/favoritos.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
+
+declare function scrollToAnchor(opt): any; 
 @Component({
   selector: 'app-ficha',
   templateUrl: './ficha.component.html',
@@ -29,6 +32,7 @@ export class FichaComponent implements OnInit {
   cantidad:number=0;
   horario:string;
   horasdisponibles:string[]=[];
+  urlSafe:SafeResourceUrl;
   constructor(private srvACtividades:ActividadesService,
     private route:ActivatedRoute,
     private srvAutenticate:AuthenticationService,
@@ -37,7 +41,7 @@ export class FichaComponent implements OnInit {
     private srvCompras:ComprasService,
     private router:Router,
     private sanitizer: DomSanitizer) { 
-
+      
     this.route.params.subscribe(val => {
       this.srvACtividades.Ficha(val["id"]).subscribe((ac)=>{
         this.Cargadatos(ac);
@@ -49,7 +53,17 @@ export class FichaComponent implements OnInit {
     })
     
   }
+  bajarOpiniones(){
+    scrollToAnchor("opiniones");
+  }
+  IrACategoria(c:Categorias){
+    this.router.navigate([`/actividades/buscar/${c.IdCategoria}/${c.Nombre}`])
+  }
   Cargadatos(ac:Actividades){
+    if(ac.Video){
+      this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+ac.Video.substring(17));
+    }
+    
     this.foto=ac.Fotos.split(",")[0];
     this.obj=ac;
     let mom=moment();

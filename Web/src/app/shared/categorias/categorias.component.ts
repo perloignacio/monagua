@@ -45,7 +45,7 @@ export class CategoriasComponent implements OnInit {
 
 
   Categoria(c:Categorias){
-    this.route.navigate([`/actividades/buscar/${c.IdCategoria}/${c.Nombre}`])
+    this.route.navigate([`/actividades/buscar/categoria/${c.IdCategoria}/${c.Nombre}`])
   }
   ngOnInit(): void {
   }

@@ -145,12 +145,15 @@
     <Content Include="assets\categorias\1.png" />
     <Content Include="assets\slides\slide1.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Plantillas\AnulaCompra.html" />
     <Content Include="Plantillas\compra.html" />
     <Content Include="Plantillas\compraAdmin.html" />
     <Content Include="Plantillas\compraPrestador.html" />
     <Content Include="Plantillas\consulta.html" />
     <Content Include="Plantillas\nuevoComentario.html" />
     <Content Include="Plantillas\recuperar.html" />
+    <Content Include="Plantillas\registro.html" />
+    <Content Include="Plantillas\respuestaComentario.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +173,7 @@
     <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\CuponesController.cs" />
     <Compile Include="Controllers\FavoritosController.cs" />
+    <Compile Include="Controllers\MensajesController.cs" />
     <Compile Include="Controllers\PreguntasController.cs" />
     <Compile Include="Controllers\SlidesController.cs" />
     <Compile Include="Controllers\WebController.cs" />

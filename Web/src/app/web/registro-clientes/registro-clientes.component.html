@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-8 offset-md-2 text-center">
                             <h3>Registro clientes</h3>
-                            <p>Crea una cuenta para añadir actividades a tus favoritos y acceder a tus reservas desde cualquier dispositivo.</p>
+                            <p>Creá una cuenta para añadir actividades a tus favoritos y acceder a tus reservas desde cualquier dispositivo.</p>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -60,11 +60,11 @@
                     <div class="row mt-3">
                         <div class="col-6">
                             <label>Sexo</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control form-select" id="exampleFormControlSelect1">
                                 <option></option>
-                                <option>Masculino</option>
-                                <option>Femenino</option>
-                                <option>Otro</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="O">Otro</option>
                             </select>
                         </div>
                         <div class="col-6">
@@ -90,9 +90,10 @@
         
                     <div class="row">
                         <div class="col-6 offset-md-3 text-center">
-                            <button class="mt-3 btn btn-dark btn-lg mb-3 ps-5 pe-5" (click)="Registrar()">Registrar</button>
-                            <p>Al crear una cuenta, muestras tu conformidad con nuestros <a href=""><b>Términos de Servicio</b>
-                            </a> y <a href=""><b>Política de Privacidad.
+                            <button class="mt-3 btn btn-dark btn-lg mb-3 ps-5 pe-5" (click)="Registrar()">Registrarme</button>
+                            <p>Al crear una cuenta, mostras tu conformidad con nuestros 
+                                <a href="/terminosycondiciones" target="_blank"><b>Términos de Servicio</b>
+                            </a> y <a href="/politicasdeprivacidad" target="_blank"><b>Políticas de Privacidad.
                             </b></a></p>
                         </div>
                         
@@ -100,7 +101,14 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <hr>
-                            <span>¿Ya tienes cuenta? <a [routerLink]="'/login'" role="button" class="color-verde">Iniciar sesión </a></span>
+                            <p class="mt-4">Crea tu cuenta de empresa y ofrece las mejores <br>experiencias</p>
+                            <a class="mt-3 mb-3 btn btn-primary btn-lg ps-5 pe-5" href="/registro/prestador">Registrarme</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <hr>
+                            <span>¿Ya tenés cuenta? <a [routerLink]="'/login'" role="button" class="color-verde">Iniciar sesión </a></span>
                         </div>
                     </div>
                 </div>

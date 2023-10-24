@@ -45,7 +45,7 @@ namespace Api.Controllers
                 cuerpo.HtmlBody = body;
                 message.Subject = "Consulta " + contacto.Apellido;
                 message.Body = cuerpo.ToMessageBody();
-                message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+                message.From.Add(new MailboxAddress("", ConfiguracionMapper.Instance().GetByClave("MailInstitucional").Valor));
                 message.To.Add(new MailboxAddress("",ConfiguracionMapper.Instance().GetByClave("EmailConsulta").Valor));
                 EnviaMail.Envia(message);
                 return Ok(true);

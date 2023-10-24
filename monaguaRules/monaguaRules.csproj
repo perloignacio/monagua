@@ -86,6 +86,7 @@
     <Compile Include="DescuentosRules.cs" />
     <Compile Include="Encriptar.cs" />
     <Compile Include="FavoritosRules.cs" />
+    <Compile Include="MensajesRules.cs" />
     <Compile Include="PreguntasRules.cs" />
     <Compile Include="PrestadoresRules.cs" />
     <Compile Include="SlidesRules.cs" />

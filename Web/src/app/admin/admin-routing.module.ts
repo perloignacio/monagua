@@ -22,6 +22,7 @@ import { PreguntasComponent } from './preguntas/preguntas.component';
 import { PreguntasFormComponent } from './preguntas-form/preguntas-form.component';
 import { SlidesFormComponent } from './slides-form/slides-form.component';
 import { ActividadesComponent } from './actividades/actividades.component';
+import { ComprasDetalleComponent } from './compras-detalle/compras-detalle.component';
     const routes: Routes = [
     {
       path: '',
@@ -54,6 +55,10 @@ import { ActividadesComponent } from './actividades/actividades.component';
         {
           path: 'compras',
           component: ComprasComponent,
+        },
+        {
+          path: 'comprasDetalle',
+          component: ComprasDetalleComponent,
         },
         {
           path: 'comprasForm',

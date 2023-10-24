@@ -20,12 +20,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent {
   title = 'Web';
   esAdmin:boolean=false
-  constructor(public srvCompras:ComprasService,public srvAut:AuthenticationService,private route:Router,public activeRoute:ActivatedRoute) {
+  whatsapp:string="";
+  constructor(public srvCompras:ComprasService,public srvAut:AuthenticationService,private route:Router,public activeRoute:ActivatedRoute,private srvWeb:WebService) {
     this.activeRoute.url.subscribe(value => {
-      if(window.location.href.includes("admin")){
-        this.esAdmin=true;
-      }
-  })
+        if(window.location.href.includes("admin")){
+          this.esAdmin=true;
+        }
+    })
     this.srvCompras.obtieneCarrito(null);
     if(this.srvAut.currentUserValue!=null){
       this.srvAut.validar().subscribe((b)=>{
@@ -36,9 +37,16 @@ export class AppComponent {
         this.srvAut.logout();
       })
     }
+    this.srvWeb.Whatsapp().subscribe((w)=>{
+     
+      this.whatsapp=w.Valor;
+    })
     
   }
-
+  Salir(){
+    this.srvAut.logout();
+    this.route.navigate(["/"])
+  }
   Cuenta(){
     if(this.srvAut.currentUserValue.ClientesEntity){
       this.route.navigate(['/panel/cliente']);

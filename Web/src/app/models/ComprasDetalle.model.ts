@@ -1,5 +1,6 @@
 import { Actividades } from "./Actividades.model";
 import { Compras } from "./Compras.model";
+import { EstadosCompraActividad } from "./EstadosCompraActividad";
 
 export class ComprasDetalle{
     IdCompraDetalle:number;
@@ -9,4 +10,7 @@ export class ComprasDetalle{
     FechaHora:string;
     ActividadesEntity:Actividades;
     ComprasEntity:Compras;
+    MontoActividad:number;
+    EstadosCompraActividadEntity:EstadosCompraActividad;
+    MensajesNoLeido:number;
 }

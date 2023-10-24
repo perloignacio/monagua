@@ -16,14 +16,41 @@
   
   <div class="main-card mb-3 card">
     <div class="card-header">
-      <div class="row">
-          <div class="col-md-8">
-            Compras
-          </div>
-          <div class="col-md-4 text-right">
-              <input type="text" class="form-control" placeholder="Filtro" [(ngModel)]="strFiltro" (keyup)="Filtro()">
-          </div>
-      </div>
+        <div class="row">
+            <div class="col-12">
+                Compras
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-2 text-right">
+                <label>Fecha desde</label>
+                <input type="date" class="form-control" placeholder="Filtro Fecha Desde" [(ngModel)]="fechaDesdeFiltro">
+            </div>
+            <div class="col-md-2 text-right">
+                <label>Fecha hasta</label>
+                <input type="date" class="form-control" placeholder="Filtro Fecha Hasta" [(ngModel)]="fechaHastaFiltro">
+            </div>
+            <div class="col-md-3 text-right">
+                <label>Cliente</label>
+                <select class="form-control form-select" [(ngModel)]="idUsuarioFiltro">
+                    <option [value]="null">Todos</option>
+                    <option [value]="objcli.IdCliente" *ngFor="let objcli of clientes">{{objcli.Apellido}}</option>
+                </select>
+            </div>
+            <div class="col-md-3 text-right">
+                <label>Estado</label>
+                <select class="form-control form-select" [(ngModel)]="idEstadoFiltro">
+                    <option [value]="null">Todos</option>
+                    <option [value]="objEstado.IdEstadoCompra" *ngFor="let objEstado of estados">{{objEstado.Nombre}}</option>
+                </select>
+            </div>
+            <div class="col-md-2 text-right">
+                <label>&nbsp;</label>
+                <button class="btn btn-primary mt-4" (click)="cargar()">Filtrar</button>
+            <!--<button class="btn btn-success" (click)="cargar(this.actividad.IdActividad,null,null,null)">Ver Todos</button>-->
+            </div>
+        </div>
+        
     </div>
     <div class="table-responsive">
         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -35,13 +62,24 @@
             <th>Reserva</th>
             <th>Descuento</th>
             <th>Estado</th>
+            <th>Activa</th>
             <th class="text-center">Acciones</th>
           </tr>
           </thead>
           <tbody>
     
           <tr *ngFor="let obj of ArrObj;">
+            <td class="text-center text-muted">#{{obj.IdCompra}}</td>
+            <td>{{obj.Fecha | date:'dd/MM/yyyy'}}</td>
+            <td>{{obj.Apellido ? obj.Apellido:'Sin identificar' }}</td>
             
+            <td>{{obj.Reserva ? 'Si':'NO'}}</td>
+            <td>$ {{obj.MontoDescuento ? obj.MontoDescuento:'0'}}</td>
+            <td>{{obj.estado}}</td>
+            <td >{{obj.Activa ? 'Si':'NO'}}</td>
+            <td class="text-center"> 
+                <i class="fas fa-edit me-2" role="button" (click)="Editar(obj)"></i>
+            </td>
           </tr>
           </tbody>
         </table>

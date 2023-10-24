@@ -235,12 +235,12 @@ namespace Api.Controllers
                 {
                     aux = ActividadesMapper.Instance().GetOne(id);
                     string fotos = string.Join(",", Helpers.SubeArchivos("actividades", obj.Fotos, false, HttpContext.Current.Request.Files));
-                    Arules.Modificar(id, obj.Nombre,obj.DescripcionCorta,obj.Descripcion,obj.Precio,obj.Duracion,obj.IdCategoria,u.PrestadoresEntity.IdPrestador,fotos,obj.Video,obj.Ubicacion,obj.Mapa,obj.PrecioOferta,obj.Mascotas,obj.PersonasCapacidadRed,obj.DietasEspeciales,obj.Idiomas,obj.Dificultad,obj.QueIncluye,obj.QueNoIncluye);
+                    Arules.Modificar(id, obj.Nombre,obj.DescripcionCorta,obj.Descripcion,obj.Precio,obj.Duracion,obj.IdCategoria,u.PrestadoresEntity.IdPrestador,fotos,obj.Video,obj.Ubicacion,obj.Mapa,obj.PrecioOferta,obj.Mascotas,obj.PersonasCapacidadRed,obj.DietasEspeciales,obj.Idiomas,obj.Dificultad,obj.QueIncluye,obj.QueNoIncluye,obj.DiasCancelacion,obj.IdLocalidad.Value,obj.IdProvincia.Value);
                 }
                 else
                 {
                     string fotos = string.Join(",", Helpers.SubeArchivos("actividades", "", false, HttpContext.Current.Request.Files));
-                    aux=Arules.Agregar(obj.Nombre, obj.DescripcionCorta, obj.Descripcion, obj.Precio, obj.Duracion, obj.IdCategoria, u.PrestadoresEntity.IdPrestador, fotos, obj.Video, obj.Ubicacion, obj.Mapa, obj.PrecioOferta, obj.Mascotas, obj.PersonasCapacidadRed, obj.DietasEspeciales, obj.Idiomas, obj.Dificultad, obj.QueIncluye, obj.QueNoIncluye);
+                    aux=Arules.Agregar(obj.Nombre, obj.DescripcionCorta, obj.Descripcion, obj.Precio, obj.Duracion, obj.IdCategoria, u.PrestadoresEntity.IdPrestador, fotos, obj.Video, obj.Ubicacion, obj.Mapa, obj.PrecioOferta, obj.Mascotas, obj.PersonasCapacidadRed, obj.DietasEspeciales, obj.Idiomas, obj.Dificultad, obj.QueIncluye, obj.QueNoIncluye, obj.DiasCancelacion,obj.IdLocalidad.Value, obj.IdProvincia.Value);
                 }
 
 
@@ -265,7 +265,7 @@ namespace Api.Controllers
             {
 
                 List<Actividades> lac=new List<Actividades>();
-                lac = ActividadesMapper.Instance().GetAll().Where(a => a.Activa).ToList();
+                lac = ActividadesMapper.Instance().GetAll().Where(a => a.Activa && a.PrestadoresEntity.Activo).ToList();
                 foreach (var item in lac)
                 {
                     CalificacionesList cl=CalificacionesMapper.Instance().GetCalificacionesByActividad(item.IdActividad);
@@ -276,7 +276,7 @@ namespace Api.Controllers
                     }
                     if (acu != 0)
                     {
-                        item.Calificacion = acu / cl.Count;
+                        item.Calificacion = Math.Round(acu / cl.Count);
                     }
                     else
                     {
@@ -307,7 +307,7 @@ namespace Api.Controllers
                 Actividades ac = ActividadesMapper.Instance().GetOne(id);
                 if (ac != null)
                 {
-                    if (ac.Activa)
+                    if (ac.Activa && ac.PrestadoresEntity.Activo)
                     {
                         ActividadesRules acR = new ActividadesRules();
                         ac.Horarios=acR.ConfiguraHorarios(ac.IdActividad,true);
@@ -319,7 +319,7 @@ namespace Api.Controllers
                         }
                         if (acu != 0)
                         {
-                            ac.Calificacion = acu / cl.Count;
+                            ac.Calificacion = Math.Round(acu / cl.Count);
                         }
                         else
                         {
@@ -360,7 +360,7 @@ namespace Api.Controllers
             {
 
                 List<Actividades> lac = new List<Actividades>();
-                lac = ActividadesMapper.Instance().GetAll().Where(a => a.Activa && a.IdCategoria==idcategoria).ToList();
+                lac = ActividadesMapper.Instance().GetAll().Where(a => a.Activa && a.IdCategoria==idcategoria && a.PrestadoresEntity.Activo).ToList();
                 foreach (var item in lac)
                 {
                     CalificacionesList cl = CalificacionesMapper.Instance().GetCalificacionesByActividad(item.IdActividad);
@@ -371,7 +371,7 @@ namespace Api.Controllers
                     }
                     if (acu != 0)
                     {
-                        item.Calificacion = acu / cl.Count;
+                        item.Calificacion = Math.Round(acu / cl.Count);
                     }
                     else
                     {
@@ -400,7 +400,7 @@ namespace Api.Controllers
             {
                 List<object> filtros=JsonConvert.DeserializeObject<List<object>>(HttpContext.Current.Request.Unvalidated["filtros"]);
                 ActividadesRules acR = new ActividadesRules();
-
+                ActividadesList TodasAct = ActividadesMapper.Instance().GetAll();
                 listadoActividades result = new listadoActividades();
                 List<Actividades> lac = new List<Actividades>();
                 List<Categorias> lcat = new List<Categorias>();
@@ -481,13 +481,14 @@ namespace Api.Controllers
 
                 double paginas = (double) ds.filtrarActividades.Rows.Count / porpagina;
                 result.cantPaginas = Convert.ToInt32(Math.Ceiling(paginas));
-                foreach (dsMonagua.filtrarActividadesRow item in ds.filtrarActividades.AsEnumerable().Skip(pagina * porpagina).Take(porpagina))
+                foreach (dsMonagua.filtrarActividadesRow item in ds.filtrarActividades.AsEnumerable())
                 {
 
-                    Actividades ac = ActividadesMapper.Instance().GetOne(item.IdActividad);
+                    Actividades ac = TodasAct.Find(a=>a.IdActividad==item.IdActividad);
+
                     lcat.Add(new Categorias(item.IdCategoria, item.categoria, true, ""));
                     lprov.Add(new Provincias(item.IdProvincia, item.Provincia, null));
-                    lpresta.Add(new Prestadores(item.IdPrestador, item.RazonSocial, item.NombreFantasia, "", 1, 1, 1, "", "", DateTime.Now, true, true, true, ""));
+                    lpresta.Add(new Prestadores(item.IdPrestador, item.RazonSocial, item.NombreFantasia, "", 1, 1, 1, "", "", DateTime.Now, true, true, true, "",""));
                     CalificacionesList cl = CalificacionesMapper.Instance().GetCalificacionesByActividad(ac.IdActividad);
                     decimal acu = 0;
                     foreach (var cali in cl)
@@ -497,7 +498,7 @@ namespace Api.Controllers
 
                     if (acu != 0)
                     {
-                        ac.Calificacion = acu / cl.Count;
+                        ac.Calificacion = Math.Round(acu / cl.Count);
                     }
                     else
                     {
@@ -524,6 +525,7 @@ namespace Api.Controllers
                 {
                     result.actividades = result.actividades.Where(a => a.Horarios.Any(h => h.FechaInicio.Date == fecha.Value.Date)).ToList();
                 }
+                result.actividades = result.actividades.Where(a => a.PrestadoresEntity.Activo).ToList();
 
                 switch (orden)
                 {
@@ -553,7 +555,7 @@ namespace Api.Controllers
 
 
 
-
+                result.actividades = result.actividades.Skip(pagina * porpagina).Take(porpagina).ToList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -586,7 +588,7 @@ namespace Api.Controllers
                     }
                     if (acu != 0)
                     {
-                        item.Calificacion = acu / cl.Count;
+                        item.Calificacion = Math.Round(acu / cl.Count);
                     }
                     else
                     {
@@ -626,7 +628,7 @@ namespace Api.Controllers
                     }
                     if (acu != 0)
                     {
-                        item.Calificacion = acu / cl.Count;
+                        item.Calificacion = Math.Round(acu / cl.Count);
                     }
                     else
                     {

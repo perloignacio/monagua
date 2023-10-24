@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Usuarios } from 'src/app/models/Usuarios.model';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import Swal from 'sweetalert2';
@@ -10,6 +10,11 @@ import Swal from 'sweetalert2';
 })
 export class RecuperarComponent implements OnInit {
   obj:Usuarios=new Usuarios();
+  org:string="";
+  @Input() set origen(value: string) {
+    this.org = value;
+    
+  }
   constructor(private auth:AuthenticationService) { }
 
   ngOnInit(): void {

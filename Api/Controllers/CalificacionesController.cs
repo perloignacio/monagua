@@ -50,6 +50,33 @@ namespace Api.Controllers
 
         }
 
+        [Route("byCompra")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult getComentariosByCompra(int idcompradetalle)
+        {
+            try
+            {
+                CalificacionesList cl = CalificacionesMapper.Instance().GetByComprasDetalle(idcompradetalle);
+
+                if (cl.Count > 0)
+                {
+                    return Ok(cl[0]);
+                }
+                else
+                {
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
         [Route("responder")]
         [HttpGet]
         

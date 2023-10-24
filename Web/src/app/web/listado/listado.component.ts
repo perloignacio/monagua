@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbDate, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
-import { NgxSpinnerService } from 'ngx-spinner';
+
 import { Actividades } from 'src/app/models/Actividades.model';
 import { Categorias } from 'src/app/models/Categorias.model';
 import { Provincias } from 'src/app/models/Provincias.model';
@@ -27,8 +27,9 @@ export class ListadoComponent implements OnInit {
   Categorias:Categorias[]=[];
   paginaActual:number=1;
   cantPaginas:number;
+  openFilter:boolean=false;
   fakePaginas=new Array();
-  constructor(private srvActividades:ActividadesService,private srvShared:SharedService,private spinner: NgxSpinnerService,private route:ActivatedRoute) { 
+  constructor(private srvActividades:ActividadesService,private srvShared:SharedService,private route:ActivatedRoute) { 
     route.params.subscribe(val => { 
       this.checkFiltros();
       this.render();
@@ -37,6 +38,9 @@ export class ListadoComponent implements OnInit {
   }
 
   checkFiltros(){
+    if(this.route.snapshot.params["provincia"]){
+      this.Addfiltro("ubicacion",this.route.snapshot.params["provincia"],this.route.snapshot.params["nombre"]);
+    }
     if(this.route.snapshot.params["categoria"]){
       this.Addfiltro("categoria",this.route.snapshot.params["categoria"],this.route.snapshot.params["nombre"]);
     }
@@ -49,7 +53,7 @@ export class ListadoComponent implements OnInit {
     }
   }
   render(){
-    this.spinner.show();
+   
     const form=new FormData();
     form.append("filtros",this.srvShared.convertToJSON(this.FiltrosAplicados).objeto);
     this.srvActividades.filtrar(form,this.paginaActual-1,this.orden).subscribe((res)=>{
@@ -62,15 +66,21 @@ export class ListadoComponent implements OnInit {
       this.Idiomas=res.idiomas;
       this.cantPaginas=res.cantPaginas;
       this.fakePaginas=new Array(res.cantPaginas);
-      this.spinner.hide();
+     
+      this.openFilter=false;
     },(err)=>{
-      this.spinner.hide();
+     
       Swal.fire("upps",err.error.Message,"warning");
     })
   }
   ngOnInit(): void {
   }
+  Ordenar(){
+    this.paginaActual=1;
+    this.render();
+  }
   quitarFiltro(f:any){
+    this.paginaActual=1;
     let index=this.FiltrosAplicados.findIndex(fi=>fi.tipo==f.tipo);
     this.FiltrosAplicados.splice(index,1);
     this.fecha=null;
@@ -78,13 +88,16 @@ export class ListadoComponent implements OnInit {
     
   }
   Addfiltro(tipo:string,value:any,label:string){
+    this.paginaActual=1;
     if(tipo=="fecha"){
       let fecha=moment(this.fecha.year+"-"+this.fecha.month+"-"+this.fecha.day,'YYYY-M-D').format("YYYY-MM-DD");
       value=fecha;
       label=fecha.toLocaleString();
     }
     let index=this.FiltrosAplicados.findIndex(fi=>fi.tipo==tipo);
-    console.log(index);
+    if(tipo=="duracion"){
+      label=this.getDuracion(value);
+    }
     if(index==-1){
       this.FiltrosAplicados.push({tipo:tipo,value:value,label:label});
     }else{
@@ -101,8 +114,7 @@ export class ListadoComponent implements OnInit {
     }
   }
   next(){
-    console.log(this.paginaActual);
-    console.log(this.cantPaginas);
+    
     if(this.paginaActual<this.cantPaginas){
       this.paginaActual++;
       this.render();
@@ -117,5 +129,20 @@ export class ListadoComponent implements OnInit {
     // return new Array(number);
     return new Array(number).fill(0)
       .map((n, index) => index + 1);
+  }
+
+  getDuracion(min:number):string{
+    if(min<60){
+      return `${min.toString()} minutos`;
+    }else{
+      let horas=min/60;
+      if(horas<24){
+        return `${horas.toString()} horas`;
+      }else{
+        let dias=horas/24;
+        return `${dias.toString()} días`;  
+      }
+    }
+
   }
 }

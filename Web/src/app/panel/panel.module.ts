@@ -18,7 +18,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
 import { ComprasComponent } from './compras/compras.component';
 
-
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
@@ -45,6 +45,7 @@ import { ComprasComponent } from './compras/compras.component';
       ReactiveFormsModule,
       PanelRoutingModule,
       SharedModule,
+      CKEditorModule,
       NgxFileUploaderModule.forRoot(),
       CalendarModule.forRoot({
         provide: DateAdapter,

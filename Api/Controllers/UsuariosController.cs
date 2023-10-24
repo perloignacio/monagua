@@ -31,9 +31,34 @@ namespace Api.Controllers
                 Usuarios u = UsuariosMapper.Instance().Login(usuario, pass);
                 if (u != null)
                 {
-                    u.Token = TokenGenerator.GenerateTokenJwt(u.IdUsuario.ToString());
+                    bool band = true;
+                    if (u.PrestadoresEntity != null)
+                    {
+                        if (!u.PrestadoresEntity.Activo)
+                        {
+                            band = false;
+                        }
+                    }
 
-                    return Ok(u);
+                    if (u.ClientesEntity != null)
+                    {
+                        if (!u.ClientesEntity.Activo)
+                        {
+                            band = false;
+                        }
+                    }
+                    if (band)
+                    {
+                        u.Token = TokenGenerator.GenerateTokenJwt(u.IdUsuario.ToString());
+                        return Ok(u);
+                    }
+                    else
+                    {
+                        return BadRequest("Su cuenta se encuentra inactiva");
+                    }
+                   
+
+                   
                 }
                 else
                 {
@@ -88,7 +113,19 @@ namespace Api.Controllers
                     body = body.Replace("{domain}", ConfiguracionMapper.Instance().GetByClave("Dominio").Valor);
                     body = body.Replace("{hash}", u.IdUsuario.ToString() + "-" + Encriptar.Encrypt(u.Usuario+u.IdUsuario.ToString(), "S3rv3th0m3"));
                     body = body.Replace("{ubicacionlogo}", "img/logo-servet-home.png");
-                    body = body.Replace("{nombre}", u.Nombre);
+                    string nombre="";
+                    string email="";
+                    if (u.ClientesEntity != null)
+                    {
+                        nombre = u.ClientesEntity.Nombre;
+                        email = u.ClientesEntity.Email;
+                    }
+                    else
+                    {
+                        nombre = u.PrestadoresEntity.RazonSocial;
+                        email = u.PrestadoresEntity.Email;
+                    }
+                    body = body.Replace("{nombre}",nombre);
                     body = body.Replace("{email_recuperar}", ConfiguracionMapper.Instance().GetByClave("MailInstitucional").Valor);
 
                     MimeKit.MimeMessage message = new MimeKit.MimeMessage();
@@ -102,7 +139,7 @@ namespace Api.Controllers
                     message.Subject = "Recuperar contraseña";
                     message.Body = cuerpo.ToMessageBody();
                     message.From.Add(new MailboxAddress("", ConfiguracionMapper.Instance().GetByClave("MailInstitucional").Valor));
-                    message.To.Add(new MailboxAddress("", u.Email));
+                    message.To.Add(new MailboxAddress("", email));
                     EnviaMail.Envia(message);
                     return Ok(true);
                 }
@@ -256,6 +293,7 @@ namespace Api.Controllers
 
                 if (u != null)
                 {
+                   
                     string passActual = Encriptar.Encrypt(contraActual, "S3rv3th0m3");
                     string passNueva = Encriptar.Encrypt(contraNueva, "S3rv3th0m3");
                     if (u.Contra != passActual) { throw new Exception("La contraseña ingresada es incorrecta"); }

@@ -1,4 +1,4 @@
-import { ComrpasDetalle } from "./ComprasDetalle.model";
+import { ComprasDetalle } from "./ComprasDetalle.model";
 
 export class Mensajes{
     IdMensaje:number;
@@ -9,5 +9,5 @@ export class Mensajes{
     OrigenCliente:boolean;
     Activo:boolean;
     IdCompraDetalle:number;
-    ComprasDetalleEntity:ComrpasDetalle;
+    ComprasDetalleEntity:ComprasDetalle;
 }

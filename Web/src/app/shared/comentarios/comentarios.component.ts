@@ -16,6 +16,7 @@ export class ComentariosComponent implements OnInit {
   more:boolean=true;
   responder:boolean=false;
   calificaciones:Calificaciones[]=[];
+  idcd:number;
   @Input()
   set Actividades(value: Actividades) {
     this.obj=value;
@@ -27,13 +28,19 @@ export class ComentariosComponent implements OnInit {
     this.more=value;
     
   }
+  @Input()
+  set IdCompraDetalle(value: number) {
+    this.idcd=value;
+    
+  }
+  
 
   @Input()
   set premiteResponder(value: boolean) {
     this.responder=value;
     
   }
-  constructor(private srvCali:CalificacionesService,private modal: NgbModal) { 
+  constructor(private srvCali:CalificacionesService,private modal: NgbModal,private ActiveModal:NgbActiveModal) { 
     
   }
 
@@ -53,10 +60,15 @@ export class ComentariosComponent implements OnInit {
       }else{
         this.calificaciones=lc;
       }
-      
+      if(this.idcd){
+        this.calificaciones=this.calificaciones.filter(c=>c.IdCompraDetalle==this.idcd);
+      }
     })
   }
 
+  cerrar(){
+    this.ActiveModal.close();
+  }
   verMas(){
     const modalRef = this.modal.open(ComentariosComponent,{ size: 'lg' });
     modalRef.componentInstance.Actividades = this.obj;

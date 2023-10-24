@@ -21,17 +21,20 @@ namespace Api.Clases
                 
             }
 
-            
 
+            
             if (archivos.Count > 0)
             {
                 for (int i = 0; i <= HttpContext.Current.Request.Files.Count - 1; i++)
                 {
+                    
+
                     string extension = Path.GetExtension(archivos[i].FileName);
                     var postedFile = HttpContext.Current.Request.Files[i];
                     string fechahora = i.ToString() + "_" + DateTime.Now.ToString("ddmmyyyyhhssff") + extension;
 
                     var filePath = HttpContext.Current.Server.MapPath("~/assets/"+ubicacion+"/" + fechahora);
+
                     postedFile.SaveAs(filePath);
                     fotos.Add(fechahora);
                 }

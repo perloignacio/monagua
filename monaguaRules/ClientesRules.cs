@@ -11,7 +11,7 @@ namespace monaguaRules
     {
         public Clientes Agregar(string nombre,string apellido,string email,DateTime? fechnac,int? idlocalidad,int? idpais,int? idprovincia,bool novedades,bool politicas,string sexo,string telefono)
         {
-            validar(nombre,apellido,email,idlocalidad,idpais,idprovincia,politicas);
+            validar(nombre,apellido,email,idlocalidad,idpais,idprovincia,politicas,"agregar");
 
             var clientes = new Clientes();
             clientes.Nombre = nombre;
@@ -50,7 +50,7 @@ namespace monaguaRules
 
         public void Modificar(int idcliente,string nombre, string apellido, string email, DateTime? fechnac, int? idlocalidad, int? idpais, int? idprovincia, string sexo, string telefono)
         {
-            validar(nombre, apellido, email, idlocalidad, idpais, idprovincia, true);
+            validar(nombre, apellido, email, idlocalidad, idpais, idprovincia, true,"modificar");
 
             var clientes = new Clientes();
             clientes = ClientesMapper.Instance().GetOne(idcliente);
@@ -120,8 +120,17 @@ namespace monaguaRules
             ClientesMapper.Instance().Save(clientes);
 
         }
-        public void validar(string nombre, string apellido, string email, int? idlocalidad, int? idpais, int? idprovincia, bool politicas)
+        public void validar(string nombre, string apellido, string email, int? idlocalidad, int? idpais, int? idprovincia, bool politicas,string accion)
         {
+            if (accion == "agregar")
+            {
+                Usuarios u = UsuariosMapper.Instance().GetByUsuario(email);
+                if (u != null)
+                {
+                    throw new Exception("Ya existe un usuario creado con ese email");
+                }
+            }
+
             if (string.IsNullOrEmpty(nombre))
             {
                 throw new Exception("Ingrese el nombre");

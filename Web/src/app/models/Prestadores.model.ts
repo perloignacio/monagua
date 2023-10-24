@@ -20,4 +20,5 @@ export class Prestadores{
     LocalidadesEntity:Localidades;
     PaisesEntity:Paises;
     ProvinciasEntity:Provincias;
+    Certificado:string;
 }

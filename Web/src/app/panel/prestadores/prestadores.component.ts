@@ -86,9 +86,10 @@ export class PrestadoresComponent implements OnInit {
     }
     this.srvPrestador.Editar(form).subscribe((pre)=>{
       if(pre){
+        
         this.srvAut.currentUserValue.PrestadoresEntity=pre;
         localStorage.setItem('userMonagua', JSON.stringify(this.srvAut.currentUserValue));
-        Swal.fire("Ok","Su perfil se actualizo correctamente",'success');
+        Swal.fire("Ok","Su perfil se actualizó correctamente",'success');
         
       } 
     },(err)=>{

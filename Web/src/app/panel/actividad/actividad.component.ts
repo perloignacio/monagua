@@ -120,7 +120,7 @@ export class ActividadComponent implements OnInit {
     
     this.srvActividad.AgregarEditar(form).subscribe((b)=>{
       if(b){
-        Swal.fire("Ok","La actividad se registro correctamente, ahora indique los horarios",'success');        
+        Swal.fire("Ok","La actividad se registró correctamente, ahora indique los horarios",'success');        
         this.route.navigate(['/panel/prestador/actividad/'+b.IdActividad.toString()+'/horarios'])
       } 
     },(err)=>{

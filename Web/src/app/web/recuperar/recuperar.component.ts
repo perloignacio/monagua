@@ -22,7 +22,7 @@ export class RecuperarComponent implements OnInit {
   Enviar(){
     this.auth.Recuperar(this.obj.Usuario).subscribe((b)=>{
       if(b){
-        Swal.fire("Atención","Va a recibir un correo electronico para poder realizar el blanqueo de su contraseña",'success');
+        Swal.fire("Atención","Va a recibir un correo electronico para poder realizar el restablecimiento de su contraseña",'success');
       }
     },(err)=>{
 

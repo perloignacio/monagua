@@ -84,7 +84,7 @@ export class RegistroPrestadoresComponent implements OnInit {
     
     this.srvPrestadores.Registrar(form).subscribe((band)=>{
       if(band){
-        Swal.fire("OK","El registro se realizo correctamente, vamos a procesar su solicitud y en 48 horas puede ingresar al sitio web",'success');        
+        Swal.fire("OK","El registro se realizó correctamente, vamos a procesar su solicitud y en 48 horas puede ingresar al sitio web",'success');        
       } 
     },(err)=>{
 

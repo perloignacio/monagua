@@ -82,7 +82,7 @@ export class PrestadoresComponent implements OnInit {
   Activar(obj:Prestadores){
     Swal.fire({
       title: "Atención",
-      text:"¿Está seguro que desea activar este registro?",
+      text:"¿Está seguro que desea activar éste registro?",
       icon:'warning',
       showDenyButton: true,
       confirmButtonText: 'Aceptar',

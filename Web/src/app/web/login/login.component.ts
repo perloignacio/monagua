@@ -23,7 +23,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   Enviar(){
+
+    
     this.auth.login(this.obj.Usuario,this.obj.Contra).subscribe((u)=>{
+
       if(u.ClientesEntity!=null){
         if(this.org=="checkout"){
           this.srvCompras.setCliente(u.ClientesEntity);

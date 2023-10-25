@@ -49,7 +49,7 @@ export class ComprasComponent implements OnInit {
     if(u!=null && u.ClientesEntity!=null){
       this.srvFav.Agregar(obj.IdActividad).subscribe((b)=>{
         if(b){
-          Swal.fire("Ok","La actividad se guardo en favoritos","success");    
+          Swal.fire("Ok","La actividad se guardó en favoritos","success");    
         }
       },(err)=>{
         Swal.fire("Upps",err.error.Message,"warning");    
@@ -92,7 +92,7 @@ export class ComprasComponent implements OnInit {
       if (result.isConfirmed) {
         this.srvObj.AnularActividad(cd.IdCompraDetalle).subscribe((b)=>{
           if(b){
-            Swal.fire("Ok","La reserva se cancelo correctamente",'success');  
+            Swal.fire("Ok","La reserva se canceló correctamente",'success');  
             this.cargar();
           }
         },(err)=>{

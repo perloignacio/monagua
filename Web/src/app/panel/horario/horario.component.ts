@@ -45,7 +45,7 @@ export class HorarioComponent implements OnInit {
     form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
     this.srvAct.agregarHorario(form).subscribe((band)=>{
       if(band){
-        Swal.fire("Ok","La operación se realizo con exito",'success');
+        Swal.fire("Ok","La operación se realizó con exito",'success');
         this.activemodal.close(true);
       } 
     },(err)=>{
@@ -63,7 +63,7 @@ export class HorarioComponent implements OnInit {
       form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
       this.srvAct.modificarUnHorario(form).subscribe((band)=>{
         if(band){
-          Swal.fire("Ok","La operación se realizo con exito",'success');
+          Swal.fire("Ok","La operación se realizó con exito",'success');
           this.activemodal.close(true);
         } 
       },(err)=>{
@@ -81,7 +81,7 @@ export class HorarioComponent implements OnInit {
       
       this.srvAct.modificarSiguientesHorario(form).subscribe((band)=>{
         if(band){
-          Swal.fire("Ok","La operación se realizo con exito",'success');
+          Swal.fire("Ok","La operación se realizó con exito",'success');
           this.activemodal.close(true);
         } 
       },(err)=>{

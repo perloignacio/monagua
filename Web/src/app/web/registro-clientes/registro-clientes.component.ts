@@ -28,8 +28,11 @@ export class RegistroClientesComponent implements OnInit {
   org:string=""
   constructor(private srvShared:SharedService,private srvWeb:WebService,private arouter:ActivatedRoute,private route:Router,private srvClientes:ClientesService) { 
     this.arouter.queryParams.subscribe((p)=>{
+      console.log(p);
+      
       if(p['org']){
         this.org=p['org'];
+        
       }
     })
      
@@ -74,7 +77,9 @@ export class RegistroClientesComponent implements OnInit {
     this.srvClientes.Registrar(form).subscribe((band)=>{
       if(band){
         Swal.fire("Ok","Su registro se realizo correctamente",'success');
-        if(this.org="checkout"){
+        console.log(this.org);
+        
+        if(this.org=="checkout"){
           
           this.route.navigate(["/checkout"]);
         }else{

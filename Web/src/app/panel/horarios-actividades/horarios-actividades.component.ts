@@ -12,6 +12,10 @@ import { ActividadesService } from 'src/app/services/actividades/actividades.ser
 import { SharedService } from 'src/app/services/shared/shared.service';
 import Swal from 'sweetalert2';
 import { HorarioComponent } from '../horario/horario.component';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs);
 const colors: any = {
   red: {
     primary: '#ad2121',

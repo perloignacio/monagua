@@ -35,7 +35,7 @@ export class ComprasComponent implements OnInit {
         this.srvCompra.Quitar(det).subscribe((c)=>{
           if(c){
             this.srvCompra.setCarrito(c);
-            Swal.fire("Ok","Se borro el registro",'success');
+            Swal.fire("Ok","Se borró el registro",'success');
 
           }
         },(err)=>{

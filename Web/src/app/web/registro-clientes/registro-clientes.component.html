@@ -76,7 +76,10 @@
                     <div class="row mt-3">
                         <div class="col-6">
                             <label>Contraseña<b>*</b></label>
-                            <input type="password" [(ngModel)]="usu.Contra" name="Contra" class="form-control" required>
+                            <input type="password" [(ngModel)]="usu.Contra" name="Contra" class="form-control" (keypress)="passValidate(usu.Contra)"
+                            
+                            >
+                            <small *ngIf="!passOK" class="text-danger">La contraseña debe tener al menos: 8 caracteres, numeros, MAYUSCULAS y minusculas</small>
                         </div>
                     </div>
                     <!--<div class="row">

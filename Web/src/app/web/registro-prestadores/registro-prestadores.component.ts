@@ -25,6 +25,7 @@ export class RegistroPrestadoresComponent implements OnInit {
   Agregar:boolean=true;
   Archivos:FileList;
   Certi:FileList;
+  passOK:boolean = true;
   constructor(private srvShared:SharedService,private srvWeb:WebService,private route:Router,private srvPrestadores:PrestadoresService) { 
     this.srvWeb.Paises().subscribe((paises)=>{
     
@@ -60,6 +61,9 @@ export class RegistroPrestadoresComponent implements OnInit {
   }
 
   Registrar(){
+    if(!this.passOK){
+      return
+    }
     const form=new FormData();
     if(!this.Agregar){
       form.append("id",this.obj.IdPrestador.toString());
@@ -93,5 +97,31 @@ export class RegistroPrestadoresComponent implements OnInit {
     
     
   }
+passValidate(contra){
+  const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+     if (!regex.test(contra)) {
+      this.passOK=false;
+       }else{
+        this.passOK=true;
+       }
+  
+}
+
+  validateFormat(event) {
+    let key;
+    if (event.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+    } else {
+      key = event.keyCode;
+      key = String.fromCharCode(key);
+    }
+    const regex = /[0-9]|\./;
+     if (!regex.test(key)) {
+      event.returnValue = false;
+       if (event.preventDefault) {
+        event.preventDefault();
+       }
+     }
+    }
 
 }

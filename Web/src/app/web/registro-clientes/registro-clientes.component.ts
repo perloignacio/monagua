@@ -26,6 +26,7 @@ export class RegistroClientesComponent implements OnInit {
   contra:string;
   Agregar:boolean=true;
   org:string=""
+  passOK: boolean=true;
   constructor(private srvShared:SharedService,private srvWeb:WebService,private arouter:ActivatedRoute,private route:Router,private srvClientes:ClientesService) { 
     this.arouter.queryParams.subscribe((p)=>{
       console.log(p);
@@ -61,6 +62,9 @@ export class RegistroClientesComponent implements OnInit {
   
   
   Registrar(){
+    if(!this.passOK){
+      return
+    }
     const form=new FormData();
     if(!this.Agregar){
       form.append("id",this.obj.IdCliente.toString());
@@ -91,6 +95,16 @@ export class RegistroClientesComponent implements OnInit {
       Swal.fire("Upps",err.error.Message,'warning');
     })
     
+    
+  }
+
+  passValidate(contra){
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+       if (!regex.test(contra)) {
+        this.passOK=false;
+         }else{
+          this.passOK=true;
+         }
     
   }
   

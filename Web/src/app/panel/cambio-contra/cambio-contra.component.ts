@@ -17,6 +17,7 @@ export class CambioContraComponent implements OnInit {
   contra:string;
   contraNew:string;
   nContraNew:string;
+  passOK: boolean;
   
   constructor(private route:ActivatedRoute,private router:Router,private srvUsuario:UsuariosService,private srvShared:SharedService,private srvAuth:AuthenticationService) { 
     
@@ -26,7 +27,9 @@ export class CambioContraComponent implements OnInit {
   }
   
   Enviar(){
-    
+    if(!this.passOK){
+      return
+    }
       this.srvUsuario.CambiarContra(this.contra,this.contraNew,this.nContraNew).subscribe((band)=>{
 
         if (band){
@@ -46,4 +49,15 @@ export class CambioContraComponent implements OnInit {
        });
     
   }
+
+  passValidate(contra){
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+       if (!regex.test(contra)) {
+        this.passOK=false;
+         }else{
+          this.passOK=true;
+         }
+    
+  }
+  
 }

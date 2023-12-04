@@ -85,7 +85,26 @@ namespace monaguaRules
             clientes.Sexo = sexo;
             clientes.Telefono = telefono;
 
+            UsuariosList ul = UsuariosMapper.Instance().GetByClientes(idcliente);
+            if (ul.Count > 0)
+            {
+                if (ul[0].Email != clientes.Email)
+                {
+                    Usuarios u = UsuariosMapper.Instance().GetByUsuario(clientes.Email);
+                    if (u != null)
+                    {
+                        throw new Exception("Ya existe un usuario con ese nombre");
+                    }
+
+                    ul[0].Usuario = clientes.Email;
+                    UsuariosMapper.Instance().Save(ul[0]);
+                }
+            }
+
             ClientesMapper.Instance().Save(clientes);
+
+            
+            
 
         }
 

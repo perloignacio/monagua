@@ -219,7 +219,7 @@ namespace Api.Controllers
                 cuerpo.HtmlBody = body;
                 message.Subject = "Registros " + presta.RazonSocial;
                 message.Body = cuerpo.ToMessageBody();
-                message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+                message.From.Add(new MailboxAddress("", "monagua@monagua.com.ar"));
                 message.To.Add(new MailboxAddress("", ConfiguracionMapper.Instance().GetByClave("EmailRegistroPrestador").Valor));
                 EnviaMail.Envia(message);
                 

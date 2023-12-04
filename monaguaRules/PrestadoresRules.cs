@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using monaguaRules.Entities;
@@ -46,7 +47,7 @@ namespace monaguaRules
             pr.Logo = logo;
             pr.Politicas = politicas;
             pr.Telefono = telefono;
-
+            pr.Certificado = certi;
             PrestadoresMapper.Instance().Insert(pr);
             return pr;
         }
@@ -85,6 +86,22 @@ namespace monaguaRules
             
             pr.Logo = logo;
             pr.Telefono = telefono;
+
+            UsuariosList ul = UsuariosMapper.Instance().GetByPrestadores(idprestador);
+            if (ul.Count > 0)
+            {
+                if (ul[0].Email != pr.Email)
+                {
+                    Usuarios u = UsuariosMapper.Instance().GetByUsuario(pr.Email);
+                    if (u != null)
+                    {
+                        throw new Exception("Ya existe un usuario con ese nombre");
+                    }
+
+                    ul[0].Usuario = pr.Email;
+                    UsuariosMapper.Instance().Save(ul[0]);
+                }
+            }
 
             PrestadoresMapper.Instance().Save(pr);
 

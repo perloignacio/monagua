@@ -49,9 +49,48 @@ export class RegistroPrestadoresComponent implements OnInit {
 
   onFileChange(event,tipo:string) {
     if(tipo!='certi'){
-      this.Archivos=event.target.files;
+      let files = event.target.files;
+      let format:string[]=["pdf","jpg","png","jpeg","tiff"];
+      let band=true;
+      for( var file of files){
+        console.log(file.size)
+        var ext = file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase();
+        
+        if(!format.includes(ext)){
+          Swal.fire("Formato incorrecto","Solo puede adjuntar archivos en formato "+format.toString(),'error');
+          band=false;
+        }
+        if(file.size>4000000){
+          Swal.fire("Peso máximo excedido","Solo puede adjuntar archivos hasta 4MB",'error');
+          band=false;
+        }
+      }
+      if(band){
+        this.Archivos=event.target.files;
+        
+      }
+     
     }else{
-      this.Certi=event.target.files;
+      let files = event.target.files;
+      let format:string[]=["pdf"];
+      let band=true;
+      for( var file of files){
+        var ext = file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase();
+        
+        if(!format.includes(ext)){
+          Swal.fire("Formato incorrecto","Solo puede adjuntar archivos en formato "+format.toString(),'error');
+          band=false;
+        }
+        if(file.size>4000000){
+          Swal.fire("Peso máximo excedido","Solo puede adjuntar archivos hasta 4MB",'error');
+          band=false;
+        }
+      }
+      if(band){
+        this.Certi=event.target.files;
+        
+      }
+      
     }
     
 

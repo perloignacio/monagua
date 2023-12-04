@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private srvAut:AuthenticationService,private route:Router) { }
 
   ngOnInit(): void {
   }
   Salir(){
-    
+    this.srvAut.logout();
+    this.route.navigate(["/"])
   }
 
 }

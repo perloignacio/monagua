@@ -101,32 +101,89 @@ export class ActividadComponent implements OnInit {
     this.uploader.removeFile(_file);
   }
   Guardar(){
-    const form=new FormData();
-    if(!this.Agregar){
-      form.append("id",this.obj.IdActividad.toString());
-    }else{
-      form.append("id","0");
-    }
-    
-    this.obj.Fotos=this.fotosCargadas.join(",");
-    
-    this.uploader.queueObs.forEach((f)=>{
-      form.append("Archivos[]", f.element,f.object.name);  
-    })
-    
-    
-    form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
-    
-    
-    this.srvActividad.AgregarEditar(form).subscribe((b)=>{
-      if(b){
-        Swal.fire("Ok","La actividad se registró correctamente, ahora indique los horarios",'success');        
-        this.route.navigate(['/panel/prestador/actividad/'+b.IdActividad.toString()+'/horarios'])
-      } 
-    },(err)=>{
 
-      Swal.fire("Upps",err.error.Message,'warning');
-    })
+    if(this.validar()){
+
+    
+      const form=new FormData();
+      if(!this.Agregar){
+        form.append("id",this.obj.IdActividad.toString());
+      }else{
+        form.append("id","0");
+      }
+      
+      this.obj.Fotos=this.fotosCargadas.join(",");
+      
+      this.uploader.queueObs.forEach((f)=>{
+        form.append("Archivos[]", f.element,f.object.name);  
+      })
+      
+      
+      form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
+      
+      
+      this.srvActividad.AgregarEditar(form).subscribe((b)=>{
+        if(b){
+          Swal.fire("Ok","La actividad se registró correctamente, ahora indique los horarios",'success');        
+          this.route.navigate(['/panel/prestador/actividad/'+b.IdActividad.toString()+'/horarios'])
+        } 
+      },(err)=>{
+
+        Swal.fire("Upps",err.error.Message,'warning');
+      })
+    }
+  }
+  validar():boolean{
+    let band:boolean=true;
+    let msj:string="";
+    if(!this.obj.Nombre){
+      band=false;
+      msj+="Ingrese el nombre<br>";
+    }
+    if(!this.obj.IdCategoria){
+      band=false;
+      msj+="Ingrese el nombre<br>";
+    }
+    if(!this.obj.DescripcionCorta){
+      band=false;
+      msj+="Ingrese el resumén<br>";
+    }
+    if(!this.obj.Descripcion){
+      band=false;
+      msj+="Ingrese la descripción<br>";
+    }
+    if(!this.obj.QueIncluye){
+      band=false;
+      msj+="Ingrese que incluye la actividad<br>";
+    }
+    if(!this.obj.IdProvincia){
+      band=false;
+      msj+="Ingrese la provincia<br>";
+    }
+
+    if(!this.obj.IdLocalidad){
+      band=false;
+      msj+="Ingrese la localidad<br>";
+    }
+
+    if(!this.obj.Duracion){
+      band=false;
+      msj+="Ingrese la duración en minutos<br>";
+    }
+
+    if(!this.obj.Precio){
+      band=false;
+      msj+="Ingrese el precio<br>";
+    }
+
+    if(!this.obj.DiasCancelacion){
+      band=false;
+      msj+="Ingrese la cantidad de dias previos para la cancelación<br>";
+    }
+    if(!band){
+      Swal.fire("Upps",msj,'warning');        
+    }
+    return band;
   }
   ngOnInit(): void {
   }

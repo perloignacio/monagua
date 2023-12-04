@@ -316,7 +316,7 @@ namespace Api.Controllers
                 cuerpo.HtmlBody = body;
                 message.Subject = "Felicitaciones por tu compra";
                 message.Body = cuerpo.ToMessageBody();
-                message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+                message.From.Add(new MailboxAddress("", "monagua@monagua.com.ar"));
                 message.To.Add(new MailboxAddress("", compra.ClientesEntity.Email));
                 EnviaMail.Envia(message);
 
@@ -394,7 +394,7 @@ namespace Api.Controllers
                     cuerpo.HtmlBody = body;
                     message.Subject = "Compra " + compra.ClientesEntity.Apellido;
                     message.Body = cuerpo.ToMessageBody();
-                    message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+                    message.From.Add(new MailboxAddress("", "monagua@monagua.com.ar"));
                     message.To.Add(new MailboxAddress("", det.ActividadesEntity.PrestadoresEntity.Email));
                     EnviaMail.Envia(message);
 
@@ -444,7 +444,7 @@ namespace Api.Controllers
                     cuerpo.HtmlBody = body;
                     message.Subject = "Compra " + compra.ClientesEntity.Apellido;
                     message.Body = cuerpo.ToMessageBody();
-                    message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+                    message.From.Add(new MailboxAddress("", "monagua@monagua.com.ar"));
                     message.To.Add(new MailboxAddress("", ConfiguracionMapper.Instance().GetByClave("EmailCompra").Valor));
                     EnviaMail.Envia(message);
 
@@ -676,7 +676,7 @@ namespace Api.Controllers
             cuerpo.HtmlBody = body;
             message.Subject = "Anulacion de compra " + cd.ComprasEntity.ClientesEntity.Apellido;
             message.Body = cuerpo.ToMessageBody();
-            message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+            message.From.Add(new MailboxAddress("", "monagua@monagua.com.ar"));
             message.To.Add(new MailboxAddress("", para));
             EnviaMail.Envia(message);
 

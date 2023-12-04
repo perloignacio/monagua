@@ -28,6 +28,7 @@ namespace Api.Controllers
             try
             {
                 string pass = Encriptar.Encrypt(contra, "S3rv3th0m3");
+
                 Usuarios u = UsuariosMapper.Instance().Login(usuario, pass);
                 if (u != null)
                 {

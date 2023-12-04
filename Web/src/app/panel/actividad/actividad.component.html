@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col-md-8">
-            <label>Nombre</label>
+            <label>Nombre *</label>
             <input [(ngModel)]="obj.Nombre" name="Nombre" type="text" class="form-control">
         </div>
         <div class="col-md-4">
-            <label>Tipo</label>
+            <label>Tipo *</label>
             <select [(ngModel)]="obj.IdCategoria" name="IdCategoria" class="form-control form-select">
                 <option *ngFor="let objc of Categorias" [ngValue]="objc.IdCategoria">{{objc.Nombre}}</option>
                 
@@ -14,20 +14,20 @@
     </div>
     <div class="row mt-3">
         <div class="col-12">
-            <label>Resumen</label>
+            <label>Resumén *</label>
             <textarea [(ngModel)]="obj.DescripcionCorta" name="DescripcionCorta" type="text" class="form-control"></textarea>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-12">
-            <label>Descripcion</label>
+            <label>Descripción *</label>
             <ckeditor [editor]="Editor" [(ngModel)]="obj.Descripcion" name="Descripcion web"></ckeditor>
             
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-6">
-            <label>Que incluye</label>
+            <label>Que incluye *</label>
             <textarea [(ngModel)]="obj.QueIncluye" name="QueIncluye" type="text" class="form-control"></textarea>
         </div>
         <div class="col-md-6">
@@ -39,26 +39,26 @@
    
     <div class="row mt-3">
         <div class="col-md-8">
-            <label>Video</label>
+            <label>Video (incrustar link compartir de Youtube)</label>
             <input [(ngModel)]="obj.Video" name="Video" type="text" class="form-control">
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-8">
-            <label>Ubicacion</label>
+            <label>Ubicación</label>
             <input [(ngModel)]="obj.Ubicacion" name="Ubicacion" type="text" class="form-control">
         </div>
     </div>
     <div class="row mt-3">
         <div class="col">
-            <label>Provincia</label>
+            <label>Provincia *</label>
             <select [(ngModel)]="obj.IdProvincia" name="IdProvincia" class="form-select form-control" (change)="onChangeProvincia($event)"> 
                 <option value="" selected disabled>Seleccione Provincia</option>
                 <option *ngFor="let provincias of listaprovincias" [ngValue]="provincias.IdProvincia">{{provincias.Nombre}}</option>>
         </select>
         </div>
         <div class="col">
-            <label>Localidad</label>
+            <label>Localidad *</label>
             <select [(ngModel)]="obj.IdLocalidad" name="IdLocalidad" class="form-select form-control">
                 <option value="" selected disabled>Seleccione Localidad</option>
                 <option *ngFor="let localidades of listalocalidades" [ngValue]="localidades.IdLocalidad">{{localidades.Nombre}}</option>
@@ -67,7 +67,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-12">
-            <label>Mapa</label>
+            <label>Mapa (incrustar mapa de Google maps)</label>
             <textarea [(ngModel)]="obj.Mapa" name="Mapa" type="text" class="form-control"></textarea>
         </div>
     </div>
@@ -110,13 +110,13 @@
             </select>
         </div>
         <div class="col-md-4">
-            <label>Duración (en minutos)</label>
+            <label>Duración (en minutos) *</label>
             <input [(ngModel)]="obj.Duracion" name="Duracion" type="text" class="form-control">
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-4">
-            <label>Precio</label>
+            <label>Precio *</label>
             <input [(ngModel)]="obj.Precio" name="Precio" type="text" class="form-control">
         </div>
         <div class="col-md-4">
@@ -124,7 +124,7 @@
             <input [(ngModel)]="obj.PrecioOferta" name="PrecioOferta" type="text" class="form-control">
         </div>
         <div class="col-md-4">
-            <label>Cantidad de días previos para poder cancelar</label>
+            <label>Cantidad de días previos para poder cancelar *</label>
             <input [(ngModel)]="obj.DiasCancelacion" name="DiasCancelacion" type="text" class="form-control">
         </div>
     </div>

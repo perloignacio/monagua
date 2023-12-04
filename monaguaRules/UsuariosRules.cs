@@ -147,7 +147,7 @@ namespace monaguaRules
             {
                 if (string.IsNullOrEmpty(contra))
                 {
-                    throw new Exception("Ingrese el contra");
+                    throw new Exception("Ingrese la contraseña");
                 }
 
                 Usuarios u = UsuariosMapper.Instance().GetByUsuario(usuario);

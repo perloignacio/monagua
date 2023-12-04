@@ -16,8 +16,8 @@ namespace API.Clases
         {
             SmtpClient client = new SmtpClient();
             client.ServerCertificateValidationCallback += TrustingCallBack;
-            client.Connect("dtc027.ferozo.com", 465, SecureSocketOptions.Auto);
-            client.Authenticate("hola@minilent.com", "H0laM1nil3nt*");
+            client.Connect("dtc022.ferozo.com", 465, SecureSocketOptions.Auto);
+            client.Authenticate("monagua@monagua.com.ar", "M0n4Gu@159");
             client.Send(message);
 
         }

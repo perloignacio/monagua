@@ -147,7 +147,7 @@ namespace Api.Controllers
                     cuerpo.HtmlBody = body;
                     message.Subject = "Respuesta de " + c.ComprasDetalleEntity.ActividadesEntity.PrestadoresEntity.NombreFantasia;
                     message.Body = cuerpo.ToMessageBody();
-                    message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+                    message.From.Add(new MailboxAddress("", "monagua@monagua.com.ar"));
                     message.To.Add(new MailboxAddress("", c.ComprasDetalleEntity.ComprasEntity.ClientesEntity.Email));
                     EnviaMail.Envia(message);
                 }
@@ -185,7 +185,7 @@ namespace Api.Controllers
                     cuerpo.HtmlBody = body;
                     message.Subject = "Nuevo comentario de " + c.ComprasDetalleEntity.ComprasEntity.ClientesEntity.Nombre;
                     message.Body = cuerpo.ToMessageBody();
-                    message.From.Add(new MailboxAddress("", "hola@monagua.com.ar"));
+                    message.From.Add(new MailboxAddress("", "monagua@monagua.com.ar"));
                     message.To.Add(new MailboxAddress("", c.ComprasDetalleEntity.ActividadesEntity.PrestadoresEntity.Email));
                     EnviaMail.Envia(message);
                 }

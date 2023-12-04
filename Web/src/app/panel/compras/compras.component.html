@@ -25,7 +25,7 @@
                 <p>Número de reserva: #{{cd.IdCompra}}/{{cd.IdCompraDetalle}}<br>
                 <b>Ubicación:</b> {{cd.ActividadesEntity.Ubicacion}}<br>
                 <b>Duracion:</b> {{cd.ActividadesEntity.Duracion}} minutos<br>
-                <b>Fecha y Hora:</b> {{cd.FechaHora | date:'dd/MM/yyyy hh:mm'}}<br>
+                <b>Fecha y Hora:</b> {{cd.FechaHora | date:'dd/MM/yyyy hh:mm'}} hs.<br>
                 <b>Cantidad:</b> {{cd.Cantidad}}<br>
                 <b>Cancelación gratuita:</b> {{cd.ActividadesEntity.CancelacionGratuita ? 'Si':'NO'}}<br>
                 <b>Tiempo previo a cancelación:</b> {{cd.ActividadesEntity.DiasCancelacion}} días<br>

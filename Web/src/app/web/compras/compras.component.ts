@@ -23,8 +23,8 @@ export class ComprasComponent implements OnInit {
 
   borrarproducto(det:ComprasDetalle){
     Swal.fire({
-      title: "Atencion",
-      text:"Esta seguro que desea borrar?",
+      title: "Atención",
+      text:"Está seguro que desea borrar?",
       icon:'warning',
       showDenyButton: true,
       confirmButtonText: 'Aceptar',

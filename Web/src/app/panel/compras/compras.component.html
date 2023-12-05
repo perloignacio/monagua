@@ -4,7 +4,7 @@
   <div class="col-md-8">
       <h3 *ngIf="this.authService.currentUserValue.ClientesEntity">Mis compras</h3>
       <h3 *ngIf="!this.authService.currentUserValue.ClientesEntity">Mis ventas</h3>
-      <p class="grande mt-2 mb-4">Crea una cuenta para añadir actividades a tus favoritos y acceder a tus reservas desde cualquier dispositivo.</p>
+      <!-- <p class="grande mt-2 mb-4">Crea una cuenta para añadir actividades a tus favoritos y acceder a tus reservas desde cualquier dispositivo.</p> -->
   </div>
 </div>
 <div class="card listado mt-3" *ngFor="let cd of ArrObj;">
@@ -38,7 +38,8 @@
     <div class="row mt-3">
       <div class="col-md-12">
         <button class="btn btn-dark btn-lg me-2" (click)="Borrar(cd)">Cancelar reserva</button>
-        <button class="btn btn-dark btn-lg me-2" (click)="Comentarios(cd)">Dejar comentario</button>
+        <button class="btn btn-dark btn-lg me-2" (click)="Comentarios(cd)" *ngIf="!authService.currentUserValue.PrestadoresEntity">Dejar comentario</button>
+        <button class="btn btn-dark btn-lg me-2" (click)="Comentarios(cd)" *ngIf="authService.currentUserValue.PrestadoresEntity">Responder comentario</button>
         <button class="btn btn-dark btn-lg me-2" (click)="Mensajes(cd)">Enviar mensaje directo</button>
       </div>
       

@@ -34,7 +34,7 @@
                         </button>
                     
                     </span>
-                    <a class="btn btn-dark btn-lg ms-2" href="/compras">{{srvCompras.carrito.Detalle.length}} <i class="fas fa-shopping-cart"></i></a>
+                    <a class="btn btn-dark btn-lg ms-2" href="/compras" *ngIf=" !esPrestador">{{srvCompras.carrito.Detalle.length}} <i class="fas fa-shopping-cart"></i></a>
                 </div>
             </div>
         </div>

@@ -21,6 +21,7 @@ export class AppComponent {
   title = 'Web';
   esAdmin:boolean=false
   whatsapp:string="";
+  esPrestador:boolean =true;
   constructor(public srvCompras:ComprasService,public srvAut:AuthenticationService,private route:Router,public activeRoute:ActivatedRoute,private srvWeb:WebService) {
     this.activeRoute.url.subscribe(value => {
         if(window.location.href.includes("admin")){
@@ -28,7 +29,11 @@ export class AppComponent {
         }
     })
     this.srvCompras.obtieneCarrito(null);
+
     if(this.srvAut.currentUserValue!=null){
+      if (!srvAut.currentUserValue.PrestadoresEntity) {
+        this.esPrestador=false;
+      }
       this.srvAut.validar().subscribe((b)=>{
         if(!b){
           this.srvAut.logout();

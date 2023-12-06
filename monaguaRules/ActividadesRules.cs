@@ -270,7 +270,7 @@ namespace monaguaRules
             {
                 newah.Capacidad = capacidad.Value;
             }
-            
+            newah.Activa = true;
             newah.IdActividad = ah.IdActividad;
 
             ActividadesHorariosMapper.Instance().Insert(newah);

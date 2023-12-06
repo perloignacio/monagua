@@ -492,7 +492,7 @@ namespace monaguaRules
                 ActividadesHorariosExcepcionList hexList = ActividadesHorariosExcepcionMapper.Instance().GetByActividadesHorarios(item.id);
                 if (hexList.Count > 0)
                 {
-                    var ex = hexList.Find(e => e.Fecha.Value.Date == item.FechaInicio.Date);
+                    var ex = hexList.FindLast(e => e.Fecha.Value.Date == item.FechaInicio.Date);
                     if (ex != null)
                     {
                         if (!ex.Eliminar)

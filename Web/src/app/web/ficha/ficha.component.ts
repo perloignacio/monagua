@@ -22,6 +22,12 @@ declare function scrollToAnchor(opt): any;
   styleUrls: ['./ficha.component.scss']
 })
 export class FichaComponent implements OnInit {
+   image = '';
+ name = '';
+ hashtags = '';
+ url = '';
+ fbid = '';
+
   obj:Actividades;
   foto:string="";
   fecha:NgbDate;
@@ -132,6 +138,35 @@ export class FichaComponent implements OnInit {
     })
   }
   
+  
+copy(){
+  navigator.clipboard.writeText('https://www.monagua.com.ar' + this.router.url);
+}
+  social(a) {
+  
+    let whatsapp = 'https://wa.me/?text=Mirá! y si nos sumamos? '+ this.obj.Nombre +' https://www.monagua.com.ar' + this.router.url;
+    let facebook = 'https://www.facebook.com/sharer/sharer.php?u=https://www.monagua.com.ar' + this.router.url;
+    let twitter = 'http://twitter.com/share?text='+ this.obj.Nombre +'&url=https://www.monagua.com.ar'+ this.router.url +'&hashtags='+ this.obj.CategoriasEntity.Nombre;
+    
+    
+
+    let b = '';
+
+    if(a === 'whatsapp') {
+      b = whatsapp;
+    }
+    if(a === 'twitter') {
+      b = twitter;
+    }
+    if(a === 'facebook') {
+      b = facebook;
+    }
+
+    let params = `width=600,height=400,left=100,top=100`;
+
+    window.open(b, a, params)
+
+  }
   ngOnInit(): void {
   }
 

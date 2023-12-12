@@ -14,8 +14,13 @@
         </div>
         <div class="col-md-6 col-6 text-end">
             <div class="compartir">
-                <div class="item linkcat" role="button"><img src="assets/share.svg"  style="vertical-align:text-top;"> Compartir</div>
-                <div class="item linkcat" (click)="favoritos()" role="button"><img src="assets/favoritos.svg" style="vertical-align:text-top;"> Favoritos</div>
+                <div class="item" role="button">Compartir: 
+                    <a class="me-2 fs-5" (click)="social('twitter')"><img src="assets/x-twitter.svg" style="vertical-align:text-top;"> </a>
+                    <a class="me-2 fs-5" (click)="social('facebook')"><i class="fab fa-facebook" style="vertical-align:text-top;"></i> </a>
+                    <a class="me-2 fs-5" (click)="social('whatsapp')" data-action="share/whatsapp/share" ><i class="fab fa-whatsapp" style="vertical-align:text-top;"></i> </a> 
+                    <a class="me-2 fs-5" (click)="copy()"><i class="fas fa-paperclip" style="vertical-align:text-top;"></i> </a> 
+                    <a class="me-2 fs-5" (click)="favoritos()"><img src="assets/favoritos.svg" style="vertical-align:text-top;"> Favoritos</a>
+                </div>
             </div>
         </div>
     </div>

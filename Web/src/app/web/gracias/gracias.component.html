@@ -2,11 +2,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center mb-5">
-                <div class="">
+                <div class="" *ngIf="gracias">
                 <div class="align-middle">
                 <h3 class="mt-5"><b>MUCHAS GRACIAS</b></h3>
                 <p class="grande">Tu compra se realizo correctamente, en la brevedad recibiras un email con el detalle de tu compra</p>
                 </div>  
+                <div class="" *ngIf="!gracias">
+                    <div class="align-middle">
+                    <h3 class="mt-5"><b>Ocurrio un error</b></h3>
+                    <p class="grande">No pudimos procesar tu compra, por favor vuelve a intentarlo</p>
+                    </div>  
             </div>
             </div>
         </div>

@@ -135,13 +135,10 @@ namespace Api.Controllers
                     porcentajeDescuento = c.DescuentosEntity.Porcentaje.Value;
                 }
             }
+            total = (acu - desc);
             if (c.Reserva)
             {
-                total = (acu - desc) / 2;
-            }
-            else
-            {
-                total = (acu - desc);
+                total = total / 2;
             }
             
             c.MontoDescuento = montoDesuento;
@@ -164,9 +161,9 @@ namespace Api.Controllers
             request.ExternalReference = c.IdObjeto.ToString();
             PreferenceBackUrlsRequest b = new PreferenceBackUrlsRequest();
             string dominio = ConfiguracionMapper.Instance().GetByClave("Dominio").Valor;
-            b.Failure = dominio + "error";
-            b.Pending = dominio + "error";
-            b.Success = dominio + "gracias";
+            b.Failure = dominio + "/error";
+            b.Pending = dominio + "/error";
+            b.Success = dominio + "/gracias";
             request.BackUrls = b;
             request.AutoReturn = "approved";
             PreferencePaymentTypeRequest p = new PreferencePaymentTypeRequest();

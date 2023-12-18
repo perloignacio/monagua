@@ -28,8 +28,8 @@ export class CheckoutComponent implements OnInit {
     
     this.srvCompras.Pagar().subscribe((linkMP)=>{
       if(linkMP!=""){
-        //window.location.href=linkMP;
-        this.srvCompras.Finalizar().subscribe((band)=>{
+        window.location.href=linkMP;
+        /*this.srvCompras.Finalizar().subscribe((band)=>{
           if(band){
            
             this.router.navigate(["/gracias"])
@@ -37,7 +37,7 @@ export class CheckoutComponent implements OnInit {
         },(err)=>{
           
           Swal.fire("upps",err.error.Message,"warning");
-        })
+        })*/
       }
     })
   }

@@ -149,7 +149,7 @@ export class ComprasService {
     return this.httpClient.post<string>(this.endpoint + `GetLinkMercadoPago/`,this.carrito, httpOptions)
   }
   Finalizar() {
-    return this.httpClient.post<boolean>(this.endpoint + `FinalizarManual/`,this.carrito, httpOptions)
+    return this.httpClient.post<boolean>(this.endpoint + `Finalizar/`,this.carrito, httpOptions)
   }
 
   AnularActividad(IdCompraDetalle:number){

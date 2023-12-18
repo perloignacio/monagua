@@ -26,7 +26,7 @@ export class RegistroClientesComponent implements OnInit {
   contra:string;
   Agregar:boolean=true;
   org:string=""
-  passOK: boolean=true;
+  passOK: boolean=false;
   constructor(private srvShared:SharedService,private srvWeb:WebService,private arouter:ActivatedRoute,private route:Router,private srvClientes:ClientesService) { 
     this.arouter.queryParams.subscribe((p)=>{
       console.log(p);
@@ -99,7 +99,8 @@ export class RegistroClientesComponent implements OnInit {
   }
 
   passValidate(contra){
-    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{7,}$/;
        if (!regex.test(contra)) {
         this.passOK=false;
          }else{

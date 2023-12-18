@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           })
           this.route.navigate(['/checkout'])
         }else{
-          this.route.navigate(['/panel/cliente'])
+          this.route.navigate(['/'])
         }
         
       }else{

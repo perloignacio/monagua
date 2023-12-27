@@ -150,11 +150,11 @@ namespace monaguaRules
             }
             if (string.IsNullOrEmpty(nombre))
             {
-                throw new Exception("Ingrese el nombre");
+                throw new Exception("Ingrese Razón Social");
             }
             if (string.IsNullOrEmpty(apellido))
             {
-                throw new Exception("Ingrese el apellido");
+                throw new Exception("Ingrese nombre de fantasía");
             }
             if (string.IsNullOrEmpty(telefono))
             {

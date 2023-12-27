@@ -60,11 +60,32 @@ export class RegistroClientesComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  validar():boolean{
+    let band:boolean=true;
+    let msj:string="";
+    if(!this.obj.FechaNacimiento){
+      band=false;
+      msj+="Ingrese el Fecha de Nacimiento<br>";
+    }else{
+      band=this.mayorEdad(this.obj.FechaNacimiento);
+      msj+="Debe ser mayor de 18 años<br>";
+
+    }
+
+    if(!band){
+      Swal.fire("Upps",msj,'warning');        
+    }
+    return band;
+  }
   
   Registrar(){
     if(!this.passOK){
       return
     }
+    if(!this.validar()){
+      return
+    }
+
     const form=new FormData();
     if(!this.Agregar){
       form.append("id",this.obj.IdCliente.toString());
@@ -108,5 +129,22 @@ export class RegistroClientesComponent implements OnInit {
          }
     
   }
+  
+
+  mayorEdad(fechaNacimiento){
+    var temp = fechaNacimiento.replace(/-/g, "/");
+  
+    var fnac = new Date(temp).toJSON();
+  
+    var hoy = new Date().toJSON().slice(0,10)+' 00:00:00';
+  
+    var Edad = ~~((new Date(hoy).getTime() - new Date(fnac).getTime()) / (31557600000));
+  
+    if(Edad < 18) {
+      return false;
+    }else{
+      return true;
+    }
+  } 
   
 }

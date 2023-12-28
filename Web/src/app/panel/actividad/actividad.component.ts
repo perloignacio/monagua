@@ -142,7 +142,7 @@ export class ActividadComponent implements OnInit {
     }
     if(!this.obj.IdCategoria){
       band=false;
-      msj+="Ingrese el nombre<br>";
+      msj+="Seleccione un Tipo de Actividad <br>";
     }
     if(!this.obj.DescripcionCorta){
       band=false;

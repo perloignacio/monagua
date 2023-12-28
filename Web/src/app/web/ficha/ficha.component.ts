@@ -39,6 +39,7 @@ export class FichaComponent implements OnInit {
   horario:string;
   horasdisponibles:string[]=[];
   urlSafe:SafeResourceUrl;
+  compartir:boolean=false;
   constructor(private srvACtividades:ActividadesService,
     private route:ActivatedRoute,
     private srvAutenticate:AuthenticationService,

@@ -19,6 +19,7 @@ export class PrestadoresComponent implements OnInit {
   collectionSize = 0
   OriginalArr:Prestadores[]=[];
   strFiltro="";
+  assets:string=environment.assets;
   constructor(private srvObj:PrestadoresService,private srvShared:SharedService,private router:Router,private route:ActivatedRoute) { 
     this.cargar()
   }

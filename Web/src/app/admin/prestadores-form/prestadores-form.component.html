@@ -94,11 +94,11 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-md-6">
             <div class="position-relative form-group mt-2">
-                <label for="exampleEmail11">Certificado</label>
-                <a href="{{assets}}assets/certificaciones/{{obj.Certificado}}" target="_blank">{{obj.Certificado}}</a>
+                <label for="exampleEmail11">Certificado </label><br>
+                <a href="{{assets}}assets/certificaciones/{{obj.Certificado}}" target="_blank"> <i class="fa fa-paperclip" *ngIf="obj.Certificado"></i> {{obj.Certificado}}</a>
             </div>
         </div>
     </div>

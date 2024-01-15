@@ -14,12 +14,25 @@ import Swal from 'sweetalert2';
 export class BlanqueoComponent implements OnInit {
   obj:objBlanqueo=new objBlanqueo();
   nContra:string;
+  passOK: boolean=false;
   constructor(private route:ActivatedRoute,private router:Router,private srvUsuario:AuthenticationService,private srvShared:SharedService) { 
     this.obj.Hash=this.route.snapshot.params["hash"];
   }
 
   ngOnInit(): void {
   }
+
+  passValidate(contra){
+    
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{7,}$/;
+       if (!regex.test(contra)) {
+        this.passOK=false;
+         }else{
+          this.passOK=true;
+         }
+    
+  }
+  
   Enviar(){
     if(this.obj.Contra==this.nContra){
       const form=new FormData();

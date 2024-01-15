@@ -40,7 +40,10 @@ export class HorarioComponent implements OnInit {
   Guardar(){
     const form=new FormData();
     
-    
+    if(!this.ValidarHORA(this.obj.HoraDesde) && !this.ValidarHORA(this.obj.HoraHasta)){
+      Swal.fire("Upps","Ingrese una hora valida",'warning');
+      return;
+    }
     
     form.append("obj",this.srvShared.convertToJSON(this.obj).objeto);
     this.srvAct.agregarHorario(form).subscribe((band)=>{
@@ -54,9 +57,28 @@ export class HorarioComponent implements OnInit {
     })
   }
 
+ValidarHORA(hora) {
+    let regex = new RegExp(/((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/);
+    if (hora == null) {
+        return "false";
+    }
+    if (regex.test(hora) == true) {
+        return "true";
+    }else{
+        return "false";
+    }
+}
+
   Modificar(tipo:string){
     const form=new FormData();
     form.append("id",this.obj.id.toString());
+   
+    if(!this.ValidarHORA(this.obj.HoraDesde) && !this.ValidarHORA(this.obj.HoraHasta)){
+      Swal.fire("Upps","Ingrese una hora valida",'warning');
+      return;
+    }
+
+    
     if(tipo=="solo"){
       this.obj.HoraDesde=this.obj.FechaInicio;
       this.obj.HoraHasta=this.obj.FechaFin;

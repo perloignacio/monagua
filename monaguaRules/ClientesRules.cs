@@ -90,11 +90,11 @@ namespace monaguaRules
             {
                 if (ul[0].Email != clientes.Email)
                 {
-                    Usuarios u = UsuariosMapper.Instance().GetByUsuario(clientes.Email);
-                    if (u != null)
-                    {
-                        throw new Exception("Ya existe un usuario con ese nombre");
-                    }
+                  //  Usuarios u = UsuariosMapper.Instance().GetByUsuario(clientes.Email);
+                //    if (u != null)
+                 //   {
+                //        throw new Exception("Ya existe un usuario con ese nombre");
+                 //   }
 
                     ul[0].Usuario = clientes.Email;
                     UsuariosMapper.Instance().Save(ul[0]);

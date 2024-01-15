@@ -24,6 +24,8 @@ export class ClientesComponent implements OnInit {
     if(this.srvAut.currentUserValue){
       this.srvWeb.Paises().subscribe((paises)=>{
         this.obj=this.srvAut.currentUserValue.ClientesEntity;
+        console.log(this.obj);
+        
         this.listapaises=paises;
         this.cargaProvincias()
         this.cargaLocalidades()

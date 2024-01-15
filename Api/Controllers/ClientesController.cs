@@ -1,10 +1,12 @@
 ﻿using API.Clases;
+using MimeKit;
 using monaguaRules;
 using monaguaRules.Entities;
 using monaguaRules.Mappers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -109,18 +111,13 @@ namespace Api.Controllers
                 {
                     UsuariosRules uRules = new UsuariosRules();
                     uRules.Agregar(u.Nombre, u.Apellido, u.Email, u.Telefono, u.Usuario, u.Contra,cli.IdCliente, null);
+                    mailRegistro(u);
                     return Ok(true);
                 }
                 else
                 {
                     return BadRequest("Ocurrio un error");
                 }
-                
-                
-                
-
-
-                
             }
             catch (Exception ex)
             {
@@ -128,7 +125,44 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
 
+        }
 
+        private void mailRegistro(Usuarios u) {
+            string body = String.Empty;
+            var path = HttpContext.Current.Server.MapPath("~/Plantillas/nuevoUsuario.html");
+            var fileStream = System.IO.File.OpenRead(path);
+            StreamReader reader = new StreamReader(fileStream);
+            body = reader.ReadToEnd();
+            body = body.Replace("{domain}", ConfiguracionMapper.Instance().GetByClave("Dominio").Valor);
+            body = body.Replace("{ubicacionlogo}", "img/logo-servet-home.png");
+            string nombre = "";
+            string email = "";
+            if (u.ClientesEntity != null)
+            {
+                nombre = u.ClientesEntity.Nombre;
+                email = u.ClientesEntity.Email;
+            }
+            else
+            {
+                nombre = u.PrestadoresEntity.RazonSocial;
+                email = u.PrestadoresEntity.Email;
+            }
+            body = body.Replace("{nombre}", nombre);
+            body = body.Replace("{email_recuperar}", ConfiguracionMapper.Instance().GetByClave("MailInstitucional").Valor);
+
+            MimeKit.MimeMessage message = new MimeKit.MimeMessage();
+            BodyBuilder cuerpo = new BodyBuilder();
+
+
+
+
+
+            cuerpo.HtmlBody = body;
+            message.Subject = "Bienvenido a Monagua";
+            message.Body = cuerpo.ToMessageBody();
+            message.From.Add(new MailboxAddress("", ConfiguracionMapper.Instance().GetByClave("MailInstitucional").Valor));
+            message.To.Add(new MailboxAddress("", email));
+            EnviaMail.Envia(message);
         }
 
         [Route("editar")]

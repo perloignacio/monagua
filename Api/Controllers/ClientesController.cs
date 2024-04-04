@@ -110,8 +110,8 @@ namespace Api.Controllers
                 if (cli != null)
                 {
                     UsuariosRules uRules = new UsuariosRules();
-                    uRules.Agregar(u.Nombre, u.Apellido, u.Email, u.Telefono, u.Usuario, u.Contra,cli.IdCliente, null);
-                    mailRegistro(u);
+                    int idusuario=uRules.Agregar(u.Nombre, u.Apellido, u.Email, u.Telefono, u.Usuario, u.Contra,cli.IdCliente, null);
+                    mailRegistro(idusuario);
                     return Ok(true);
                 }
                 else
@@ -127,8 +127,9 @@ namespace Api.Controllers
 
         }
 
-        private void mailRegistro(Usuarios u) {
+        private void mailRegistro(int idusuario) {
             string body = String.Empty;
+            Usuarios u=UsuariosMapper.Instance().GetOne(idusuario);
             var path = HttpContext.Current.Server.MapPath("~/Plantillas/nuevoUsuario.html");
             var fileStream = System.IO.File.OpenRead(path);
             StreamReader reader = new StreamReader(fileStream);

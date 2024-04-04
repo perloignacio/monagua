@@ -20,7 +20,7 @@
   
   
   
-  <div class="card-body">
+  <div class="card-body pb-5">
     <form>
       
       <div class="row">
@@ -68,23 +68,7 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="position-relative form-group mt-2">
-            <label for="exampleEmail11">ID Cliente</label>
-            <input type="text" [(ngModel)]="obj.ClientesEntity" name="IdCliente" class="form-control">
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="position-relative form-group mt-2">
-            <label for="exampleEmail11">ID Prestador</label>
-            <input type="text" [(ngModel)]="obj.PrestadoresEntity" name="IdPrestador" class="form-control">
-          </div>
-        </div>
-      </div>
+      
       
       <button class="mt-2 btn btn-success" (click)="Guardar()">Guardar cambios</button>
     </form>

@@ -151,10 +151,9 @@
     <Content Include="Plantillas\compraPrestador.html" />
     <Content Include="Plantillas\consulta.html" />
     <Content Include="Plantillas\nuevoComentario.html" />
-    <Content Include="Plantillas\recuperar.html" />
+    <Content Include="Plantillas\nuevoUsuario.html" />
     <Content Include="Plantillas\registro.html" />
     <Content Include="Plantillas\respuestaComentario.html" />
-    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -206,6 +205,7 @@
       <DependentUpon>dsMonagua.xsd</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

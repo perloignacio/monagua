@@ -18,6 +18,7 @@ export class UsuariosFormComponent implements OnInit {
   constructor(private srvObj:UsuariosService,private srvShared:SharedService,private route:Router) {
     this.obj=this.srvShared.ObjEdit as Usuarios;
       if(this.obj!=null){
+        this.obj.Contra="";
         this.Agregar=false;
       }else{
         this.obj=new Usuarios();

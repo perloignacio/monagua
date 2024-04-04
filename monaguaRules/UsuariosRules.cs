@@ -10,7 +10,7 @@ namespace monaguaRules
 {
     public class UsuariosRules
     {
-        public  void Agregar(string nombre, string apellido, string email, string telefono, string usuario, string contra, int? idcliente, int? idprestador)
+        public  int Agregar(string nombre, string apellido, string email, string telefono, string usuario, string contra, int? idcliente, int? idprestador)
         {
             validar(usuario, contra, idcliente,idprestador, "Agregar");
             Usuarios u = new Usuarios();
@@ -42,6 +42,7 @@ namespace monaguaRules
             }
 
             UsuariosMapper.Instance().Insert(u);
+            return u.IdUsuario;
 
         }
 

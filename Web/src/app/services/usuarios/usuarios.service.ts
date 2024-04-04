@@ -29,7 +29,7 @@ export class UsuariosService {
     return this.httpClient.get<Usuarios[]>(this.endpoint + `Admin/todosAdmin`, httpOptions)
   }
   AgregarEditar(form:any) {
-    return this.httpClient.post<boolean>(this.endpoint + `Admin/AgregarEditar`, httpOptions)
+    return this.httpClient.post<boolean>(this.endpoint + `Admin/AgregarEditar`,form, httpOptions)
   }
   CambiarContra(contra:string,ncontra:string,rncontra:string){
       return this.httpClient.get<boolean>(this.endpoint + `/cambiarContra?contraActual=${contra}&contraNueva=${ncontra}&rcontraNueva=${rncontra}`, httpOptions)
